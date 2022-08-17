@@ -1,16 +1,19 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import "../public/assets/css/plugins/bootstrap.min.css";
+@import "../public/assets/css/plugins/slick.css";
+@import "../public/assets/css/plugins/magnific-popup.css";
+@import "../public/assets/css/plugins/animate.css";
+@import "../public/assets/fonts/flaticon/flaticon.css";
+@import "../public/assets/fonts/font-awesome.min.css";
+@import "../public/assets/css/style.css";
+@import "../public/assets/css/responsive.css";
 
+.progress_box {
+  padding: 22px 26px;
+}
 a {
-  color: inherit;
-  text-decoration: none;
+  cursor: pointer;
 }
 
-* {
-  box-sizing: border-box;
+html {
+  scroll-behavior: smooth;
 }
