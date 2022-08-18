@@ -28,7 +28,7 @@ const Contact = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/icon_14.png"
+                    src="assets/images/icons/support.jpg"
                     alt="icon"
                     className="image-fit-contain"
                   />
@@ -36,8 +36,8 @@ const Contact = () => {
                 <div className="text">
                   <h4>Customer Support</h4>
                   <p>
-                    Sed ut perspiciatis unde omnis iste natus voluptatem
-                    accusantium doloremque laudantium
+                    We have 24/7 custommer support to answer all of your
+                    questions.
                   </p>
                   <Link href="/contact">
                     <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
@@ -54,7 +54,7 @@ const Contact = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/icon_15.png"
+                    src="assets/images/icons/chat.png"
                     alt="icon"
                     className="image-fit-contain"
                   />
@@ -62,8 +62,8 @@ const Contact = () => {
                 <div className="text">
                   <h4>Have Any Questions</h4>
                   <p>
-                    Sed ut perspiciatis unde omnis iste natus voluptatem
-                    accusantium doloremque laudantium
+                    Don't hesitate to ask your questions. We will answer all of
+                    them.
                   </p>
                   <Link href="/contact">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
@@ -94,14 +94,14 @@ const Contact = () => {
                   <i className="icon fal fa-map-marker-alt" />
                   <div className="text">
                     <h6>Location</h6>
-                    <p>354 Oakridge, Camden NJ 08102 - USA</p>
+                    <p>Sofia-USA</p>
                   </div>
                 </li>
                 <li className="wow fadeInDown">
                   <i className="icon fal fa-envelope-open-text" />
                   <div className="text">
                     <h6>Email Address</h6>
-                    <p>supportcoachinfo@gmail.com</p>
+                    <p> nextteammateltd@gmail.com</p>
                   </div>
                 </li>
                 <li className="wow fadeInUp">
@@ -109,10 +109,7 @@ const Contact = () => {
                   <div className="text">
                     <h6>Contact Us</h6>
                     <p>
-                      <strong>Mobile: </strong> +012 (345) 789 99
-                    </p>
-                    <p>
-                      <strong>Hotline: </strong> +563 789 55
+                      <strong>Phone: </strong> +126720800020
                     </p>
                   </div>
                 </li>

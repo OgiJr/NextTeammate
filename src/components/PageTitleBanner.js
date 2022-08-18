@@ -3,7 +3,7 @@ const PageTitleBanner = ({ pageName, title }) => {
   return (
     <div
       className="subheader relative z-1"
-      style={{ backgroundImage: "url(assets/images/subheader.jpg)" }}
+      style={{ backgroundImage: "url(assets/images/banner_contact.png)" }}
     >
       <div className="container relative z-1">
         <div className="row">
@@ -39,7 +39,7 @@ const PageTitleBanner = ({ pageName, title }) => {
           className="element_3 rotate_elem"
         />
         <img
-          src="assets/images/elements/element_21.png"
+          src="assets/images/elements/cirle.png"
           alt="element"
           className="element_4 rotate_elem"
         />

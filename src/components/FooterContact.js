@@ -36,7 +36,7 @@ const FooterContact = () => {
                   className="shape_2 rotate_elem"
                 />
                 <img
-                  src="assets/images/cta_image.png"
+                  src="assets/images/footer_photo.png"
                   alt="img"
                   className="image-fit"
                 />
