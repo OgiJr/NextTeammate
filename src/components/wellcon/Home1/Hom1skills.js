@@ -8,15 +8,11 @@ const Hom1skills = () => {
           <div className="col-lg-6">
             <div
               className="section-bg bg-thm-color-one h-100"
-              style={{ backgroundImage: "url(assets/images/bg/bg_2.png)" }}
+              style={{ backgroundImage: "url(assets/images/bg/dsico2.png)" }}
             />
           </div>
           <div className="col-lg-6">
-            <img
-              src="assets/images/skills.jpg"
-              className="image-fit"
-              alt="img"
-            />
+            <img src="assets/images/hui.png" className="image-fit" alt="img" />
           </div>
         </div>
       </div>
@@ -27,14 +23,14 @@ const Hom1skills = () => {
               <div className="section-title left-align white wow fadeInUp">
                 <p className="subtitle">
                   <i className="fal fa-book" />
-                  Our Skills
+                  Our Services
                 </p>
-                <h3 className="title">{`We're Awards Winning Coach Academy`}</h3>
+                <h3 className="title">{`We're Awards Winning Outsorcing ompany`}</h3>
                 <p className="thm-color-white">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam eaque
-                  ipsa quae ab illo inventore veritatis et quasi architecto
-                  beatae vitae dicta sunt explicabo.
+                  We consider in a destiny of absolutely remote work and a
+                  financial system without a borders. With modern era, a
+                  vicinity constraint is absolutely pointless. We're building
+                  tools to accelerate this beautiful transition to remote work.
                 </p>
               </div>
             </div>
