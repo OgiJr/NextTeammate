@@ -19,7 +19,7 @@ const About = () => {
             <div className="col-lg-6">
               <div className="image_box shadow_1 mb-md-80 wow fadeInLeft">
                 <img
-                  src="assets/images/about/about.jpg"
+                  src="assets/images/about/about-us.jpg"
                   alt="img"
                   className="image-fit"
                 />
@@ -44,7 +44,7 @@ const About = () => {
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/icon_5.png"
+                      src="assets/images/icons/hat.png"
                       alt="img"
                       className="image-fit"
                     />
@@ -59,7 +59,7 @@ const About = () => {
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/icon_5.png"
+                      src="assets/images/icons/hat.png"
                       alt="img"
                       className="image-fit"
                     />
@@ -74,7 +74,7 @@ const About = () => {
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/icon_5.png"
+                      src="assets/images/icons/hat.png"
                       alt="img"
                       className="image-fit"
                     />
@@ -89,7 +89,7 @@ const About = () => {
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/icon_5.png"
+                      src="assets/images/icons/hat.png"
                       alt="img"
                       className="image-fit"
                     />
@@ -122,7 +122,7 @@ const About = () => {
               <div className="counter_box wow fadeInUp" data-wow-delay=".10ms">
                 <div className="icon">
                   <img
-                    src="assets/images/icons/icon_6.png"
+                    src="assets/images/icons/popular-coach.png"
                     alt="icon"
                     className="image-fit"
                   />
@@ -144,7 +144,7 @@ const About = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/icon_7.png"
+                    src="assets/images/icons/our-advisors.png"
                     alt="icon"
                     className="image-fit"
                   />
@@ -163,7 +163,7 @@ const About = () => {
               <div className="counter_box wow fadeInUp" data-wow-delay=".30ms">
                 <div className="icon">
                   <img
-                    src="assets/images/icons/icon_8.png"
+                    src="assets/images/icons/video-tutorial.png"
                     alt="icon"
                     className="image-fit"
                   />
@@ -185,7 +185,7 @@ const About = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/icon_9.png"
+                    src="assets/images/icons/student-review.png"
                     alt="icon"
                     className="image-fit"
                   />
