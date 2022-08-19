@@ -10,7 +10,7 @@ export const Footer1 = () => (
               <Link href="/index">
                 <a className="logo">
                   <img
-                    src="assets/images/logo.png"
+                    src="assets/images/next.png"
                     alt="logo"
                     className="image-fit"
                   />
@@ -295,7 +295,7 @@ export const DefaultFooter = () => (
               <Link href="/">
                 <a className="logo">
                   <img
-                    src="assets/images/logo-white.png"
+                    src="assets/images/nextlogof.png"
                     alt="logo"
                     className="image-fit"
                   />
@@ -303,13 +303,16 @@ export const DefaultFooter = () => (
               </Link>
               <ul className="info">
                 <li>
-                  <a href="#">256 Elizaberth Ave Str, Brooklyn, CA, 90025</a>
+                  <a href="#">Sofia-USA</a>
                 </li>
                 <li>
-                  <a href="tel:+01234567899">+012 (345) 678 99</a>
+                  <a href="tel:+126720800020">+126720800020</a>
                 </li>
                 <li>
-                  <a href="mailto:example@example.com">example@example.com</a>
+                  <a href="mailto:example@example.com">
+                    {" "}
+                    nextteammateltd@gmail.com
+                  </a>
                 </li>
               </ul>
               <ul className="social">
@@ -326,16 +329,6 @@ export const DefaultFooter = () => (
                 <li>
                   <a href="#">
                     <i className="fab fa-linkedin" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-behance" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="fab fa-youtube" />
                   </a>
                 </li>
               </ul>
@@ -389,7 +382,7 @@ export const DefaultFooter = () => (
             <div className="ft_widget ft_newsletter wow fadeInUp">
               <h6 className="ft-title">Newsletter</h6>
               <p className="mb-xl-20">
-                Sed ut perspici unde omnis iste natus error sit voluptatem accus
+                Join our email list for exclusive offers and the latest news.
               </p>
               <form onSubmit={(e) => e.preventDefault()}>
                 <input
@@ -411,11 +404,12 @@ export const DefaultFooter = () => (
       </div>
       <div className="footer_bottom">
         <p className="mb-0">
-          © 2021 <a href="#">Wellco</a>. All Rights Reserved, Design By Webtend
+          © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved,
+          Design By Javery
         </p>
       </div>
       <img
-        src="assets/images/elements/element_16.png"
+        src="assets/images/elements/circle3.png"
         alt="element"
         className="element_3 rotate_elem"
       />

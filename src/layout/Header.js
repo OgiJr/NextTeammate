@@ -49,7 +49,7 @@ const Header = ({
                   <Link href="/">
                     <a>
                       <img
-                        src="assets/images/logo.png"
+                        src="assets/images/nextlogo.png"
                         alt="logo"
                         className="image-fit"
                       />

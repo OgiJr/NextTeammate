@@ -24,22 +24,22 @@ const PageTitleBanner = ({ pageName, title }) => {
           </div>
         </div>
         <img
-          src="assets/images/elements/element_19.png"
+          src="assets/images/elements/dots.png"
           alt="element"
           className="element_1 slideRightTwo"
         />
         <img
-          src="assets/images/elements/element_10.png"
+          src="assets/images/elements/circle3.png"
           alt="element"
           className="element_2 zoom-fade"
         />
         <img
-          src="assets/images/elements/element_20.png"
+          src="assets/images/elements/circle3big.png"
           alt="element"
           className="element_3 rotate_elem"
         />
         <img
-          src="assets/images/elements/cirle.png"
+          src="assets/images/elements/circle3.png "
           alt="element"
           className="element_4 rotate_elem"
         />

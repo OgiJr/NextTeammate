@@ -5,7 +5,7 @@ const FooterContact = () => {
       <div className="container relative z-2">
         <div className="bg-thm-color-two cta_box_inner z-2 mb-negative">
           <img
-            src="assets/images/elements/shape.png"
+            src="assets/images/elements/circle3.png"
             alt="shape"
             className="shape_1 zoom-fade"
           />
@@ -31,7 +31,7 @@ const FooterContact = () => {
             <div className="col-lg-5">
               <div className="image_box relative z-1 wow fadeInRight">
                 <img
-                  src="assets/images/elements/square_shape.png"
+                  src="assets/images/elements/circle3.png"
                   alt="shape"
                   className="shape_2 rotate_elem"
                 />

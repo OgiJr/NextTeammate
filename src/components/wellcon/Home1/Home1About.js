@@ -3,35 +3,35 @@ const Home1About = () => {
   return (
     <section
       className="section section-bg about_bg about style_2"
-      style={{ backgroundImage: "url(assets/images/bg/bg_1.png)" }}
+      style={{ backgroundImage: "url(assets/images/bg/gradient.png)" }}
     >
       <div className="container">
         <div className="row justify-content-between">
           <div className="col-lg-6">
             <div className="image_boxes relative z-1 mb-md-80 h-100">
               <img
-                src="assets/images/about/small.jpg"
+                src="assets/images/about/smallb.png"
                 className="small_img wow fadeInUp"
                 alt="img"
               />
               <img
-                src="assets/images/about/about_img.jpg"
+                src="assets/images/about/businessm.png"
                 className="big_img wow fadeInDown"
                 alt="img"
               />
               {/* elements */}
               <img
-                src="assets/images/elements/element_22.png"
+                src="assets/images/elements/circle3big.png"
                 className="element_1"
                 alt="Element"
               />
               <img
-                src="assets/images/elements/element_23.png"
+                src="assets/images/elements/circle3.png"
                 className="element_2 rotate_elem"
                 alt="Element"
               />
               <img
-                src="assets/images/elements/element_24.png"
+                src="assets/images/elements/circle3big.png"
                 className="element_3 rotate_elem"
                 alt="Element"
               />
@@ -41,13 +41,12 @@ const Home1About = () => {
             <div className="section-title left-align wow fadeInDown">
               <p className="subtitle">
                 <i className="fal fa-book" />
-                Who We Are
+                Our goal
               </p>
-              <h3 className="title">We Care About Your Business Plan.</h3>
+              <h3 className="title">We Care About Your Business.</h3>
               <p className="mb-0">
-                Quis autem vel eum iure reprehenderit qui in ea voluptate esse
-                quam nihil molestiae conseq uaturvel illum qui dolorem eum
-                fugiat quo voluptas nulla pariatur{" "}
+                We provide foreign employment and a new and complete work from
+                home (WFH) system which is easy, reliable and secure.{" "}
               </p>
             </div>
             <ul className="about_list style_2 mb-xl-30 wow fadeInUp">
