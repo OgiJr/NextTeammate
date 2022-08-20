@@ -32,73 +32,70 @@ const About = () => {
                   About Us
                 </p>
                 <h3 className="title">
-                  We Care About Your Life For Better Future
+                  Our main priority is to make your life easier so you can focus
+                  on your business.
                 </h3>
-                <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremque laudantium, totam rem aperiam, eaque
-                  ipsa quae inventore
-                </p>
+                <p>We will take care of the entire employment process:</p>
               </div>
               <ul className="about_list row">
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/hat.png"
+                      src="assets/images/icons/tick.png"
                       alt="img"
                       className="image-fit"
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Master Coach</h6>
-                    <p className="mb-0">
+                    <h6 className="mb-2">Payroll</h6>
+                    {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
-                    </p>
+                    </p> */}
                   </div>
                 </li>
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/hat.png"
+                      src="assets/images/icons/tick.png"
                       alt="img"
                       className="image-fit"
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Professional Advisors</h6>
-                    <p className="mb-0">
+                    <h6 className="mb-2">Health insurance benefits</h6>
+                    {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
-                    </p>
+                    </p> */}
                   </div>
                 </li>
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/hat.png"
+                      src="assets/images/icons/tick.png"
                       alt="img"
                       className="image-fit"
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Coach Certification</h6>
-                    <p className="mb-0">
+                    <h6 className="mb-2">Management</h6>
+                    {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
-                    </p>
+                    </p> */}
                   </div>
                 </li>
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
                     <img
-                      src="assets/images/icons/hat.png"
+                      src="assets/images/icons/tick.png"
                       alt="img"
                       className="image-fit"
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Coaching Scholars</h6>
-                    <p className="mb-0">
+                    <h6 className="mb-2">Built in scheduling software</h6>
+                    {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
-                    </p>
+                    </p> */}
                   </div>
                 </li>
               </ul>
@@ -131,7 +128,7 @@ const About = () => {
                   <div className="counter">
                     <Counter end={369} />
                   </div>
-                  <p className="mb-0">Popular Coach</p>
+                  {/* <p className="mb-0">Popular Coach</p> */}
                 </div>
               </div>
             </div>
@@ -153,7 +150,7 @@ const About = () => {
                   <div className="counter">
                     <Counter end={264} />
                   </div>
-                  <p className="mb-0">Our Advisors</p>
+                  {/* <p className="mb-0">Our Advisors</p> */}
                 </div>
               </div>
             </div>
@@ -172,7 +169,7 @@ const About = () => {
                   <div className="counter">
                     <Counter end={259} />
                   </div>
-                  <p className="mb-0">Video Tutorials</p>
+                  {/* <p className="mb-0">Video Tutorials</p> */}
                 </div>
               </div>
             </div>
@@ -194,7 +191,7 @@ const About = () => {
                   <div className="counter">
                     <Counter end={568} />
                   </div>
-                  <p className="mb-0">Student Reviews</p>
+                  {/* <p className="mb-0">Student Reviews</p> */}
                 </div>
               </div>
             </div>
@@ -206,40 +203,40 @@ const About = () => {
       {/* About Us Start */}
       <section
         className="section section-bg about_bg about style_2"
-        style={{ backgroundImage: "url(assets/images/bg/bg_1.png)" }}
+        style={{ backgroundImage: "url(assets/images/bg/bg_1.jpg)" }}
       >
         <div className="container">
           <div className="row justify-content-between flex-row-reverse">
             <div className="col-lg-6">
               <div className="image_boxes style_2 relative z-1 h-100">
                 <img
-                  src="assets/images/about/small_2.jpg"
+                  src="assets/images/nextlogo.png"
                   className="small_img wow fadeInUp"
                   alt="img"
                 />
                 <div className="video_warp style_2 relative z-1 big_img wow fadeInDown">
-                  <img src="assets/images/about/about_img_2.jpg" alt="img" />
+                  <img src="assets/images/about/video-img.jpg" alt="img" />
                   <a
                     href="#"
                     onClick={() => setVideo(true)}
                     className="popup-youtube transform-center justify-content-center d-flex"
                   >
-                    <img src="assets/images/icons/youtube.png" alt="icon" />
+                    <img src="assets/images/icons/play.png" alt="icon" />
                   </a>
                 </div>
                 {/* elements */}
                 <img
-                  src="assets/images/elements/element_22.png"
+                  src="assets/images/elements/circle3.png"
                   className="element_1"
                   alt="Element"
                 />
                 <img
-                  src="assets/images/elements/element_23.png"
+                  src="assets/images/elements/circle3.png"
                   className="element_2 rotate_elem"
                   alt="Element"
                 />
                 <img
-                  src="assets/images/elements/element_24.png"
+                  src="assets/images/elements/circle3.png"
                   className="element_3 rotate_elem"
                   alt="Element"
                 />
@@ -249,19 +246,20 @@ const About = () => {
               <div className="section-title left-align wow fadeInUp">
                 <p className="subtitle">
                   <i className="fal fa-book" />
-                  Who We Are
+                  What to expect
                 </p>
-                <h3 className="title">Upgrade Your Skills Build Your Life</h3>
-                <p className="mb-0">
+                <h3 className="title">Other facilities that we can offer:</h3>
+                {/* <p className="mb-0">
                   Quis autem vel eum iure reprehenderit qui in ea voluptate esse
                   quam nihil molestiae conseq uaturvel illum qui dolorem eum
                   fugiat quo voluptas nulla pariatur{" "}
-                </p>
+                </p> */}
               </div>
               <ul className="about_list style_2 mb-xl-30 wow fadeInDown">
-                <li>Business Consulting</li>
-                <li>Career Development</li>
-                <li>Financial Solutions</li>
+                <li>Online secure conference platform</li>
+                <li>Secure and encrypted file sharing platform</li>
+                <li>American phone number for the employee</li>
+                <li>Laptops computers and various working equipment</li>
               </ul>
               <Link href="/about">
                 <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle wow fadeInUp">
