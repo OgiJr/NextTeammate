@@ -51,7 +51,7 @@ const Header = ({
                       <img
                         src="assets/images/nextlogo.png"
                         alt="logo"
-                        className="image-fit"
+                        className="header-image"
                       />
                     </a>
                   </Link>
