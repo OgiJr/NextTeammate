@@ -323,7 +323,7 @@ const Videos = () => {
                   <div className="coach_badges">
                     <span className="tag_badge bg-thm-color-four">Free</span>
                   </div>
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn thm-color-two bg-thm-color-white thm-color-two-shadow btn-circle link">
                       <i className="fal fa-chevron-right" />
                     </a>
@@ -345,7 +345,7 @@ const Videos = () => {
                     </div>
                   </div>
                   <h5 className="title mb-xl-20">
-                    <Link href="/team-details">
+                    <Link href="/user-panel">
                       Most Powerful Thing You Have Self Coaching Scholars
                     </Link>
                   </h5>
@@ -375,7 +375,7 @@ const Videos = () => {
                   <div className="coach_badges">
                     <span className="tag_badge bg-thm-color-four">$50</span>
                   </div>
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn thm-color-two bg-thm-color-white thm-color-two-shadow btn-circle link">
                       <i className="fal fa-chevron-right" />
                     </a>
@@ -397,7 +397,7 @@ const Videos = () => {
                     </div>
                   </div>
                   <h5 className="title mb-xl-20">
-                    <Link href="/team-details">
+                    <Link href="/user-panel">
                       Coach Certification Programs Most Powerful Coach
                     </Link>
                   </h5>
@@ -427,7 +427,7 @@ const Videos = () => {
                   <div className="coach_badges">
                     <span className="tag_badge bg-thm-color-four">Free</span>
                   </div>
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn thm-color-two bg-thm-color-white thm-color-two-shadow btn-circle link">
                       <i className="fal fa-chevron-right" />
                     </a>
@@ -449,7 +449,7 @@ const Videos = () => {
                     </div>
                   </div>
                   <h5 className="title mb-xl-20">
-                    <Link href="/team-details">
+                    <Link href="/user-panel">
                       Matter How Great Your Life Al Ready, We’ll Give Syatem
                     </Link>
                   </h5>
@@ -479,7 +479,7 @@ const Videos = () => {
                   <div className="coach_badges">
                     <span className="tag_badge bg-thm-color-four">Free</span>
                   </div>
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn thm-color-two bg-thm-color-white thm-color-two-shadow btn-circle link">
                       <i className="fal fa-chevron-right" />
                     </a>
@@ -501,7 +501,7 @@ const Videos = () => {
                     </div>
                   </div>
                   <h5 className="title mb-xl-20">
-                    <Link href="/team-details">
+                    <Link href="/user-panel">
                       Most Powerful Thing You Have Self Coaching Scholars
                     </Link>
                   </h5>
@@ -531,7 +531,7 @@ const Videos = () => {
                   <div className="coach_badges">
                     <span className="tag_badge bg-thm-color-four">$50</span>
                   </div>
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn thm-color-two bg-thm-color-white thm-color-two-shadow btn-circle link">
                       <i className="fal fa-chevron-right" />
                     </a>
@@ -553,7 +553,7 @@ const Videos = () => {
                     </div>
                   </div>
                   <h5 className="title mb-xl-20">
-                    <Link href="/team-details">
+                    <Link href="/user-panel">
                       Coach Certification Programs Most Powerful Coach
                     </Link>
                   </h5>
@@ -583,7 +583,7 @@ const Videos = () => {
                   <div className="coach_badges">
                     <span className="tag_badge bg-thm-color-four">Free</span>
                   </div>
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn thm-color-two bg-thm-color-white thm-color-two-shadow btn-circle link">
                       <i className="fal fa-chevron-right" />
                     </a>
@@ -605,7 +605,7 @@ const Videos = () => {
                     </div>
                   </div>
                   <h5 className="title mb-xl-20">
-                    <Link href="/team-details">
+                    <Link href="/user-panel">
                       Matter How Great Your Life Al Ready, We’ll Give Syatem
                     </Link>
                   </h5>

@@ -297,14 +297,14 @@ const About = () => {
                     data-wow-delay=".10ms"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Wallace D. Grace</a>
                   </Link>
                 </h6>
@@ -326,14 +326,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Evan A. Ethridge</a>
                   </Link>
                 </h6>
@@ -355,14 +355,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Marcus L. Duncan</a>
                   </Link>
                 </h6>
@@ -384,14 +384,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Paul B. Gilliland</a>
                   </Link>
                 </h6>
@@ -413,14 +413,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Donald T.Lewis</a>
                   </Link>
                 </h6>
@@ -442,14 +442,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Allan J. Sumlin</a>
                   </Link>
                 </h6>
@@ -471,14 +471,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Gracie T. Evans</a>
                   </Link>
                 </h6>
@@ -500,14 +500,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>David S. Hudson</a>
                   </Link>
                 </h6>
@@ -529,14 +529,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Michael J. Randall</a>
                   </Link>
                 </h6>
@@ -558,14 +558,14 @@ const About = () => {
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                       <i className="fal fa-plus" />
                     </a>
                   </Link>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/team-details">
+                  <Link href="/user-panel">
                     <a>Joseph Anderson</a>
                   </Link>
                 </h6>
