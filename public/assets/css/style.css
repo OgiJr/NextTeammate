@@ -4181,6 +4181,10 @@ blockquote .quote_author:before {
     z-index: 1;
 }
 
+.actions {
+    background-color: red;
+}
+
 .team_details .team_img .video_warp:before {
     content: '';
     background-color: rgba(var(--thm-color-one-rgb), 65%);

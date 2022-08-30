@@ -14,35 +14,35 @@ const TeamDetails = () => {
       {video && <VideoPopup close={() => setVideo(false)} />}
 
       <section className="section-padding team_details">
-        <div className="container">
+        <div className="container rounded-[16px] bg-gradient-to-r from-white via-slate-100 to-blue-500">
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="team_img mb-md-80">
                 <img
                   src="assets/images/team/user-panel-photo.jpeg"
                   alt="img"
-                  className="image-fit wow fadeInLeft"
+                  className="image-fit wow fadeInLeft rounded-[12px]"
                 />
                 <div className="video_warp">
-                    <img
-                      src="assets/images/team/clock.png"
-                      alt="img"
-                      className="image-fit wow fadeInDown"
-                    />
-                  {/* <a
-                    // onClick={() => setVideo(true)}
+                  <img
+                    src="assets/images/team/about-user.jpeg"
+                    alt="img"
+                    className="image-fit wow fadeInDown rounded-[10px]"
+                  />
+                  <a
+                    onClick={() => setVideo(true)}
                     href="#"
                     className="video_btn popup-youtube transform-center"
                   >
-                    <i className="icon fal fa-clock video_icon bg-thm-color-three mx-auto" />
-                  </a> */}
+                    <i className="icon fal fa-play video_icon bg-thm-color-three mx-auto" />
+                  </a>
                 </div>
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="team_text pl-0 pl-xl-5 pl-lg-3">
-                <h3 className="name wow fadeInDown">Username</h3>
-                <p className="desi thm-color-two wow fadeInUp">Full Name</p>
+              <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
+                <h3 className="name wow fadeInDown">Collins</h3>
+                <p className="desi thm-color-two wow fadeInUp">Elizabeth Collins</p>
                 <ul className="social mb-xl-30 wow fadeInDown">
                   <li>
                     <a href="#">
@@ -70,14 +70,9 @@ const TeamDetails = () => {
                     </a>
                   </li>
                 </ul>
-                {/* <p className="text wow fadeInUp">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptat
-                  em accusantium doloremque laudantium, totam rem aperiam eaque
-                  ipsa quae abillo inventore veritatis
-                </p> */}
                 <ul className="info wow fadeInDown">
                   <li>
-                    <i className="icon fal fa-clock" />
+                    <i className="icon fal fa-clock bg-thm-color-three" />
                     <div className="text">
                       <h6 className="mb-0">Expected hours per week:</h6>
                       <p className="mb-0">30 hours</p>
@@ -111,6 +106,14 @@ const TeamDetails = () => {
                       <p className="mb-0">$2133.35</p>
                     </div>
                   </li>
+                  <div className="flex items-center justify-center">
+                    <button
+                      type="button"
+                      class="content-center px-10 p-3.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-500 hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
+                    >
+                      Clock In
+                    </button>
+                  </div>
                 </ul>
               </div>
             </div>
