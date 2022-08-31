@@ -23,7 +23,6 @@ html {
     width: 8rem;
   }
 }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
