@@ -43,7 +43,7 @@ export const PageMenu = () => (
       <Link href="/testimonials">Testimonials</Link>
     </li>
     <li className="menu-item">
-      <Link href="/faqs">{`FAQ's`}</Link>
+      <Link href="/faqs">{`Terms and Conditions`}</Link>
     </li>
   </Fragment>
 );
