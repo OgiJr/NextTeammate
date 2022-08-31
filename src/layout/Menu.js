@@ -6,10 +6,10 @@ export const HomeMenu = () => (
       <Link href="/">Home v1</Link>
     </li>
     <li className="menu-item">
-      <Link href="/index-2">Home v2</Link>
+      <Link href="/index-2">I Want to Hire</Link>
     </li>
     <li className="menu-item">
-      <Link href="/index-3">Home v3</Link>
+      <Link href="/index-3">I want to Work</Link>
     </li>
   </Fragment>
 );
