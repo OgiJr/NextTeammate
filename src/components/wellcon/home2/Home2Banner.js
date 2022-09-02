@@ -44,24 +44,24 @@ const Home2Banner = () => {
                 </Link>
               </div>
               <img
-                src="assets/images/elements/element_11.png"
+                src="assets/images/elements/circle3.png"
                 className="element_4 rotate_elem"
                 alt="img"
               />
               <img
-                src="assets/images/elements/element_12.png"
+                src="assets/images/elements/circle3.png"
                 className="element_5 rotate_elem"
                 alt="img"
               />
             </div>
           </div>
           <img
-            src="assets/images/elements/element_9.png"
+            src="assets/images/elements/circle3.png"
             className="element_2 slideRightTwo"
             alt="img"
           />
           <img
-            src="assets/images/elements/element_10.png"
+            src="assets/images/elements/circle3.png"
             className="element_3 zoom-fade"
             alt="img"
           />
@@ -69,7 +69,7 @@ const Home2Banner = () => {
       </div>
       <div className="shape_img relative">
         <img
-          src="assets/images/banner/banner_shape.png"
+          src="assets/images/banner/women.png"
           className="wow fadeInDown"
           alt="img"
         />
