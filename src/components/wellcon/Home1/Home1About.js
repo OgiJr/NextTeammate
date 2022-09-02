@@ -7,8 +7,8 @@ const Home1About = () => {
     >
       <div className="container">
         <div className="row justify-content-between">
-          <div className="col-lg-6">
-            <div className="image_boxes relative z-1 mb-md-80 h-100">
+          <div className="col-lg-5">
+            <div className="image_boxes relative z-1 mb-md-10 h-100">
               <img
                 src="assets/images/about/smallb.png"
                 className="small_img wow fadeInUp"

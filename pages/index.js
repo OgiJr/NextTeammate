@@ -6,7 +6,6 @@ import Home1Blog from "../src/components/wellcon/Home1/Home1Blog";
 import Home1Features from "../src/components/wellcon/Home1/Home1Features";
 import Home1Plane from "../src/components/wellcon/Home1/Home1Plane";
 import Home1Portfolio from "../src/components/wellcon/Home1/Home1Portfolio";
-import Home1Pricing from "../src/components/wellcon/Home1/Home1Pricing";
 import Home1Testimonials from "../src/components/wellcon/Home1/Home1Testimonials";
 import Home1VideoBox from "../src/components/wellcon/Home1/Home1VideoBox";
 import Layout from "../src/layout/Layout";
@@ -18,7 +17,7 @@ const Index = () => {
       <Home1About />
       <Home1Features />
       <Hom1skills />
-      <Home1Pricing />
+      {/* <Home1Pricing /> */}
       {/* Pricing End */}
       {/* Video Start */}
       <Home1VideoBox />
