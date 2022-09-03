@@ -37,6 +37,9 @@ export const PageMenu = () => (
       <Link href="/user-panel">User Panel</Link>
     </li>
     <li className="menu-item">
+      <Link href="/admin-user-panel">Managing Users</Link>
+    </li>
+    <li className="menu-item">
       <Link href="/pricing">Pricing</Link>
     </li>
     <li className="menu-item">

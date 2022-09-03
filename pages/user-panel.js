@@ -6,7 +6,7 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import VideoPopup from "../src/components/VideoPopup";
 import Layout from "../src/layout/Layout";
 
-const TeamDetails = () => {
+const UserPanel = () => {
   const [video, setVideo] = useState(false);
   return (
     <Layout>
@@ -126,4 +126,4 @@ const TeamDetails = () => {
   );
 };
 
-export default TeamDetails;
+export default UserPanel;
