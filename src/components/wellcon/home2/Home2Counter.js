@@ -10,16 +10,15 @@ const Home2Counter = () => {
             <div className="counter_box wow fadeInUp" data-wow-delay=".2s">
               <div className="icon">
                 <img
-                  src="assets/images/icons/icon_6.png"
+                  src="assets/images/icons/files123.png"
                   alt="icon"
                   className="image-fit"
                 />
               </div>
               <div className="text">
-                <div className="counter">
-                  <Counter end={369} />
-                </div>
-                <p className="mb-0">Popular Coach</p>
+                <h5 className="mb-0">
+                  Encrypted <br></br>Files
+                </h5>
               </div>
             </div>
           </div>
@@ -29,16 +28,15 @@ const Home2Counter = () => {
             <div className="counter_box wow fadeInUp" data-wow-delay=".4s">
               <div className="icon">
                 <img
-                  src="assets/images/icons/icon_7.png"
+                  src="assets/images/icons/video123.png"
                   alt="icon"
                   className="image-fit"
                 />
               </div>
               <div className="text">
-                <div className="counter">
-                  <Counter end={264} />
-                </div>
-                <p className="mb-0">Our Advisors</p>
+                <h5 className="mb-0">
+                  Conference<br></br> Platform
+                </h5>
               </div>
             </div>
           </div>
@@ -48,16 +46,15 @@ const Home2Counter = () => {
             <div className="counter_box wow fadeInUp" data-wow-delay=".6s">
               <div className="icon">
                 <img
-                  src="assets/images/icons/icon_8.png"
+                  src="assets/images/icons/comp.png"
                   alt="icon"
                   className="image-fit"
                 />
               </div>
               <div className="text">
-                <div className="counter">
-                  <Counter end={259} />
-                </div>
-                <p className="mb-0">Video Tutorials</p>
+                <h5 className="mb-0">
+                  Working <br></br>Equipment
+                </h5>
               </div>
             </div>
           </div>
@@ -67,16 +64,15 @@ const Home2Counter = () => {
             <div className="counter_box wow fadeInUp" data-wow-delay=".8s">
               <div className="icon">
                 <img
-                  src="assets/images/icons/icon_9.png"
+                  src="assets/images/icons/tracking system.png"
                   alt="icon"
                   className="image-fit"
                 />
               </div>
               <div className="text">
-                <div className="counter">
-                  <Counter end={568} />
-                </div>
-                <p className="mb-0">Student Reviews</p>
+                <h5 className="mb-0">
+                  Tracking<br></br> System
+                </h5>
               </div>
             </div>
           </div>

@@ -17,29 +17,21 @@ const Home2Banner = () => {
                   className="tag_badge style_2 bg-thm-color-white thm-color-two wow fadeInUp"
                   data-wow-delay=".40ms"
                 >
-                  What We Provide
+                  I want to hire
                 </span>
                 <h1 className="title wow fadeInDown" data-wow-delay=".50ms">
-                  Health Coach Academy
+                  Hire a professional
                 </h1>
                 <p className="wow fadeInUp" data-wow-delay=".60ms">
-                  Sed ut perspiciatis unde omnis iste natus error voluptatem
-                  accan tium doloremque laudantium totam rem aperiam
+                  Our main priority is to make your life easier so you can focus
+                  on your business.
                 </p>
                 <Link href="/about-2">
                   <a
-                    className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded mr-2 mb-2 wow fadeInLeft"
+                    className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded mr-2 mb-2 wow afdeInLeft"
                     data-wow-delay=".70ms"
                   >
-                    Get Coach <i className="fal fa-chevron-right ml-2" />
-                  </a>
-                </Link>
-                <Link href="/about">
-                  <a
-                    className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rounded mb-2 wow fadeInRight"
-                    data-wow-delay=".80ms"
-                  >
-                    Learn More <i className="fal fa-chevron-right ml-2" />
+                    Hire <i className="fal fa-chevron-right ml-10 " />
                   </a>
                 </Link>
               </div>

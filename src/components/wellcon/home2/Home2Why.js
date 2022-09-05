@@ -10,16 +10,13 @@ const Home2Why = () => {
                 <i className="fal fa-book" />
                 What We Offer
               </p>
-              <h3 className="title">People Why Choose Our Coachs</h3>
+              <h3 className="title"> Why People Choose Our Service</h3>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium totam remaperiam eaque ipsa
-                quae abillo inventore veritatis quasi architecto
+                Nextteammate is here to take care of the entire employment
+                process - from payroll and health insurance benefits to
+                managment and built-in scheduling software
               </p>
-              <p>
-                Accusantium doloremque laudantium totam rem aperiam eaque ipsa
-                quae abillo inventore veritatis architecto
-              </p>
+
               <Link href="/about">
                 <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rounded">
                   Learn More <i className="fal fa-chevron-right ml-2" />
@@ -32,10 +29,10 @@ const Home2Why = () => {
               <li className="wow fadeInUp" data-wow-delay=".2s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We Teach You How To Coach Yourself</h6>
+                  <h6 className="mb-0">We help you with hiring </h6>
                 </div>
                 <img
-                  src="assets/images/whyus_bg.jpg"
+                  src="assets/images/_gradient.png"
                   alt="img"
                   className="image-fit"
                 />
@@ -43,10 +40,10 @@ const Home2Why = () => {
               <li className="wow fadeInDown" data-wow-delay=".35s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We Teach You How To Feel Better</h6>
+                  <h6 className="mb-0">We take care of the payroll </h6>
                 </div>
                 <img
-                  src="assets/images/whyus_bg.jpg"
+                  src="assets/images/_gradient.png"
                   alt="img"
                   className="image-fit"
                 />
@@ -54,10 +51,12 @@ const Home2Why = () => {
               <li className="wow fadeInUp" data-wow-delay=".40s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We Teach You How To Take Massive</h6>
+                  <h6 className="mb-0">
+                    We take care of the health insurance{" "}
+                  </h6>
                 </div>
                 <img
-                  src="assets/images/whyus_bg.jpg"
+                  src="assets/images/_gradient.png"
                   alt="img"
                   className="image-fit"
                 />
@@ -65,12 +64,10 @@ const Home2Why = () => {
               <li className="wow fadeInDown" data-wow-delay=".5s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">
-                    We Teach You How To Transform Your Life
-                  </h6>
+                  <h6 className="mb-0">We connect you with your employee </h6>
                 </div>
                 <img
-                  src="assets/images/whyus_bg.jpg"
+                  src="assets/images/_gradient.png"
                   alt="img"
                   className="image-fit"
                 />

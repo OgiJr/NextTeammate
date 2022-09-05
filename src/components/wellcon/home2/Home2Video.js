@@ -4,21 +4,17 @@ import VideoPopup from "../../VideoPopup";
 const Home2Video = () => {
   const [video, setVideo] = useState(false);
   return (
-    <section className="bg-thm-color-two-gradient z-1 video_quote">
+    <section className="bg-cyan-50 z-1 video_quote">
       {video && (
         <VideoPopup close={() => setVideo(false)} videoID="TKnufs85hXk" />
       )}
-      <img
-        src="assets/images/elements/element_2.png"
-        className="element_2"
-        alt="Element"
-      />
+
       <div className="container-fluid p-0">
         <div className="row no-gutters align-items-center">
           <div className="col-lg-6">
             <div className="video_warp relative z-1 h-100 wow fadeInLeft">
               <img
-                src="assets/images/video_img.png"
+                src="assets/images/hands.png"
                 alt="img"
                 className="image-fit"
               />
@@ -40,13 +36,13 @@ const Home2Video = () => {
               <div className="arrow" />
             </div>
             <img
-              src="assets/images/elements/element_11.png"
+              src="assets/images/elements/circle3.png"
               className="element_4 rotate_elem"
               alt="img"
             />
             <div className="quote_sec about relative z-1">
               <img
-                src="assets/images/elements/element_17.png"
+                src="assets/images/elements/circle3.png"
                 className="element_5 rotate_elem"
                 alt="img"
               />
@@ -55,7 +51,7 @@ const Home2Video = () => {
                   <i className="fal fa-book" />
                   Admission Going On
                 </p>
-                <h3 className="title mb-0">Find Your Best Coach With Wellco</h3>
+                <h3 className="title mb-0">Find Your Best Employee</h3>
               </div>
               <p>
                 Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -95,7 +91,7 @@ const Home2Video = () => {
                       type="submit"
                       className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded"
                     >
-                      Enroll Now <i className="fal fa-chevron-right ml-2" />
+                      Hire Now <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>
                 </div>
