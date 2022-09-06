@@ -2,7 +2,6 @@ import { codes } from "currency-codes";
 import mongoose, { Schema } from "mongoose";
 
 const workDataSchema = Schema({
-  _id: { type: Schema.Types.ObjectId, required: true },
   expected_hours_weekly: { type: Schema.Types.Number, required: [true, "Please provide the expected hours per week!"] },
   current_price_per_hours: { type: Schema.Types.Number, required: [true, "Please provide the price for hourly work!"] },
   currency: {

@@ -2,7 +2,6 @@ import { codes } from "currency-codes";
 import mongoose, { Schema } from "mongoose";
 
 const workUnitSchema = Schema({
-  _id: { type: Schema.Types.ObjectId, required: true },
   start_time: { type: Schema.Types.Date, required: [true, "Please provide the start time of this work unit!"] },
   end_time: { type: Schema.Types.Date, required: [true, "Please provide the end time of this work unit!"] },
   worker: { type: Schema.Types.ObjectId, ref: "User", required: [true, "Please provide the id of the user!"] },
