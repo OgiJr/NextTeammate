@@ -2,16 +2,8 @@ import Link from "next/dist/client/link";
 const AdminPanel = () => {
   return (
     <section className="section-padding bg-thm-color-two-gradient z-1 team_main_wrap pb-extra">
-      <img
-        src="assets/images/elements/element_1.png"
-        className="element_1"
-        alt="Element"
-      />
-      <img
-        src="assets/images/elements/element_2.png"
-        className="element_2"
-        alt="Element"
-      />
+      <img src="assets/images/elements/element_1.png" className="element_1" alt="Element" />
+      <img src="assets/images/elements/element_2.png" className="element_2" alt="Element" />
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -29,11 +21,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".3s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/1.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/1.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -45,9 +33,7 @@ const AdminPanel = () => {
                   <a>Wallace D. Grace</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -55,11 +41,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".5s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/2.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/2.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -71,9 +53,7 @@ const AdminPanel = () => {
                   <a>Evan A. Ethridge</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -81,11 +61,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".7s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/3.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/3.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -97,9 +73,7 @@ const AdminPanel = () => {
                   <a>Marcus L. Duncan</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -107,11 +81,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".8s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/4.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/4.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -123,9 +93,7 @@ const AdminPanel = () => {
                   <a>Paul B. Gilliland</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -133,11 +101,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".9s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/5.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/5.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -149,9 +113,7 @@ const AdminPanel = () => {
                   <a>Donald T.Lewis</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -159,11 +121,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".3s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/1.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/1.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -175,9 +133,7 @@ const AdminPanel = () => {
                   <a>Wallace D. Grace</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -185,11 +141,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".5s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/2.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/2.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -201,9 +153,7 @@ const AdminPanel = () => {
                   <a>Evan A. Ethridge</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -211,11 +161,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".7s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/3.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/3.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -227,9 +173,7 @@ const AdminPanel = () => {
                   <a>Marcus L. Duncan</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -237,11 +181,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".8s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/4.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/4.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -253,9 +193,7 @@ const AdminPanel = () => {
                   <a>Paul B. Gilliland</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -263,11 +201,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".9s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/5.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/5.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -279,9 +213,7 @@ const AdminPanel = () => {
                   <a>Donald T.Lewis</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -289,11 +221,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".9s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/5.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/5.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -305,9 +233,7 @@ const AdminPanel = () => {
                   <a>Donald T.Lewis</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -315,11 +241,7 @@ const AdminPanel = () => {
           <div className="col-lg col-md-6">
             <div className="team_block wow fadeInUp" data-wow-delay=".9s">
               <div className="team_img">
-                <img
-                  src="assets/images/team/5.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/team/5.jpg" alt="img" className="image-fit" />
                 <Link href="/user-panel">
                   <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
                     <i className="fal fa-plus" />
@@ -331,9 +253,7 @@ const AdminPanel = () => {
                   <a>Donald T.Lewis</a>
                 </Link>
               </h6>
-              <p className="thm-color-two mb-0 font-weight-bold">
-                Coach Teacher
-              </p>
+              <p className="thm-color-two mb-0 font-weight-bold">Coach Teacher</p>
             </div>
           </div>
           {/* Block End */}
@@ -343,4 +263,4 @@ const AdminPanel = () => {
   );
 };
 
-export default Home3Team;
+export default AdminPanel;
