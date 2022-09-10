@@ -9,12 +9,13 @@ const userSchema = Schema({
     trim: true,
     lowercase: true,
     unique: true,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please insert a valid email!"],
+    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Please insert a valid email!"],
   },
-  password_hash: { type: Schema.Types.String, required: [true, "Pleae insert a password!"], trim: true },
-  is_admin: { type: Schema.Types.Boolean, required: [true, "Please input admin info!"] },
+  password_hash: { type: Schema.Types.String, default: "", trim: true, required: false },
+  has_password: { type: Schema.Types.Boolean, default: false, required: true },
+  password_generation_key: { type: Schema.Types.String, trim: true, required: false },
+  is_admin: { type: Schema.Types.Boolean, default: false, required: true },
   work_data: { type: Schema.Types.ObjectId, ref: "WorkData", required: false },
-  employees: { type: [Schema.Types.ObjectId], ref: "User", required: false },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);

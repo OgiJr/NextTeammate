@@ -1,61 +1,42 @@
-import dbConnect from "../../lib/dbConnect";
+import { dbConnect, getUserFromIron } from "../../lib/db";
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
-import * as bcrypt from "bcryptjs";
-import validatePassword from "../../lib/validatePassword";
-import validateEmail from "../../lib/validateEmail";
-import isPresent from "../../lib/isPresent";
+import { isLoggedIn, reqBodyParse, validateEmail, isAdmin } from "../../lib/validation";
+import { v4 as uuidv4 } from "uuid";
+import { send } from "../../lib/email";
+import { authCookie } from "../../lib/cookies";
 
 const post = async (req, res) => {
-  const { first_name, last_name, email, password, is_admin } = req.body;
-
-  if (
-    !isPresent(first_name) ||
-    !isPresent(last_name) ||
-    !isPresent(email) ||
-    !isPresent(password) ||
-    !isPresent(password)
-  ) {
-    res.status(400).json({ message: "Missing fields!" });
+  let reqBody;
+  try {
+    isLoggedIn(req, res);
+    isAdmin(req, res);
+    reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email"]);
+    validateEmail(reqBody.email, res);
+  } catch {
     return;
   }
 
-  if (!validateEmail(email)) {
-    res.status(400).json({ message: "Invalid email!" });
-    return;
-  }
-
-  if (!validatePassword(password)) {
-    res.status(400).json({
-      message:
-        "The password must be at least 8 characters, contain a lowercase letter, an uppercase letter, and at least one digit!",
-    });
-    return;
-  }
-
-  var salt = bcrypt.genSaltSync(10);
-  var password_hash = bcrypt.hashSync(password, salt);
+  const { first_name, last_name, email } = reqBody;
+  const password_generation_key = uuidv4();
+  const link = `${process.env.URI}/set-password/?password_generation_key=${password_generation_key}&email=${email}`;
 
   try {
     await dbConnect();
 
-    const user = await User.create({
+    await User.create({
       first_name,
       last_name,
       email,
-      password_hash,
-      is_admin,
+      password_generation_key,
     });
 
-    req.session.user = {
-      _id: user._id.toString(),
-      first_name,
-      last_name,
+    send(
       email,
-      is_admin,
-      employees: null,
-    };
-    await req.session.save();
+      "NextTeamMate - Set Password",
+      `Hi ${first_name},\nYour NextTeamMate account has been created.\nPlease set your password here: ${process.env.URI}/set-password/${password_generation_key}.`,
+      `Hi ${first_name},<br/>Your NextTeamMate account has been created.<br/>Please set your password <a href="${link}">here</a>.`
+    );
   } catch (e) {
     if (e.code === 11000) {
       res.status(400).json({ message: "Email already used!" });
@@ -70,33 +51,21 @@ const post = async (req, res) => {
 };
 
 const get = async (req, res) => {
-  if (!req.session.user) {
-    res.status(400).json({ message: "No authenticated user present on this session!" });
+  try {
+    isLoggedIn(req, res);
+  } catch {
     return;
   }
 
-  res.status(200).json(req.session.user);
+  res.status(200).json(getUserFromIron(req));
 };
 
-export default withIronSessionApiRoute(
-  async function userRoute(req, res) {
-    switch (req.method) {
-      case "POST":
-        await post(req, res);
-        break;
-      case "GET":
-        await get(req, res);
-        break;
-      default:
-        res.status(405).json({ message: "Unsupported request type!" });
-        break;
-    }
-  },
-  {
-    cookieName: "nextteammate_auth",
-    password: process.env.COOKIE_PASS,
-    cookieOptions: {
-      secure: process.env.NODE_ENV === "production",
-    },
+export default withIronSessionApiRoute(async function handler(req, res) {
+  if (req.method === "POST") {
+    await post(req, res);
+  } else if (req.method === "GET") {
+    await get(req, res);
+  } else {
+    res.status(405).json({ message: "Unsupported request type!" });
   }
-);
+}, authCookie);
