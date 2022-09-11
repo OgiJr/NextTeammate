@@ -10,7 +10,8 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
   try {
     isSupportedMethod(req, res, ["POST"]);
     reqBody = reqBodyParse(req, res, ["email", "password"]);
-  } catch {
+  } catch (e) {
+    console.log(e.message);
     return;
   }
 
