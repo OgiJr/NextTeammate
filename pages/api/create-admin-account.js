@@ -46,5 +46,5 @@ export default withIronSessionApiRoute(async function handler(req, res) {
     return;
   }
 
-  res.status(200).send("ok");
+  res.status(200).json({});
 }, authCookie);

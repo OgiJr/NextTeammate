@@ -47,7 +47,7 @@ const post = async (req, res) => {
     return;
   }
 
-  res.status(200).send("ok");
+  res.status(200).json({});
 };
 
 const get = async (req, res) => {

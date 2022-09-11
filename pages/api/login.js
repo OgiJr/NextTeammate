@@ -29,7 +29,7 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
 
     req.session.user = dbUserToIronUser(result);
     await req.session.save();
-    res.status(200).send("ok");
+    res.status(200).json({});
   } catch (e) {
     res.status(400).json({ message: e.message });
   }

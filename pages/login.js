@@ -48,7 +48,7 @@ const Login = () => {
                 }
 
                 setError(null);
-                router.push("/dashboard");
+                router.push("/dashboard-redirector");
               }}
             >
               <Form.Group className="mb-3" controlId="email">
@@ -88,7 +88,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     return {
       redirect: {
         permanent: false,
-        destination: "/dashboard",
+        destination: "/dashboard-redirector",
       },
       props: {},
     };
