@@ -1450,11 +1450,6 @@ blockquote .quote_author:before {
     display: block;
 }
 
-.header.header-3 .nav_sec {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 .header.header-3 .nav_warp nav {
     justify-content: space-between;
 }

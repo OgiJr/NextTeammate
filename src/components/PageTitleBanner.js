@@ -1,9 +1,13 @@
 import Link from "next/link";
-const PageTitleBanner = ({ pageName, title }) => {
+const PageTitleBanner = ({
+  pageName,
+  title,
+  url = "assets/images/banner_contact.png",
+}) => {
   return (
     <div
       className="subheader relative z-1"
-      style={{ backgroundImage: "url(assets/images/banner_contact.png)" }}
+      style={{ backgroundImage: "url(" + url + ")" }}
     >
       <div className="container relative z-1">
         <div className="row">

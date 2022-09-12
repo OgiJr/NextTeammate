@@ -23,9 +23,9 @@ export const HeadActions = ({ setOpenSidebar }) => {
 
 export const DefaultHeadActions = () => {
   return (
-    <Link href="/contact">
+    <Link href="/login">
       <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
-        Enroll Now <i className="fal fa-chevron-right ml-2" />
+        Log in <i className="fal fa-chevron-right ml-2" />
       </a>
     </Link>
   );

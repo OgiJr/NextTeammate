@@ -58,44 +58,22 @@ export const Footer1 = () => (
           </div>
           <div className="col-lg-3 col-md-6">
             <div className="ft_widget ft_menu wow fadeInUp">
-              <h6 className="ft-title">Our Coach</h6>
+              <h6 className="ft-title">Navigation</h6>
               <ul>
                 <li>
-                  <a href="#">Basic Life Coach</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="#">Advance Helath Coach</a>
+                  <a href="/index-3">I want to work</a>
                 </li>
                 <li>
-                  <a href="#">Advance Business Coach</a>
+                  <a href="/index-2">I want to employ</a>
                 </li>
                 <li>
-                  <a href="#">Basic Learn English</a>
+                  <a href="/about">About Us</a>
                 </li>
                 <li>
-                  <a href="#">Web Development</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <div className="ft_widget ft_menu wow fadeInDown">
-              <h6 className="ft-title">About Us</h6>
-              <ul>
-                <li>
-                  <a href="#">Latest Courses</a>
-                </li>
-                <li>
-                  <a href="#">Mission &amp; Vision</a>
-                </li>
-                <li>
-                  <a href="#">Our Approach</a>
-                </li>
-                <li>
-                  <a href="#">Exclusive Advisors</a>
-                </li>
-                <li>
-                  <a href="#">Join a Career</a>
+                  <a href="/faqs">Terms and Conditions</a>
                 </li>
               </ul>
             </div>
@@ -195,44 +173,22 @@ export const Footer2 = () => (
           </div>
           <div className="col-lg-3 col-md-6">
             <div className="ft_widget ft_menu wow fadeInUp">
-              <h6 className="ft-title">Our Coach</h6>
+              <h6 className="ft-title">Navigation</h6>
               <ul>
                 <li>
-                  <a href="#">Basic Life Coach</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="#">Advance Helath Coach</a>
+                  <a href="/index-3">I want to work</a>
                 </li>
                 <li>
-                  <a href="#">Advance Business Coach</a>
+                  <a href="/index-2">I want to employ</a>
                 </li>
                 <li>
-                  <a href="#">Basic Learn English</a>
+                  <a href="/about">About Us</a>
                 </li>
                 <li>
-                  <a href="#">Web Development</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <div className="ft_widget ft_menu wow fadeInDown">
-              <h6 className="ft-title">About Us</h6>
-              <ul>
-                <li>
-                  <a href="#">Latest Courses</a>
-                </li>
-                <li>
-                  <a href="#">Mission &amp; Vision</a>
-                </li>
-                <li>
-                  <a href="#">Our Approach</a>
-                </li>
-                <li>
-                  <a href="#">Exclusive Advisors</a>
-                </li>
-                <li>
-                  <a href="#">Join a Career</a>
+                  <a href="/faqs">Terms and Conditions</a>
                 </li>
               </ul>
             </div>
@@ -336,44 +292,25 @@ export const DefaultFooter = () => (
           </div>
           <div className="col-lg-3 col-md-6">
             <div className="ft_widget ft_menu wow fadeInUp">
-              <h6 className="ft-title">Our Coach</h6>
+              <h6 className="ft-title">Navigation</h6>
               <ul>
                 <li>
-                  <a href="#">Basic Life Coach</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
-                  <a href="#">Advance Helath Coach</a>
+                  <a href="/index-3">I want to work</a>
                 </li>
                 <li>
-                  <a href="#">Advance Business Coach</a>
+                  <a href="/index-2">I want to employ</a>
                 </li>
                 <li>
-                  <a href="#">Basic Learn English</a>
+                  <a href="/about">About Us</a>
                 </li>
                 <li>
-                  <a href="#">Web Development</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-6">
-            <div className="ft_widget ft_menu wow fadeInDown">
-              <h6 className="ft-title">About Us</h6>
-              <ul>
-                <li>
-                  <a href="#">Latest Courses</a>
+                  <a href="/faqs">Terms and Conditions</a>
                 </li>
                 <li>
-                  <a href="#">Mission &amp; Vision</a>
-                </li>
-                <li>
-                  <a href="#">Our Approach</a>
-                </li>
-                <li>
-                  <a href="#">Exclusive Advisors</a>
-                </li>
-                <li>
-                  <a href="#">Join a Career</a>
+                  <a href="/contact">Contacts</a>
                 </li>
               </ul>
             </div>

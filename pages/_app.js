@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Fragment>
       <Head>
-        <title>Wellco UpSkill React NextJs Template</title>
+        <title>NextTeammate</title>
         <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico" />
       </Head>
       {loading && <Preloader />}

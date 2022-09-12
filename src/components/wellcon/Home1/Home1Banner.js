@@ -3,7 +3,7 @@ const Home1Banner = () => {
     <div
       className="bg-banner relative z-1"
       style={{
-        backgroundImage: "url(assets/images/banner/homepageb.png)",
+        backgroundImage: "url(assets/images/banner/index-banner.jpg)",
       }}
     >
       <div className="container">

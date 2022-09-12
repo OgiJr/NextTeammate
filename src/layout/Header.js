@@ -59,52 +59,24 @@ const Header = ({
                 {/* logo end */}
                 {/* Navigation Start */}
                 <ul className="main-menu">
+                  <li className="menu-item">
+                    <a href="/">Home</a>
+                  </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="#">Home</a>
+                    <a href="#">Services</a>
                     <ul className="sub-menu">
                       <HomeMenu />
                     </ul>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="#">Pages</a>
+                    <a href="/about">About Us</a>
                     <ul className="sub-menu">
                       <PageMenu />
                     </ul>
                   </li>
-                  <li className="menu-item menu-item-has-children">
-                    <a href="#">Courses</a>
-                    <ul className="sub-menu">
-                      <CoursesMenu />
-                    </ul>
-                  </li>
-                  <li className="menu-item menu-item-has-children">
-                    <a href="#">Blog</a>
-                    <ul className="sub-menu">
-                      <BlogMenu />
-                    </ul>
-                  </li>
-                  <li className="menu-item menu-item-has-children">
-                    <a href="#">Portfolio</a>
-                    <ul className="sub-menu">
-                      <PortfolioMenu />
-                    </ul>
-                  </li>
                   <li className="menu-item">
-                    <Link href="/contact">Contacts</Link>
+                    <a href="/contact">Contacts</a>
                   </li>
-                  {!sideBar && (
-                    <li className="menu-item search_trigger">
-                      <a
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setSearchTrigger(true);
-                        }}
-                      >
-                        <i className="fas fa-search " />
-                      </a>
-                    </li>
-                  )}
                 </ul>
                 {/* Navigation Ens */}
                 {!sideBar && (
