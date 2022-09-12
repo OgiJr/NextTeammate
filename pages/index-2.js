@@ -1,8 +1,6 @@
 import Home2Banner from "../src/components/wellcon/home2/Home2Banner";
 import Home2Blog from "../src/components/wellcon/home2/Home2Blog";
-
 import Home2Counter from "../src/components/wellcon/home2/Home2Counter";
-import Home2Faqs from "../src/components/wellcon/home2/Home2Faqs";
 import Home2Plane from "../src/components/wellcon/home2/Home2Plane";
 import Home2Testimonials from "../src/components/wellcon/home2/Home2Testimonials";
 import Home2Video from "../src/components/wellcon/home2/Home2Video";
@@ -21,13 +19,13 @@ const Index2 = () => {
       <Home2Why />
       {/* Why Us End */}
       {/* Coach box Start */}
-      {/* <Home2Coach /> */}
+      {/*<Home2Coach />*/}
       {/* Coach box End */}
       {/* Video Quote Start */}
       <Home2Video />
       {/* Video Quote End */}
       {/* Faqs Start */}
-      <Home2Faqs />
+      {/* <Home2Faqs />*/}
       {/* Faqs End */}
       {/* Plane Start */}
       <Home2Plane />

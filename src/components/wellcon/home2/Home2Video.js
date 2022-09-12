@@ -53,9 +53,19 @@ const Home2Video = () => {
                 </p>
                 <h3 className="title mb-0">Find Your Best Employee</h3>
               </div>
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudtium totam rem aperiam eaque quae
+              <p class="font-bold ...">
+                We provide: <br></br>● Online secure conference platform which
+                connects you with your employee throughout the whole day.
+                <br></br>● Secure/enc rypted file sharing platform, enabling
+                easy management and sharing of file structures and documents
+                inside your business.
+              </p>
+
+              <p class="font-bold ...">
+                Further benefits:<br></br>● American phone number, allowing the
+                employee to communicate not only with the employer himself, but
+                also with clients via phone.<br></br>● Laptops, computers and
+                various working equipment depending on the clients needs.
               </p>
               <form
                 className="wow fadeInDown"
@@ -63,28 +73,7 @@ const Home2Video = () => {
               >
                 <div className="row">
                   <div className="col-sm-6">
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="#"
-                        className="form-control form-control-custom"
-                        placeholder="Your Name"
-                        autoComplete="off"
-                      />
-                      <i className="fal fa-user" />
-                    </div>
-                  </div>
-                  <div className="col-sm-6">
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        name="#"
-                        className="form-control form-control-custom"
-                        placeholder="Email Address"
-                        autoComplete="off"
-                      />
-                      <i className="fal fa-envelope" />
-                    </div>
+                    <div className="form-group"></div>
                   </div>
                   <div className="col-sm-12">
                     <button
