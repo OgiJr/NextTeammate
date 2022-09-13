@@ -14,7 +14,7 @@ const Home1Banner = () => {
                 className="title thm-color-white wow fadeInDown"
                 data-wow-delay=".20ms"
               >
-                Hire\Find your nextteamate with the click of a button.
+                Hire\Find your NextTeammate with the click of a button.
               </h1>
               <form
                 className="wow fadeInUp"
@@ -42,36 +42,38 @@ const Home1Banner = () => {
                     </button>
                   </div>
                 </div>
-                <div className="form-check-inline">
-                  <label className="form-check-label">
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      name="coach"
-                      defaultChecked
-                    />
-                    Office Work
-                  </label>
-                </div>
-                <div className="form-check-inline">
-                  <label className="form-check-label">
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      name="coach"
-                    />
-                    Accounting
-                  </label>
-                </div>
-                <div className="form-check-inline disabled">
-                  <label className="form-check-label">
-                    <input
-                      type="radio"
-                      className="form-check-input"
-                      name="coach"
-                    />
-                    Office manager
-                  </label>
+                <div className="flex-col flex md:flex-row">
+                  <div className="form-check-inline">
+                    <label className="form-check-label">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        name="coach"
+                        defaultChecked
+                      />
+                      Office Work
+                    </label>
+                  </div>
+                  <div className="form-check-inline">
+                    <label className="form-check-label">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        name="coach"
+                      />
+                      Accounting
+                    </label>
+                  </div>
+                  <div className="form-check-inline disabled">
+                    <label className="form-check-label">
+                      <input
+                        type="radio"
+                        className="form-check-input"
+                        name="coach"
+                      />
+                      Office manager
+                    </label>
+                  </div>
                 </div>
               </form>
             </div>
