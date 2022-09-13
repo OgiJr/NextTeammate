@@ -53,7 +53,7 @@ const Login = () => {
             >
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="text" placeholder="john.smith@example.com" />
+                <Form.Control type="email" placeholder="john.smith@example.com" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="password">

@@ -9,7 +9,7 @@ export default withIronSessionApiRoute(async function handler(req, res) {
   let reqBody;
   try {
     isDev(res);
-    isSupportedMethod(req, res, ["POST"]);
+    isSupportedMethod(req, res, ["POST", "GET"]);
     reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "password"]);
     validateEmail(reqBody.email, res);
     validatePassword(reqBody.password, res);
