@@ -10,8 +10,11 @@ import { testimonial_slider } from "../src/sliderProps";
 const About = () => {
   const [video, setVideo] = useState(false);
   return (
-    <Layout footerStyle={2}>
-      <PageTitleBanner pageName="About Us" />
+    <Layout footerStyle={3}>
+      <PageTitleBanner
+        pageName="About Us"
+        url="assets/images/banner/about-banner.JPG"
+      />
       {video && <VideoPopup close={() => setVideo(false)} />}
       <section className="section about_inner">
         <div className="container">
@@ -111,94 +114,6 @@ const About = () => {
       </section>
       {/* About End */}
       {/* Counter Box Start */}
-      <div className="section-padding pt-0">
-        <div className="container">
-          <div className="row">
-            {/* Box */}
-            <div className="col-lg-3 col-md-6">
-              <div className="counter_box wow fadeInUp" data-wow-delay=".10ms">
-                <div className="icon">
-                  <img
-                    src="assets/images/icons/popular-coach.png"
-                    alt="icon"
-                    className="image-fit"
-                  />
-                </div>
-                <div className="text">
-                  <div className="counter">
-                    <Counter end={369} />
-                  </div>
-                  {/* <p className="mb-0">Popular Coach</p> */}
-                </div>
-              </div>
-            </div>
-            {/* Box */}
-            {/* Box */}
-            <div className="col-lg-3 col-md-6">
-              <div
-                className="counter_box wow fadeInDown"
-                data-wow-delay=".20ms"
-              >
-                <div className="icon">
-                  <img
-                    src="assets/images/icons/our-advisors.png"
-                    alt="icon"
-                    className="image-fit"
-                  />
-                </div>
-                <div className="text">
-                  <div className="counter">
-                    <Counter end={264} />
-                  </div>
-                  {/* <p className="mb-0">Our Advisors</p> */}
-                </div>
-              </div>
-            </div>
-            {/* Box */}
-            {/* Box */}
-            <div className="col-lg-3 col-md-6">
-              <div className="counter_box wow fadeInUp" data-wow-delay=".30ms">
-                <div className="icon">
-                  <img
-                    src="assets/images/icons/video-tutorial.png"
-                    alt="icon"
-                    className="image-fit"
-                  />
-                </div>
-                <div className="text">
-                  <div className="counter">
-                    <Counter end={259} />
-                  </div>
-                  {/* <p className="mb-0">Video Tutorials</p> */}
-                </div>
-              </div>
-            </div>
-            {/* Box */}
-            {/* Box */}
-            <div className="col-lg-3 col-md-6">
-              <div
-                className="counter_box wow fadeInDown"
-                data-wow-delay=".40ms"
-              >
-                <div className="icon">
-                  <img
-                    src="assets/images/icons/student-review.png"
-                    alt="icon"
-                    className="image-fit"
-                  />
-                </div>
-                <div className="text">
-                  <div className="counter">
-                    <Counter end={568} />
-                  </div>
-                  {/* <p className="mb-0">Student Reviews</p> */}
-                </div>
-              </div>
-            </div>
-            {/* Box */}
-          </div>
-        </div>
-      </div>
       {/* Counter Box End */}
       {/* About Us Start */}
       <section

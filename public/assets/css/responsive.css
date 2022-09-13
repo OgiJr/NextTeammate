@@ -273,7 +273,7 @@
     .mobile_trigger {
         display: block;
     }
-
+    
     .header .nav_warp nav .logo img {
         max-width: 180px;
     }
@@ -481,7 +481,7 @@
     }
 
     .bg-banner .banner_text .title {
-        font-size: 60px;
+        font-size: 30px;
     }
 
     .search-form-wrapper .close_trigger {
