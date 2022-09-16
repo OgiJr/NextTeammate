@@ -19,7 +19,7 @@ const post = async (req, res) => {
 
   const { first_name, last_name, email } = reqBody;
   const password_generation_key = uuidv4();
-  const link = `${process.env.URI}/set-password/?password_generation_key=${password_generation_key}&email=${email}`;
+  const link = `${process.env.URI}/set-password?password_generation_key=${password_generation_key}&email=${email}`;
 
   try {
     await dbConnect();

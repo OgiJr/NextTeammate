@@ -32,6 +32,7 @@ export default withIronSessionApiRoute(async function handler(req, res) {
       password_hash,
       is_admin: true,
       has_password: true,
+      has_picture: false,
     });
 
     req.session.user = dbUserToIronUser(user);

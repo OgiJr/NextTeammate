@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "currency-codes": "^2.1.0",
     "easy-pie-chart": "^2.1.7",
+    "formidable": "^2.0.1",
     "iron-session": "^6.2.0",
     "isotope-layout": "^3.0.6",
     "moment": "^2.29.1",

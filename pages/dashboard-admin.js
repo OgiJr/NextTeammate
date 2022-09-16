@@ -55,7 +55,7 @@ const DashboardAdmin = ({ user, employees }) => {
               >
                 <div className="flex flex-row justify-center">
                   <Image
-                    src={e.picture ? e.picture : "/assets/images/no-user.jpg"}
+                    src={e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.jpg"}
                     layout="fixed"
                     width={150}
                     height={150}

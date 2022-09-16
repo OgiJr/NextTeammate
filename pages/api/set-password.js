@@ -5,7 +5,7 @@ import { dbConnect } from "../../lib/db";
 import User from "../../models/User";
 import * as bcrypt from "bcryptjs";
 
-export default withIronSessionApiRoute(async function logoutRoute(req, res) {
+export default withIronSessionApiRoute(async function setPasswordRoute(req, res) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["POST"]);

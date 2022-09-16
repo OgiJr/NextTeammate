@@ -1,4 +1,5 @@
 import { withIronSessionSsr } from "iron-session/next";
+import { redirect } from "next/dist/server/api-utils";
 import React from "react";
 import { authCookie } from "../lib/cookies";
 
@@ -28,6 +29,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {},
     };
   } else {
+    if (!user.has_picture) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/set-picture",
+        },
+        props: {},
+      };
+    }
+
     return {
       redirect: {
         permanent: false,

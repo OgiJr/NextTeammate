@@ -17,6 +17,7 @@ const userSchema = Schema({
   is_admin: { type: Schema.Types.Boolean, default: false, required: true },
   work_data: { type: Schema.Types.ObjectId, ref: "WorkData", required: false },
   picture: { type: Schema.Types.String, default: "", trim: true, required: false },
+  has_picture: { type: Schema.Types.Boolean, default: false, required: true },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);
