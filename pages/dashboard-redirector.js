@@ -1,5 +1,4 @@
 import { withIronSessionSsr } from "iron-session/next";
-import { redirect } from "next/dist/server/api-utils";
 import React from "react";
 import { authCookie } from "../lib/cookies";
 

@@ -1,7 +1,7 @@
 import { dbConnect, getUserFromIron } from "../../lib/db";
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
-import { isLoggedIn, reqBodyParse, validateEmail, isAdmin } from "../../lib/validation";
+import { isLoggedIn, reqBodyParse, validateEmail, isAdmin, isSupportedMethod, isDate } from "../../lib/validation";
 import { v4 as uuidv4 } from "uuid";
 import { send } from "../../lib/email";
 import { authCookie } from "../../lib/cookies";
@@ -60,11 +60,57 @@ const get = async (req, res) => {
   res.status(200).json(getUserFromIron(req));
 };
 
+const put = async (req, res) => {
+  try {
+    isSupportedMethod(req, res, ["POST"]);
+    isLoggedIn(req, res);
+    if (req.body.email) {
+      validateEmail(req.body.email);
+    }
+    if (req.body.birthdate) {
+      isDate(req.body.birthdate);
+    }
+  } catch {
+    return;
+  }
+
+  const changable = ["first_name", "last_name", "bio", "birthdate", "email"];
+  const changes = {};
+  for (const i of changable) {
+    const item = req.body[i];
+    if (item === undefined || item === null || item === "") {
+      return;
+    }
+
+    changes[i] = item;
+  }
+
+  const user = req.session.user;
+  try {
+    await dbConnect();
+
+    const result = await User.findOne({ email: user.email });
+
+    if (!result) {
+      res.status(401).json({ message: "Invalid user!" });
+      return;
+    }
+
+    await User.updateOne({ email: user.email }, { $set: changes });
+
+    res.status(200).json({});
+  } catch (e) {
+    res.status(400).json({ message: e.message });
+  }
+};
+
 export default withIronSessionApiRoute(async function handler(req, res) {
   if (req.method === "POST") {
     await post(req, res);
   } else if (req.method === "GET") {
     await get(req, res);
+  } else if (req.method === "PUT") {
+    await put(req, res);
   } else {
     res.status(405).json({ message: "Unsupported request type!" });
   }

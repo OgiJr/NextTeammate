@@ -34,6 +34,7 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
   }
 
   const user = req.session.user;
+  console.log(reqBody);
   const picture = reqBody.files.picture;
   const picture_id = `${uuidv4()}.${picture.mimetype === "image/png" ? "png" : "jpg"}`;
 
@@ -64,5 +65,6 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
     res.status(200).json({});
   } catch (e) {
     res.status(400).json({ message: e.message });
+    return;
   }
 }, authCookie);

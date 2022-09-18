@@ -37,10 +37,7 @@ export default withIronSessionApiRoute(async function setPasswordRoute(req, res)
     var salt = bcrypt.genSaltSync(10);
     var password_hash = bcrypt.hashSync(password, salt);
 
-    await User.updateOne(
-      { email },
-      { $set: { password_hash, has_password: true }, $unset: { password_generation_key } }
-    );
+    await User.updateOne({ email }, { $set: { password_hash }, $unset: { password_generation_key } });
 
     res.status(200).json({});
   } catch (e) {
