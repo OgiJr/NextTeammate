@@ -13,7 +13,7 @@ const DashboardAdmin = ({ user, employees }) => {
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
-        <div className="flex flex-row justify-center min-w-[20%]">
+        <div className="flex flex-row justify-center min-w-[20%] my-2">
           <Link href="/">
             <Image src="/assets/images/nextlogo.png" width={100} height={100} layout="fixed" />
           </Link>
@@ -54,9 +54,8 @@ const DashboardAdmin = ({ user, employees }) => {
                 key={e.email}
               >
                 <div className="flex flex-row justify-center">
-                  <Image
+                  <img
                     src={e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.jpg"}
-                    layout="fixed"
                     width={150}
                     height={150}
                   />
@@ -64,7 +63,8 @@ const DashboardAdmin = ({ user, employees }) => {
                 <div className="text-center text-3xl">
                   {e.first_name}&nbsp;{e.last_name}
                 </div>
-                <div className="text-center text-md text-gray-500">{e.email}</div>
+                <div className="text-center text-md text-gray-800">{e.email}</div>
+                <div className="text-center text-md text-gray-500">{e.bio}</div>
                 {!e.has_password ? <div className="text-center text-xl text-red-500">Unclaimed Account</div> : <></>}
               </div>
             ))}

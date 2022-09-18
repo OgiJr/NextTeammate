@@ -1,7 +1,7 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import { authCookie } from "../../lib/cookies";
 import { isSupportedMethod, reqBodyParse, validatePassword } from "../../lib/validation";
-import { dbConnect } from "../../lib/db";
+import { dbConnect, dbUserToIronUser } from "../../lib/db";
 import User from "../../models/User";
 import * as bcrypt from "bcryptjs";
 
@@ -37,7 +37,9 @@ export default withIronSessionApiRoute(async function setPasswordRoute(req, res)
     var salt = bcrypt.genSaltSync(10);
     var password_hash = bcrypt.hashSync(password, salt);
 
-    await User.updateOne({ email }, { $set: { password_hash }, $unset: { password_generation_key } });
+    const newUser = await User.updateOne({ email }, { $set: { password_hash }, $unset: { password_generation_key } });
+    req.session.user = dbUserToIronUser(newUser);
+    await req.session.save();
 
     res.status(200).json({});
   } catch (e) {

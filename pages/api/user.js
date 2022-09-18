@@ -1,7 +1,7 @@
-import { dbConnect, getUserFromIron } from "../../lib/db";
+import { dbConnect, dbUserToIronUser, getUserFromIron } from "../../lib/db";
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
-import { isLoggedIn, reqBodyParse, validateEmail, isAdmin, isSupportedMethod, isDate } from "../../lib/validation";
+import { isLoggedIn, reqBodyParse, validateEmail, isAdmin, isDate } from "../../lib/validation";
 import { v4 as uuidv4 } from "uuid";
 import { send } from "../../lib/email";
 import { authCookie } from "../../lib/cookies";
@@ -62,12 +62,11 @@ const get = async (req, res) => {
 
 const put = async (req, res) => {
   try {
-    isSupportedMethod(req, res, ["POST"]);
     isLoggedIn(req, res);
-    if (req.body.email) {
+    if (req.body.email && req.body.email !== "") {
       validateEmail(req.body.email);
     }
-    if (req.body.birthdate) {
+    if (req.body.birthdate && req.body.email !== "") {
       isDate(req.body.birthdate);
     }
   } catch {
@@ -76,13 +75,22 @@ const put = async (req, res) => {
 
   const changable = ["first_name", "last_name", "bio", "birthdate", "email"];
   const changes = {};
+  let counter = 0;
   for (const i of changable) {
+    console.log(i, req.body[i], typeof req.body);
     const item = req.body[i];
+
     if (item === undefined || item === null || item === "") {
-      return;
+      continue;
     }
 
     changes[i] = item;
+    counter++;
+  }
+
+  if (!counter) {
+    res.status(401).json({ message: "You must change something!" });
+    return;
   }
 
   const user = req.session.user;
@@ -96,7 +104,10 @@ const put = async (req, res) => {
       return;
     }
 
-    await User.updateOne({ email: user.email }, { $set: changes });
+    const newUser = await User.updateOne({ email: user.email }, { $set: changes });
+
+    req.session.user = dbUserToIronUser(newUser);
+    await req.session.save();
 
     res.status(200).json({});
   } catch (e) {

@@ -18,7 +18,7 @@ const userSchema = Schema({
   work_data: { type: Schema.Types.ObjectId, ref: "WorkData", required: false },
   picture: { type: Schema.Types.String, default: "", trim: true, required: false },
   bio: { type: Schema.Types.String, default: "", required: false },
-  birthdate: { type: Schema.Types.Date, required: false },
+  birthdate: { type: Schema.Types.Date, default: "01-01-0001", required: false },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);

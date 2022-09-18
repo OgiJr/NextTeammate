@@ -1,11 +1,11 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import { authCookie } from "../../lib/cookies";
 import { isLoggedIn, isSupportedMethod } from "../../lib/validation";
-import { dbConnect } from "../../lib/db";
+import { dbConnect, dbUserToIronUser } from "../../lib/db";
 import User from "../../models/User";
 import IncomingForm from "formidable/src/Formidable";
 import { v4 as uuidv4 } from "uuid";
-import { mkdirSync, renameSync } from "fs";
+import { mkdirSync, renameSync, rmSync } from "fs";
 
 export const config = {
   api: {
@@ -37,8 +37,6 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
   console.log(reqBody);
   const picture = reqBody.files.picture;
   const picture_id = `${uuidv4()}.${picture.mimetype === "image/png" ? "png" : "jpg"}`;
-
-  console.log(picture);
   if (picture.mimetype !== "image/png" && picture.mimetype !== "image/jpeg") {
     res.status(400).json({ message: "Invalid file type! Upload .png or .jpg files!" });
     return;
@@ -50,6 +48,10 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
   mkdirSync(filedir, { recursive: true });
   renameSync(picture.filepath, filepath);
 
+  if (user.has_picture) {
+    rmSync(`${filedir}/${user.picture}`);
+  }
+
   try {
     await dbConnect();
 
@@ -60,7 +62,10 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
       return;
     }
 
-    await User.updateOne({ email: user.email }, { $set: { picture: picture_id } });
+    const newUser = await User.updateOne({ email: user.email }, { $set: { picture: picture_id } });
+
+    req.session.user = dbUserToIronUser(newUser);
+    await req.session.save();
 
     res.status(200).json({});
   } catch (e) {
