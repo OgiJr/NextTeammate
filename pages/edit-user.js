@@ -26,9 +26,9 @@ const EditUser = ({ user }) => {
                 const first_name = e.target.first_name?.value;
                 const last_name = e.target.last_name?.value;
                 const bio = e.target.bio?.value;
-                const date = e.target.date?.value;
+                const birthdate = e.target.birthdate?.value;
 
-                if (!email && !first_name && !last_name && !bio && !date) {
+                if (!email && !first_name && !last_name && !bio && !birthdate) {
                   setError("You must change something!");
                   return;
                 }
@@ -38,7 +38,7 @@ const EditUser = ({ user }) => {
                   first_name,
                   last_name,
                   bio,
-                  date,
+                  birthdate,
                 };
                 const bodyJSON = JSON.stringify(body);
 

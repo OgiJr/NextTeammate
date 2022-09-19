@@ -77,7 +77,6 @@ const put = async (req, res) => {
   const changes = {};
   let counter = 0;
   for (const i of changable) {
-    console.log(i, req.body[i], typeof req.body);
     const item = req.body[i];
 
     if (item === undefined || item === null || item === "") {
@@ -104,7 +103,7 @@ const put = async (req, res) => {
       return;
     }
 
-    const newUser = await User.updateOne({ email: user.email }, { $set: changes });
+    const newUser = await User.findOneAndUpdate({ email: user.email }, { $set: changes });
 
     req.session.user = dbUserToIronUser(newUser);
     await req.session.save();

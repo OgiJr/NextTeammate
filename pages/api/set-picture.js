@@ -29,12 +29,10 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
     isSupportedMethod(req, res, ["POST"]);
     reqBody = await asyncParse(req);
   } catch (e) {
-    console.log(e.message);
     return;
   }
 
   const user = req.session.user;
-  console.log(reqBody);
   const picture = reqBody.files.picture;
   const picture_id = `${uuidv4()}.${picture.mimetype === "image/png" ? "png" : "jpg"}`;
   if (picture.mimetype !== "image/png" && picture.mimetype !== "image/jpeg") {
@@ -62,7 +60,7 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
       return;
     }
 
-    const newUser = await User.updateOne({ email: user.email }, { $set: { picture: picture_id } });
+    const newUser = await User.findOneAndUpdate({ email: user.email }, { $set: { picture: picture_id } });
 
     req.session.user = dbUserToIronUser(newUser);
     await req.session.save();

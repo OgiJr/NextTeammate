@@ -27,8 +27,6 @@ export default withIronSessionApiRoute(async function setPasswordRoute(req, res)
       return;
     }
 
-    console.log(result);
-
     if (!result.password_generation_key || result.password_generation_key !== password_generation_key) {
       res.status(401).json({ message: "Wrong password generation key!" });
       return;
@@ -37,7 +35,10 @@ export default withIronSessionApiRoute(async function setPasswordRoute(req, res)
     var salt = bcrypt.genSaltSync(10);
     var password_hash = bcrypt.hashSync(password, salt);
 
-    const newUser = await User.updateOne({ email }, { $set: { password_hash }, $unset: { password_generation_key } });
+    const newUser = await User.findOneAndUpdate(
+      { email },
+      { $set: { password_hash }, $unset: { password_generation_key } }
+    );
     req.session.user = dbUserToIronUser(newUser);
     await req.session.save();
 
