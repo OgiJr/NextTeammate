@@ -18,6 +18,7 @@
     "formidable": "^2.0.1",
     "iron-session": "^6.2.0",
     "isotope-layout": "^3.0.6",
+    "lru-cache": "^7.14.0",
     "moment": "^2.29.1",
     "mongoose": "^6.5.4",
     "next": "12.3.0",

@@ -1,27 +1,17 @@
 import Link from "next/dist/client/link";
 import { Fragment, useState } from "react";
-import {
-  BlogMenu,
-  CoursesMenu,
-  HomeMenu,
-  PageMenu,
-  PortfolioMenu,
-} from "./Menu";
-
+import { HomeMenu } from "./Menu";
 import { DefaultHeadActions } from "./HeadActions";
+
+import React from "react";
 
 const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
   const [activeMenu, setActiveMenu] = useState("");
   const activeFun = (name) => setActiveMenu(name === activeMenu ? "" : name);
-  const activeLi = (name) =>
-    name === activeMenu ? { display: "block" } : { display: "none" };
+  const activeLi = (name) => (name === activeMenu ? { display: "block" } : { display: "none" });
   return (
     <Fragment>
-      <aside
-        className={`aside_bar aside_bar_left aside_mobile ${
-          showMobileMenu ? "open" : ""
-        }`}
-      >
+      <aside className={`aside_bar aside_bar_left aside_mobile ${showMobileMenu ? "open" : ""}`}>
         {/* logo */}
         <Link href="/">
           <a className="logo">
@@ -45,7 +35,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
               <a href="/about">About Us</a>
             </li>
             <li className="menu-item">
-              <a href="/faqs">Terms and Conditions</a>
+              <a href="/tc">Terms and Conditions</a>
             </li>
             <li className="menu-item">
               <a href="/contact">Contacts</a>
@@ -57,10 +47,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
         </div>
         {/* Menu */}
       </aside>
-      <div
-        className="aside-overlay trigger-left"
-        onClick={() => closeMobileMenu()}
-      ></div>
+      <div className="aside-overlay trigger-left" onClick={() => closeMobileMenu()}></div>
     </Fragment>
   );
 };

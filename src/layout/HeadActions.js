@@ -1,25 +1,5 @@
 import Link from "next/dist/client/link";
-import { Fragment } from "react";
-export const HeadActions = ({ setOpenSidebar }) => {
-  return (
-    <Fragment>
-      {/* Search */}
-      <div className="search_bar relative">
-        <input type="text" name="#" placeholder="Search" autoComplete="off" />
-        <i className="fal fa-search" />
-      </div>
-      <button
-        type="button"
-        className="head_trigger desktop_trigger"
-        onClick={() => setOpenSidebar(true)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
-    </Fragment>
-  );
-};
+import React from "react";
 
 export const DefaultHeadActions = () => {
   return (

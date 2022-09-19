@@ -1728,10 +1728,6 @@ blockquote .quote_author:before {
     z-index: -1;
 }
 
-/*style 2*/
-.header+.single_banner {
-    margin-top: 90px;
-}
 
 .single_banner {
     display: flex;

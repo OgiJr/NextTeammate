@@ -1,14 +1,9 @@
 import Link from "next/link";
-const PageTitleBanner = ({
-  pageName,
-  title,
-  url = "assets/images/banner_contact.png",
-}) => {
+import React from "react";
+
+const PageTitleBanner = ({ pageName, title, url = "assets/images/banner_contact.png" }) => {
   return (
-    <div
-      className="subheader relative z-1"
-      style={{ backgroundImage: "url(" + url + ")" }}
-    >
+    <div className="subheader relative z-1" style={{ backgroundImage: "url(" + url + ")" }}>
       <div className="container relative z-1">
         <div className="row">
           <div className="col-12">
@@ -27,26 +22,10 @@ const PageTitleBanner = ({
             </div>
           </div>
         </div>
-        <img
-          src="assets/images/elements/dots.png"
-          alt="element"
-          className="element_1 slideRightTwo"
-        />
-        <img
-          src="assets/images/elements/circle3.png"
-          alt="element"
-          className="element_2 zoom-fade"
-        />
-        <img
-          src="assets/images/elements/circle3big.png"
-          alt="element"
-          className="element_3 rotate_elem"
-        />
-        <img
-          src="assets/images/elements/circle3.png "
-          alt="element"
-          className="element_4 rotate_elem"
-        />
+        <img src="assets/images/elements/dots.png" alt="element" className="element_1 slideRightTwo" />
+        <img src="assets/images/elements/circle3.png" alt="element" className="element_2 zoom-fade" />
+        <img src="assets/images/elements/circle3big.png" alt="element" className="element_3 rotate_elem" />
+        <img src="assets/images/elements/circle3.png " alt="element" className="element_4 rotate_elem" />
       </div>
     </div>
   );
