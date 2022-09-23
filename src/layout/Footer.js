@@ -14,7 +14,11 @@ const Footer = () => {
               <div className="ft_widget ft_about wow fadeInDown">
                 <Link href="/">
                   <a className="logo">
-                    <img src="assets/images/nextlogof.png" alt="logo" className="image-fit" />
+                    <img
+                      src="assets/images/nextlogof.png"
+                      alt="logo"
+                      className="image-fit"
+                    />
                   </a>
                 </Link>
               </div>
@@ -60,7 +64,10 @@ const Footer = () => {
                   <a href="tel:+126720800020">+126720800020</a>
                 </li>
                 <li>
-                  <a href="mailto:example@example.com"> nextteammateltd@gmail.com</a>
+                  <a href="mailto:example@example.com">
+                    {" "}
+                    nextteammateltd@gmail.com
+                  </a>
                 </li>
               </ul>
             </div>
@@ -68,10 +75,15 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <p className="mb-0">
-            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Design By Javery.
+            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved,
+            Design By Javery.
           </p>
         </div>
-        <img src="assets/images/elements/circle3.png" alt="element" className="element_3 rotate_elem" />
+        <img
+          src="assets/images/elements/circle3.png"
+          alt="element"
+          className="element_3 rotate_elem"
+        />
         <div className="arrows to_up slideTop">
           <div className="arrow" />
           <div className="arrow" />

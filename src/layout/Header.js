@@ -25,7 +25,11 @@ const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
                 <div className="logo">
                   <Link href="/">
                     <a>
-                      <img src="assets/images/nextlogo.png" alt="logo" className="header-image" />
+                      <img
+                        src="assets/images/nextlogo.png"
+                        alt="logo"
+                        className="header-image"
+                      />
                     </a>
                   </Link>
                 </div>
@@ -40,7 +44,7 @@ const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
                     </ul>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="/about">About Us</a>
+                    <a href="#">About Us</a>
                     <ul className="sub-menu">
                       <PageMenu />
                     </ul>
@@ -52,7 +56,11 @@ const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
                 {!sideBar && (
                   <div className="head_actions">
                     <DefaultHeadActions />
-                    <button type="button" className="head_trigger mobile_trigger" onClick={() => openMobileMenu()}>
+                    <button
+                      type="button"
+                      className="head_trigger mobile_trigger"
+                      onClick={() => openMobileMenu()}
+                    >
                       <span />
                       <span />
                       <span />
@@ -62,7 +70,11 @@ const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
               </nav>
               {sideBar && (
                 <div className="head_actions">
-                  <button type="button" className="head_trigger mobile_trigger" onClick={() => openMobileMenu()}>
+                  <button
+                    type="button"
+                    className="head_trigger mobile_trigger"
+                    onClick={() => openMobileMenu()}
+                  >
                     <span />
                     <span />
                     <span />

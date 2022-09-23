@@ -4,8 +4,16 @@ import React from "react";
 const WorkTeam = ({ users }) => {
   return (
     <section className="section-padding bg-thm-color-two-gradient z-1 team_main_wrap pb-extra">
-      <img src="assets/images/elements/element_1.png" className="element_1" alt="Element" />
-      <img src="assets/images/elements/element_2.png" className="element_2" alt="Element" />
+      <img
+        src="assets/images/elements/element_1.png"
+        className="element_1"
+        alt="Element"
+      />
+      <img
+        src="assets/images/elements/element_2.png"
+        className="element_2"
+        alt="Element"
+      />
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -24,20 +32,20 @@ const WorkTeam = ({ users }) => {
               <div className="team_block wow fadeInUp" data-wow-delay=".3s">
                 <div className="team_img">
                   <img
-                    src={u.picture ? `/uploads/${u.picture}` : "/assets/images/no-user.jpg"}
+                    src={
+                      u.picture
+                        ? `/uploads/${u.picture}`
+                        : "/assets/images/no-user.jpg"
+                    }
                     alt="img"
                     className="image-fit"
                   />
-                  <Link href="/user-panel">
-                    <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
-                      <i className="fal fa-plus" />
-                    </a>
-                  </Link>
+                  <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-circle link">
+                    <i className="fal fa-plus" />
+                  </a>
                 </div>
                 <h6 className="mb-1">
-                  <Link href="/user-panel">
-                    <a>{`${u.first_name} ${u.last_name}`}</a>
-                  </Link>
+                  <a>{`${u.first_name} ${u.last_name}`}</a>
                 </h6>
                 <p className="thm-color-two mb-0 font-weight-bold">{u.bio}</p>
               </div>
