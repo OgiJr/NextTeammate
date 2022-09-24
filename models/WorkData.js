@@ -3,7 +3,13 @@ import mongoose, { Schema } from "mongoose";
 
 const workDataSchema = Schema({
   expected_hours_weekly: { type: Schema.Types.Number, required: [true, "Please provide the expected hours per week!"] },
-  current_price_per_hours: { type: Schema.Types.Number, required: [true, "Please provide the price for hourly work!"] },
+  current_price_per_hour: { type: Schema.Types.Number, required: [true, "Please provide the price for hourly work!"] },
+  worker: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: [true, "Please provide the id of the user!"],
+    unique: true,
+  },
   currency: {
     type: Schema.Types.String,
     uppercase: true,

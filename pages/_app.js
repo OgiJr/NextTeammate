@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Fragment, useEffect, useState } from "react";
 import Preloader from "../src/layout/Preloader";
 import "../styles/globals.css";
+import React from "react";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);

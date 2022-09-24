@@ -60,7 +60,11 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
       return;
     }
 
-    const newUser = await User.findOneAndUpdate({ email: user.email }, { $set: { picture: picture_id } });
+    const newUser = await User.findOneAndUpdate(
+      { email: user.email },
+      { $set: { picture: picture_id } },
+      { new: true }
+    );
 
     req.session.user = dbUserToIronUser(newUser);
     await req.session.save();

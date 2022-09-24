@@ -1,15 +1,16 @@
 import Link from "next/dist/client/link";
 import { Fragment, useEffect } from "react";
 import { stickyNav } from "../utils";
-import { DefaultHeadActions } from "./HeadActions";
 import { HomeMenu, PageMenu } from "./Menu";
+import { LogButton } from "./LogButton";
 
 import React from "react";
 
-const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
+const Header = ({ openMobileMenu, sticky, headerStyle, absolute }) => {
   useEffect(() => {
     window.addEventListener("scroll", stickyNav);
   });
+
   return (
     <Fragment>
       <header
@@ -25,11 +26,7 @@ const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
                 <div className="logo">
                   <Link href="/">
                     <a>
-                      <img
-                        src="assets/images/nextlogo.png"
-                        alt="logo"
-                        className="header-image"
-                      />
+                      <img src="assets/images/nextlogo.png" alt="logo" className="header-image" />
                     </a>
                   </Link>
                 </div>
@@ -53,34 +50,16 @@ const Header = ({ openMobileMenu, sticky, sideBar, headerStyle, absolute }) => {
                     <a href="/contact">Contacts</a>
                   </li>
                 </ul>
-                {!sideBar && (
-                  <div className="head_actions">
-                    <DefaultHeadActions />
-                    <button
-                      type="button"
-                      className="head_trigger mobile_trigger"
-                      onClick={() => openMobileMenu()}
-                    >
-                      <span />
-                      <span />
-                      <span />
-                    </button>
-                  </div>
-                )}
-              </nav>
-              {sideBar && (
                 <div className="head_actions">
-                  <button
-                    type="button"
-                    className="head_trigger mobile_trigger"
-                    onClick={() => openMobileMenu()}
-                  >
+                  <LogButton />
+
+                  <button type="button" className="head_trigger mobile_trigger" onClick={() => openMobileMenu()}>
                     <span />
                     <span />
                     <span />
                   </button>
                 </div>
-              )}
+              </nav>
             </div>
           </div>
         </div>
