@@ -8,13 +8,19 @@ const HireFind = () => {
   const [video, setVideo] = useState(false);
   return (
     <section className="bg-cyan-50 z-1 video_quote">
-      {video && <VideoPopup close={() => setVideo(false)} videoID="TKnufs85hXk" />}
+      {video && (
+        <VideoPopup close={() => setVideo(false)} videoID="TKnufs85hXk" />
+      )}
 
       <div className="container-fluid p-0">
         <div className="row no-gutters align-items-center">
           <div className="col-lg-6">
             <div className="video_warp relative z-1 h-100 wow fadeInLeft">
-              <img src="assets/images/hands.png" alt="img" className="image-fit" />
+              <img
+                src="assets/images/hands.png"
+                alt="img"
+                className="image-fit"
+              />
               <a
                 onClick={() => setVideo(true)}
                 href="#"
@@ -25,9 +31,17 @@ const HireFind = () => {
             </div>
           </div>
           <div className="col-lg-6">
-            <img src="assets/images/elements/circle3.png" className="element_4 rotate_elem" alt="img" />
+            <img
+              src="assets/images/elements/circle3.png"
+              className="element_4 rotate_elem"
+              alt="img"
+            />
             <div className="quote_sec about relative z-1">
-              <img src="assets/images/elements/circle3.png" className="element_5 rotate_elem" alt="img" />
+              <img
+                src="assets/images/elements/circle3.png"
+                className="element_5 rotate_elem"
+                alt="img"
+              />
               <div className="section-title left-align wow fadeInUp">
                 <p className="subtitle">
                   <i className="fal fa-book" />
@@ -36,16 +50,18 @@ const HireFind = () => {
                 <h3 className="title mb-0">Find Your Best Employee</h3>
               </div>
               <p className="font-bold ...">
-                We provide: <br></br>● Online secure conference platform which connects you with your employee
-                throughout the whole day.
-                <br></br>● Secure/enc rypted file sharing platform, enabling easy management and sharing of file
-                structures and documents inside your business.
+                We provide: <br></br>● Online secure conference platform which
+                connects you with your employee throughout the whole day.
+                <br></br>● Secure/enc rypted file sharing platform, enabling
+                easy management and sharing of file structures and documents
+                inside your business.
               </p>
 
               <p className="font-bold ...">
-                Further benefits:<br></br>● American phone number, allowing the employee to communicate not only with
-                the employer himself, but also with clients via phone.<br></br>● Laptops, computers and various working
-                equipment depending on the clients needs.
+                Further benefits:<br></br>● American phone number, allowing the
+                employee to communicate not only with the employer himself, but
+                also with clients via phone.<br></br>● Laptops, computers and
+                various working equipment depending on the clients needs.
               </p>
               <div className="row">
                 <div className="col-sm-6">

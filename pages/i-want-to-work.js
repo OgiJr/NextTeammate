@@ -1,6 +1,5 @@
 import WorkAbout from "../src/components/work/WorkAbout";
 import WorkBanner from "../src/components/work/WorkBanner";
-import WorkCTA from "../src/components/work/WorkCTA";
 import WorkTeam from "../src/components/work/WorkTeam";
 import Layout from "../src/layout/Layout";
 import React from "react";
@@ -26,7 +25,6 @@ const IWantToWork = ({ users }) => {
       <WorkBanner />
       <WorkAbout />
       <WorkTeam users={users} />
-      <WorkCTA />
     </Layout>
   );
 };

@@ -4,7 +4,7 @@ import React from "react";
 
 const HireBanner = () => {
   return (
-    <div className="single_banner bg-thm-color-two-gradient relative z-1">
+    <div className="single_banner bg-thm-color-two-gradient relative z-1 min-h-screen">
       <img
         src="assets/images/elements/element_8.png"
         alt="element"
@@ -61,7 +61,7 @@ const HireBanner = () => {
           />
         </div>
       </div>
-      <div className="shape_img relative">
+      <div className="shape_img relative flex flex-col justify-center">
         <img
           src="assets/images/banner/women.png"
           className="wow fadeInDown"
