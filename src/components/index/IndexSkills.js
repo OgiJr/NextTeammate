@@ -27,14 +27,14 @@ const IndexSkills = () => {
                   Our Services
                 </p>
                 <h3 className="title">
-                  We&apos;re Awards Winning Outsorcing Company
+                  We&apos;re An Award Winning Outsourcing Company
                 </h3>
                 <p className="thm-color-white">
-                  We consider in a destiny of absolutely remote work and a
-                  financial system without a borders. With modern era, a
-                  vicinity constraint is absolutely pointless. We&apos;re
-                  building tools to accelerate this beautiful transition to
-                  remote work.
+                  We believe that the future holds remote work and a financial
+                  system without borders. In our modern era a vicinity
+                  constraint is absolutely pointless and only slows us down.
+                  We&apos;re building tools to accelerate this transition to
+                  remote work and help your business grow.
                 </p>
               </div>
             </div>
@@ -47,20 +47,20 @@ const IndexSkills = () => {
                   >
                     <div
                       className="circle_bar"
-                      data-percent={89}
+                      data-percent={97}
                       data-track-color="#ecf2ff"
                       data-bar-color="#4b83fb"
                       data-size={80}
                     >
                       <div className="counter transform-center text-center">
-                        <Counter end={89} />
+                        <Counter end={100} />
                       </div>
                     </div>
                     <div className="text">
                       <h5 className="mb-0">
-                        Business
+                        Acquiring Skilled
                         <br />
-                        Consulting
+                        Professionals
                       </h5>
                     </div>
                   </div>
@@ -72,20 +72,20 @@ const IndexSkills = () => {
                   >
                     <div
                       className="circle_bar"
-                      data-percent={69}
+                      data-percent={97}
                       data-track-color="#ecf2ff"
                       data-bar-color="#65cfa9"
                       data-size={80}
                     >
                       <div className="counter transform-center text-center">
-                        <Counter end={69} />
+                        <Counter end={100} />
                       </div>
                     </div>
                     <div className="text">
                       <h5 className="mb-0">
-                        Health
+                        Finding Prospective
                         <br />
-                        Coaching
+                        Companies
                       </h5>
                     </div>
                   </div>
@@ -97,20 +97,20 @@ const IndexSkills = () => {
                   >
                     <div
                       className="circle_bar"
-                      data-percent={96}
+                      data-percent={97}
                       data-track-color="#ecf2ff"
                       data-bar-color="#ffbd3f"
                       data-size={80}
                     >
                       <div className="counter transform-center text-center">
-                        <Counter end={96} />
+                        <Counter end={100} />
                       </div>
                     </div>
                     <div className="text">
                       <h5 className="mb-0">
-                        Marketing
+                        Creating Lasting
                         <br />
-                        Strategy
+                        Relations
                       </h5>
                     </div>
                   </div>
