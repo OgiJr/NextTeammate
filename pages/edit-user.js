@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
+import Footer from "../src/layout/Footer";
 
 const EditUser = ({ user }) => {
   const [error, setError] = React.useState(null);
@@ -103,6 +104,7 @@ const EditUser = ({ user }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </Layout>
   );
 };

@@ -32,13 +32,6 @@ export const stickyNav = () => {
   }
 };
 
-export const animation = () => {
-  if (typeof window !== "undefined") {
-    window.WOW = require("wowjs");
-  }
-  new WOW.WOW().init();
-};
-
 export const aTagClick = () => {
   const aTag = document.querySelectorAll("[href='#']");
   for (let i = 0; i < aTag.length; i++) {
@@ -70,9 +63,7 @@ export const pagination = (listClass, sort, active) => {
 };
 
 export const getPagination = (totalNumber, sort) => {
-  let arr = new Array(Math.ceil(totalNumber / sort))
-    .fill()
-    .map((_, idx) => idx + 1);
+  let arr = new Array(Math.ceil(totalNumber / sort)).fill().map((_, idx) => idx + 1);
   return arr;
 };
 
@@ -114,12 +105,8 @@ export const isotopLayout = (container, item) => {
 };
 
 export const dataFilter = (filterTrigger, filteritems) => {
-  const filterLi = document.querySelectorAll(
-      filterTrigger ? filterTrigger : ".filter-trigger"
-    ),
-    items = document.querySelectorAll(
-      filteritems ? filteritems : ".masonry-item"
-    );
+  const filterLi = document.querySelectorAll(filterTrigger ? filterTrigger : ".filter-trigger"),
+    items = document.querySelectorAll(filteritems ? filteritems : ".masonry-item");
   filterLi.forEach((li) => {
     li.addEventListener("click", (e) => {
       e.preventDefault();

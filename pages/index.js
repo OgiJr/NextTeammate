@@ -6,6 +6,7 @@ import IndexVideo from "../src/components/index/IndexVideo";
 import Layout from "../src/layout/Layout";
 
 import React from "react";
+import Footer from "../src/layout/Footer";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <IndexSolutions />
       <IndexSkills />
       <IndexVideo />
+      <Footer />
     </Layout>
   );
 };

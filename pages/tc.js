@@ -3,6 +3,7 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
 
 import React from "react";
+import Footer from "../src/layout/Footer";
 
 const Faq = () => {
   return (
@@ -501,6 +502,7 @@ const Faq = () => {
         </div>
       </div>
       {/* Faqs End */}
+      <Footer />
     </Layout>
   );
 };

@@ -5,6 +5,7 @@ import Layout from "../src/layout/Layout";
 import React from "react";
 import { dbConnect, dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
+import Footer from "../src/layout/Footer";
 
 export const getServerSideProps = async () => {
   dbConnect();
@@ -25,6 +26,7 @@ const IWantToWork = ({ users }) => {
       <WorkBanner />
       <WorkAbout />
       <WorkTeam users={users} />
+      <Footer />
     </Layout>
   );
 };

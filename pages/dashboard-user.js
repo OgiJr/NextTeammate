@@ -7,6 +7,7 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
 import { dbConnect, dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
+import Footer from "../src/layout/Footer";
 
 const DashboardUser = ({ user }) => {
   return (
@@ -90,6 +91,7 @@ const DashboardUser = ({ user }) => {
           </div>
         </div>
       </section>
+      <Footer />
     </Layout>
   );
 };

@@ -6,6 +6,7 @@ import React from "react";
 import WorkTeam from "../src/components/work/WorkTeam";
 import { dbConnect, dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
+import Footer from "../src/layout/Footer";
 
 export const getServerSideProps = async () => {
   dbConnect();
@@ -24,21 +25,14 @@ const About = ({ users }) => {
   const [video, setVideo] = useState(false);
   return (
     <Layout>
-      <PageTitleBanner
-        pageName="About Us"
-        url="assets/images/banner/about-banner.JPG"
-      />
+      <PageTitleBanner pageName="About Us" url="assets/images/banner/about-banner.JPG" />
       {video && <VideoPopup close={() => setVideo(false)} />}
       <section className="section about_inner">
         <div className="container">
           <div className="row ">
             <div className="col-lg-6">
               <div className="image_box shadow_1 mb-md-80 wow fadeInLeft">
-                <img
-                  src="assets/images/about/about-us.jpg"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/about/about-us.jpg" alt="img" className="image-fit" />
               </div>
             </div>
             <div className="col-lg-6">
@@ -48,19 +42,14 @@ const About = ({ users }) => {
                   About Us
                 </p>
                 <h3 className="title">
-                  Our main priority is to make your life easier so you can focus
-                  on your business.
+                  Our main priority is to make your life easier so you can focus on your business.
                 </h3>
                 <p>We will take care of the entire employment process:</p>
               </div>
               <ul className="about_list row">
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
-                    <img
-                      src="assets/images/icons/tick.png"
-                      alt="img"
-                      className="image-fit"
-                    />
+                    <img src="assets/images/icons/tick.png" alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Payroll</h6>
@@ -71,11 +60,7 @@ const About = ({ users }) => {
                 </li>
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
-                    <img
-                      src="assets/images/icons/tick.png"
-                      alt="img"
-                      className="image-fit"
-                    />
+                    <img src="assets/images/icons/tick.png" alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Health insurance benefits</h6>
@@ -86,11 +71,7 @@ const About = ({ users }) => {
                 </li>
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
-                    <img
-                      src="assets/images/icons/tick.png"
-                      alt="img"
-                      className="image-fit"
-                    />
+                    <img src="assets/images/icons/tick.png" alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Management</h6>
@@ -101,11 +82,7 @@ const About = ({ users }) => {
                 </li>
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
-                    <img
-                      src="assets/images/icons/tick.png"
-                      alt="img"
-                      className="image-fit"
-                    />
+                    <img src="assets/images/icons/tick.png" alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Built in scheduling software</h6>
@@ -127,11 +104,7 @@ const About = ({ users }) => {
           <div className="row justify-content-between flex-row-reverse">
             <div className="col-lg-6">
               <div className="image_boxes style_2 relative z-1 h-100">
-                <img
-                  src="assets/images/nextlogo.png"
-                  className="small_img wow fadeInUp"
-                  alt="img"
-                />
+                <img src="assets/images/nextlogo.png" className="small_img wow fadeInUp" alt="img" />
                 <div className="video_warp style_2 relative z-1 big_img wow fadeInDown">
                   <img src="assets/images/about/video-img.jpg" alt="img" />
                   <a
@@ -143,21 +116,9 @@ const About = ({ users }) => {
                   </a>
                 </div>
                 {/* elements */}
-                <img
-                  src="assets/images/elements/circle3.png"
-                  className="element_1"
-                  alt="Element"
-                />
-                <img
-                  src="assets/images/elements/circle3.png"
-                  className="element_2 rotate_elem"
-                  alt="Element"
-                />
-                <img
-                  src="assets/images/elements/circle3.png"
-                  className="element_3 rotate_elem"
-                  alt="Element"
-                />
+                <img src="assets/images/elements/circle3.png" className="element_1" alt="Element" />
+                <img src="assets/images/elements/circle3.png" className="element_2 rotate_elem" alt="Element" />
+                <img src="assets/images/elements/circle3.png" className="element_3 rotate_elem" alt="Element" />
               </div>
             </div>
             <div className="col-xl-4 col-lg-6 mb-md-80">
@@ -186,6 +147,7 @@ const About = ({ users }) => {
       {/* About Us End */}
       {/* Team Start */}
       <WorkTeam users={users} />
+      <Footer />
     </Layout>
   );
 };

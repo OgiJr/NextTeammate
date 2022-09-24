@@ -1,8 +1,8 @@
 import Link from "next/dist/client/link";
 import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
-
 import React, { useState } from "react";
+import Footer from "../src/layout/Footer";
 
 const Contact = () => {
   const [error, setError] = useState(null);
@@ -60,8 +60,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      <div className="container">
-        <div className="row align-items-center">
+      <div className="">
+        <div className="row align-items-center px-[10%]">
           <div className="col-xl-4 col-lg-5">
             <div className="section-title left-align wow fadeInDown">
               <p className="subtitle">
@@ -260,6 +260,7 @@ const Contact = () => {
             </div>
           </section>
         </div>
+        <Footer />
       </div>
     </Layout>
   );

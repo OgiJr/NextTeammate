@@ -6,6 +6,7 @@ import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import { dbConnect } from "../lib/db";
 import User from "../models/User";
+import Footer from "../src/layout/Footer";
 
 const SetPassword = ({ password_generation_key, email }) => {
   const [error, setError] = React.useState(null);
@@ -99,6 +100,7 @@ const SetPassword = ({ password_generation_key, email }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </Layout>
   );
 };
