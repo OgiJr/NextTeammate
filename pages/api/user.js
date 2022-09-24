@@ -103,7 +103,7 @@ const put = async (req, res) => {
       return;
     }
 
-    const newUser = await User.findOneAndUpdate({ email: user.email }, { $set: changes });
+    const newUser = await User.findOneAndUpdate({ email: user.email }, { $set: changes }, { new: true });
 
     req.session.user = dbUserToIronUser(newUser);
     await req.session.save();

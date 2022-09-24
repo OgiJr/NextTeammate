@@ -10,7 +10,7 @@ export const LogButton = () => {
 
   return isLoggedIn ? (
     <div className="flex flex-row justify-center gap-2 flex-wrap">
-      <Link href="/dashboard-redictor">
+      <Link href="/dashboard-redirector">
         <Button variant="success">
           Dashboard <i className="fal fa-chevron-right ml-2" />
         </Button>

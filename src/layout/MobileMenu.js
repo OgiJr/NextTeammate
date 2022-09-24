@@ -1,7 +1,6 @@
 import Link from "next/dist/client/link";
 import { Fragment, useState } from "react";
 import { HomeMenu } from "./Menu";
-import { LogButton } from "./LogButton";
 
 import React from "react";
 

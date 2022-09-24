@@ -16,7 +16,7 @@ const userSchema = Schema({
   password_hash: { type: Schema.Types.String, default: "", trim: true, required: false },
   password_generation_key: { type: Schema.Types.String, trim: true, required: false },
   work_data: { type: Schema.Types.ObjectId, ref: "WorkData", required: false },
-  picture: { type: Schema.Types.String, default: "", trim: true, required: false },
+  picture: { type: Schema.Types.String, default: "/assets/images/no-user.jpg", trim: true, required: false },
   bio: { type: Schema.Types.String, default: "", required: false },
   birthdate: { type: Schema.Types.Date, default: "01-01-0001", required: false },
 });

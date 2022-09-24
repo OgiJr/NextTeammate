@@ -37,7 +37,11 @@ export default withIronSessionApiRoute(async function setPasswordRoute(req, res)
 
     const newUser = await User.findOneAndUpdate(
       { email },
-      { $set: { password_hash }, $unset: { password_generation_key } }
+      {
+        $set: { password_hash },
+        $unset: { password_generation_key },
+      },
+      { new: true }
     );
     req.session.user = dbUserToIronUser(newUser);
     await req.session.save();
