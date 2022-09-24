@@ -10,7 +10,10 @@ const Contact = () => {
 
   return (
     <Layout>
-      <PageTitleBanner pageName="Contact Us" url="assets/images/banner/contact-banner.JPG" />
+      <PageTitleBanner
+        pageName="Contact Us"
+        url="assets/images/banner/contact-banner.JPG"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="row">
@@ -20,15 +23,25 @@ const Contact = () => {
                   <i className="fal fa-book" />
                   Contact Us
                 </p>
-                <h3 className="title">Reach out to us @ any time to connect or if you have any questions</h3>
+                <h3 className="title">
+                  Reach out to us @ any time to connect or if you have any
+                  questions
+                </h3>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInDown"
+                data-wow-delay=".30ms"
+              >
                 <div className="icon">
-                  <img src="assets/images/icons/support.jpg" alt="icon" className="image-fit-contain" />
+                  <img
+                    src="assets/images/icons/support.jpg"
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Phone</h4>
@@ -42,13 +55,23 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInUp"
+                data-wow-delay=".40ms"
+              >
                 <div className="icon">
-                  <img src="assets/images/icons/chat.png" alt="icon" className="image-fit-contain" />
+                  <img
+                    src="assets/images/icons/chat.png"
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Have Any Questions</h4>
-                  <p>Don&apos;t hesitate to ask your questions. We will answer all of them.</p>
+                  <p>
+                    Don&apos;t hesitate to ask your questions. We will answer
+                    all of them.
+                  </p>
                   <Link href="mailto:nextteammateltd@gmail.com">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
                       Contact Us <i className="fal fa-chevron-right ml-2" />
@@ -114,150 +137,159 @@ const Contact = () => {
               />
             </div>
           </div>
+          <section className="section">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <div className="section-title wow fadeInDown">
+                    <p className="subtitle">
+                      <i className="fal fa-book" />
+                      Drop A Message
+                    </p>
+                    <h3 className="title">
+                      Reach out to us for a prosperous partnership
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <form
+                className="mf_form_validate ajax_submit wow fadeInUp"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setSuccess(null);
+                  setError(null);
+
+                  const name = e.target.name.value;
+                  const phone = e.target.phone.value;
+                  const email = e.target.email.value;
+                  const subject = e.target.subject.value;
+                  const message = e.target.message.value;
+
+                  if (!name || !phone || !email || !subject | !message) {
+                    setError("Please fill out all the fields!");
+                    return;
+                  }
+
+                  if (
+                    !String(email)
+                      .toLowerCase()
+                      .match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+                  ) {
+                    setError("Please fill out a valid email!");
+                    return;
+                  }
+
+                  const body = { name, phone, email, subject, message };
+                  const bodyJSON = JSON.stringify(body);
+
+                  let result;
+                  result = await fetch("/api/contact-form", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: bodyJSON,
+                  });
+                  const content = await result.json();
+                  if (result.status !== 200) {
+                    setError(content.message);
+                    return;
+                  }
+
+                  setSuccess("Thanks! We'll be in touch shortly.");
+                }}
+              >
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="form-group form_style">
+                      <label>Full Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="form-group form_style">
+                      <label>Phone Number</label>
+                      <input
+                        type="text"
+                        name="phone"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Phone Number"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="form-group form_style">
+                      <label>Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Email Address"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="form-group form_style">
+                      <label>Subject</label>
+                      <input
+                        type="text"
+                        name="subject"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="I Would Like To Discuss"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12">
+                    <div className="form-group form_style">
+                      <label>Message</label>
+                      <textarea
+                        rows={10}
+                        className="form-control"
+                        placeholder="Write Message"
+                        autoComplete="off"
+                        name="message"
+                        defaultValue={""}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 text-center">
+                    <button
+                      type="submit"
+                      className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"
+                    >
+                      Send Your Message{" "}
+                      <i className="fal fa-chevron-right ml-2" />
+                    </button>
+                  </div>
+                  {error ? (
+                    <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white min-w-full">
+                      {error}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {success ? (
+                    <div className="flex flex-row justify-center texte-center bg-green-400 my-4 rounded-xl text-white min-w-full">
+                      {success}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </form>
+            </div>
+          </section>
         </div>
       </div>
-      {/* Contact Map & Info End */}
-      {/* Contact Form Start */}
-      <section className="section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="section-title wow fadeInDown">
-                <p className="subtitle">
-                  <i className="fal fa-book" />
-                  Drop A Message
-                </p>
-                <h3 className="title">Have Any Questions Let’s Started Talk</h3>
-              </div>
-            </div>
-          </div>
-          <form
-            className="mf_form_validate ajax_submit wow fadeInUp"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              setSuccess(null);
-              setError(null);
-
-              const name = e.target.name.value;
-              const phone = e.target.phone.value;
-              const email = e.target.email.value;
-              const subject = e.target.subject.value;
-              const message = e.target.message.value;
-
-              if (!name || !phone || !email || !subject | !message) {
-                setError("Please fill out all the fields!");
-                return;
-              }
-
-              if (
-                !String(email)
-                  .toLowerCase()
-                  .match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
-              ) {
-                setError("Please fill out a valid email!");
-                return;
-              }
-
-              const body = { name, phone, email, subject, message };
-              const bodyJSON = JSON.stringify(body);
-
-              let result;
-              result = await fetch("/api/contact-form", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: bodyJSON,
-              });
-              const content = await result.json();
-              if (result.status !== 200) {
-                setError(content.message);
-                return;
-              }
-
-              setSuccess("Thanks! We'll be in touch shortly.");
-              console.log("FUCK");
-            }}
-          >
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="form-group form_style">
-                  <label>Full Name</label>
-                  <input type="text" name="name" className="form-control" autoComplete="off" placeholder="Full Name" />
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="form-group form_style">
-                  <label>Phone Number</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    className="form-control"
-                    autoComplete="off"
-                    placeholder="Phone Number"
-                  />
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="form-group form_style">
-                  <label>Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    autoComplete="off"
-                    placeholder="Email Address"
-                  />
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="form-group form_style">
-                  <label>Subject</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    className="form-control"
-                    autoComplete="off"
-                    placeholder="I Would Like To Discuss"
-                  />
-                </div>
-              </div>
-              <div className="col-lg-12">
-                <div className="form-group form_style">
-                  <label>Message</label>
-                  <textarea
-                    rows={10}
-                    className="form-control"
-                    placeholder="Write Message"
-                    autoComplete="off"
-                    name="message"
-                    defaultValue={""}
-                  />
-                </div>
-              </div>
-              <div className="col-lg-12 text-center">
-                <button type="submit" className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
-                  Send Your Message <i className="fal fa-chevron-right ml-2" />
-                </button>
-              </div>
-              {error ? (
-                <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white min-w-full">
-                  {error}
-                </div>
-              ) : (
-                <></>
-              )}
-              {success ? (
-                <div className="flex flex-row justify-center texte-center bg-green-400 my-4 rounded-xl text-white min-w-full">
-                  {success}
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
-          </form>
-        </div>
-      </section>
     </Layout>
   );
 };

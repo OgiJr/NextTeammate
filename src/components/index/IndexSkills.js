@@ -9,7 +9,7 @@ const IndexSkills = () => {
           <div className="col-lg-6">
             <div
               className="section-bg bg-thm-color-one h-100"
-              style={{ backgroundImage: "url(assets/images/bg/dsico2.png)" }}
+              // style={{ backgroundImage: "url(assets/images/bg/dsico2.png)" }}
             />
           </div>
           <div className="col-lg-6">
@@ -26,18 +26,25 @@ const IndexSkills = () => {
                   <i className="fal fa-book" />
                   Our Services
                 </p>
-                <h3 className="title">We&apos;re Awards Winning Outsorcing Company</h3>
+                <h3 className="title">
+                  We&apos;re Awards Winning Outsorcing Company
+                </h3>
                 <p className="thm-color-white">
-                  We consider in a destiny of absolutely remote work and a financial system without a borders. With
-                  modern era, a vicinity constraint is absolutely pointless. We&apos;re building tools to accelerate
-                  this beautiful transition to remote work.
+                  We consider in a destiny of absolutely remote work and a
+                  financial system without a borders. With modern era, a
+                  vicinity constraint is absolutely pointless. We&apos;re
+                  building tools to accelerate this beautiful transition to
+                  remote work.
                 </p>
               </div>
             </div>
             <div className="col-xl-6 col-lg-8">
               <div className="row justify-content-center">
                 <div className="col-md-4 col-sm-6">
-                  <div className="progress_box grid wow fadeInDown" data-wow-delay=".20ms">
+                  <div
+                    className="progress_box grid wow fadeInDown"
+                    data-wow-delay=".20ms"
+                  >
                     <div
                       className="circle_bar"
                       data-percent={89}
@@ -59,7 +66,10 @@ const IndexSkills = () => {
                   </div>
                 </div>
                 <div className="col-md-4 col-sm-6">
-                  <div className="progress_box grid wow fadeInUp" data-wow-delay=".30ms">
+                  <div
+                    className="progress_box grid wow fadeInUp"
+                    data-wow-delay=".30ms"
+                  >
                     <div
                       className="circle_bar"
                       data-percent={69}
@@ -81,7 +91,10 @@ const IndexSkills = () => {
                   </div>
                 </div>
                 <div className="col-md-4 col-sm-6">
-                  <div className="progress_box grid fadeInDown" data-wow-delay=".40ms">
+                  <div
+                    className="progress_box grid fadeInDown"
+                    data-wow-delay=".40ms"
+                  >
                     <div
                       className="circle_bar"
                       data-percent={96}

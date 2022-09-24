@@ -41,7 +41,7 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute }) => {
                     </ul>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="/about">About Us</a>
+                    <a href="#">About Us</a>
                     <ul className="sub-menu">
                       <PageMenu />
                     </ul>
