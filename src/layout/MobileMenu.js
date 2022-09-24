@@ -1,7 +1,7 @@
 import Link from "next/dist/client/link";
 import { Fragment, useState } from "react";
 import { HomeMenu } from "./Menu";
-import { DefaultHeadActions } from "./HeadActions";
+import { LogButton } from "./LogButton";
 
 import React from "react";
 
@@ -42,9 +42,7 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu }) => {
             </li>
           </ul>
         </nav>
-        <div className="mt-3 ml-3">
-          <DefaultHeadActions />
-        </div>
+
         {/* Menu */}
       </aside>
       <div className="aside-overlay trigger-left" onClick={() => closeMobileMenu()}></div>
