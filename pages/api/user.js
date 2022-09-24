@@ -57,6 +57,18 @@ const get = async (req, res) => {
     return;
   }
 
+  let user = req.session.user;
+
+  try {
+    dbConnect();
+
+    const newUser = await User.findOne({ email: user.email });
+    req.session.user = dbUserToIronUser(newUser);
+    await req.session.save();
+  } catch (e) {
+    res.status(401).json({ message: e.message });
+  }
+
   res.status(200).json(getUserFromIron(req));
 };
 

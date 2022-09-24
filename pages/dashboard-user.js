@@ -5,6 +5,8 @@ import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
+import { dbConnect, dbUserToIronUser } from "../lib/db";
+import User from "../models/User";
 
 const DashboardUser = ({ user }) => {
   return (
@@ -114,11 +116,23 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {},
     };
   } else {
-    return {
-      props: {
-        user,
-      },
-    };
+    try {
+      dbConnect();
+
+      const newUser = await User.findOne({ email: user.email });
+      req.session.user = dbUserToIronUser(newUser);
+      await req.session.save();
+
+      return {
+        props: {
+          user: req.session.user,
+        },
+      };
+    } catch (e) {
+      return {
+        props: { user },
+      };
+    }
   }
 }, authCookie);
 
