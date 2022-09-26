@@ -1,20 +1,10 @@
 import Link from "next/link";
-import { useState } from "react";
-import VideoPopup from "../VideoPopup";
 
 import React from "react";
 
 const WorkBanner = () => {
-  const [video, setVideo] = useState(false);
-
   return (
-    <div
-      className="banner relative z-1"
-      style={{ zIndex: video ? "999" : "1" }}
-    >
-      {video && (
-        <VideoPopup close={() => setVideo(false)} videoID="TKnufs85hXk" />
-      )}
+    <div className="bg-gradient-to-r from-cyan-700 to-blue-700 md:bg-transparent banner relative z-1">
       <img
         src="assets/images/banner/banner_i_want_work.png"
         className="element_1"
@@ -22,7 +12,7 @@ const WorkBanner = () => {
       />
       <img
         src="assets/images/banner/work-banner.jpg"
-        className="element_line"
+        className="element_1 max-h-full min-w-full hidden lg:flex"
         alt="Element Line"
       />
       {/* Texts */}
@@ -43,12 +33,12 @@ const WorkBanner = () => {
                   process – from finding a suitable employer/company for you to
                   payroll and health insurance benefits.
                 </p>
-                <Link href="/about-2">
+                <Link href="/contact">
                   <a
-                    className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+                    className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
                     data-wow-delay=".50ms"
                   >
-                    Get Coach <i className="fal fa-chevron-right ml-2" />
+                    Join our team <i className="fal fa-chevron-right ml-2" />
                   </a>
                 </Link>
               </div>

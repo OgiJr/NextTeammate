@@ -1694,6 +1694,16 @@ blockquote .quote_author:before {
     object-fit: cover;
 }
 
+.element_all {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
 .banner .image_box .circle_element {
     width: 100%;
     display: flex;

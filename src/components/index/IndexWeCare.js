@@ -35,10 +35,10 @@ const IndexWeCare = () => {
             </Link>
           </div>
           <div className="col-lg-5">
-            <div className="image_boxes relative z-1 mb-md-10 h-100">
+            <div className="image_boxes relative z-1 mb-md-10 h-max">
               <img
-                src="assets/images/about/businessm.JPG"
-                className="big_img wow fadeInDown rounded"
+                src="assets/images/about/workingphone34.png"
+                className="lg:flex wow fadeInDown"
                 alt="img"
               />
             </div>
