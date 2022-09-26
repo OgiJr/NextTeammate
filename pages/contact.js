@@ -37,7 +37,7 @@ const Contact = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/mobile-dynamic-gradient copy.png"
+                    src="assets/images/icons/phone-incoming-dynamic-gradient copy.png"
                     alt="icon"
                     className="image-fit-contain"
                   />
@@ -60,7 +60,7 @@ const Contact = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/mail-dynamic-gradient copy.png"
+                    src="assets/images/icons/chat-text-dynamic-gradient copy.png"
                     alt="icon"
                     className="image-fit-contain"
                   />

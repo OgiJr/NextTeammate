@@ -31,7 +31,7 @@ const WorkAbout = () => {
               <li className=" wow fadeInDown">
                 <div className="icon">
                   <img
-                    src="assets/images/icons/axe-dynamic-gradient copy.png"
+                    src="assets/images/icons/medal-dynamic-gradient copy.png"
                     alt="img"
                     className="image-fit"
                   />
