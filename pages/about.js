@@ -34,9 +34,9 @@ const About = ({ users }) => {
         <div className="container">
           <div className="row ">
             <div className="col-lg-6">
-              <div className="image_box shadow_1 mb-md-80 wow fadeInLeft">
+              <div className="image_box  mb-md-80 wow fadeInLeft ">
                 <img
-                  src="assets/images/about/about-us.jpg"
+                  src="assets/images/about/ppp123456.png"
                   alt="img"
                   className="image-fit"
                 />
@@ -49,10 +49,12 @@ const About = ({ users }) => {
                   About Us
                 </p>
                 <h3 className="title">
+                  We will take care of the entire employment process:
+                </h3>
+                <p>
                   Our main priority is to make your life easier so you can focus
                   on your business.
-                </h3>
-                <p>We will take care of the entire employment process:</p>
+                </p>
               </div>
               <ul className="about_list row">
                 <li className="col-md-6 wow fadeInUp">
