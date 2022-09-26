@@ -6,7 +6,7 @@ const HireBanner = () => {
   return (
     <div className="single_banner bg-thm-color-two-gradient relative z-1 lg:min-h-screen">
       <img
-        src="assets/images/elements/element_8.png"
+        src="assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg"
         alt="element"
         className="element_1"
       />
@@ -21,10 +21,13 @@ const HireBanner = () => {
                 >
                   I want to hire
                 </span>
-                <h1 className="title wow fadeInDown" data-wow-delay=".50ms">
+                <h1
+                  className="title wow fadeInDown text-white"
+                  data-wow-delay=".50ms"
+                >
                   Hire a professional
                 </h1>
-                <p className="wow fadeInUp" data-wow-delay=".60ms">
+                <p className="wow fadeInUp text-white" data-wow-delay=".60ms">
                   Our main priority is to make your life easier so you can focus
                   on your business.
                 </p>
@@ -60,13 +63,6 @@ const HireBanner = () => {
             alt="img"
           />
         </div>
-      </div>
-      <div className="hidden md:flex relative flex-col justify-center">
-        <img
-          src="assets/images/about/workingpeople123.png"
-          className="hidden wow fadeInDown mr-36 xl:flex"
-          alt="img"
-        />
       </div>
     </div>
   );
