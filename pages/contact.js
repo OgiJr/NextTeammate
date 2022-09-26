@@ -10,7 +10,10 @@ const Contact = () => {
 
   return (
     <Layout>
-      <PageTitleBanner pageName="Contact Us" url="assets/images/banner/contact-banner.JPG" />
+      <PageTitleBanner
+        pageName="Contact Us"
+        url="assets/images/banner/contact-banner.JPG"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="row">
@@ -20,15 +23,24 @@ const Contact = () => {
                   <i className="fal fa-book" />
                   Contact Us
                 </p>
-                <h3 className="title">Reach out to us if you have any questions</h3>
+                <h3 className="title">
+                  Reach out to us if you have any questions
+                </h3>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInDown"
+                data-wow-delay=".30ms"
+              >
                 <div className="icon">
-                  <img src="assets/images/icons/support.jpg" alt="icon" className="image-fit-contain" />
+                  <img
+                    src="assets/images/icons/mobile-dynamic-gradient copy.png"
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Phone</h4>
@@ -42,13 +54,23 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInUp"
+                data-wow-delay=".40ms"
+              >
                 <div className="icon">
-                  <img src="assets/images/icons/chat.png" alt="icon" className="image-fit-contain" />
+                  <img
+                    src="assets/images/icons/mail-dynamic-gradient copy.png"
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Have Any Questions</h4>
-                  <p>Don&apos;t hesitate to ask your questions. We will answer all of them.</p>
+                  <p>
+                    Don&apos;t hesitate to ask your questions. We will answer
+                    all of them.
+                  </p>
                   <Link href="mailto:nextteammateltd@gmail.com">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
                       Contact Us <i className="fal fa-chevron-right ml-2" />
@@ -123,7 +145,9 @@ const Contact = () => {
                       <i className="fal fa-book" />
                       Drop A Message
                     </p>
-                    <h3 className="title">Reach out to us for a prosperous partnership</h3>
+                    <h3 className="title">
+                      Reach out to us for a prosperous partnership
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -237,8 +261,12 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="col-lg-12 text-center">
-                    <button type="submit" className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
-                      Send Your Message <i className="fal fa-chevron-right ml-2" />
+                    <button
+                      type="submit"
+                      className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"
+                    >
+                      Send Your Message{" "}
+                      <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>
                   {error ? (
