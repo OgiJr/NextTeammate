@@ -8,12 +8,12 @@ const WorkAbout = () => {
           <div className="col-xl-7 col-lg-6">
             <div className="image_box wow fadeInLeft">
               <img
-                src="assets/images/banner/banner-work.JPG"
+                src="assets/images/about/workingwomen1.png"
                 alt="img"
                 className="image-fit image_1 rounded-circle"
               />
               <img
-                src="assets/images/banner/work.JPG"
+                src="assets/images/about/analytics.png"
                 alt="img"
                 className="image-fit image_2 rounded-circle"
               />
@@ -25,42 +25,58 @@ const WorkAbout = () => {
                 <i className="fal fa-book" />
                 What We Provide
               </p>
-              <h3 className="title">We Care About Your Life For Better.</h3>
-              <p>
-                Quis autem vel eum iure reprehenderit qui in ea voluptate velit
-                esse quam nihil molestiae consequatue velillum{" "}
-              </p>
+              <h3 className="title">Benefits:</h3>
             </div>
             <ul className="about_list">
               <li className=" wow fadeInDown">
                 <div className="icon">
                   <img
-                    src="assets/images/icons/tick.png"
+                    src="assets/images/icons/axe-dynamic-gradient copy.png"
                     alt="img"
                     className="image-fit"
                   />
                 </div>
                 <div className="text">
-                  <h6 className="mb-2">Master Certified Coach</h6>
+                  <h6 className="mb-2">Why work from home</h6>
                   <p className="mb-0">
-                    Quis autem vel eum iure reprehenderit quein ea voluptate
-                    velit esse quam
+                    There are a few key benefits of working from home (WFH).
+                    Employees who WFH often have a better work-life-balance and
+                    often are more because they don&#39;t spend time commuting
+                    into the office and can get their work done quicker in a
+                    focused environment. Plus, WFH provides environmental
+                    benefits.
                   </p>
                 </div>
               </li>
               <li className=" wow fadeInDown">
                 <div className="icon">
                   <img
-                    src="assets/images/icons/tick.png"
+                    src="assets/images/icons/target-dynamic-gradient copy.png"
                     alt="img"
                     className="image-fit"
                   />
                 </div>
                 <div className="text">
-                  <h6 className="mb-2">Coach Certification Program</h6>
+                  <h6 className="mb-2">Connections</h6>
                   <p className="mb-0">
-                    Quis autem vel eum iure reprehenderit quein ea voluptate
-                    velit esse quam
+                    You will have the opportunity to connect with big American
+                    companies and establish yourself on the international
+                    market.
+                  </p>
+                </div>
+              </li>
+              <li className=" wow fadeInDown">
+                <div className="icon">
+                  <img
+                    src="assets/images/icons/wallet-dynamic-gradient copy.png"
+                    alt="img"
+                    className="image-fit"
+                  />
+                </div>
+                <div className="text">
+                  <h6 className="mb-2">Meet the American Standarts</h6>
+                  <p className="mb-0">
+                    We provide a salary according to American standards.
                   </p>
                 </div>
               </li>
