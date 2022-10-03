@@ -26,9 +26,9 @@ const IndexWeCare = () => {
               </p>
             </div>
             <ul className="about_list style_2 mb-xl-30 wow fadeInUp">
-              <li>Business Consulting</li>
-              <li>Career Development</li>
-              <li>Financial Solutions</li>
+              <li>Work from Home </li>
+              <li>Easy, Reliable, Secure</li>
+              <li>Cost effective</li>
             </ul>
             <Link href="/i-want-to-hire">
               <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle wow fadeInDown">

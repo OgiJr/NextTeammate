@@ -9,11 +9,16 @@ const IndexSolutions = () => {
             <div className="section-title wow fadeInUp mv-rigj">
               <p className="subtitle">
                 <i className="fal fa-book" />
-                What We Offer
+                Our Goal
               </p>
               <h3 className="title">
                 We Provide Professional Business Solutions.
               </h3>
+              <p className="text-bold text-lg">
+                Improved technology, low overhead costs, and the 2020 global
+                pandemic have encouraged businesses of all sizes and in a
+                variety of fields to create more work-from-home opportunities.
+              </p>
             </div>
           </div>
           <div className="flex flex-row justify-center flex-wrap gap-4">
