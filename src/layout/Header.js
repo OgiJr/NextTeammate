@@ -26,7 +26,11 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute }) => {
                 <div className="logo">
                   <Link href="/">
                     <a>
-                      <img src="assets/images/nextlogo.png" alt="logo" className="header-image" />
+                      <img
+                        src="assets/images/nextlogo.png"
+                        alt="logo"
+                        className="header-image"
+                      />
                     </a>
                   </Link>
                 </div>
@@ -53,7 +57,11 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute }) => {
                 <div className="head_actions">
                   <LogButton />
 
-                  <button type="button" className="head_trigger mobile_trigger" onClick={() => openMobileMenu()}>
+                  <button
+                    type="button"
+                    className="head_trigger mobile_trigger"
+                    onClick={() => openMobileMenu()}
+                  >
                     <span />
                     <span />
                     <span />

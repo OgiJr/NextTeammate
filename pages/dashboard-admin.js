@@ -13,15 +13,20 @@ const DashboardAdmin = ({ user, employees }) => {
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
-        <div className="flex flex-row justify-center min-w-[20%] my-2">
+        <div className="flex flex-row justify-center my-2">
           <Link href="/">
-            <Image src="/assets/images/nextlogo.png" width={100} height={100} layout="fixed" />
+            <Image
+              src="/assets/images/nextlogo.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
           </Link>
         </div>
-        <div className="flex flex-row justify-center text-center text-4xl text-white w-[20%]">
+        <div className="flex flex-row text-center justify-center text-4xl text-white">
           Welcome, {user.first_name}!
         </div>
-        <div className="flex flex-row justify-evenly gap-8 w-[20%]">
+        <div className="flex flex-row justify-evenly gap-8">
           <Button
             variant="success"
             className="text-xl"
@@ -30,6 +35,14 @@ const DashboardAdmin = ({ user, employees }) => {
             }}
           >
             Add Employee
+          </Button>
+          <Button
+            className="text-xl"
+            onClick={() => {
+              router.push("/zoom");
+            }}
+          >
+            Sharing System
           </Button>
           <Button
             variant="danger"
@@ -55,7 +68,11 @@ const DashboardAdmin = ({ user, employees }) => {
               >
                 <div className="flex flex-row justify-center">
                   <img
-                    src={e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.jpg"}
+                    src={
+                      e.picture
+                        ? `/uploads/${e.picture}`
+                        : "/assets/images/no-user.jpg"
+                    }
                     width={150}
                     height={150}
                   />
@@ -63,9 +80,17 @@ const DashboardAdmin = ({ user, employees }) => {
                 <div className="text-center text-3xl">
                   {e.first_name}&nbsp;{e.last_name}
                 </div>
-                <div className="text-center text-md text-gray-800">{e.email}</div>
+                <div className="text-center text-md text-gray-800">
+                  {e.email}
+                </div>
                 <div className="text-center text-md text-gray-500">{e.bio}</div>
-                {!e.has_password ? <div className="text-center text-xl text-red-500">Unclaimed Account</div> : <></>}
+                {!e.has_password ? (
+                  <div className="text-center text-xl text-red-500">
+                    Unclaimed Account
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
             ))}
           </>
@@ -75,38 +100,41 @@ const DashboardAdmin = ({ user, employees }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    if (!user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-user",
+        },
+        props: {},
+      };
+    }
+
+    let result = await User.find({ is_admin: false });
+    let employees = result.map((e) => dbUserToIronUser(e));
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
+      props: {
+        user,
+        employees,
       },
-      props: {},
     };
-  }
-
-  if (!user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-user",
-      },
-      props: {},
-    };
-  }
-
-  let result = await User.find({ is_admin: false });
-  let employees = result.map((e) => dbUserToIronUser(e));
-
-  return {
-    props: {
-      user,
-      employees,
-    },
-  };
-}, authCookie);
+  },
+  authCookie
+);
 
 export default DashboardAdmin;
