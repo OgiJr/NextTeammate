@@ -18,8 +18,11 @@ const IndexWeCare = () => {
               </p>
               <h3 className="title">We Care About Your Business.</h3>
               <p className="mb-0">
-                We provide foreign employment and a new and complete work from
-                home (WFH) system which is easy, reliable and secure.
+                Nextteammate was created to facilitate the employment process
+                for both the company and the employees. We provide foreign
+                employment and a new and complete Work from Home (WFH) / (bpo)
+                system which is easy, reliable, secure, and most importantly,
+                cost effective.
               </p>
             </div>
             <ul className="about_list style_2 mb-xl-30 wow fadeInUp">
