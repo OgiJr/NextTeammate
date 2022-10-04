@@ -40,7 +40,7 @@ const IndexWeCare = () => {
           <div className="col-lg-5">
             <div className="image_boxes relative z-1 mb-md-10 h-max">
               <img
-                src="assets/images/about/workingphone34.png"
+                src="assets/images/about/peoplepeople123.png"
                 className="lg:flex wow fadeInDown"
                 alt="img"
               />
