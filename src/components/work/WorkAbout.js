@@ -39,12 +39,8 @@ const WorkAbout = () => {
                 <div className="text">
                   <h6 className="mb-2">Why work from home</h6>
                   <p className="mb-0">
-                    There are a few key benefits of working from home (WFH).
-                    Employees who WFH often have a better work-life-balance and
-                    often are more because they don&#39;t spend time commuting
-                    into the office and can get their work done quicker in a
-                    focused environment. Plus, WFH provides environmental
-                    benefits.
+                    Key benefits from a WFM model include: a better
+                    work-life-balance, higher productivity, and efficiency.
                   </p>
                 </div>
               </li>
@@ -59,8 +55,8 @@ const WorkAbout = () => {
                 <div className="text">
                   <h6 className="mb-2">Connections</h6>
                   <p className="mb-0">
-                    You will have the opportunity to connect with big American
-                    companies and establish yourself on the international
+                    You will have the opportunity to connect with U.S.
+                    Corporations and establish yourself on the international
                     market.
                   </p>
                 </div>
@@ -76,7 +72,7 @@ const WorkAbout = () => {
                 <div className="text">
                   <h6 className="mb-2">Meet the American Standarts</h6>
                   <p className="mb-0">
-                    We provide a salary according to American standards.
+                    Competitive salary based on U.S. wages.
                   </p>
                 </div>
               </li>

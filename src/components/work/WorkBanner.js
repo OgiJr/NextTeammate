@@ -25,13 +25,13 @@ const WorkBanner = () => {
                   className="title wow fadeInUp text-white"
                   data-wow-delay=".30ms"
                 >
-                  <span>Work for American companies</span> from the comfort of
-                  your own home!
+                  <span>Work for major U.S. based </span> companies from the
+                  comfort of your own home!
                 </h3>
                 <p className="wow fadeInUp text-white" data-wow-delay=".40ms">
                   Nextteammate is here to take care of the whole employment
                   process – from finding a suitable employer/company for you to
-                  payroll and health insurance benefits.
+                  payroll and health benefits administration.
                 </p>
                 <Link href="/contact">
                   <a
