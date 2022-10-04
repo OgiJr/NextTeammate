@@ -13,8 +13,9 @@ const HireWhy = () => {
               </p>
               <h3 className="title"> Why People Choose Our Service</h3>
               <p>
-                Nextteammate is here to take care of the entire employment process - from payroll and health insurance
-                benefits to managment and built-in scheduling software
+                Nextteammate provides end to end employment solutions – from
+                screening the potential candidates, payroll and health insurance
+                benefits to management and built-in scheduling software.
               </p>
             </div>
           </div>
@@ -25,28 +26,46 @@ const HireWhy = () => {
                 <div className="text">
                   <h6 className="mb-0">We help you with hiring </h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <img
+                  src="assets/images/_gradient.png"
+                  alt="img"
+                  className="image-fit"
+                />
               </li>
               <li className="wow fadeInDown" data-wow-delay=".35s">
                 <i className="icon fal fa-check" />
                 <div className="text">
                   <h6 className="mb-0">We take care of the payroll </h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <img
+                  src="assets/images/_gradient.png"
+                  alt="img"
+                  className="image-fit"
+                />
               </li>
               <li className="wow fadeInUp" data-wow-delay=".40s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We take care of the health insurance </h6>
+                  <h6 className="mb-0">
+                    We take care of the health insurance{" "}
+                  </h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <img
+                  src="assets/images/_gradient.png"
+                  alt="img"
+                  className="image-fit"
+                />
               </li>
               <li className="wow fadeInDown" data-wow-delay=".5s">
                 <i className="icon fal fa-check" />
                 <div className="text">
                   <h6 className="mb-0">We connect you with your employee </h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <img
+                  src="assets/images/_gradient.png"
+                  alt="img"
+                  className="image-fit"
+                />
               </li>
             </ul>
           </div>

@@ -17,7 +17,7 @@ const HireFind = () => {
           <div className="col-lg-6">
             <div className="video_warp relative z-1 h-100 wow fadeInLeft">
               <img
-                src="assets/images/hands.png"
+                src="assets/images/adam-nowakowski-D4LDw5eXhgg-unsplash.jpg"
                 alt="img"
                 className="image-fit"
               />
@@ -49,19 +49,33 @@ const HireFind = () => {
                 </p>
                 <h3 className="title mb-0">Find Your Best Employee</h3>
               </div>
+              <h6>We provide:</h6>
               <p className="font-bold ...">
-                We provide: <br></br>● Online secure conference platform which
-                connects you with your employee throughout the whole day.
-                <br></br>● Secure/enc rypted file sharing platform, enabling
-                easy management and sharing of file structures and documents
-                inside your business.
+                ● Proprietary online platform which connects you with your
+                employee throughout the whole day.<br></br>● Secure/ encrypted
+                file sharing platform, enabling easy management and sharing of
+                file structures and documents inside your business.<br></br>●
+                Highly motivated and skilled people readily available to work.
+                All candidates undergo a full background verification and
+                language skills.<br></br>● No need to pay for workers
+                compensation, insurance, wage taxes and other employee’s related
+                expenses. Nextteammate’s solution covers everything in
+                accordance with the local codes in the overseas country.
+                <br></br>● Cancel anytime
               </p>
-
+              <div>
+                <h6>Future Benefits</h6>
+              </div>
               <p className="font-bold ...">
-                Further benefits:<br></br>● American phone number, allowing the
-                employee to communicate not only with the employer himself, but
-                also with clients via phone.<br></br>● Laptops, computers and
-                various working equipment depending on the clients needs.
+                ● We provide a localized phone number or toll-free phone number,
+                allowing the employee to communicate not only with the employer
+                himself, but also with clients via phone.<br></br>● For a
+                monthly subscription we can provide all of the required
+                equipment to the Nextteammate person working for you. This
+                includes everything necessary for and teammate to operate which
+                includes a laptop, phone number, internet….<br></br>● Our
+                proprietary platform includes a time management portal to track
+                your Nextteammates time and projects.
               </p>
               <div className="row">
                 <div className="col-sm-6">
