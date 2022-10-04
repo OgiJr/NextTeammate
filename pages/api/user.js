@@ -63,7 +63,7 @@ const get = async (req, res) => {
     dbConnect();
 
     const newUser = await User.findOne({ email: user.email });
-    req.session.user = dbUserToIronUser(newUser);
+    req.session.user = await dbUserToIronUser(newUser);
     await req.session.save();
   } catch (e) {
     res.status(401).json({ message: e.message });
@@ -117,7 +117,7 @@ const put = async (req, res) => {
 
     const newUser = await User.findOneAndUpdate({ email: user.email }, { $set: changes }, { new: true });
 
-    req.session.user = dbUserToIronUser(newUser);
+    req.session.user = await dbUserToIronUser(newUser);
     await req.session.save();
 
     res.status(200).json({});

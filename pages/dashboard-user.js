@@ -5,11 +5,14 @@ import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
-import { dbConnect, dbUserToIronUser } from "../lib/db";
+import { dbConnect, dbUserToIronUser, isIronUserWorking } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
+import { useRouter } from "next/router";
 
-const DashboardUser = ({ user }) => {
+const DashboardUser = ({ user, is_working }) => {
+  const router = useRouter();
+
   return (
     <Layout>
       <PageTitleBanner pageName="User Panel" />
@@ -34,52 +37,73 @@ const DashboardUser = ({ user }) => {
                   <li>
                     <i className="icon fal fa-clock bg-thm-color-three" />
                     <div className="text">
-                      <h6 className="mb-0">Expected hours per week:</h6>
-                      <p className="mb-0">30 hours</p>
+                      <h6 className="mb-0">Expected hours per week</h6>
+                      <p className="mb-0">{user.work_data.expected_hours_weekly}</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-lightbulb-on" />
                     <div className="text">
-                      <h6 className="mb-0">Work hours this week:</h6>
-                      <p className="mb-0">27.9 hours</p>
+                      <h6 className="mb-0">Work hours this week</h6>
+                      <p className="mb-0">TODO</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-calendar-week" />
                     <div className="text">
-                      <h6 className="mb-0">Average hours per week:</h6>
-                      <p className="mb-0">31.2 hours</p>
+                      <h6 className="mb-0">Average hours per week</h6>
+                      <p className="mb-0">TODO</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-calendar" />
                     <div className="text">
-                      <h6 className="mb-0">Work hours this month:</h6>
-                      <p className="mb-0">122 hours</p>
+                      <h6 className="mb-0">Work hours this month</h6>
+                      <p className="mb-0">TODO</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-dollar-sign" />
                     <div className="text">
-                      <h6 className="mb-0">Projected Salary:</h6>
-                      <p className="mb-0">$2133.35</p>
+                      <h6 className="mb-0">Projected Salary</h6>
+                      <p className="mb-0">TODO</p>
                     </div>
                   </li>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-row items-center justify-center">
-                      <Button variant="success" className="px-4 text-2xl">
-                        Clock In
-                      </Button>
+                      {is_working ? (
+                        <Button
+                          variant="danger"
+                          className="px-4 text-2xl"
+                          onClick={async () => {
+                            await fetch("/api/clock-out");
+                            router.reload();
+                          }}
+                        >
+                          Clock Out
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="success"
+                          disabled={!user.work_data.current_price_per_hour}
+                          className="px-4 text-2xl"
+                          onClick={async () => {
+                            await fetch("/api/clock-in");
+                            router.reload();
+                          }}
+                        >
+                          Clock In
+                        </Button>
+                      )}
                     </div>
                     <div className="flex flex-row items-center justify-center gap-4">
                       <Link href="/edit-user">
-                        <Button variant="primary" className="px-4">
+                        <Button variant="dark" className="px-4 min-w-[25%]">
                           Edit Account
                         </Button>
                       </Link>
                       <Link href="/set-picture">
-                        <Button variant="primary" className="px-4">
+                        <Button variant="dark" className="px-4 min-w-[25%]">
                           Change Picture
                         </Button>
                       </Link>
@@ -122,17 +146,18 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       dbConnect();
 
       const newUser = await User.findOne({ email: user.email });
-      req.session.user = dbUserToIronUser(newUser);
+      req.session.user = await dbUserToIronUser(newUser);
       await req.session.save();
 
       return {
         props: {
           user: req.session.user,
+          is_working: isIronUserWorking(req.session.user),
         },
       };
     } catch (e) {
       return {
-        props: { user },
+        props: { user, is_working: isIronUserWorking(user) },
       };
     }
   }

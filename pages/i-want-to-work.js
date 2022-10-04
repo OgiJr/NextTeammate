@@ -11,9 +11,7 @@ export const getServerSideProps = async () => {
   dbConnect();
 
   const users = await User.find({ is_admin: false });
-  const ironUsers = [...users.map((u) => dbUserToIronUser(u))];
-
-  console.log(ironUsers);
+  const ironUsers = [...(await Promise.all(users.map(async (u) => await dbUserToIronUser(u))))];
 
   return {
     props: { users: ironUsers },

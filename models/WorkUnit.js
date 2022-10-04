@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 
 const workUnitSchema = Schema({
   start_time: { type: Schema.Types.Date, required: [true, "Please provide the start time of this work unit!"] },
-  end_time: { type: Schema.Types.Date, required: [true, "Please provide the end time of this work unit!"] },
+  end_time: { type: Schema.Types.Date },
   worker: { type: Schema.Types.ObjectId, ref: "User", required: [true, "Please provide the id of the user!"] },
   price_per_hours: {
     type: Schema.Types.Number,
@@ -17,4 +17,4 @@ const workUnitSchema = Schema({
   },
 });
 
-module.exports = mongoose.models.WorkUnit || mongoose.Model("WorkUnit", workUnitSchema);
+module.exports = mongoose.models.WorkUnit || mongoose.model("WorkUnit", workUnitSchema);

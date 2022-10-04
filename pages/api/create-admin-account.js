@@ -33,7 +33,7 @@ export default withIronSessionApiRoute(async function handler(req, res) {
       is_admin: true,
     });
 
-    req.session.user = dbUserToIronUser(user);
+    req.session.user = await dbUserToIronUser(user);
     await req.session.save();
   } catch (e) {
     if (e.code === 11000) {

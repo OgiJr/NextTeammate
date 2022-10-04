@@ -66,7 +66,7 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
       { new: true }
     );
 
-    req.session.user = dbUserToIronUser(newUser);
+    req.session.user = await dbUserToIronUser(newUser);
     await req.session.save();
 
     res.status(200).json({});

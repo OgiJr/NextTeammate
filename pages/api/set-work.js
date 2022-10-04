@@ -2,7 +2,7 @@ import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import WorkData from "../../models/WorkData";
 import { isAdmin, isLoggedIn, isSupportedMethod } from "../../lib/validation";
-import { dbConnect } from "../../lib/db";
+import { dbConnect, isDbUserWorking } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 
 export default withIronSessionApiRoute(async function workRoute(req, res) {
@@ -24,7 +24,13 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
       res.status(401).json({ message: "No such user!" });
       return;
     }
+
+    if (await isDbUserWorking(user)) {
+      res.status(401).json({ message: "Cannot change the data on a user that is currently working!" });
+      return;
+    }
   } catch (e) {
+    console.log(e);
     res.status(400).json({ message: e.message });
     return;
   }
@@ -53,6 +59,12 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
 
     let wd = await WorkData.findOne({ worker: user._id });
     if (!wd) {
+      if (counter != 3) {
+        console.log(counter);
+        console.log(req.body);
+        res.status(401).json({ message: "Please provide all the necessary fields!" });
+        return;
+      }
       wd = await WorkData.create({ worker: user._id, ...changes });
     } else {
       wd = await WorkData.findOneAndUpdate({ worker: user._id }, { $set: changes }, { upsert: true, new: true });
@@ -69,6 +81,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
 
     res.status(200).json({});
   } catch (e) {
+    console.log(e);
     res.status(400).json({ message: e.message });
   }
 }, authCookie);
