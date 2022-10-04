@@ -4,7 +4,13 @@ import React from "react";
 
 const WorkBanner = () => {
   return (
-    <div className="bg-gradient-to-r from-cyan-700 to-blue-700 md:bg-transparent banner relative z-1">
+    <div
+      style={{
+        backgroundImage: "url('assets/images/banner/work-banner.jpg')",
+        backgroundSize: "cover",
+      }}
+      className="md:bg-transparent banner relative z-1"
+    >
       <img
         src="assets/images/banner/banner_i_want_work.png"
         className="element_1"

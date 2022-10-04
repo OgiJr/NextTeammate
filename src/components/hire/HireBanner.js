@@ -4,7 +4,14 @@ import React from "react";
 
 const HireBanner = () => {
   return (
-    <div className="single_banner bg-thm-color-two-gradient relative z-1 lg:min-h-screen">
+    <div
+      className="single_banner bg-thm-color-two-gradient relative z-1 lg:min-h-screen"
+      style={{
+        backgroundImage:
+          "url('assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg')",
+        backgroundSize: "cover",
+      }}
+    >
       <img
         src="assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg"
         alt="element"
