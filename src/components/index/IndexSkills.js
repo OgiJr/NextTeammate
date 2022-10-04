@@ -13,7 +13,11 @@ const IndexSkills = () => {
             />
           </div>
           <div className="col-lg-6">
-            <img src="assets/images/hui.png" className="image-fit" alt="img" />
+            <img
+              src="assets/images/workiworkin.jpg"
+              className="image-fit"
+              alt="img"
+            />
           </div>
         </div>
       </div>

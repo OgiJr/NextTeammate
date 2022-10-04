@@ -8,7 +8,7 @@ const WorkAbout = () => {
           <div className="col-xl-7 col-lg-6">
             <div className="image_box wow fadeInLeft">
               <img
-                src="assets/images/about/workingwomen1.png"
+                src="assets/images/about/working-team.png"
                 alt="img"
                 className="image-fit image_1 rounded-circle"
               />
