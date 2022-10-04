@@ -1,9 +1,16 @@
 import Link from "next/link";
 import React from "react";
 
-const PageTitleBanner = ({ pageName, title, url = "assets/images/banner_contact.png" }) => {
+const PageTitleBanner = ({
+  pageName,
+  title,
+  url = "assets/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg",
+}) => {
   return (
-    <div className="subheader relative z-1" style={{ backgroundImage: "url(" + url + ")" }}>
+    <div
+      className="subheader relative z-1"
+      style={{ backgroundImage: "url(" + url + ")" }}
+    >
       <div className="container relative z-1">
         <div className="row">
           <div className="col-12">
@@ -22,10 +29,26 @@ const PageTitleBanner = ({ pageName, title, url = "assets/images/banner_contact.
             </div>
           </div>
         </div>
-        <img src="assets/images/elements/dots.png" alt="element" className="element_1 slideRightTwo" />
-        <img src="assets/images/elements/circle3.png" alt="element" className="element_2 zoom-fade" />
-        <img src="assets/images/elements/circle3big.png" alt="element" className="element_3 rotate_elem" />
-        <img src="assets/images/elements/circle3.png " alt="element" className="element_4 rotate_elem" />
+        <img
+          src="assets/images/elements/dots.png"
+          alt="element"
+          className="element_1 slideRightTwo"
+        />
+        <img
+          src="assets/images/elements/circle3.png"
+          alt="element"
+          className="element_2 zoom-fade"
+        />
+        <img
+          src="assets/images/elements/circle3big.png"
+          alt="element"
+          className="element_3 rotate_elem"
+        />
+        <img
+          src="assets/images/elements/circle3.png "
+          alt="element"
+          className="element_4 rotate_elem"
+        />
       </div>
     </div>
   );
