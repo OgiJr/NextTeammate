@@ -13,7 +13,7 @@ const WorkAbout = () => {
                 className="image-fit image_1 rounded-circle"
               />
               <img
-                src="assets/images/about/analytics.png"
+                src="assets/images/about/analiz123.png"
                 alt="img"
                 className="image-fit image_2 rounded-circle"
               />
