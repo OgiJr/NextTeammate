@@ -24,7 +24,7 @@ const IndexSkills = () => {
               <div className="section-title left-align white wow fadeInUp">
                 <p className="subtitle">
                   <i className="fal fa-book" />
-                  Our Services
+                  Our Company
                 </p>
                 <h3 className="title">
                   We&apos;re An Award Winning Outsourcing Company
@@ -38,11 +38,11 @@ const IndexSkills = () => {
                 </p>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-8">
-              <div className="row justify-content-center">
-                <div className="col-md-4 col-sm-6">
+            <div className="flex flex-row justify-center flex-wrap gap-4">
+              <div className="row justify-content-center ">
+                <div className="col-md-4 col-sm-6 flex flex-row justify-center flex-wrap gap-4 ">
                   <div
-                    className="progress_box grid wow fadeInDown"
+                    className="progress_box grid wow fadeInDown lg:min-h-full"
                     data-wow-delay=".20ms"
                   >
                     <div
@@ -52,22 +52,22 @@ const IndexSkills = () => {
                       data-bar-color="#4b83fb"
                       data-size={80}
                     >
-                      <div className="counter transform-center text-center">
+                      <div className="counter transform-center text-center ">
                         <Counter end={100} />
                       </div>
                     </div>
                     <div className="text">
-                      <h5 className="mb-0">
-                        Acquiring Skilled
+                      <h5 className="mb-0 ">
+                        Happy
                         <br />
-                        Professionals
+                        Customers
                       </h5>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-4 col-sm-6">
                   <div
-                    className="progress_box grid wow fadeInUp"
+                    className="progress_box grid wow fadeInUp lg:min-h-full"
                     data-wow-delay=".30ms"
                   >
                     <div
@@ -83,16 +83,16 @@ const IndexSkills = () => {
                     </div>
                     <div className="text">
                       <h5 className="mb-0">
-                        Finding Prospective
+                        Happy
                         <br />
-                        Companies
+                        Customers
                       </h5>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-4 col-sm-6">
                   <div
-                    className="progress_box grid fadeInDown"
+                    className="progress_box grid fadeInDown lg:min-h-full"
                     data-wow-delay=".40ms"
                   >
                     <div
@@ -108,9 +108,9 @@ const IndexSkills = () => {
                     </div>
                     <div className="text">
                       <h5 className="mb-0">
-                        Creating Lasting
+                        Happy
                         <br />
-                        Relations
+                        Customers
                       </h5>
                     </div>
                   </div>

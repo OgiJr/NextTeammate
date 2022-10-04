@@ -43,7 +43,7 @@ const IndexSolutions = () => {
                 </p>
               </div>
             </div>
-            <div className="lg:!max-w-[25%] ">
+            <div className="lg:!max-w-[25%]">
               <div
                 className="features_box style_2 wow fadeInUp lg:min-h-[100%]"
                 data-wow-delay=".30ms"
