@@ -124,7 +124,9 @@ const About = ({ users }) => {
       </section>
       <section
         className="section section-bg about_bg about style_2"
-        style={{ backgroundImage: "url(assets/images/dfqwerrfdddddft.png)" }}
+        style={{
+          backgroundImage: "url(assets/images/dfqwerrfdddddftgfgfgf.png)",
+        }}
       >
         <div className="container">
           <div className="row justify-content-between flex-row-reverse">
