@@ -5,12 +5,19 @@ import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
-import { dbConnect, dbUserToIronUser, isIronUserWorking } from "../lib/db";
+import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserWorking } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
 
-const DashboardUser = ({ user, is_working }) => {
+const DashboardUser = ({
+  user,
+  is_working,
+  work_hours_this_week,
+  work_hours_this_month,
+  average_hours_per_week,
+  projected_salary,
+}) => {
   const router = useRouter();
 
   return (
@@ -45,28 +52,28 @@ const DashboardUser = ({ user, is_working }) => {
                     <i className="icon fal fa-lightbulb-on" />
                     <div className="text">
                       <h6 className="mb-0">Work hours this week</h6>
-                      <p className="mb-0">TODO</p>
+                      <p className="mb-0">{work_hours_this_week}</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-calendar-week" />
                     <div className="text">
                       <h6 className="mb-0">Average hours per week</h6>
-                      <p className="mb-0">TODO</p>
+                      <p className="mb-0">{average_hours_per_week}</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-calendar" />
                     <div className="text">
                       <h6 className="mb-0">Work hours this month</h6>
-                      <p className="mb-0">TODO</p>
+                      <p className="mb-0">{work_hours_this_month}</p>
                     </div>
                   </li>
                   <li>
                     <i className="icon fal fa-dollar-sign" />
                     <div className="text">
-                      <h6 className="mb-0">Projected Salary</h6>
-                      <p className="mb-0">TODO</p>
+                      <h6 className="mb-0">Projected Salary *</h6>
+                      <p className="mb-0">{`${projected_salary} ${user.work_data.currency}`}</p>
                     </div>
                   </li>
                   <div className="flex flex-col gap-4">
@@ -108,6 +115,7 @@ const DashboardUser = ({ user, is_working }) => {
                         </Button>
                       </Link>
                     </div>
+                    <span>* This is a projection based on estimates and past performance, not a promise.</span>
                   </div>
                 </ul>
               </div>
@@ -149,15 +157,29 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       req.session.user = await dbUserToIronUser(newUser);
       await req.session.save();
 
+      const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
+        await getIronUserWorkStats(req.session.user);
+
+      console.log(projected_salary);
+
       return {
         props: {
           user: req.session.user,
           is_working: isIronUserWorking(req.session.user),
+          work_hours_this_week,
+          work_hours_this_month,
+          average_hours_per_week,
+          projected_salary,
         },
       };
     } catch (e) {
       return {
-        props: { user, is_working: isIronUserWorking(user) },
+        props: {
+          user,
+          is_working: isIronUserWorking(user),
+          work_hours_this_week: "Error",
+          work_hours_this_month: "Error",
+        },
       };
     }
   }
