@@ -69,7 +69,7 @@ const IndexSolutions = () => {
               >
                 <div className="icon">
                   <img
-                    src="assets/images/icons/gym-dynamic-gradient.png"
+                    src="assets/images/icons/rocket-dynamic-gradient copy.png"
                     alt="icon"
                     width={80}
                   />
