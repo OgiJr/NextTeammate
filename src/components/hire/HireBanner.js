@@ -34,7 +34,10 @@ const HireBanner = () => {
                 >
                   Hire a professional
                 </h1>
-                <p className="wow fadeInUp text-white" data-wow-delay=".60ms">
+                <p
+                  className="wow fadeInUp text-white font-normal hover:font-bold"
+                  data-wow-delay=".60ms"
+                >
                   Our main priority is to make your life easier so you can focus
                   on your business.
                 </p>

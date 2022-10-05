@@ -124,26 +124,14 @@ const About = ({ users }) => {
       </section>
       <section
         className="section section-bg about_bg about style_2"
-        style={{ backgroundImage: "url(assets/images/bg/bg_1.jpg)" }}
+        style={{ backgroundImage: "url(assets/images/dfqwerrfdddddft.png)" }}
       >
         <div className="container">
           <div className="row justify-content-between flex-row-reverse">
             <div className="col-lg-6">
               <div className="image_boxes style_2 relative z-1 h-100">
-                <img
-                  src="assets/images/nextlogo.png"
-                  className="small_img wow fadeInUp"
-                  alt="img"
-                />
-                <div className="video_warp style_2 relative z-1 big_img wow fadeInDown">
-                  <img src="assets/images/about/video-img.jpg" alt="img" />
-                  <a
-                    href="#"
-                    onClick={() => setVideo(true)}
-                    className="popup-youtube transform-center justify-content-center d-flex"
-                  >
-                    <img src="assets/images/icons/play.png" alt="icon" />
-                  </a>
+                <div className="flex">
+                  <img src="assets/images/about/workingwomen1.png" alt="img" />
                 </div>
                 {/* elements */}
                 <img
@@ -163,13 +151,15 @@ const About = ({ users }) => {
                 />
               </div>
             </div>
-            <div className="col-xl-4 col-lg-6 mb-md-80">
+            <div className="col-xl-4 col-lg-6 mb-md-80 text-white">
               <div className="section-title left-align wow fadeInUp">
                 <p className="subtitle">
-                  <i className="fal fa-book" />
+                  <i className="fal fa-book text-white" />
                   What to expect
                 </p>
-                <h3 className="title">Other facilities that we can offer:</h3>
+                <h3 className="title text-white">
+                  Other facilities that we can offer:
+                </h3>
                 {/* <p className="mb-0">
                   Quis autem vel eum iure reprehenderit qui in ea voluptate esse
                   quam nihil molestiae conseq uaturvel illum qui dolorem eum
