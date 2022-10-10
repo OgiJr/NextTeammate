@@ -30,7 +30,7 @@ const Header = ({
             <div className="nav_warp">
               <nav>
                 <div className="logo">
-                  <Link href="/">
+                  <Link href={language == "en" ? "/" : "index-bg"}>
                     <a>
                       <img
                         src="assets/images/nextlogo.png"

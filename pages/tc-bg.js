@@ -3,7 +3,7 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
 
 import React from "react";
-import Footer from "../src/layout/Footer";
+import Footer from "../src/layout/FooterBg";
 
 const Faq = () => {
   return (
