@@ -5,7 +5,12 @@ import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
-import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserWorking } from "../lib/db";
+import {
+  dbConnect,
+  dbUserToIronUser,
+  getIronUserWorkStats,
+  isIronUserWorking,
+} from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
@@ -21,7 +26,7 @@ const DashboardUser = ({
   const router = useRouter();
 
   return (
-    <Layout>
+    <Layout language={"en"}>
       <PageTitleBanner pageName="User Panel" />
 
       <section className="section-padding team_details">
@@ -38,14 +43,18 @@ const DashboardUser = ({
             </div>
             <div className="col-lg-6 my-4">
               <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
-                <h3 className="name wow fadeInDown">{user.first_name + " " + user.last_name}</h3>
+                <h3 className="name wow fadeInDown">
+                  {user.first_name + " " + user.last_name}
+                </h3>
                 <p className="desi thm-color-two wow fadeInUp">{user.bio}</p>
                 <ul className="info wow fadeInDown">
                   <li>
                     <i className="icon fal fa-clock bg-thm-color-three" />
                     <div className="text">
                       <h6 className="mb-0">Expected hours per week</h6>
-                      <p className="mb-0">{user.work_data.expected_hours_weekly}</p>
+                      <p className="mb-0">
+                        {user.work_data.expected_hours_weekly}
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -115,7 +124,10 @@ const DashboardUser = ({
                         </Button>
                       </Link>
                     </div>
-                    <span>* This is a projection based on estimates and past performance, not a promise.</span>
+                    <span>
+                      * This is a projection based on estimates and past
+                      performance, not a promise.
+                    </span>
                   </div>
                 </ul>
               </div>
@@ -128,61 +140,68 @@ const DashboardUser = ({
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-      props: {},
-    };
-  }
-
-  if (user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-admin",
-      },
-      props: {},
-    };
-  } else {
-    try {
-      dbConnect();
-
-      const newUser = await User.findOne({ email: user.email });
-      req.session.user = await dbUserToIronUser(newUser);
-      await req.session.save();
-
-      const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
-        await getIronUserWorkStats(req.session.user);
-
-      console.log(projected_salary);
-
+    if (!user) {
       return {
-        props: {
-          user: req.session.user,
-          is_working: isIronUserWorking(req.session.user),
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    if (user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-admin",
+        },
+        props: {},
+      };
+    } else {
+      try {
+        dbConnect();
+
+        const newUser = await User.findOne({ email: user.email });
+        req.session.user = await dbUserToIronUser(newUser);
+        await req.session.save();
+
+        const {
           work_hours_this_week,
           work_hours_this_month,
           average_hours_per_week,
           projected_salary,
-        },
-      };
-    } catch (e) {
-      return {
-        props: {
-          user,
-          is_working: isIronUserWorking(user),
-          work_hours_this_week: "Error",
-          work_hours_this_month: "Error",
-        },
-      };
+        } = await getIronUserWorkStats(req.session.user);
+
+        console.log(projected_salary);
+
+        return {
+          props: {
+            user: req.session.user,
+            is_working: isIronUserWorking(req.session.user),
+            work_hours_this_week,
+            work_hours_this_month,
+            average_hours_per_week,
+            projected_salary,
+          },
+        };
+      } catch (e) {
+        return {
+          props: {
+            user,
+            is_working: isIronUserWorking(user),
+            work_hours_this_week: "Error",
+            work_hours_this_month: "Error",
+          },
+        };
+      }
     }
-  }
-}, authCookie);
+  },
+  authCookie
+);
 
 export default DashboardUser;

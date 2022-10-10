@@ -3,10 +3,10 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import VideoPopup from "../src/components/VideoPopup";
 import Layout from "../src/layout/Layout";
 import React from "react";
-import WorkTeam from "../src/components/work/WorkTeam";
+import WorkTeam from "../src/components/work/WorkTeamBg";
 import { dbConnect, dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
-import Footer from "../src/layout/Footer";
+import Footer from "../src/layout/FooterBg";
 
 export const getServerSideProps = async () => {
   dbConnect();
@@ -24,9 +24,9 @@ export const getServerSideProps = async () => {
 const About = ({ users }) => {
   const [video, setVideo] = useState(false);
   return (
-    <Layout language={"en"}>
+    <Layout language={"bg"}>
       <PageTitleBanner
-        pageName="About Us"
+        pageName="За нас"
         url="assets/images/banner/about-banner.JPG"
       />
       {video && <VideoPopup close={() => setVideo(false)} />}
@@ -46,14 +46,14 @@ const About = ({ users }) => {
               <div className="section-title left-align wow fadeInDown">
                 <p className="subtitle">
                   <i className="fal fa-book" />
-                  About Us
+                  За нас
                 </p>
                 <h3 className="title">
-                  We will take care of the entire employment process:
+                  Ние ще се погрижим за цялостния процес на наемане:
                 </h3>
                 <p>
-                  Our main priority is to make your life easier so you can focus
-                  on your business.
+                  Нашият основен приоритет е да ви улесним, за да можете да се
+                  съсредоточите върху бизнеса си.
                 </p>
               </div>
               <ul className="about_list row">
@@ -66,7 +66,7 @@ const About = ({ users }) => {
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Payroll</h6>
+                    <h6 className="mb-2">Ведомост за заплати</h6>
                     {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
                     </p> */}
@@ -81,7 +81,7 @@ const About = ({ users }) => {
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Health insurance benefits</h6>
+                    <h6 className="mb-2">Здравноосигурителни обезщетения</h6>
                     {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
                     </p> */}
@@ -96,7 +96,7 @@ const About = ({ users }) => {
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Management</h6>
+                    <h6 className="mb-2">Менежиране</h6>
                     {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
                     </p> */}
@@ -111,7 +111,9 @@ const About = ({ users }) => {
                     />
                   </div>
                   <div className="text">
-                    <h6 className="mb-2">Built in scheduling software</h6>
+                    <h6 className="mb-2">
+                      Вграден софтуер за изготвяне на графици
+                    </h6>
                     {/* <p className="mb-0">
                       Quis autem reprehenderit quein voluptate velit esseua
                     </p> */}
@@ -157,10 +159,10 @@ const About = ({ users }) => {
               <div className="section-title left-align wow fadeInUp">
                 <p className="subtitle">
                   <i className="fal fa-book text-white" />
-                  What to expect
+                  Какво предлагаме
                 </p>
                 <h3 className="title text-white">
-                  Other facilities that we can offer:
+                  Други удобства, които можем да предложим:
                 </h3>
                 {/* <p className="mb-0">
                   Quis autem vel eum iure reprehenderit qui in ea voluptate esse
@@ -169,10 +171,10 @@ const About = ({ users }) => {
                 </p> */}
               </div>
               <ul className="about_list style_2 mb-xl-30 wow fadeInDown">
-                <li>Online secure conference platform</li>
-                <li>Secure and encrypted file sharing platform</li>
-                <li>American phone number for the employee</li>
-                <li>Laptops computers and various working equipment</li>
+                <li>Защитена онлайн платформа за конференции</li>
+                <li>Криптирана платформа за споделяне на файлове</li>
+                <li>Американски телефонен номер на служителя</li>
+                <li>Лаптопи и разнообразно работно оборудване</li>
               </ul>
             </div>
           </div>

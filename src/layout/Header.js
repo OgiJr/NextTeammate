@@ -1,12 +1,18 @@
 import Link from "next/dist/client/link";
 import { Fragment, useEffect } from "react";
 import { stickyNav } from "../utils";
-import { HomeMenu, PageMenu } from "./Menu";
+import { HomeMenu, LanguageMenu, PageMenu } from "./Menu";
 import { LogButton } from "./LogButton";
 
 import React from "react";
 
-const Header = ({ openMobileMenu, sticky, headerStyle, absolute }) => {
+const Header = ({
+  openMobileMenu,
+  sticky,
+  headerStyle,
+  absolute,
+  language,
+}) => {
   useEffect(() => {
     window.addEventListener("scroll", stickyNav);
   });
@@ -36,26 +42,36 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute }) => {
                 </div>
                 <ul className="main-menu">
                   <li className="menu-item">
-                    <a href="/">Home</a>
+                    <a href={language == "en" ? "/" : "/index-bg"}>
+                      {language == "en" ? "Home" : "Начало"}
+                    </a>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="#">Services</a>
+                    <a href="#">{language == "en" ? "Services" : "Услуги"}</a>
                     <ul className="sub-menu">
-                      <HomeMenu />
+                      <HomeMenu language={language} />
                     </ul>
                   </li>
                   <li className="menu-item menu-item-has-children">
-                    <a href="#">About Us</a>
+                    <a href="#">{language == "en" ? "About Us" : "За нас"}</a>
                     <ul className="sub-menu">
-                      <PageMenu />
+                      <PageMenu language={language} />
                     </ul>
                   </li>
                   <li className="menu-item">
-                    <a href="/contact">Contacts</a>
+                    <a href={language == "en" ? "/contact" : "/contact-bg"}>
+                      {language == "en" ? "Contacts" : "Контакти"}
+                    </a>
+                  </li>
+                  <li className="menu-item menu-item-has-children">
+                    <a href="#">{language == "en" ? "Language" : "Език"}</a>
+                    <ul className="sub-menu">
+                      <LanguageMenu />
+                    </ul>
                   </li>
                 </ul>
                 <div className="head_actions">
-                  <LogButton />
+                  <LogButton language={language} />
 
                   <button
                     type="button"

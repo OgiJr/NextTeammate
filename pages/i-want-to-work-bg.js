@@ -1,11 +1,11 @@
-import WorkAbout from "../src/components/work/WorkAbout";
-import WorkBanner from "../src/components/work/WorkBanner";
-import WorkTeam from "../src/components/work/WorkTeam";
+import WorkAbout from "../src/components/work/WorkAboutBg";
+import WorkBanner from "../src/components/work/WorkBannerBg";
+import WorkTeam from "../src/components/work/WorkTeamBg";
 import Layout from "../src/layout/Layout";
 import React from "react";
 import { dbConnect, dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
-import Footer from "../src/layout/Footer";
+import Footer from "../src/layout/FooterBg";
 
 export const getServerSideProps = async () => {
   dbConnect();
@@ -22,7 +22,7 @@ export const getServerSideProps = async () => {
 
 const IWantToWork = ({ users }) => {
   return (
-    <Layout language={"en"}>
+    <Layout language={"bg"}>
       <WorkBanner />
       <WorkAbout />
       <WorkTeam users={users} />

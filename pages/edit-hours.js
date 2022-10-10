@@ -14,20 +14,24 @@ const EditHours = ({ editable }) => {
   const router = useRouter();
 
   return (
-    <Layout>
+    <Layout language={"en"}>
       <div className="flex flex-row justify-center min-w-full">
         <div className="flex flex-col justify-center min-w-full items-center justify-items-center">
           <div
             className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
             style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
           >
-            <div className="text-center min-w-full text-4xl font-semibold">Edit User Hours</div>
+            <div className="text-center min-w-full text-4xl font-semibold">
+              Edit User Hours
+            </div>
             <Form
               onSubmit={async (e) => {
                 e.preventDefault();
 
-                const expected_hours_weekly = e.target.expected_hours_weekly?.value;
-                const current_price_per_hour = e.target.current_price_per_hour?.value;
+                const expected_hours_weekly =
+                  e.target.expected_hours_weekly?.value;
+                const current_price_per_hour =
+                  e.target.current_price_per_hour?.value;
                 const currency = e.target.currency?.value;
 
                 const body = {
@@ -56,12 +60,18 @@ const EditHours = ({ editable }) => {
             >
               <Form.Group className="my-3" controlId="expected_hours_weekly">
                 <Form.Label>Expected Hours Per Week</Form.Label>
-                <Form.Control type="numer" placeholder={editable.work_data.expected_hours_weekly} />
+                <Form.Control
+                  type="numer"
+                  placeholder={editable.work_data.expected_hours_weekly}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="current_price_per_hour">
                 <Form.Label>Price per Hour</Form.Label>
-                <Form.Control type="text" placeholder={editable.work_data.current_price_per_hour} />
+                <Form.Control
+                  type="text"
+                  placeholder={editable.work_data.current_price_per_hour}
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="currency">
@@ -97,34 +107,11 @@ const EditHours = ({ editable }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req, query }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req, query }) {
+    const user = req.session.user;
 
-  if (!query.email) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-      props: {},
-    };
-  }
-
-  if (!user || !user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-      props: {},
-    };
-  }
-
-  try {
-    dbConnect();
-
-    const editable = await User.findOne({ email: query.email });
-    if (!editable) {
+    if (!query.email) {
       return {
         redirect: {
           permanent: false,
@@ -133,20 +120,46 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         props: {},
       };
     }
-    const ironEditable = await dbUserToIronUser(editable);
 
-    return {
-      props: { editable: ironEditable },
-    };
-  } catch (e) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-      props: {},
-    };
-  }
-}, authCookie);
+    if (!user || !user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    try {
+      dbConnect();
+
+      const editable = await User.findOne({ email: query.email });
+      if (!editable) {
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/",
+          },
+          props: {},
+        };
+      }
+      const ironEditable = await dbUserToIronUser(editable);
+
+      return {
+        props: { editable: ironEditable },
+      };
+    } catch (e) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/",
+        },
+        props: {},
+      };
+    }
+  },
+  authCookie
+);
 
 export default EditHours;

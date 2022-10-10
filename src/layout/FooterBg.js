@@ -25,40 +25,40 @@ const Footer = () => {
             </div>
             <div className="flex flex-row justify-start">
               <div className="flex flex-col min-w-[30rem]">
-                <h6 className="text-white text-3xl">Navigation</h6>
+                <h6 className="text-white text-3xl">Навигация</h6>
                 <div className="ft_widget ft_menu wow fadeInUp flex flex-row gap-10">
                   <ul>
                     <li>
-                      <a href="/about">About Us</a>
+                      <a href="/about-bg">За нас</a>
                     </li>
                     <li>
-                      <a href="/faqs">Terms and Conditions</a>
+                      <a href="/faqs-bg">Права и условия</a>
                     </li>
                     <li>
-                      <a href="/contact">Contacts</a>
+                      <a href="/contact-bg">Контакти</a>
                     </li>
                   </ul>
                   <ul>
                     <li>
-                      <a href="/">Home</a>
+                      <a href="index-bg">Начало</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-work">I want to work</a>
+                      <a href="/i-want-to-work-bg">Търся работа</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-hire">I want to hire</a>
+                      <a href="/i-want-to-hire-bg">Търся служители</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div className="flex flex-col min-w-[30rem]">
-              <h6 className="text-white text-3xl">Contacts</h6>
+              <h6 className="text-white text-3xl">Контакти</h6>
               <ul className="info text-white">
                 <li>
-                  402 E Pennsylvania blvd
+                  бул. Пенсилвания 402 E
                   <br />
-                  Feasterville PA 19053
+                  Фестървил PA 19053
                 </li>
                 <li>
                   <a href="tel:+126720800020">+126720800020</a>
@@ -76,7 +76,7 @@ const Footer = () => {
         <div className="footer_bottom">
           <p className="mb-0">
             © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved,
-            Design By Javery.
+            Създадено от <a href="https://javery.bg/">Javery</a>.
           </p>
         </div>
         <img

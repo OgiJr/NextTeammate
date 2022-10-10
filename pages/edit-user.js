@@ -11,14 +11,16 @@ const EditUser = ({ user }) => {
   const router = useRouter();
 
   return (
-    <Layout>
+    <Layout language={"en"}>
       <div className="flex flex-row justify-center min-w-full">
         <div className="flex flex-col justify-center min-w-full items-center justify-items-center">
           <div
             className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
             style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
           >
-            <div className="text-center min-w-full text-4xl font-semibold">Edit User Details</div>
+            <div className="text-center min-w-full text-4xl font-semibold">
+              Edit User Details
+            </div>
             <Form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -79,7 +81,11 @@ const EditUser = ({ user }) => {
                 <Form.Control
                   as="textarea"
                   rows="3"
-                  placeholder={user.bio ? user.bio : "Example: SEO expert with experience in..."}
+                  placeholder={
+                    user.bio
+                      ? user.bio
+                      : "Example: SEO expert with experience in..."
+                  }
                 />
               </Form.Group>
 
@@ -109,22 +115,25 @@ const EditUser = ({ user }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-      props: {},
+      props: { user },
     };
-  }
-
-  return {
-    props: { user },
-  };
-}, authCookie);
+  },
+  authCookie
+);
 
 export default EditUser;

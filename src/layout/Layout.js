@@ -6,7 +6,15 @@ import ScrollTop from "./ScrollTop";
 
 import React from "react";
 
-const Layout = ({ children, noHeaderTop, sticky, sideBar, headerStyle, absolute }) => {
+const Layout = ({
+  children,
+  noHeaderTop,
+  sticky,
+  sideBar,
+  headerStyle,
+  absolute,
+  language,
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => {
     aTagClick();
@@ -18,8 +26,13 @@ const Layout = ({ children, noHeaderTop, sticky, sideBar, headerStyle, absolute 
 
   return (
     <Fragment>
-      <MobileMenu closeMobileMenu={() => setMobileMenuOpen(false)} showMobileMenu={mobileMenuOpen} />
+      <MobileMenu
+        closeMobileMenu={() => setMobileMenuOpen(false)}
+        showMobileMenu={mobileMenuOpen}
+        language={language}
+      />
       <Header
+        language={language}
         openMobileMenu={() => setMobileMenuOpen(true)}
         noHeaderTop={noHeaderTop}
         sticky={sticky}

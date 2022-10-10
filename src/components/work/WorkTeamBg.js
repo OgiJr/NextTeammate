@@ -19,9 +19,11 @@ const WorkTeam = ({ users }) => {
             <div className="section-title wow fadeInDown">
               <p className="subtitle">
                 <i className="fal fa-book" />
-                Our Professionals
+                Нашите професионалисти
               </p>
-              <h3 className="title">Meet Our Professinoal Team Members</h3>
+              <h3 className="title">
+                Запознайте се с нашия професионален екип
+              </h3>
             </div>
           </div>
         </div>

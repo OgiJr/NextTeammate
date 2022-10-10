@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import useIsLoggedIn from "../../lib/useIsLoggedIn";
 
-export const LogButton = () => {
+export const LogButton = ({ language }) => {
   const router = useRouter();
   const isLoggedIn = useIsLoggedIn();
 
@@ -35,7 +35,8 @@ export const LogButton = () => {
         className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
         data-wow-delay=".50ms"
       >
-        Log in <i className="fal fa-chevron-right ml-2" />{" "}
+        {language == "en" ? "Log in" : "Портал"}
+        <i className="fal fa-chevron-right ml-2" />
       </a>
     </Link>
   );

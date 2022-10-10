@@ -13,14 +13,16 @@ const SetPassword = ({ password_generation_key, email }) => {
   const router = useRouter();
 
   return (
-    <Layout>
+    <Layout language={"en"}>
       <div className="flex flex-row justify-center min-w-full">
         <div className="flex flex-col justify-center min-w-full items-center justify-items-center">
           <div
             className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
             style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
           >
-            <div className="text-center min-w-full text-4xl font-semibold">Set Password</div>
+            <div className="text-center min-w-full text-4xl font-semibold">
+              Set Password
+            </div>
             <Form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -105,23 +107,10 @@ const SetPassword = ({ password_generation_key, email }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ query }) {
-  const { password_generation_key, email } = query;
-  if (!password_generation_key || !email) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-      props: {},
-    };
-  }
-
-  try {
-    await dbConnect();
-
-    const user = await User.findOne({ email });
-    if (!user || user.has_password || user.password_generation_key !== password_generation_key) {
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ query }) {
+    const { password_generation_key, email } = query;
+    if (!password_generation_key || !email) {
       return {
         redirect: {
           permanent: false,
@@ -131,21 +120,41 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       };
     }
 
-    return {
-      props: {
-        password_generation_key,
-        email,
-      },
-    };
-  } catch {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-      props: {},
-    };
-  }
-}, authCookie);
+    try {
+      await dbConnect();
+
+      const user = await User.findOne({ email });
+      if (
+        !user ||
+        user.has_password ||
+        user.password_generation_key !== password_generation_key
+      ) {
+        return {
+          redirect: {
+            permanent: false,
+            destination: "/",
+          },
+          props: {},
+        };
+      }
+
+      return {
+        props: {
+          password_generation_key,
+          email,
+        },
+      };
+    } catch {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/",
+        },
+        props: {},
+      };
+    }
+  },
+  authCookie
+);
 
 export default SetPassword;

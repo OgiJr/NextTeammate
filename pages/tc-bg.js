@@ -7,8 +7,8 @@ import Footer from "../src/layout/Footer";
 
 const Faq = () => {
   return (
-    <Layout language={"en"}>
-      <PageTitleBanner pageName="Terms and Conditions" />
+    <Layout language={"bg"}>
+      <PageTitleBanner pageName="Права и условия" />
       <div className="section-padding faqs_elements">
         <div className="container relative z-1">
           <div className="row justify-content-center">

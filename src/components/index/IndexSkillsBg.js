@@ -29,24 +29,25 @@ const IndexSkills = () => {
       <div className="lg:w-[50%] w-[100%] bg-[#1b2336] h-[100%] flex flex-col justify-start p-16">
         <h1 className="text-[14px] text-white font-bold uppercase ">
           <i className="fal fa-book mr-2 font-semibold" />
-          Our Company
+          Нашата компания
         </h1>
         <h2 className="text-3xl text-white font-bold">
-          We&apos;re An Award Winning Outsourcing Company
+          Общопризната outsourcing компания
         </h2>
         <h4 className="text-2xl text-white font-normal">
-          We believe that the future holds remote work and a financial system
-          without borders. In our modern era a vicinity constraint is absolutely
-          pointless and only slows us down. We&apos;re building tools to
-          accelerate this transition to remote work and help your business grow.
+          Вярваме, че бъдещето е свързано с работата от разстояние и финансовата
+          система без граници. В нашата съвременна епоха ограничението за
+          близост е абсолютно безсмислено и само ни забавя. Създаваме
+          инструменти, които да ускорят този преход към дистанционна работа и да
+          помогнат на вашия бизнес да се разрасне.
         </h4>
         <div className="flex flex-row justify-center my-20 gap-20">
           <Banner
             text={
               <>
-                Happy
+                Доволни
                 <br />
-                Customers
+                клиенти
               </>
             }
             color="#65cfa9"
@@ -54,9 +55,9 @@ const IndexSkills = () => {
           <Banner
             text={
               <>
-                Business
+                Развитие
                 <br />
-                Improvement
+                на бизнеса
               </>
             }
             color="#ffbd3f"

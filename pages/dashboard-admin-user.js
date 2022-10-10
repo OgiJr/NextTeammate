@@ -15,7 +15,7 @@ const AdminUserPanel = () => {
   });
 
   return (
-    <Layout>
+    <Layout language={"en"}>
       <PageTitleBanner pageName="Managing Users" />
 
       <section className="section-padding team_details">
@@ -33,7 +33,9 @@ const AdminUserPanel = () => {
             <div className="col-lg-6">
               <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
                 <h3 className="name wow fadeInDown">Collins</h3>
-                <p className="desi thm-color-two wow fadeInUp">Elizabeth Collins</p>
+                <p className="desi thm-color-two wow fadeInUp">
+                  Elizabeth Collins
+                </p>
                 <ul className="social mb-xl-30 wow fadeInDown">
                   <li>
                     <a href="#">
@@ -66,7 +68,9 @@ const AdminUserPanel = () => {
                     <i className="icon fal fa-clock bg-thm-color-three" />
                     <div className="text">
                       <h6 className="mb-0">Expected hours per week:</h6>
-                      <p className="mb-0 text-xl font-extrabold text-amber-500">{userData.expectedHours} hours</p>
+                      <p className="mb-0 text-xl font-extrabold text-amber-500">
+                        {userData.expectedHours} hours
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -75,12 +79,18 @@ const AdminUserPanel = () => {
                       <h6 className="mb-0">Work hours this week:</h6>
                       {indicator ? (
                         userData.expectedHours > userData.hoursThisWeek ? (
-                          <p className="mb-0 text-xl font-extrabold text-red-600">{userData.hoursThisWeek} hours</p>
+                          <p className="mb-0 text-xl font-extrabold text-red-600">
+                            {userData.hoursThisWeek} hours
+                          </p>
                         ) : (
-                          <p className="mb-0 text-xl font-extrabold text-green-600">{userData.hoursThisWeek} hours</p>
+                          <p className="mb-0 text-xl font-extrabold text-green-600">
+                            {userData.hoursThisWeek} hours
+                          </p>
                         )
                       ) : (
-                        <p className="mb-0 text-xl font-extrabold text-amber-500">{userData.hoursThisWeek} hours</p>
+                        <p className="mb-0 text-xl font-extrabold text-amber-500">
+                          {userData.hoursThisWeek} hours
+                        </p>
                       )}
                     </div>
                   </li>
@@ -89,13 +99,16 @@ const AdminUserPanel = () => {
                     <div className="text">
                       <h6 className="mb-0">Average hours per week:</h6>
                       {indicator ? (
-                        userData.expectedHours > userData.hoursPerMonth / userData.workingWeeks ? (
+                        userData.expectedHours >
+                        userData.hoursPerMonth / userData.workingWeeks ? (
                           <p className="mb-0 text-xl font-extrabold text-red-600">
-                            {userData.hoursPerMonth / userData.workingWeeks} hours
+                            {userData.hoursPerMonth / userData.workingWeeks}{" "}
+                            hours
                           </p>
                         ) : (
                           <p className="mb-0 text-xl font-extrabold text-green-600">
-                            {userData.hoursPerMonth / userData.workingWeeks} hours
+                            {userData.hoursPerMonth / userData.workingWeeks}{" "}
+                            hours
                           </p>
                         )
                       ) : (
@@ -110,9 +123,13 @@ const AdminUserPanel = () => {
                     <div className="text">
                       <h6 className="mb-0">Work hours this month:</h6>
                       {indicator ? (
-                        <p className="mb-0 text-xl font-extrabold  text-green-600">{userData.hoursPerMonth} hours</p>
+                        <p className="mb-0 text-xl font-extrabold  text-green-600">
+                          {userData.hoursPerMonth} hours
+                        </p>
                       ) : (
-                        <p className="mb-0 text-xl font-extrabold  text-amber-500">{userData.hoursPerMonth} hours</p>
+                        <p className="mb-0 text-xl font-extrabold  text-amber-500">
+                          {userData.hoursPerMonth} hours
+                        </p>
                       )}
                     </div>
                   </li>
@@ -120,7 +137,9 @@ const AdminUserPanel = () => {
                     <i className="icon fal fa-dollar-sign" />
                     <div className="text">
                       <h6 className="mb-0">Projected Salary:</h6>
-                      <p className="mb-0 text-xl font-extrabold  text-amber-500">${userData.salary.toFixed(2)}</p>
+                      <p className="mb-0 text-xl font-extrabold  text-amber-500">
+                        ${userData.salary.toFixed(2)}
+                      </p>
                     </div>
                   </li>
                   <div className="flex items-center justify-center">

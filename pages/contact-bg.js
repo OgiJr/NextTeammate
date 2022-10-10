@@ -2,16 +2,16 @@ import Link from "next/dist/client/link";
 import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
 import React, { useState } from "react";
-import Footer from "../src/layout/Footer";
+import Footer from "../src/layout/FooterBg";
 
 const Contact = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
   return (
-    <Layout language={"en"}>
+    <Layout language={"bg"}>
       <PageTitleBanner
-        pageName="Contact Us"
+        pageName="Свържете се с нас"
         url="assets/images/banner/contact-banner.JPG"
       />
       <section className="section-padding">
@@ -21,10 +21,10 @@ const Contact = () => {
               <div className="section-title wow fadeInUp">
                 <p className="subtitle">
                   <i className="fal fa-book" />
-                  Contact Us
+                  Свържете се с нас
                 </p>
                 <h3 className="title">
-                  Reach out to us if you have any questions
+                  Свържете се с нас ако искате да работим заедно / имате въпроси
                 </h3>
               </div>
             </div>
@@ -43,11 +43,14 @@ const Contact = () => {
                   />
                 </div>
                 <div className="text">
-                  <h4>Phone</h4>
-                  <p>Call us from 9 to 5 M-F. (U.S.A.)</p>
+                  <h4>Телефон</h4>
+                  <p>
+                    Свържете се с нас от 16:00 to 24:00 Пон-Петък. (Българско
+                    време)
+                  </p>
                   <Link href="tel:+126720800020">
                     <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
-                      Give us a call <i className="fal fa-chevron-right ml-2" />
+                      Звъннете <i className="fal fa-chevron-right ml-2" />
                     </a>
                   </Link>
                 </div>
@@ -66,14 +69,11 @@ const Contact = () => {
                   />
                 </div>
                 <div className="text">
-                  <h4>Have Any Questions</h4>
-                  <p>
-                    Don&apos;t hesitate to ask your questions. We will answer
-                    all of them.
-                  </p>
+                  <h4>Имате ли въпроси към нас?</h4>
+                  <p>Не се колебайте, изпрате ни имейл.</p>
                   <Link href="mailto:nextteammateltd@gmail.com">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
-                      Contact Us <i className="fal fa-chevron-right ml-2" />
+                      Контакт <i className="fal fa-chevron-right ml-2" />
                     </a>
                   </Link>
                 </div>
@@ -88,36 +88,36 @@ const Contact = () => {
             <div className="section-title left-align wow fadeInDown">
               <p className="subtitle">
                 <i className="fal fa-book" />
-                Contact Us
+                Контакт
               </p>
-              <h3 className="title">Have Any Courses Get In Touch</h3>
+              <h3 className="title">Искате да се свържете с нас?</h3>
             </div>
             <div className="contact_info mb-md-80">
               <ul>
                 <li className="wow fadeInUp">
                   <i className="icon fal fa-map-marker-alt" />
                   <div className="text">
-                    <h6>Location</h6>
+                    <h6>Локация</h6>
                     <li>
-                      402 E Pennsylvania blvd
+                      бул. Пенсилвания 402 E
                       <br />
-                      Feasterville PA 19053
+                      Фестървил PA 19053
                     </li>
                   </div>
                 </li>
                 <li className="wow fadeInDown">
                   <i className="icon fal fa-envelope-open-text" />
                   <div className="text">
-                    <h6>Email Address</h6>
+                    <h6>Имейл</h6>
                     <p> nextteammateltd@gmail.com</p>
                   </div>
                 </li>
                 <li className="wow fadeInUp">
                   <i className="icon fal fa-phone" />
                   <div className="text">
-                    <h6>Contact Us</h6>
+                    <h6>Звъннете</h6>
                     <p>
-                      <strong>Phone: </strong> +(1) 267 - 2080 - 0020
+                      <strong>Телефон: </strong> +(1) 267 - 2080 - 0020
                     </p>
                   </div>
                 </li>
@@ -143,10 +143,10 @@ const Contact = () => {
                   <div className="section-title wow fadeInDown">
                     <p className="subtitle">
                       <i className="fal fa-book" />
-                      Drop A Message
+                      Изпратете съобщение
                     </p>
                     <h3 className="title">
-                      Reach out to us for a prosperous partnership
+                      Свържете се за едно дълго и успешно партньорство
                     </h3>
                   </div>
                 </div>
@@ -201,7 +201,7 @@ const Contact = () => {
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="form-group form_style">
-                      <label>Full Name</label>
+                      <label>Име</label>
                       <input
                         type="text"
                         name="name"
@@ -213,7 +213,7 @@ const Contact = () => {
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
-                      <label>Phone Number</label>
+                      <label>Телефон</label>
                       <input
                         type="text"
                         name="phone"
@@ -225,7 +225,7 @@ const Contact = () => {
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
-                      <label>Email Address</label>
+                      <label>Имейл</label>
                       <input
                         type="email"
                         name="email"
@@ -237,7 +237,7 @@ const Contact = () => {
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
-                      <label>Subject</label>
+                      <label>Заглавие</label>
                       <input
                         type="text"
                         name="subject"
@@ -249,7 +249,7 @@ const Contact = () => {
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group form_style">
-                      <label>Message</label>
+                      <label>Съобщение</label>
                       <textarea
                         rows={10}
                         className="form-control"
@@ -265,7 +265,7 @@ const Contact = () => {
                       type="submit"
                       className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"
                     >
-                      Send Your Message{" "}
+                      Изпратете съобщение{" "}
                       <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>

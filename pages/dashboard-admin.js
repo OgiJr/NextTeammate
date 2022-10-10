@@ -15,10 +15,17 @@ const DashboardAdmin = ({ user, employees }) => {
       <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/">
-            <Image src="/assets/images/nextlogo.png" width={100} height={100} layout="fixed" />
+            <Image
+              src="/assets/images/nextlogo.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
           </Link>
         </div>
-        <div className="flex flex-row text-center justify-center text-4xl text-white">Welcome, {user.first_name}!</div>
+        <div className="flex flex-row text-center justify-center text-4xl text-white">
+          Welcome, {user.first_name}!
+        </div>
         <div className="flex flex-row justify-evenly gap-8">
           <Button
             variant="success"
@@ -67,7 +74,11 @@ const DashboardAdmin = ({ user, employees }) => {
                 >
                   <div className="flex flex-row justify-center">
                     <img
-                      src={e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.jpg"}
+                      src={
+                        e.picture
+                          ? `/uploads/${e.picture}`
+                          : "/assets/images/no-user.png"
+                      }
                       width={150}
                       height={150}
                     />
@@ -75,18 +86,25 @@ const DashboardAdmin = ({ user, employees }) => {
                   <div className="text-center text-3xl">
                     {e.first_name}&nbsp;{e.last_name}
                   </div>
-                  <div className="text-center text-md text-gray-800">{e.email}</div>
+                  <div className="text-center text-md text-gray-800">
+                    {e.email}
+                  </div>
                   {is_setup ? (
                     <div className="text-center text-md text-gray-800">
-                      {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
+                      {e.work_data.expected_hours_weekly} hours @{" "}
+                      {e.work_data.current_price_per_hour}&nbsp;
                       {e.work_data.currency} / hour
                     </div>
                   ) : (
                     <></>
                   )}
-                  <div className="text-center text-md text-gray-500">{e.bio}</div>
+                  <div className="text-center text-md text-gray-500">
+                    {e.bio}
+                  </div>
                   {!e.has_password ? (
-                    <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                    <div className="text-center text-xl text-red-500">
+                      Unclaimed Account
+                    </div>
                   ) : (
                     <div className="flex flex-col justify-center gap-2">
                       <Link href={`/edit-hours?email=${e.email}`}>
@@ -105,38 +123,43 @@ const DashboardAdmin = ({ user, employees }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    if (!user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-user",
+        },
+        props: {},
+      };
+    }
+
+    let result = await User.find({ is_admin: false });
+    let employees = await Promise.all(
+      result.map(async (e) => await dbUserToIronUser(e))
+    );
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
+      props: {
+        user,
+        employees,
       },
-      props: {},
     };
-  }
-
-  if (!user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-user",
-      },
-      props: {},
-    };
-  }
-
-  let result = await User.find({ is_admin: false });
-  let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
-
-  return {
-    props: {
-      user,
-      employees,
-    },
-  };
-}, authCookie);
+  },
+  authCookie
+);
 
 export default DashboardAdmin;

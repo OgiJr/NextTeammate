@@ -9,7 +9,7 @@ import Footer from "../src/layout/Footer";
 
 const IWantToHire = () => {
   return (
-    <Layout>
+    <Layout language={"en"}>
       <HireBanner />
       <HireSkills />
       <HireWhy />
