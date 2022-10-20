@@ -4,23 +4,43 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "react-bootstrap";
+import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
 
-const Zoom = ({ employees }) => {
+const Zoom = ({ user, employees }) => {
   const router = useRouter();
+  const { mutate } = useSWRConfig();
+
+  const chatRef = React.useRef();
+
+  const [currentFriend, setCurrentFriend] = React.useState(null);
+  const [currentPicture, setCurrentPicture] = React.useState("/assets/images/no-user.png");
+  const [currentName, setCurrentName] = React.useState("");
+  const [currentId, setCurrentId] = React.useState("");
+
+  const fetcher = (url, queryParams = "") => {
+    if (currentFriend) {
+      return fetch(`${url}${queryParams}`).then((res) => {
+        return res.json();
+      });
+    } else {
+      return new Promise(() => {});
+    }
+  };
+  const { data: chats, error } = useSWR(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`], fetcher, {
+    onSuccess: () => {
+      setTimeout(() => (chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000), 100);
+    },
+  });
+
   return (
     <div className="flex flex-col">
       <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/">
-            <Image
-              src="/assets/images/nextlogo.png"
-              width={100}
-              height={100}
-              layout="fixed"
-            />
+            <Image src="/assets/images/nextlogo.png" width={100} height={100} layout="fixed" />
           </Link>
         </div>
         <div className="flex flex-row justify-evenly gap-8">
@@ -85,148 +105,147 @@ const Zoom = ({ employees }) => {
               <li>
                 {employees.map((e) => {
                   return (
-                    <a
+                    <div
                       key={e.email}
-                      className="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none"
+                      className={`flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none ${
+                        currentFriend === e.email ? "bg-gray-200" : ""
+                      }`}
+                      onClick={() => {
+                        setCurrentFriend(e.email);
+                        setCurrentPicture(e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png");
+                        setCurrentName(`${e.first_name} ${e.last_name}`);
+                        setCurrentId(e._id);
+                      }}
                     >
                       <img
                         className="object-cover w-10 h-10 rounded-full"
-                        src={
-                          e.picture
-                            ? `/uploads/${e.picture}`
-                            : "/assets/images/no-user.png"
-                        }
+                        src={e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png"}
                         alt="username"
                       />
-                      <div className="w-full pb-2">
-                        <div className="flex justify-between">
+                      <div className="w-full">
+                        <div className="flex flex-col justify-between">
                           <span className="block ml-2 font-semibold text-gray-600">
-                            Ogert
-                            {/* {e.name} */}
-                          </span>
-                          <span className="block ml-2 text-sm text-gray-600">
-                            {/* {e.bio} */}
-                            25min ago
+                            {e.first_name} {e.last_name}
                           </span>
                         </div>
-                        <span className="block ml-2 text-sm text-gray-600">
-                          cocke cocke cocke{" "}
-                        </span>
                       </div>
-                    </a>
+                    </div>
                   );
                 })}
               </li>
             </ul>
           </div>
           <div className="hidden lg:col-span-2 lg:block">
-            <div className="w-full">
-              <div className="relative flex items-center p-3 border-b border-gray-300">
-                <img
-                  className="object-cover w-10 h-10 rounded-full"
-                  src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083383__340.jpg"
-                  alt="username"
-                />
-                <span className="block ml-2 font-bold text-gray-600">Emma</span>
-                <span className="absolute w-3 h-3 bg-green-600 rounded-full left-10 top-3"></span>
-              </div>
-              <div className="relative w-full p-6 overflow-y-auto h-96">
-                <ul className="space-y-2">
-                  <li className="flex justify-start">
-                    <div className="relative max-w-xl px-4 py-2 text-gray-700 rounded shadow">
-                      <span className="block">Hi</span>
-                    </div>
-                  </li>
-                  <li className="flex justify-end">
-                    <div className="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
-                      <span className="block">Hiiii</span>
-                    </div>
-                  </li>
-                  <li className="flex justify-end">
-                    <div className="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow">
-                      <span className="block">how are you?</span>
-                    </div>
-                  </li>
-                  <li className="flex justify-start">
-                    <div className="relative max-w-xl px-4 py-2 text-gray-700 rounded shadow">
-                      <span className="block">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit.
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            {currentFriend ? (
+              <div className="w-full">
+                <div className="relative flex items-center p-3 border-b border-gray-300">
+                  <img className="object-cover w-10 h-10 rounded-full" src={currentPicture} alt={currentFriend} />
+                  <span className="block ml-2 font-bold text-gray-600">{currentName}</span>
+                </div>
+                <div className="relative w-full p-6 overflow-y-scroll h-96" ref={chatRef}>
+                  <ul className="flex flex-col space-y-2">
+                    {error ? (
+                      <div className="w-full h-full flex flex-col justify-center items-center">
+                        <div className="text-2xl">Failed to load chat. Please try again later...</div>
+                      </div>
+                    ) : chats ? (
+                      chats.chats.map((chat, i) => (
+                        <div key={i} className={`flex w-full  justify-${chat.sender === currentId ? "start" : "end"}`}>
+                          <li className="flex flex-col max-w-[50%]">
+                            <div
+                              className={`relative px-4 py-2 text-gray-700 rounded shadow ${
+                                chat.sender === currentId ? "bg-black text-white" : ""
+                              } `}
+                            >
+                              <span className="w-full text-left">{chat.text}</span>
+                            </div>
+                            <div
+                              className={`w-full text-gray-400 text-sm text-${
+                                chat.sender === currentId ? "left" : "right"
+                              }`}
+                            >
+                              {new Date(chat.timestamp).toLocaleString()}
+                            </div>
+                          </li>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="w-full h-full flex flex-col justify-center items-center">
+                        <div className="text-2xl">Loading...</div>
+                      </div>
+                    )}
+                  </ul>
+                </div>
 
-              <div className="flex items-center justify-between w-full p-3 border-t border-gray-300">
-                <button>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-gray-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </button>
-                <button>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-                    />
-                  </svg>
-                </button>
+                <div className="flex items-center justify-between w-full p-3 border-t border-gray-300">
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                      />
+                    </svg>
+                  </button>
 
-                <input
-                  type="text"
-                  placeholder="Message"
-                  className="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
-                  name="message"
-                  required
-                />
-                <button>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-500"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  <form
+                    className="w-full flex flex-row justify-center items-center"
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      const message = e.target.message.value;
+                      if (!message) {
+                        return;
+                      }
+
+                      await fetch("/api/send-message", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          sender: user._id,
+                          receiver: currentId,
+                          type: "TEXT",
+                          text: message,
+                        }),
+                      });
+
+                      e.target.message.value = "";
+                      mutate(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`]);
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                    <input
+                      type="text"
+                      placeholder="Message"
+                      className="block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:text-gray-700"
+                      name="message"
+                      required
                     />
-                  </svg>
-                </button>
-                <button type="submit">
-                  <svg
-                    className="w-5 h-5 text-gray-500 origin-center transform rotate-90"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                  </svg>
-                </button>
+                    <button type="submit">
+                      <svg
+                        className="w-5 h-5 text-gray-500 origin-center transform rotate-90"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="w-full h-full flex flex-col justify-center items-center">
+                <div className="text-2xl">Choose someone to chat with!</div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -234,43 +253,28 @@ const Zoom = ({ employees }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
+  const user = req.session.user;
 
-    if (!user) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/login",
-        },
-        props: {},
-      };
-    }
-
-    if (!user.is_admin) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/dashboard-user",
-        },
-        props: {},
-      };
-    }
-
-    let result = await User.find({ is_admin: false });
-    let employees = await Promise.all(
-      result.map(async (e) => await dbUserToIronUser(e))
-    );
-
+  if (!user) {
     return {
-      props: {
-        user,
-        employees,
+      redirect: {
+        permanent: false,
+        destination: "/login",
       },
+      props: {},
     };
-  },
-  authCookie
-);
+  }
+
+  let result = await User.find({ email: { $ne: user.email } });
+  let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
+
+  return {
+    props: {
+      user,
+      employees,
+    },
+  };
+}, authCookie);
 
 export default Zoom;

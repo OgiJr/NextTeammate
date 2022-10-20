@@ -9,9 +9,10 @@ const limiter = rateLimit({
 
 export default async function contactRoute(req, res) {
   try {
-    await limiter.check(res, 10, "CACHE_TOKEN"); // 10 requests per minute
+    await limiter.check(res, 10, "CONTACT_FORM"); // 10 requests per minute
   } catch {
-    res.status(429).json({ message: "Rate limit exceeded" });
+    res.status(429).json({ message: "Rate limit exceeded!" });
+    return;
   }
 
   let reqBody;
