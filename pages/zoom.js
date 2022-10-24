@@ -191,7 +191,7 @@ const Zoom = ({ user, employees }) => {
                 </Popover.Content>
               </Popover>
 
-              <div className="relative text-gray-600">
+              <div className="mt-3 relative text-gray-600">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                   <svg
                     fill="none"
