@@ -65,7 +65,6 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
       return;
     }
   } catch (e) {
-    console.log(e);
     res.status(400).json({ message: e.message });
     return;
   }

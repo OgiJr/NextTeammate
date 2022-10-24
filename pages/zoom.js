@@ -1,9 +1,11 @@
+import { faFile, faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withIronSessionSsr } from "iron-session/next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
@@ -20,6 +22,10 @@ const Zoom = ({ user, employees }) => {
   const [currentName, setCurrentName] = React.useState("");
   const [currentId, setCurrentId] = React.useState("");
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [file, setFile] = React.useState(null);
+  const [error, setError] = React.useState(null);
+
   const fetcher = (url, queryParams = "") => {
     if (currentFriend) {
       return fetch(`${url}${queryParams}`).then((res) => {
@@ -29,7 +35,7 @@ const Zoom = ({ user, employees }) => {
       return new Promise(() => {});
     }
   };
-  const { data: chats, error } = useSWR(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`], fetcher, {
+  const { data: chats } = useSWR(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`], fetcher, {
     onSuccess: () => {
       setTimeout(() => (chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000), 100);
     },
@@ -37,6 +43,75 @@ const Zoom = ({ user, employees }) => {
 
   return (
     <div className="flex flex-col">
+      {isModalOpen ? (
+        <div className="flex flex-col justify-center items-center z-40 absolute top-0 left-0 w-[100vw] h-[100vh] bg-[#33333333]">
+          <div className="bg-white rounded-lg flex flex-col justify-start w-[50%] h-fit p-4">
+            <div className="flex flex-row justify-end w-full">
+              <div
+                className="text-4xl"
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setFile(null);
+                }}
+              >
+                <FontAwesomeIcon icon={faX} size="1x" color="#000" />
+              </div>
+            </div>
+            <div className="flex flex-row justify-center w-full text-4xl">Upload file here:</div>
+            <div className="flex flex-row justify-center w-full">
+              <Form
+                className="flex flex-col justify-center w-full items-center justify-items-center mt-8"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+
+                  if (!file) {
+                    setError("Please select a picture!");
+                    return;
+                  }
+
+                  let formData = new FormData();
+                  formData.append("file", file);
+                  formData.append("receiver", currentId);
+
+                  let result;
+                  result = await fetch("/api/send-file", {
+                    method: "POST",
+                    body: formData,
+                  });
+                  let content = await result.json();
+                  if (result.status !== 200) {
+                    setError(content.message);
+                    return;
+                  }
+
+                  setError(null);
+                  setIsModalOpen(false);
+                }}
+              >
+                <Form.Group controlId="file" onChange={(e) => setFile(e.target.files[0])}>
+                  <Form.Control type="file" accept="*" />
+                </Form.Group>
+                {file !== null ? (
+                  <div className="flex flex-row justify-center w-full ">
+                    <div className="!bg-[#007bff] !rounded-lg">
+                      <button type="submit" className="text-white text-xl px-4 py-2">
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </Form>
+            </div>
+            <div className="flex flex-row justify-center w-full text-sm">(Max 100MB, Encrypted)</div>
+            <div className="flex flex-row justify-center w-full text-lg bg-[#ff0000] text-white">{error}</div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
+
       <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/">
@@ -143,21 +218,45 @@ const Zoom = ({ user, employees }) => {
                   <span className="block ml-2 font-bold text-gray-600">{currentName}</span>
                 </div>
                 <div className="relative w-full p-6 overflow-y-scroll h-96" ref={chatRef}>
-                  <ul className="flex flex-col space-y-2">
+                  <ul className="flex flex-col gap-y-2">
                     {error ? (
                       <div className="w-full h-full flex flex-col justify-center items-center">
                         <div className="text-2xl">Failed to load chat. Please try again later...</div>
                       </div>
                     ) : chats ? (
                       chats.chats.map((chat, i) => (
-                        <div key={i} className={`flex w-full  justify-${chat.sender === currentId ? "start" : "end"}`}>
-                          <li className="flex flex-col max-w-[50%]">
+                        <div
+                          key={i}
+                          className={`flex flex-col w-full ${chat.sender === currentId ? "items-start" : "items-end"}`}
+                        >
+                          <div className="flex flex-col max-w-[50%]">
                             <div
                               className={`relative px-4 py-2 text-gray-700 rounded shadow ${
                                 chat.sender === currentId ? "bg-black text-white" : ""
                               } `}
                             >
-                              <span className="w-full text-left">{chat.text}</span>
+                              {chat.type === "TEXT" ? (
+                                <span className="w-full text-left">{chat.text}</span>
+                              ) : chat.type === "FILE" ? (
+                                <a href={`/api/download-file?_id=${chat._id}`}>
+                                  <div className="w-full text-left">
+                                    <FontAwesomeIcon
+                                      icon={faFile}
+                                      color={chat.sender === currentId ? "#fff" : "#000"}
+                                      size="1x"
+                                      className="w-[1rem]"
+                                    />
+                                    <span className="ml-4">
+                                      {" "}
+                                      {chat.og_filename.length < 24
+                                        ? chat.og_filename
+                                        : chat.og_filename.substring(0, 20) + "..."}
+                                    </span>
+                                  </div>
+                                </a>
+                              ) : (
+                                <></>
+                              )}
                             </div>
                             <div
                               className={`w-full text-gray-400 text-sm text-${
@@ -166,7 +265,7 @@ const Zoom = ({ user, employees }) => {
                             >
                               {new Date(chat.timestamp).toLocaleString()}
                             </div>
-                          </li>
+                          </div>
                         </div>
                       ))
                     ) : (
@@ -178,7 +277,11 @@ const Zoom = ({ user, employees }) => {
                 </div>
 
                 <div className="flex items-center justify-between w-full p-3 border-t border-gray-300">
-                  <button>
+                  <button
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 h-5 text-gray-500"

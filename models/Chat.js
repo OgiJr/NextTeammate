@@ -24,6 +24,16 @@ const chatSchema = Schema({
     required: false,
     trim: true,
   },
+  file: {
+    type: Schema.Types.String,
+    required: false,
+    trim: true,
+  },
+  og_filename: {
+    type: Schema.Types.String,
+    required: false,
+    trim: true,
+  },
   timestamp: {
     type: Schema.Types.Date,
     required: [true, "Please insert a timestamp!"],

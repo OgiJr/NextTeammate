@@ -6,6 +6,12 @@ import User from "../../models/User";
 import IncomingForm from "formidable/src/Formidable";
 import { v4 as uuidv4 } from "uuid";
 import { mkdirSync, renameSync, rmSync } from "fs";
+import rateLimit from "../../lib/rateLimit";
+
+const limiter = rateLimit({
+  interval: 60 * 1000,
+  uniqueTokenPerInterval: 1000,
+});
 
 export const config = {
   api: {
@@ -23,6 +29,13 @@ const asyncParse = (req) =>
   });
 
 export default withIronSessionApiRoute(async function setPictureRoute(req, res) {
+  try {
+    await limiter.check(res, 100, "CHANGE_PIC");
+  } catch {
+    res.status(429).json({ message: "Too many messages. Don't spam!" });
+    return;
+  }
+
   let reqBody;
   try {
     isLoggedIn(req, res);

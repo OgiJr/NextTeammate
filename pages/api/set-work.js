@@ -30,7 +30,6 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
       return;
     }
   } catch (e) {
-    console.log(e);
     res.status(400).json({ message: e.message });
     return;
   }
@@ -60,8 +59,6 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     let wd = await WorkData.findOne({ worker: user._id });
     if (!wd) {
       if (counter != 3) {
-        console.log(counter);
-        console.log(req.body);
         res.status(401).json({ message: "Please provide all the necessary fields!" });
         return;
       }
@@ -81,7 +78,6 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
 
     res.status(200).json({});
   } catch (e) {
-    console.log(e);
     res.status(400).json({ message: e.message });
   }
 }, authCookie);
