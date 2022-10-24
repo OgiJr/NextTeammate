@@ -10,7 +10,13 @@ import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
-import { Popover, Button as NextButton, Text } from "@nextui-org/react";
+import {
+  Popover,
+  Button as NextButton,
+  Text,
+  Avatar,
+  Grid,
+} from "@nextui-org/react";
 
 const Zoom = ({ user, employees }) => {
   const router = useRouter();
@@ -188,6 +194,35 @@ const Zoom = ({ user, employees }) => {
                 </Popover.Trigger>
                 <Popover.Content>
                   <Text css={{ p: "$10" }}>participants</Text>
+                  <Grid.Container gap={2}>
+                    <Grid>
+                      <Avatar
+                        squared
+                        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                      />
+                    </Grid>
+                    <Grid>
+                      <Avatar squared text="Junior" />
+                    </Grid>
+                    <Grid>
+                      <Avatar
+                        squared
+                        src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                      />
+                    </Grid>
+                    <Grid>
+                      <Avatar squared text="Jane" />
+                    </Grid>
+                    <Grid>
+                      <Avatar
+                        squared
+                        src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+                      />
+                    </Grid>
+                    <Grid>
+                      <Avatar squared text="Joe" />
+                    </Grid>
+                  </Grid.Container>
                 </Popover.Content>
               </Popover>
 
