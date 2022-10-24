@@ -40,12 +40,9 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
     const cipher = createDecipheriv("aes-256-ctr", key, iv);
 
     let fb = readFileSync(result.file);
-    console.log("encrypted from disc: ", fb);
     let decryptedData = Buffer.concat([cipher.update(fb), cipher.final()]);
 
-    console.log("decrypted from disc: ", decryptedData);
     fb = gunzipSync(decryptedData);
-    console.log("removed compression: ", fb);
 
     res.setHeader("Content-Type", mime_type);
     res.setHeader("Content-Disposition", `attachment; filename=${result.og_filename}`);
