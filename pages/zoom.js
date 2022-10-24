@@ -199,6 +199,8 @@ const Zoom = ({ user, employees }) => {
                       <Avatar
                         squared
                         src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                        bordered
+                        color="success"
                       />
                     </Grid>
                     <Grid>
@@ -208,6 +210,8 @@ const Zoom = ({ user, employees }) => {
                       <Avatar
                         squared
                         src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                        bordered
+                        color="success"
                       />
                     </Grid>
                     <Grid>
@@ -217,6 +221,8 @@ const Zoom = ({ user, employees }) => {
                       <Avatar
                         squared
                         src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+                        bordered
+                        color="success"
                       />
                     </Grid>
                     <Grid>
