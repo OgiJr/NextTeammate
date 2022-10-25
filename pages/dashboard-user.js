@@ -73,7 +73,9 @@ const DashboardUser = ({
                     <i className="icon fal fa-dollar-sign" />
                     <div className="text">
                       <h6 className="mb-0">Projected Salary *</h6>
-                      <p className="mb-0">{`${projected_salary} ${user.work_data.currency}`}</p>
+                      <p className="mb-0">
+                        {projected_salary} {user.work_data.currency}
+                      </p>
                     </div>
                   </li>
                   <div className="flex flex-col gap-4">
