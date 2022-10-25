@@ -86,6 +86,7 @@ const Zoom = ({ user, employees }) => {
 
                   setError(null);
                   setIsModalOpen(false);
+                  mutate(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`]);
                 }}
               >
                 <Form.Group controlId="file" onChange={(e) => setFile(e.target.files[0])}>
