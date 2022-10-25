@@ -53,7 +53,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
     if (!from) {
       const { to } = req.query;
       if (!to) {
-        const chats = await Chat.find();
+        const chats = await Chat.find({ sender, receiver });
         res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
         return;
       }

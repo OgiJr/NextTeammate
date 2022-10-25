@@ -220,7 +220,7 @@ const Zoom = ({ user, employees }) => {
                       }`}
                       onClick={() => {
                         setCurrentFriend(e.email);
-                        setCurrentPicture(e.picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png");
+                        setCurrentPicture(e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png");
                         setCurrentName(`${e.first_name} ${e.last_name}`);
                         setCurrentId(e._id);
                       }}
@@ -280,7 +280,6 @@ const Zoom = ({ user, employees }) => {
                                       className="w-[1rem]"
                                     />
                                     <span className="ml-4">
-                                      {" "}
                                       {chat.og_filename.length < 24
                                         ? chat.og_filename
                                         : chat.og_filename.substring(0, 20) + "..."}

@@ -5,7 +5,7 @@ import { dbConnect, dbUserToIronUser } from "../../lib/db";
 import User from "../../models/User";
 import IncomingForm from "formidable/src/Formidable";
 import { v4 as uuidv4 } from "uuid";
-import { mkdirSync, renameSync, rmSync } from "fs";
+import { copyFileSync, mkdirSync, rmSync } from "fs";
 import rateLimit from "../../lib/rateLimit";
 
 const limiter = rateLimit({
@@ -57,7 +57,9 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
   const filepath = `${filedir}/${picture_id}`;
 
   mkdirSync(filedir, { recursive: true });
-  renameSync(picture.filepath, filepath);
+  copyFileSync(picture.filepath, filepath);
+  rmSync(picture.filepath);
+  // renameSync(picture.filepath, filepath);
 
   if (user.has_picture) {
     rmSync(`${filedir}/${user.picture}`);

@@ -6,7 +6,7 @@ import User from "../../models/User";
 import IncomingForm from "formidable/src/Formidable";
 import { v4 as uuidv4 } from "uuid";
 import Chat from "../../models/Chat";
-import { mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "fs";
+import { copyFileSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { createCipheriv, createHash } from "crypto";
 import rateLimit from "../../lib/rateLimit";
 import { gzipSync } from "zlib";
@@ -82,7 +82,9 @@ export default withIronSessionApiRoute(async function sendPictureRoute(req, res)
   const filepath = `${filedir}/${file_id}`;
 
   mkdirSync(filedir, { recursive: true });
-  renameSync(file.filepath, filepath);
+  copyFileSync(file.filepath, filepath);
+  rmSync(file.filepath);
+  // renameSync(file.filepath, filepath);
 
   const key = createHash("sha256").update(String(process.env.ENCRYPTION_PASSWORD)).digest("base64").substring(0, 32);
   const iv = createHash("sha256").update(String(og_filename)).digest("base64").substring(0, 16);
