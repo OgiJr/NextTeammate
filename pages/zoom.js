@@ -188,7 +188,14 @@ const Zoom = ({ user, employees }) => {
             <div className="mx-3 my-3 ">
               <Popover>
                 <Popover.Trigger>
-                  <NextButton auto flat>
+                  <NextButton
+                    auto
+                    flat
+                    shadow
+                    color="primary"
+                    rounded
+                    size="lg"
+                  >
                     <p className=" font-bold"> Start meeting</p>
                   </NextButton>
                 </Popover.Trigger>
