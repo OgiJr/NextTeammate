@@ -9,7 +9,14 @@ import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
-import { Col, Text, Row, User as NextUser, Table } from "@nextui-org/react";
+import {
+  Col,
+  Text,
+  Row,
+  User as NextUser,
+  Table,
+  Pagination,
+} from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 
 const DashboardAdmin = ({ employees }) => {
@@ -196,6 +203,15 @@ const DashboardAdmin = ({ employees }) => {
           )}
         </Table.Body>
       </Table>
+      <Pagination
+        className=" self-center"
+        rounded
+        shadow
+        color={"primary"}
+        total={5}
+        initialPage={1}
+      />
+      ;
       <Footer />
     </div>
   );
