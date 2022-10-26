@@ -5,32 +5,46 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
+import Footer from "../src/layout/Footer";
 
 const CreateEmployee = () => {
   const router = useRouter();
   const [error, setError] = React.useState(null);
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
-      <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
-        <div className="flex flex-row justify-center min-w-[20%]">
-          <Link href="/">
-            <Image src="/assets/images/nextlogo.png" width={100} height={100} layout="fixed" />
+      <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
+        <div className="flex flex-row justify-center my-2">
+          <Link href="/dashboard-user">
+            <Image
+              src="/assets/images/nextlogowhite.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
           </Link>
         </div>
-        <div className="flex flex-row justify-center text-center text-4xl text-white w-[20%]">Create Employee</div>
-        <div className="flex flex-row justify-evenly gap-8 w-[20%]">
+        <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
           <Button
+            className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="success"
-            className="text-xl"
-            onclick={() => {
+            onClick={() => {
               router.push("/dashboard-admin");
             }}
           >
             Dashboard
           </Button>
           <Button
+            className="thm-btn bg-thm-color-four thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+            variant="success"
+            onClick={() => {
+              router.push("/zoom");
+            }}
+          >
+            Sharing System
+          </Button>
+          <Button
+            className="thm-btn bg-thm-color-five thm-color-five-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="danger"
-            className="text-xl"
             onClick={async () => {
               await fetch("/api/logout");
               router.push("/login");
@@ -45,7 +59,9 @@ const CreateEmployee = () => {
           className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
           style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
         >
-          <div className="text-center min-w-full text-4xl font-semibold">Enter Employee Information</div>
+          <div className="text-center min-w-full text-4xl font-semibold">
+            Enter Employee Information
+          </div>
           <Form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -110,36 +126,40 @@ const CreateEmployee = () => {
           </Form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-      props: {},
-    };
-  }
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
 
-  if (!user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-user",
-      },
-      props: {},
-    };
-  } else {
-    return {
-      props: {},
-    };
-  }
-}, authCookie);
+    if (!user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-user",
+        },
+        props: {},
+      };
+    } else {
+      return {
+        props: {},
+      };
+    }
+  },
+  authCookie
+);
 
 export default CreateEmployee;

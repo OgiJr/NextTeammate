@@ -42,7 +42,7 @@ const DashboardUser = ({
             Welcome, {user.first_name}!
           </div>{" "}
         </div>
-        <div className="flex flex-row justify-evenly gap-8">
+        <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
           <Button
             className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="success"

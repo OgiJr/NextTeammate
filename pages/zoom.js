@@ -20,6 +20,8 @@ import {
 
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 
+import Footer from "../src/layout/Footer";
+
 const Zoom = ({ user, employees }) => {
   const router = useRouter();
   const { mutate } = useSWRConfig();
@@ -147,38 +149,37 @@ const Zoom = ({ user, employees }) => {
         <></>
       )}
 
-      <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
+      <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
-          <Link href="/">
+          <Link href="/dashboard-user">
             <Image
-              src="/assets/images/nextlogo.png"
+              src="/assets/images/nextlogowhite.png"
               width={100}
               height={100}
               layout="fixed"
             />
           </Link>
+          <div className="hidden lg:flex flex-row text-center justify-center ml-2 mt-4 text-4xl text-white">
+            Welcome, {user.first_name}!
+          </div>{" "}
         </div>
-        <div className="flex flex-row justify-evenly gap-8">
+        <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
           <Button
+            className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="success"
-            className="text-xl"
             onClick={() => {
-              router.push("/create-employee");
+              if (user.isAdmin) {
+                router.push("/dashboard-admin");
+              } else {
+                router.push("/dashboard-user");
+              }
             }}
           >
-            Add Employee
+            Dashboard
           </Button>
           <Button
-            className="text-xl"
-            onClick={() => {
-              router.push("/zoom");
-            }}
-          >
-            Sharing System
-          </Button>
-          <Button
+            className="thm-btn bg-thm-color-five thm-color-five-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="danger"
-            className="text-xl"
             onClick={async () => {
               await fetch("/api/logout");
               router.push("/login");
@@ -208,7 +209,7 @@ const Zoom = ({ user, employees }) => {
                 <Popover.Content>
                   <Text className="ml-4 mr-5 mt-2 font-bold">Participants</Text>
                   <div className="flex flex-col">
-                    <div className="flex flex-row ml-2">
+                    <div className="flex flex-row justify-between mr-3">
                       <NextUser
                         squared
                         src="https://i.pravatar.cc/150?u=a048581f4e29026701d"
@@ -219,7 +220,7 @@ const Zoom = ({ user, employees }) => {
                       </NextUser>
                       <StyledBadge type={"active"}>{"Clocked In"}</StyledBadge>
                     </div>
-                    <div className="flex flex-row ml-2 mt-3">
+                    <div className="flex flex-row justify-between mr-3 mt-3">
                       <NextUser
                         squared
                         src="https://d12ii0ug23as2h.cloudfront.net/wp-content/uploads/2020/06/spain-1.jpg"
@@ -230,7 +231,7 @@ const Zoom = ({ user, employees }) => {
                       </NextUser>
                       <StyledBadge type={"active"}>{"Clocked In"}</StyledBadge>
                     </div>
-                    <div className="flex flex-row ml-2 mt-3">
+                    <div className="flex flex-row justify-between mr-3 mt-3">
                       <NextUser
                         squared
                         src="https://cdn.vox-cdn.com/thumbor/fSgEvTyM3uzMHX3KrV_zrY_Hs08=/4x0:549x363/1400x1400/filters:focal(4x0:549x363):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/46808232/simondunn1.0.0.jpg"
@@ -243,7 +244,7 @@ const Zoom = ({ user, employees }) => {
                       </NextUser>
                       <StyledBadge type={"paused"}>{"Clocked Out"}</StyledBadge>
                     </div>
-                    <div className="flex flex-row ml-2 mt-3">
+                    <div className="flex flex-row justify-between mr-3 mt-3">
                       <NextUser
                         squared
                         src="https://pop.inquirer.net/files/2021/05/834.png"
@@ -277,31 +278,8 @@ const Zoom = ({ user, employees }) => {
                   />
                 </Popover.Content>
               </Popover>
-
-              <div className="mt-3 relative text-gray-600">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    className="w-6 h-6 text-gray-300"
-                  >
-                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                  </svg>
-                </span>
-                <input
-                  type="search"
-                  className="block w-full py-2 pl-10 bg-gray-100 rounded outline-none"
-                  name="search"
-                  placeholder="Search"
-                  required
-                />
-              </div>
             </div>
-            <ul className="overflow-auto h-[32rem]">
+            <ul className="overflow-auto lg:h-[32rem]">
               <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chat</h2>
               <li>
                 {employees.map((e) => {
@@ -344,7 +322,7 @@ const Zoom = ({ user, employees }) => {
               </li>
             </ul>
           </div>
-          <div className="hidden lg:col-span-2 lg:block">
+          <div className=" mt-2 bg-slate-100 lg:bg-white col-span-2 block">
             {currentFriend ? (
               <div className="w-full">
                 <div className="relative flex items-center p-3 border-b border-gray-300">
@@ -358,7 +336,7 @@ const Zoom = ({ user, employees }) => {
                   </span>
                 </div>
                 <div
-                  className="relative w-full p-6 overflow-y-scroll h-96"
+                  className="relative w-full p-6 overflow-y-scroll h-72 md:h-[32rem] lg:h-96"
                   ref={chatRef}
                 >
                   <ul className="flex flex-col gap-y-2">
@@ -511,6 +489,9 @@ const Zoom = ({ user, employees }) => {
             )}
           </div>
         </div>
+      </div>
+      <div className="mt-12">
+        <Footer />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import Link from "next/dist/client/link";
 import { Fragment, useState } from "react";
 import { HomeMenu } from "./Menu";
+import { LogButton } from "./LogButton";
 
 import React from "react";
 
@@ -59,6 +60,9 @@ const MobileMenu = ({ closeMobileMenu, showMobileMenu, language }) => {
             </li>
             <li className="menu-item">
               <a href="/index-bg">Български</a>
+            </li>
+            <li className="menu-item mt-10">
+              <LogButton language={language} />
             </li>
           </ul>
         </nav>

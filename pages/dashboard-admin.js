@@ -7,22 +7,36 @@ import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
+import Footer from "../src/layout/Footer";
 
-const DashboardAdmin = ({ user, employees }) => {
+const DashboardAdmin = ({ employees }) => {
   const router = useRouter();
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
-      <div className="flex flex-row min-w-full bg-sky-400 justify-between items-center px-10">
+      <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
-          <Link href="/">
-            <Image src="/assets/images/nextlogo.png" width={100} height={100} layout="fixed" />
+          <Link href="/dashboard-user">
+            <Image
+              src="/assets/images/nextlogowhite.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
           </Link>
         </div>
-        <div className="flex flex-row text-center justify-center text-4xl text-white">Welcome, {user.first_name}!</div>
-        <div className="flex flex-row justify-evenly gap-8">
+        <div className=" flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
           <Button
+            className="thm-btn bg-thm-color-one thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="success"
-            className="text-xl"
+            onClick={() => {
+              router.push("/dashboard-records");
+            }}
+          >
+            Records
+          </Button>
+          <Button
+            className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+            variant="success"
             onClick={() => {
               router.push("/create-employee");
             }}
@@ -30,7 +44,8 @@ const DashboardAdmin = ({ user, employees }) => {
             Add Employee
           </Button>
           <Button
-            className="text-xl"
+            className="thm-btn bg-thm-color-four thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+            variant="success"
             onClick={() => {
               router.push("/zoom");
             }}
@@ -38,8 +53,8 @@ const DashboardAdmin = ({ user, employees }) => {
             Sharing System
           </Button>
           <Button
+            className="thm-btn bg-thm-color-five thm-color-five-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="danger"
-            className="text-xl"
             onClick={async () => {
               await fetch("/api/logout");
               router.push("/login");
@@ -67,7 +82,11 @@ const DashboardAdmin = ({ user, employees }) => {
                 >
                   <div className="flex flex-row justify-center">
                     <img
-                      src={e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png"}
+                      src={
+                        e.has_picture
+                          ? `/uploads/${e.picture}`
+                          : "/assets/images/no-user.png"
+                      }
                       width={150}
                       height={150}
                     />
@@ -75,18 +94,25 @@ const DashboardAdmin = ({ user, employees }) => {
                   <div className="text-center text-3xl">
                     {e.first_name}&nbsp;{e.last_name}
                   </div>
-                  <div className="text-center text-md text-gray-800">{e.email}</div>
+                  <div className="text-center text-md text-gray-800">
+                    {e.email}
+                  </div>
                   {is_setup ? (
                     <div className="text-center text-md text-gray-800">
-                      {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
+                      {e.work_data.expected_hours_weekly} hours @{" "}
+                      {e.work_data.current_price_per_hour}&nbsp;
                       {e.work_data.currency} / hour
                     </div>
                   ) : (
                     <></>
                   )}
-                  <div className="text-center text-md text-gray-500">{e.bio}</div>
+                  <div className="text-center text-md text-gray-500">
+                    {e.bio}
+                  </div>
                   {!e.has_password ? (
-                    <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                    <div className="text-center text-xl text-red-500">
+                      Unclaimed Account
+                    </div>
                   ) : (
                     <div className="flex flex-col justify-center gap-2">
                       <Link href={`/edit-hours?email=${e.email}`}>
@@ -101,42 +127,48 @@ const DashboardAdmin = ({ user, employees }) => {
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    if (!user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-user",
+        },
+        props: {},
+      };
+    }
+
+    let result = await User.find({ is_admin: false });
+    let employees = await Promise.all(
+      result.map(async (e) => await dbUserToIronUser(e))
+    );
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
+      props: {
+        user,
+        employees,
       },
-      props: {},
     };
-  }
-
-  if (!user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-user",
-      },
-      props: {},
-    };
-  }
-
-  let result = await User.find({ is_admin: false });
-  let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
-
-  return {
-    props: {
-      user,
-      employees,
-    },
-  };
-}, authCookie);
+  },
+  authCookie
+);
 
 export default DashboardAdmin;
