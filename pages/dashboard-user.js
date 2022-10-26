@@ -3,9 +3,14 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
-import PageTitleBanner from "../src/components/PageTitleBanner";
-import Layout from "../src/layout/Layout";
-import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserAssigned, isIronUserWorking } from "../lib/db";
+import Image from "next/image";
+import {
+  dbConnect,
+  dbUserToIronUser,
+  getIronUserWorkStats,
+  isIronUserAssigned,
+  isIronUserWorking,
+} from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
@@ -22,24 +27,60 @@ const DashboardUser = ({
   const router = useRouter();
 
   return (
-    <Layout language={"en"}>
-      <PageTitleBanner pageName="User Panel" />
-
-      <section className="section-padding team_details">
-        <div className="container rounded-[16px] bg-gradient-to-r from-white via-slate-100 to-blue-500">
+    <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
+      <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
+        <div className="flex flex-row justify-center my-2">
+          <Link href="/dashboard-user">
+            <Image
+              src="/assets/images/nextlogowhite.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
+          </Link>
+          <div className="hidden lg:flex flex-row text-center justify-center ml-2 mt-4 text-4xl text-white">
+            Welcome, {user.first_name}!
+          </div>{" "}
+        </div>
+        <div className="flex flex-row justify-evenly gap-8">
+          <Button
+            className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+            variant="success"
+            onClick={() => {
+              router.push("/zoom");
+            }}
+          >
+            Sharing System
+          </Button>
+          <Button
+            className="thm-btn bg-thm-color-five thm-color-five-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+            variant="danger"
+            onClick={async () => {
+              await fetch("/api/logout");
+              router.push("/login");
+            }}
+          >
+            Log Out
+          </Button>
+        </div>
+      </div>
+      <section className="team_details">
+        <div className="container rounded-[16px]">
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="flex flex-row justify-center">
                 <img
                   src={`/uploads/${user.picture}`}
                   alt="img"
-                  className="image-fit wow fadeInLeft rounded-[12px] max-w-[40%]"
+                  className="image-fit wow fadeInLeft rounded-[12px] max-w-[40%] border-4 border-indigo-600"
                 />
               </div>
             </div>
             <div className="col-lg-6 my-4">
               <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
-                <h3 className="name wow fadeInDown">{user.first_name + " " + user.last_name}</h3>
+                <h3 className="name wow fadeInDown">
+                  {user.first_name + " " + user.last_name}
+                </h3>
                 <p className="desi thm-color-two wow fadeInUp">{user.bio}</p>
                 {is_assigned ? (
                   <ul className="info wow fadeInDown">
@@ -47,7 +88,9 @@ const DashboardUser = ({
                       <i className="icon fal fa-clock bg-thm-color-three" />
                       <div className="text">
                         <h6 className="mb-0">Expected hours per week</h6>
-                        <p className="mb-0">{user.work_data.expected_hours_weekly}</p>
+                        <p className="mb-0">
+                          {user.work_data.expected_hours_weekly}
+                        </p>
                       </div>
                     </li>
                     <li>
@@ -119,11 +162,17 @@ const DashboardUser = ({
                           </Button>
                         </Link>
                       </div>
-                      <span>* This is a projection based on estimates and past performance, not a promise.</span>
+                      <span>
+                        * This is a projection based on estimates and past
+                        performance, not a promise.
+                      </span>
                     </div>
                   </ul>
                 ) : (
-                  <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
+                  <div className="text-[#ff0000] text-xl">
+                    {" "}
+                    Please ask the administrator to assign work data!{" "}
+                  </div>
                 )}
               </div>
             </div>
@@ -131,64 +180,71 @@ const DashboardUser = ({
         </div>
       </section>
       <Footer />
-    </Layout>
+    </div>
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-      props: {},
-    };
-  }
-
-  if (user.is_admin) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-admin",
-      },
-      props: {},
-    };
-  } else {
-    try {
-      dbConnect();
-
-      const newUser = await User.findOne({ email: user.email });
-      req.session.user = await dbUserToIronUser(newUser);
-      await req.session.save();
-
-      const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
-        await getIronUserWorkStats(req.session.user);
-
+    if (!user) {
       return {
-        props: {
-          user: req.session.user,
-          is_assigned: isIronUserAssigned(req.session.user),
-          is_working: isIronUserWorking(req.session.user),
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    if (user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-admin",
+        },
+        props: {},
+      };
+    } else {
+      try {
+        dbConnect();
+
+        const newUser = await User.findOne({ email: user.email });
+        req.session.user = await dbUserToIronUser(newUser);
+        await req.session.save();
+
+        const {
           work_hours_this_week,
           work_hours_this_month,
           average_hours_per_week,
           projected_salary,
-        },
-      };
-    } catch (e) {
-      return {
-        props: {
-          user,
-          is_working: isIronUserWorking(user),
-          work_hours_this_week: "Error",
-          work_hours_this_month: "Error",
-        },
-      };
+        } = await getIronUserWorkStats(req.session.user);
+
+        return {
+          props: {
+            user: req.session.user,
+            is_assigned: isIronUserAssigned(req.session.user),
+            is_working: isIronUserWorking(req.session.user),
+            work_hours_this_week,
+            work_hours_this_month,
+            average_hours_per_week,
+            projected_salary,
+          },
+        };
+      } catch (e) {
+        return {
+          props: {
+            user,
+            is_working: isIronUserWorking(user),
+            work_hours_this_week: "Error",
+            work_hours_this_month: "Error",
+          },
+        };
+      }
     }
-  }
-}, authCookie);
+  },
+  authCookie
+);
 
 export default DashboardUser;
