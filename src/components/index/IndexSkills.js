@@ -14,7 +14,7 @@ const Banner = ({ text, color }) => (
       data-size={80}
     >
       <div className="counter transform-center text-center">
-        <Counter end={100} />
+        <Counter end={87} />
       </div>
     </div>
     <div className="text">
@@ -32,13 +32,14 @@ const IndexSkills = () => {
           Our Company
         </h1>
         <h2 className="text-3xl text-white font-bold">
-          We&apos;re An Award Winning Outsourcing Company
+          Nextteammate- a comprehensive solution
         </h2>
         <h4 className="text-2xl text-white font-normal">
-          We believe that the future holds remote work and a financial system
-          without borders. In our modern era a vicinity constraint is absolutely
-          pointless and only slows us down. We&apos;re building tools to
-          accelerate this transition to remote work and help your business grow.
+          Our company believes that the future holds remote work and financial
+          system without borders. In our modern era a vicinity constraint is
+          unnecessary and ineffective. We have the tools and knowledge to help
+          your business expand by providing a new and complete Work from Home
+          system.
         </h4>
         <div className="flex flex-row justify-center my-20 gap-20">
           <Banner
@@ -46,7 +47,7 @@ const IndexSkills = () => {
               <>
                 Happy
                 <br />
-                Customers
+                Clients
               </>
             }
             color="#65cfa9"
@@ -54,9 +55,9 @@ const IndexSkills = () => {
           <Banner
             text={
               <>
-                Business
+                Happy
                 <br />
-                Improvement
+                Employees
               </>
             }
             color="#ffbd3f"
