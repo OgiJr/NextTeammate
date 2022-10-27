@@ -63,7 +63,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     id: uuidv4(),
     name: `${req.session.user.first_name} ${req.session.user.last_name}`,
     email: req.session.user.email,
-    avatar: `${process.env.URI}/${req.session.user.picture}`,
+    avatar: `${process.env.URI}${req.session.user.picture}`,
     appId: process.env.NEXT_PUBLIC_JITSI_APP_ID,
     kid: process.env.JITSI_KID,
   });
