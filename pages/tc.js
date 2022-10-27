@@ -229,7 +229,7 @@ const Faq = () => {
                           data-parent="#tutorialsaccordion"
                         >
                           <div className="card-body">
-                            <h1>Your Right to Post Content</h1>
+                            <h5>Your Right to Post Content</h5>
                             <br></br>
                             Our Service allows You to post Content. You are
                             responsible for the Content that You post to the
