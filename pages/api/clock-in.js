@@ -42,7 +42,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   }
 
   const work_unit = await WorkUnit.create({
-    start_time: new Date(Date.now()),
+    start_time: new Date(Date.now()).toISOString(),
     worker: user._id,
     price_per_hours: wd.current_price_per_hour,
     currency: wd.currency,

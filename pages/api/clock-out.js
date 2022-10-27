@@ -40,7 +40,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   await WorkUnit.updateOne(
     { _id: wd.work[wd.work.length - 1] },
     {
-      end_time: new Date(Date.now()),
+      end_time: new Date(Date.now()).toISOString(),
     }
   );
 
