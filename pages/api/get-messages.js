@@ -1,7 +1,11 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import Chat from "../../models/Chat";
-import { isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
+import {
+  isLoggedIn,
+  isSupportedMethod,
+  reqBodyParse,
+} from "../../lib/validation";
 import { dbChatToChat, dbConnect } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import rateLimit from "../../lib/rateLimit";
@@ -53,24 +57,39 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
     if (!from) {
       const { to } = req.query;
       if (!to) {
-        const chats = await Chat.find({ sender, receiver });
-        res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
+        const chats1 = await Chat.find({ sender, receiver });
+        const chats2 = await Chat.find({ sender: receiver, receiver: sender });
+        const chats = [...chats1, ...chats2];
+        chats.sort(function (x, y) {
+          return x.timestamp - y.timestamp;
+        });
+        res.status(200).json({
+          chats: await Promise.all(chats.map((c) => dbChatToChat(c))),
+        });
         return;
       }
 
       const chats = await Chat.find({ timestamp: { $lte: new Date(to) } });
-      res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
+      res
+        .status(200)
+        .json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
       return;
     } else {
       const { to } = req.query;
       if (!to) {
         const chats = await Chat.find({ timestamp: { $gte: new Date(from) } });
-        res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
+        res.status(200).json({
+          chats: await Promise.all(chats.map((c) => dbChatToChat(c))),
+        });
         return;
       }
 
-      const chats = await Chat.find({ timestamp: { $gte: new Date(from), $lte: new Date(to) } });
-      res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
+      const chats = await Chat.find({
+        timestamp: { $gte: new Date(from), $lte: new Date(to) },
+      });
+      res
+        .status(200)
+        .json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
       return;
     }
   } catch (e) {

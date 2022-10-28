@@ -8,8 +8,13 @@ import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
+import {
+  Card,
+  Button as NextButton,
+  Link as NextLink,
+} from "@nextui-org/react";
 
-const DashboardAdmin = ({ employees }) => {
+const DashboardAdmin = ({ user, employees }) => {
   const router = useRouter();
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -64,68 +69,133 @@ const DashboardAdmin = ({ employees }) => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap min-w-full gap-8 p-10 justify-center justify-items-center">
-        {employees.length === 0 ? (
-          <div className="text-center text-3xl">No Employees Yet.</div>
-        ) : (
-          <>
-            {employees.map((e) => {
-              const is_setup =
-                e.work_data &&
-                e.work_data.currency &&
-                e.work_data.expected_hours_weekly &&
-                e.work_data.current_price_per_hour;
-              return (
-                <div
-                  className="flex flex-col rounded-xl bg-gray-200 !border-sky-300 !border-1 min-w-[10vw] min-h-[20vh]  justify-evenly gap-2 p-4"
-                  key={e.email}
-                >
-                  <div className="flex flex-row justify-center">
-                    <img
-                      src={
-                        e.has_picture
-                          ? `/uploads/${e.picture}`
-                          : "/assets/images/no-user.png"
-                      }
-                      width={150}
-                      height={150}
-                    />
+      <div className=" w-96 self-center flex flex-col">
+        <div className="text-center text-3xl font-bold">Admin</div>
+        <Card isPressable isHoverable className="mt-3">
+          <Card.Body>
+            <div className="flex flex-col self-center">
+              <img
+                src={
+                  user.has_picture
+                    ? `/uploads/${user.picture}`
+                    : "/assets/images/no-user.png"
+                }
+                width={150}
+                height={150}
+                className="self-center rounded-full"
+              />
+              <div className=" text-4xl text-center">
+                {user.first_name + " " + user.last_name}
+              </div>
+              <div className="flex flex-row mt-2">
+                <NextLink href="/edit-user">
+                  <NextButton
+                    color="warning"
+                    shadow
+                    auto
+                    rounded
+                    className="px-4 min-w-[25%] mr-2"
+                  >
+                    Edit Account
+                  </NextButton>
+                </NextLink>
+                <NextLink href="/set-picture">
+                  <NextButton
+                    color="success"
+                    shadow
+                    auto
+                    rounded
+                    href="/"
+                    className="px-4 min-w-[25%] ml-2"
+                  >
+                    Change Picture
+                  </NextButton>
+                </NextLink>
+              </div>
+            </div>
+          </Card.Body>
+        </Card>
+      </div>
+      <div className="flex flex-col mt-4">
+        <div className="text-center text-3xl font-bold">Employees</div>
+        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+          {employees.length === 0 ? (
+            <div className="text-center text-3xl">No Employees Yet.</div>
+          ) : (
+            <>
+              {employees.map((e) => {
+                const is_setup =
+                  e.work_data &&
+                  e.work_data.currency &&
+                  e.work_data.expected_hours_weekly &&
+                  e.work_data.current_price_per_hour;
+                return (
+                  <div
+                    className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4"
+                    key={e.email}
+                  >
+                    <Card isHoverable isPressable>
+                      <Card.Body>
+                        <div className="flex flex-row justify-center">
+                          <img
+                            src={
+                              e.has_picture
+                                ? `/uploads/${e.picture}`
+                                : "/assets/images/no-user.png"
+                            }
+                            width={150}
+                            height={150}
+                            className="rounded-full"
+                          />
+                        </div>
+                        <div className="text-center text-3xl mt-2">
+                          {e.first_name}&nbsp;{e.last_name}
+                        </div>
+                        <div className="text-center text-md text-gray-800">
+                          {e.email}
+                        </div>
+                        {is_setup ? (
+                          <div className="text-center text-md text-gray-800">
+                            {e.work_data.expected_hours_weekly} hours @{" "}
+                            {e.work_data.current_price_per_hour}&nbsp;
+                            {e.work_data.currency} / hour
+                          </div>
+                        ) : (
+                          <></>
+                        )}
+                        <div className="text-center text-md text-gray-500">
+                          {e.bio}
+                        </div>
+                        {!e.has_password ? (
+                          <div className="text-center text-xl text-red-500">
+                            Unclaimed Account
+                          </div>
+                        ) : (
+                          <div className="flex flex-col justify-center gap-2 mt-2">
+                            <NextLink
+                              href={`/edit-hours?email=${e.email}`}
+                              className="self-center"
+                            >
+                              <NextButton
+                                color="success"
+                                shadow
+                                auto
+                                rounded
+                                className="px-4 min-w-[25%] mr-2 self-center"
+                              >
+                                Edit Account
+                              </NextButton>
+                            </NextLink>
+                          </div>
+                        )}
+                      </Card.Body>
+                    </Card>
                   </div>
-                  <div className="text-center text-3xl">
-                    {e.first_name}&nbsp;{e.last_name}
-                  </div>
-                  <div className="text-center text-md text-gray-800">
-                    {e.email}
-                  </div>
-                  {is_setup ? (
-                    <div className="text-center text-md text-gray-800">
-                      {e.work_data.expected_hours_weekly} hours @{" "}
-                      {e.work_data.current_price_per_hour}&nbsp;
-                      {e.work_data.currency} / hour
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                  <div className="text-center text-md text-gray-500">
-                    {e.bio}
-                  </div>
-                  {!e.has_password ? (
-                    <div className="text-center text-xl text-red-500">
-                      Unclaimed Account
-                    </div>
-                  ) : (
-                    <div className="flex flex-col justify-center gap-2">
-                      <Link href={`/edit-hours?email=${e.email}`}>
-                        <Button variant="primary">Edit User</Button>
-                      </Link>
-                      <Button variant="danger">Delete User</Button>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </>
-        )}
+                );
+              })}
+            </>
+          )}
+        </div>
       </div>
       <Footer />
     </div>
