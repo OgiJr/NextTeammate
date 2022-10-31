@@ -56,12 +56,12 @@ const DashboardAdmin = ({ start, end }) => {
           <Col>
             <Row>
               <Text b size={14} css={{ tt: "capitalize" }}>
-                Actual: {user.actual_work}
+                Actual: {Math.round(parseInt(user.actual_work))}
               </Text>
             </Row>
             <Row>
               <Text b size={13} css={{ tt: "capitalize", color: "$accents7" }}>
-                Expected: {user.expected_work}
+                Expected: {Math.round(parseInt(user.expected_work))}
               </Text>
             </Row>
           </Col>
