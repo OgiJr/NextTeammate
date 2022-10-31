@@ -18,11 +18,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   let start_date = new Date(reqBody.start);
   let end_date = new Date(reqBody.end);
 
-  // let start_date_x = new Date(reqBody.start);
-  // let end_date_x = new Date(reqBody.end);
-
-  // let start_date = new Date(start_date_x.getFullYear(), start_date_x.getMonth() + 1, start_date_x.getDate());
-  // let end_date = new Date(end_date_x.getFullYear(), end_date_x.getMonth() + 1, end_date_x.getDate());
+  console.log(start_date, end_date);
 
   if (start_date >= end_date) {
     res.status(400).json({ message: "Invalid range!" });
@@ -50,15 +46,18 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
         };
       }
 
-      const work_units_in_period = u.work_data.work.filter((w) => {
+      let work_units_in_period = [];
+      u.work_data.work.forEach((w) => {
         if (w.end_date) {
-          return Date(w.start_time) >= start_date && new Date(w.end_date) <= end_date;
+          if (new Date(w.start_time) >= start_date && new Date(w.end_date) <= end_date) {
+            work_units_in_period.push(JSON.parse(JSON.stringify(w)));
+          }
         } else {
-          return Date(w.start_time) > start_date;
+          if (new Date(w.start_time) >= start_date) {
+            work_units_in_period.push(JSON.parse(JSON.stringify(w)));
+          }
         }
       });
-
-      console.log(work_units_in_period);
 
       const work_data_to_hours = (w) => {
         let end = w.end_time ? w.end_time : new Date();
