@@ -18,6 +18,12 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   let start_date = new Date(reqBody.start);
   let end_date = new Date(reqBody.end);
 
+  // let start_date_x = new Date(reqBody.start);
+  // let end_date_x = new Date(reqBody.end);
+
+  // let start_date = new Date(start_date_x.getFullYear(), start_date_x.getMonth() + 1, start_date_x.getDate());
+  // let end_date = new Date(end_date_x.getFullYear(), end_date_x.getMonth() + 1, end_date_x.getDate());
+
   if (start_date >= end_date) {
     res.status(400).json({ message: "Invalid range!" });
     return;
