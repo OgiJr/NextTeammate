@@ -51,8 +51,11 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       }
 
       const work_units_in_period = u.work_data.work.filter((w) => {
-        let end = w.end_time ? w.end_time : new Date();
-        return Date(w.start_time) >= start_date && new Date(end) <= end_date;
+        if (w.end_date) {
+          return Date(w.start_time) >= start_date && new Date(w.end_date) <= end_date;
+        } else {
+          return Date(w.start_time) > start_date;
+        }
       });
 
       console.log(work_units_in_period);
@@ -61,8 +64,6 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
         let end = w.end_time ? w.end_time : new Date();
         return Math.abs(new Date(end) - new Date(w.start_time)) / 36e5;
       };
-
-      console.log(work_data_to_hours);
 
       let actual_work = 0;
       work_units_in_period.forEach((w) => (actual_work += work_data_to_hours(w)));
