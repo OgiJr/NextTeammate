@@ -51,7 +51,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       }
 
       const work_units_in_period = u.work_data.work.filter((w) => {
-        return new Date(w.start_time) >= start_date && new Date(w.end_time) <= end_date;
+        return !!w.end_time && Date(w.start_time) >= start_date && new Date(w.end_time) <= end_date;
       });
 
       const work_data_to_hours = (w) => Math.abs(new Date(w.end_time) - new Date(w.start_time)) / 36e5;
