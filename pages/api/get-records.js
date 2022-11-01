@@ -1,10 +1,23 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
-import { isAdmin, isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
-import { dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking } from "../../lib/db";
+import {
+  isAdmin,
+  isLoggedIn,
+  isSupportedMethod,
+  reqBodyParse,
+} from "../../lib/validation";
+import {
+  dbConnect,
+  dbUserToIronUser,
+  isIronUserAssigned,
+  isIronUserWorking,
+} from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 
-export default withIronSessionApiRoute(async function getRecordsRoute(req, res) {
+export default withIronSessionApiRoute(async function getRecordsRoute(
+  req,
+  res
+) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["GET"]);
@@ -34,7 +47,11 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       return;
     }
 
-    const allIronUsers = [...(await Promise.all(allUsers.map(async (u) => await dbUserToIronUser(u))))];
+    const allIronUsers = [
+      ...(await Promise.all(
+        allUsers.map(async (u) => await dbUserToIronUser(u))
+      )),
+    ];
 
     const result = allIronUsers.map((u) => {
       if (!isIronUserAssigned(u)) {
@@ -49,7 +66,10 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       let work_units_in_period = [];
       u.work_data.work.forEach((w) => {
         if (w.end_date) {
-          if (new Date(w.start_time) >= start_date && new Date(w.end_date) <= end_date) {
+          if (
+            new Date(w.start_time) >= start_date &&
+            new Date(w.end_date) <= end_date
+          ) {
             work_units_in_period.push(JSON.parse(JSON.stringify(w)));
           }
         } else {
@@ -65,10 +85,13 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       };
 
       let actual_work = 0;
-      work_units_in_period.forEach((w) => (actual_work += work_data_to_hours(w)));
+      work_units_in_period.forEach(
+        (w) => (actual_work += work_data_to_hours(w))
+      );
 
       let salaries = {};
-      const work_data_to_salary = (w) => w.price_per_hours * work_data_to_hours(w);
+      const work_data_to_salary = (w) =>
+        w.price_per_hours * work_data_to_hours(w);
       work_units_in_period.forEach((w) => {
         if (!salaries[w.currency]) {
           salaries[w.currency] = 0;
@@ -78,8 +101,16 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       });
 
       const days =
-        (new Date(end_date.getFullYear(), end_date.getMonth() + 1, end_date.getDate()) -
-          new Date(start_date.getFullYear(), start_date.getMonth() + 1, start_date.getDate())) /
+        (new Date(
+          end_date.getFullYear(),
+          end_date.getMonth() + 1,
+          end_date.getDate()
+        ) -
+          new Date(
+            start_date.getFullYear(),
+            start_date.getMonth() + 1,
+            start_date.getDate()
+          )) /
         (1000 * 60 * 60 * 24);
 
       return {
@@ -89,7 +120,9 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
         is_assigned: true,
         status: isIronUserWorking(u),
         actual_work: actual_work.toFixed(2),
-        expected_work: ((u.work_data.expected_hours_weekly / 7) * days).toFixed(2),
+        expected_work: ((u.work_data.expected_hours_weekly / 7) * days).toFixed(
+          2
+        ),
         salaries,
       };
     });
@@ -98,4 +131,5 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   } catch (e) {
     res.status(400).json({ message: e.message });
   }
-}, authCookie);
+},
+authCookie);

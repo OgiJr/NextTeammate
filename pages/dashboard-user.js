@@ -1,7 +1,9 @@
+import { faFile, faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withIronSessionSsr } from "iron-session/next";
 import Link from "next/link";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Image from "next/image";
 import {
@@ -14,6 +16,7 @@ import {
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
+import useSWR, { useSWRConfig } from "swr";
 
 const DashboardUser = ({
   user,
@@ -25,9 +28,95 @@ const DashboardUser = ({
   is_assigned,
 }) => {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [file, setFile] = React.useState(null);
+  const [error, setError] = React.useState(null);
+  const [currentId, setCurrentId] = React.useState("");
+  const { mutate } = useSWRConfig();
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
+      {isModalOpen ? (
+        <div className="flex flex-col justify-center items-center z-40 absolute top-0 left-0 w-[100vw] h-[190vh] bg-[#33333333]">
+          <div className="bg-white rounded-lg flex flex-col justify-start w-[50%] h-fit p-4">
+            <div className="flex flex-row justify-end w-full">
+              <div
+                className="text-4xl"
+                onClick={() => {
+                  setIsModalOpen(false);
+                  setFile(null);
+                }}
+              >
+                <FontAwesomeIcon icon={faX} size="1x" color="#000" />
+              </div>
+            </div>
+            <div className="flex flex-row justify-center w-full text-4xl">
+              Upload file here:
+            </div>
+            <div className="flex flex-row justify-center w-full">
+              <Form
+                className="flex flex-col justify-center w-full items-center justify-items-center mt-8"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+
+                  if (!file) {
+                    setError("Please select a picture!");
+                    return;
+                  }
+
+                  let formData = new FormData();
+                  formData.append("file", file);
+                  formData.append("receiver", currentId);
+
+                  let result;
+                  result = await fetch("/api/send-file", {
+                    method: "POST",
+                    body: formData,
+                  });
+                  let content = await result.json();
+                  if (result.status !== 200) {
+                    setError(content.message);
+                    return;
+                  }
+
+                  setError(null);
+                  setIsModalOpen(false);
+                  mutate([
+                    "/api/get-messages",
+                    `?sender=${user._id}&receiver=${currentId}`,
+                  ]);
+                }}
+              >
+                <Form.Group
+                  controlId="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                >
+                  <Form.Control type="file" accept="*" />
+                </Form.Group>
+                {file !== null ? (
+                  <div className="flex flex-row justify-center w-full ">
+                    <div className="!bg-[#007bff] !rounded-lg">
+                      <button
+                        type="submit"
+                        className="text-white text-xl px-4 py-2"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </Form>
+            </div>
+            <div className="flex flex-row justify-center w-full text-lg bg-[#ff0000] text-white">
+              {error}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
@@ -124,7 +213,7 @@ const DashboardUser = ({
                       </div>
                     </li>
                     <div className="flex flex-col gap-4">
-                      <div className="flex flex-row items-center justify-center">
+                      <div className="flex flex-col items-center justify-center">
                         {is_working ? (
                           <Button
                             variant="danger"
@@ -149,7 +238,18 @@ const DashboardUser = ({
                             Clock In
                           </Button>
                         )}
+                        <Button
+                          variant="primary"
+                          disabled={!user.work_data.current_price_per_hour}
+                          className="px-4 text-2xl mt-4"
+                          onClick={async () => {
+                            setIsModalOpen(true);
+                          }}
+                        >
+                          Upload Video
+                        </Button>
                       </div>
+
                       <div className="flex flex-row items-center justify-center gap-4">
                         <Link href="/edit-user">
                           <Button variant="dark" className="px-4 min-w-[25%]">

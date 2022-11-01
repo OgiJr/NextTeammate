@@ -173,6 +173,20 @@ const DashboardAdmin = ({ user, employees }) => {
                         ) : (
                           <div className="flex flex-col justify-center gap-2 mt-2">
                             <NextLink
+                              href={`https://www.youtube.com/watch?v=tKEL_jXey74&ab_channel=RicardoMilos`}
+                              className="self-center"
+                            >
+                              <NextButton
+                                color="gradient"
+                                shadow
+                                auto
+                                rounded
+                                className="px-4 min-w-[25%] mr-2 self-center"
+                              >
+                                Play Video
+                              </NextButton>
+                            </NextLink>
+                            <NextLink
                               href={`/edit-hours?email=${e.email}`}
                               className="self-center"
                             >
