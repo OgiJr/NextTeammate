@@ -1,4 +1,4 @@
-import { faFile, faX } from "@fortawesome/free-solid-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withIronSessionSsr } from "iron-session/next";
 import Link from "next/link";
@@ -6,17 +6,10 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Image from "next/image";
-import {
-  dbConnect,
-  dbUserToIronUser,
-  getIronUserWorkStats,
-  isIronUserAssigned,
-  isIronUserWorking,
-} from "../lib/db";
+import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserAssigned, isIronUserWorking } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
-import useSWR, { useSWRConfig } from "swr";
 
 const DashboardUser = ({
   user,
@@ -31,8 +24,6 @@ const DashboardUser = ({
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [file, setFile] = React.useState(null);
   const [error, setError] = React.useState(null);
-  const [currentId, setCurrentId] = React.useState("");
-  const { mutate } = useSWRConfig();
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -50,9 +41,7 @@ const DashboardUser = ({
                 <FontAwesomeIcon icon={faX} size="1x" color="#000" />
               </div>
             </div>
-            <div className="flex flex-row justify-center w-full text-4xl">
-              Upload file here:
-            </div>
+            <div className="flex flex-row justify-center w-full text-4xl">Upload file here:</div>
             <div className="flex flex-row justify-center w-full">
               <Form
                 className="flex flex-col justify-center w-full items-center justify-items-center mt-8"
@@ -66,10 +55,9 @@ const DashboardUser = ({
 
                   let formData = new FormData();
                   formData.append("file", file);
-                  formData.append("receiver", currentId);
 
                   let result;
-                  result = await fetch("/api/send-file", {
+                  result = await fetch("/api/upload-video", {
                     method: "POST",
                     body: formData,
                   });
@@ -81,25 +69,15 @@ const DashboardUser = ({
 
                   setError(null);
                   setIsModalOpen(false);
-                  mutate([
-                    "/api/get-messages",
-                    `?sender=${user._id}&receiver=${currentId}`,
-                  ]);
                 }}
               >
-                <Form.Group
-                  controlId="file"
-                  onChange={(e) => setFile(e.target.files[0])}
-                >
-                  <Form.Control type="file" accept="*" />
+                <Form.Group controlId="file" onChange={(e) => setFile(e.target.files[0])}>
+                  <Form.Control type="file" accept="video/mp4,video/x-m4v,video/*" />
                 </Form.Group>
                 {file !== null ? (
                   <div className="flex flex-row justify-center w-full ">
                     <div className="!bg-[#007bff] !rounded-lg">
-                      <button
-                        type="submit"
-                        className="text-white text-xl px-4 py-2"
-                      >
+                      <button type="submit" className="text-white text-xl px-4 py-2">
                         Submit
                       </button>
                     </div>
@@ -109,9 +87,7 @@ const DashboardUser = ({
                 )}
               </Form>
             </div>
-            <div className="flex flex-row justify-center w-full text-lg bg-[#ff0000] text-white">
-              {error}
-            </div>
+            <div className="flex flex-row justify-center w-full text-lg bg-[#ff0000] text-white">{error}</div>
           </div>
         </div>
       ) : (
@@ -120,12 +96,7 @@ const DashboardUser = ({
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
-            <Image
-              src="/assets/images/nextlogowhite.png"
-              width={100}
-              height={100}
-              layout="fixed"
-            />
+            <Image src="/assets/images/nextlogowhite.png" width={100} height={100} layout="fixed" />
           </Link>
           <div className="hidden lg:flex flex-row text-center justify-center ml-2 mt-4 text-4xl text-white">
             Welcome, {user.first_name}!
@@ -167,9 +138,7 @@ const DashboardUser = ({
             </div>
             <div className="col-lg-6 my-4">
               <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
-                <h3 className="name wow fadeInDown">
-                  {user.first_name + " " + user.last_name}
-                </h3>
+                <h3 className="name wow fadeInDown">{user.first_name + " " + user.last_name}</h3>
                 <p className="desi thm-color-two wow fadeInUp">{user.bio}</p>
                 {is_assigned ? (
                   <ul className="info wow fadeInDown">
@@ -177,9 +146,7 @@ const DashboardUser = ({
                       <i className="icon fal fa-clock bg-thm-color-three" />
                       <div className="text">
                         <h6 className="mb-0">Expected hours per week</h6>
-                        <p className="mb-0">
-                          {user.work_data.expected_hours_weekly}
-                        </p>
+                        <p className="mb-0">{user.work_data.expected_hours_weekly}</p>
                       </div>
                     </li>
                     <li>
@@ -238,16 +205,29 @@ const DashboardUser = ({
                             Clock In
                           </Button>
                         )}
-                        <Button
-                          variant="primary"
-                          disabled={!user.work_data.current_price_per_hour}
-                          className="px-4 text-2xl mt-4"
-                          onClick={async () => {
-                            setIsModalOpen(true);
-                          }}
-                        >
-                          Upload Video
-                        </Button>
+                        <div className="flex flex-row justify-evenly gap-4">
+                          <Button
+                            variant="primary"
+                            disabled={!user.work_data.current_price_per_hour}
+                            className="px-4 text-2xl mt-4"
+                            onClick={async () => {
+                              setIsModalOpen(true);
+                            }}
+                          >
+                            Upload Video
+                          </Button>
+                          {user.has_video ? (
+                            <Button
+                              variant="primary"
+                              className="px-4 text-2xl mt-4"
+                              onClick={() => router.push(`/view-video?id=${user._id}`)}
+                            >
+                              View Video
+                            </Button>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       </div>
 
                       <div className="flex flex-row items-center justify-center gap-4">
@@ -262,17 +242,11 @@ const DashboardUser = ({
                           </Button>
                         </Link>
                       </div>
-                      <span>
-                        * This is a projection based on estimates and past
-                        performance, not a promise.
-                      </span>
+                      <span>* This is a projection based on estimates and past performance, not a promise.</span>
                     </div>
                   </ul>
                 ) : (
-                  <div className="text-[#ff0000] text-xl">
-                    {" "}
-                    Please ask the administrator to assign work data!{" "}
-                  </div>
+                  <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
                 )}
               </div>
             </div>
@@ -284,67 +258,60 @@ const DashboardUser = ({
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
+  const user = req.session.user;
 
-    if (!user) {
+  if (!user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+      props: {},
+    };
+  }
+
+  if (user.is_admin) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard-admin",
+      },
+      props: {},
+    };
+  } else {
+    try {
+      dbConnect();
+
+      const newUser = await User.findOne({ email: user.email });
+      req.session.user = await dbUserToIronUser(newUser);
+      await req.session.save();
+
+      const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
+        await getIronUserWorkStats(req.session.user);
+
       return {
-        redirect: {
-          permanent: false,
-          destination: "/login",
-        },
-        props: {},
-      };
-    }
-
-    if (user.is_admin) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/dashboard-admin",
-        },
-        props: {},
-      };
-    } else {
-      try {
-        dbConnect();
-
-        const newUser = await User.findOne({ email: user.email });
-        req.session.user = await dbUserToIronUser(newUser);
-        await req.session.save();
-
-        const {
+        props: {
+          user: req.session.user,
+          is_assigned: isIronUserAssigned(req.session.user),
+          is_working: isIronUserWorking(req.session.user),
           work_hours_this_week,
           work_hours_this_month,
           average_hours_per_week,
           projected_salary,
-        } = await getIronUserWorkStats(req.session.user);
-
-        return {
-          props: {
-            user: req.session.user,
-            is_assigned: isIronUserAssigned(req.session.user),
-            is_working: isIronUserWorking(req.session.user),
-            work_hours_this_week,
-            work_hours_this_month,
-            average_hours_per_week,
-            projected_salary,
-          },
-        };
-      } catch (e) {
-        return {
-          props: {
-            user,
-            is_working: isIronUserWorking(user),
-            work_hours_this_week: "Error",
-            work_hours_this_month: "Error",
-          },
-        };
-      }
+        },
+      };
+    } catch (e) {
+      return {
+        props: {
+          user,
+          is_working: isIronUserWorking(user),
+          work_hours_this_week: "Error",
+          work_hours_this_month: "Error",
+        },
+      };
     }
-  },
-  authCookie
-);
+  }
+}, authCookie);
 
 export default DashboardUser;
