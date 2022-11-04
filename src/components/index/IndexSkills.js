@@ -1,7 +1,7 @@
 import Counter from "../Counter";
 import React from "react";
 
-const Banner = ({ text, color }) => (
+const Banner1 = ({ text, color }) => (
   <div
     className="progress_box grid wow fadeInUp lg:min-h-full !m-0"
     data-wow-delay=".30ms"
@@ -10,6 +10,28 @@ const Banner = ({ text, color }) => (
       className="circle_bar"
       data-percent={97}
       data-track-color="#ecf2ff"
+      data-bar-color={color}
+      data-size={80}
+    >
+      <div className="counter transform-center text-center">
+        <Counter end={82} />
+      </div>
+    </div>
+    <div className="text">
+      <h5 className="mb-0">{text}</h5>
+    </div>
+  </div>
+);
+
+const Banner2 = ({ text, color }) => (
+  <div
+    className="progress_box grid wow fadeInUp lg:min-h-full !m-0"
+    data-wow-delay=".30ms"
+  >
+    <div
+      className="circle_bar"
+      data-percent={97}
+      data-track-color="#702963"
       data-bar-color={color}
       data-size={80}
     >
@@ -42,7 +64,7 @@ const IndexSkills = () => {
           system.
         </h4>
         <div className="flex flex-row justify-center my-20 gap-20">
-          <Banner
+          <Banner1
             text={
               <>
                 Happy
@@ -52,7 +74,7 @@ const IndexSkills = () => {
             }
             color="#65cfa9"
           />
-          <Banner
+          <Banner2
             text={
               <>
                 Happy
