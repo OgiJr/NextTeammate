@@ -39,6 +39,11 @@ const userSchema = Schema({
     trim: true,
     required: false,
   },
+  video: {
+    type: Schema.Types.String,
+    trim: true,
+    required: false,
+  },
   bio: { type: Schema.Types.String, default: "", required: false },
   birthdate: {
     type: Schema.Types.Date,

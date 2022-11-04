@@ -78,7 +78,7 @@ export default withIronSessionApiRoute(async function sendPictureRoute(req, res)
   }
 
   const file_id = uuidv4();
-  const filedir = `${process.cwd()}/public/uploads/`;
+  const filedir = `${process.cwd()}/files`;
   const filepath = `${filedir}/${file_id}`;
 
   mkdirSync(filedir, { recursive: true });
