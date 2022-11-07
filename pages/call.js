@@ -26,56 +26,50 @@ const Zoom = ({ room_name, token }) => {
           TILE_VIEW_MAX_COLUMNS: 4,
         }}
         invitees={[]}
-        getIFrameRef={(node) => (
-          (node.style.height = "100%"), (node.style.width = "100%")
-        )}
+        getIFrameRef={(node) => ((node.style.height = "100%"), (node.style.width = "100%"))}
       />
     </div>
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req, query }) {
-    const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req, query }) {
+  const user = req.session.user;
 
-    if (!user) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/login",
-        },
-        props: {},
-      };
-    }
-
-    const room_name = query.room_name;
-
-    if (!room_name) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/login",
-        },
-        props: {},
-      };
-    }
-
-    const pk = readFileSync("keys/jitsi.pk");
-
-    const token = generate(pk, {
-      id: uuidv4(),
-      name: `${req.session.user.first_name} ${req.session.user.last_name}`,
-      email: req.session.user.email,
-      avatar: `${process.env.URI}/${req.session.user.picture}`,
-      appId: process.env.NEXT_PUBLIC_JITSI_APP_ID,
-      kid: process.env.JITSI_KID,
-    });
-    console.log(token);
+  if (!user) {
     return {
-      props: { room_name, token },
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+      props: {},
     };
-  },
-  authCookie
-);
+  }
+
+  const room_name = query.room_name;
+
+  if (!room_name) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+      props: {},
+    };
+  }
+
+  const pk = readFileSync("keys/jitsi.pk");
+
+  const token = generate(pk, {
+    id: uuidv4(),
+    name: `${req.session.user.first_name} ${req.session.user.last_name}`,
+    email: req.session.user.email,
+    avatar: `${process.env.URI}/${req.session.user.picture}`,
+    appId: process.env.NEXT_PUBLIC_JITSI_APP_ID,
+    kid: process.env.JITSI_KID,
+  });
+  return {
+    props: { room_name, token },
+  };
+}, authCookie);
 
 export default Zoom;

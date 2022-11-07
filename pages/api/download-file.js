@@ -50,7 +50,6 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
     res.send(fb);
     return;
   } catch (e) {
-    console.log();
     res.status(400).json({ message: e.message });
     return;
   }
