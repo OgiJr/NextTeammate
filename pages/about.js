@@ -27,7 +27,7 @@ const About = ({ users }) => {
     <Layout language={"en"}>
       <PageTitleBanner
         pageName="About Us"
-        url="assets/images/banner/about-banner.JPG"
+        url="assets/images/banner/about-banner.jpg"
       />
       {video && <VideoPopup close={() => setVideo(false)} />}
       <section className="section about_inner">

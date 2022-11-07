@@ -12,7 +12,7 @@ const Contact = () => {
     <Layout language={"en"}>
       <PageTitleBanner
         pageName="Contact Us"
-        url="assets/images/banner/contact-banner.JPG"
+        url="assets/images/banner/contact-banner.jpg"
       />
       <section className="section-padding">
         <div className="container">
