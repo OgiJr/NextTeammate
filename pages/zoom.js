@@ -209,7 +209,7 @@ const Zoom = ({ user, employees }) => {
                           return;
                         }
                         setLoading(true);
-                        const room_name = `${user.first_name} ${user.last_name})`;
+                        const room_name = `${user.first_name} ${user.last_name}`;
                         await fetch("/api/send-invites", {
                           method: "POST",
                           headers: {
