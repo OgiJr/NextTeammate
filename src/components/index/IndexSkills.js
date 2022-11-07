@@ -14,7 +14,7 @@ const Banner1 = ({ text, color }) => (
       data-size={80}
     >
       <div className="counter transform-center text-center">
-        <Counter end={82} />
+        <Counter end={91} />
       </div>
     </div>
     <div className="text">
@@ -36,7 +36,7 @@ const Banner2 = ({ text, color }) => (
       data-size={80}
     >
       <div className="counter transform-center text-center">
-        <Counter end={87} />
+        <Counter end={92} />
       </div>
     </div>
     <div className="text">
