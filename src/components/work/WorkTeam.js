@@ -1,6 +1,6 @@
 import React from "react";
 
-const WorkTeam = ({ users }) => {
+const WorkTeam = () => {
   return (
     // <section className="section-padding bg-thm-color-two-gradient z-1 team_main_wrap pb-extra">
     //   <img
