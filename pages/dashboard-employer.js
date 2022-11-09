@@ -15,8 +15,9 @@ import {
 } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
-const DashboardAdmin = ({ user, employees }) => {
+const DashboardEmployer = ({ user, employees }) => {
   const router = useRouter();
+  const thisUser = false;
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
@@ -75,54 +76,8 @@ const DashboardAdmin = ({ user, employees }) => {
           </Button>
         </div>
       </div>
-      <div className=" w-96 self-center flex flex-col">
-        <div className="text-center text-3xl font-bold">Admin</div>
-        <Card isPressable isHoverable className="mt-3">
-          <Card.Body>
-            <div className="flex flex-col self-center">
-              <img
-                src={
-                  user.has_picture
-                    ? `${cdnSubpath()}/${user.picture}`
-                    : "/assets/images/no-user.png"
-                }
-                width={150}
-                height={150}
-                className="self-center rounded-full"
-              />
-              <div className=" text-4xl text-center">
-                {user.first_name + " " + user.last_name}
-              </div>
-              <div className="flex flex-row mt-2">
-                <NextLink href="/edit-user">
-                  <NextButton
-                    color="warning"
-                    shadow
-                    auto
-                    rounded
-                    className="px-4 min-w-[25%] mr-2"
-                  >
-                    Edit Account
-                  </NextButton>
-                </NextLink>
-                <NextLink href="/set-picture">
-                  <NextButton
-                    color="success"
-                    shadow
-                    auto
-                    rounded
-                    href="/"
-                    className="px-4 min-w-[25%] ml-2"
-                  >
-                    Change Picture
-                  </NextButton>
-                </NextLink>
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
-      </div>
-      <div className="flex flex-col mt-4">
+      <div className="flex flex-col">
+        <div className="self-center text-cyan-600 text-xl">Microsoft</div>
         <div className="text-center text-3xl font-bold">Employers</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
           {employees.length === 0 ? (
@@ -152,15 +107,41 @@ const DashboardAdmin = ({ user, employees }) => {
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        <div className="self-center text-black font-bold text-lg">
-                          Microsoft
-                        </div>
                         <div className="text-center text-md text-gray-800">
                           {e.email}
                         </div>
                         <div className="text-center text-md text-gray-500">
                           {e.bio}
                         </div>
+                        {thisUser ? (
+                          <div className="flex flex-row mt-2">
+                            <NextLink href="/edit-user">
+                              <NextButton
+                                color="warning"
+                                shadow
+                                auto
+                                rounded
+                                className="px-4 min-w-[25%] mr-2"
+                              >
+                                Edit Account
+                              </NextButton>
+                            </NextLink>
+                            <NextLink href="/set-picture">
+                              <NextButton
+                                color="success"
+                                shadow
+                                auto
+                                rounded
+                                href="/"
+                                className="px-4 min-w-[25%] ml-2"
+                              >
+                                Change Picture
+                              </NextButton>
+                            </NextLink>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                       </Card.Body>
                     </Card>
                   </div>
@@ -204,9 +185,6 @@ const DashboardAdmin = ({ user, employees }) => {
                         </div>
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
-                        </div>
-                        <div className="self-center text-black font-bold text-lg">
-                          Microsoft
                         </div>
                         <div className="text-center text-md text-gray-800">
                           {e.email}
@@ -311,4 +289,4 @@ export const getServerSideProps = withIronSessionSsr(
   authCookie
 );
 
-export default DashboardAdmin;
+export default DashboardEmployer;

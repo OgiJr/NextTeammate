@@ -61,7 +61,7 @@ const CreateEmployee = () => {
           style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
         >
           <div className="text-center min-w-full text-4xl font-semibold">
-            Enter Employee Information
+            Enter Employer Information
           </div>
           <Form
             onSubmit={async (e) => {
@@ -70,9 +70,8 @@ const CreateEmployee = () => {
               const email = e.target.email.value;
               const first_name = e.target.first_name.value;
               const last_name = e.target.last_name.value;
-              const is_employer = false;
 
-              const body = { email, first_name, last_name, is_employer };
+              const body = { email, first_name, last_name };
               const bodyJSON = JSON.stringify(body);
 
               if (!email || !first_name || !last_name) {

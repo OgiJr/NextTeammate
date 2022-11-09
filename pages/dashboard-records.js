@@ -7,7 +7,14 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
-import { Col, Text, Row, User as NextUser, Table, Input } from "@nextui-org/react";
+import {
+  Col,
+  Text,
+  Row,
+  User as NextUser,
+  Table,
+  Input,
+} from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 import useSWR, { useSWRConfig } from "swr";
 
@@ -30,13 +37,19 @@ const DashboardAdmin = ({ start, end }) => {
   const [start_date, set_start_date] = React.useState(new Date(start));
   const [end_date, set_end_date] = React.useState(new Date(end));
 
-  const isDate = (date) => new Date(date) !== "Invalid Date" && !isNaN(new Date(date));
+  const isDate = (date) =>
+    new Date(date) !== "Invalid Date" && !isNaN(new Date(date));
 
-  const fetcher = (url, queryParams = "") => fetch(`${url}${queryParams}`).then(async (res) => await res.json());
+  const fetcher = (url, queryParams = "") =>
+    fetch(`${url}${queryParams}`).then(async (res) => await res.json());
   const { data } = useSWR(
     [
       "/api/get-records",
-      `?start=${isDate(start_date) ? start_date.toISOString() : new Date(0).toISOString()}&end=${
+      `?start=${
+        isDate(start_date)
+          ? start_date.toISOString()
+          : new Date(0).toISOString()
+      }&end=${
         isDate(end_date) ? end_date.toISOString() : new Date().toISOString()
       }`,
     ],
@@ -70,7 +83,9 @@ const DashboardAdmin = ({ start, end }) => {
         );
       case "status":
         return (
-          <StyledBadge type={user.is_assigned && user.status ? "active" : "paused"}>
+          <StyledBadge
+            type={user.is_assigned && user.status ? "active" : "paused"}
+          >
             {user.is_assigned && user.status ? "Clocked In" : "Clocked Out"}
           </StyledBadge>
         );
@@ -90,8 +105,12 @@ const DashboardAdmin = ({ start, end }) => {
         );
       case "performance":
         return (
-          <StyledBadge type={user.actual_work >= user.expected_work ? "active" : "paused"}>
-            {user.actual_work >= user.expected_work ? "OK Performance" : "Underperforming"}
+          <StyledBadge
+            type={user.actual_work >= user.expected_work ? "active" : "paused"}
+          >
+            {user.actual_work >= user.expected_work
+              ? "OK Performance"
+              : "Underperforming"}
           </StyledBadge>
         );
       default:
@@ -103,7 +122,12 @@ const DashboardAdmin = ({ start, end }) => {
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
-            <Image src="/assets/images/nextlogowhite.png" width={100} height={100} layout="fixed" />
+            <Image
+              src="/assets/images/nextlogowhite.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
           </Link>
         </div>
         <div className=" flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
@@ -135,7 +159,9 @@ const DashboardAdmin = ({ start, end }) => {
             aria-label="start-date"
             width="186px"
             type="date"
-            value={`${start_date.getFullYear()}-${pad(start_date.getMonth() + 1)}-${pad(start_date.getDate())}`}
+            value={`${start_date.getFullYear()}-${pad(
+              start_date.getMonth() + 1
+            )}-${pad(start_date.getDate())}`}
             onChange={(e) => {
               e.preventDefault();
 
@@ -159,7 +185,9 @@ const DashboardAdmin = ({ start, end }) => {
             aria-label="end-date"
             width="186px"
             type="date"
-            value={`${end_date.getFullYear()}-${pad(end_date.getMonth() + 1)}-${pad(end_date.getDate())}`}
+            value={`${end_date.getFullYear()}-${pad(
+              end_date.getMonth() + 1
+            )}-${pad(end_date.getDate())}`}
             onChange={(e) => {
               e.preventDefault();
 
@@ -197,10 +225,15 @@ const DashboardAdmin = ({ start, end }) => {
             </Table.Column>
           )}
         </Table.Header>
+        {
+          //Да провери дали employee-тата са в същата компания или си админ
+        }
         <Table.Body items={!data ? [] : data.data}>
           {(item) => (
             <Table.Row key={item.email}>
-              {(columnKey) => <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>}
+              {(columnKey) => (
+                <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>
+              )}
             </Table.Row>
           )}
         </Table.Body>
@@ -210,37 +243,42 @@ const DashboardAdmin = ({ start, end }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req, query }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req, query }) {
+    const user = req.session.user;
 
-  if (!user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
-      },
-      props: {},
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    if (!user.is_admin) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/dashboard-user",
+        },
+        props: {},
+      };
+    }
+
+    const props = {
+      start: query.start
+        ? query.start
+        : new Date(Date.now() - 60 * 60 * 24 * 30 * 1000).toISOString(),
+      end: query.end ? query.end : new Date().toISOString(),
     };
-  }
 
-  if (!user.is_admin) {
     return {
-      redirect: {
-        permanent: false,
-        destination: "/dashboard-user",
-      },
-      props: {},
+      props,
     };
-  }
-
-  const props = {
-    start: query.start ? query.start : new Date(Date.now() - 60 * 60 * 24 * 30 * 1000).toISOString(),
-    end: query.end ? query.end : new Date().toISOString(),
-  };
-
-  return {
-    props,
-  };
-}, authCookie);
+  },
+  authCookie
+);
 
 export default DashboardAdmin;
