@@ -266,7 +266,7 @@ const Zoom = ({ user, employees }) => {
                     >
                       <img
                         className="object-cover w-10 h-10 rounded-full"
-                        src={e.has_picture ? `${cdnSubpath}${e.picture}` : "/assets/images/no-user.png"}
+                        src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                         alt="username"
                       />
                       <div className="w-full">
