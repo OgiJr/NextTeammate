@@ -10,7 +10,13 @@ import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser, isIronUserWorking } from "../lib/db";
 import User from "../models/User";
-import { Popover, Button as NextButton, Text, Loading, User as NextUser } from "@nextui-org/react";
+import {
+  Popover,
+  Button as NextButton,
+  Text,
+  Loading,
+  User as NextUser,
+} from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 import Footer from "../src/layout/Footer";
 import { cdnSubpath } from "../lib/cdn";
@@ -22,7 +28,9 @@ const Zoom = ({ user, employees }) => {
   const chatRef = React.useRef();
 
   const [currentFriend, setCurrentFriend] = React.useState(null);
-  const [currentPicture, setCurrentPicture] = React.useState("/assets/images/no-user.png");
+  const [currentPicture, setCurrentPicture] = React.useState(
+    "/assets/images/no-user.png"
+  );
   const [currentName, setCurrentName] = React.useState("");
   const [currentId, setCurrentId] = React.useState("");
 
@@ -31,6 +39,7 @@ const Zoom = ({ user, employees }) => {
   const [error, setError] = React.useState(null);
 
   const [loading, setLoading] = React.useState(false);
+  const [loadingFile, setLoadingFile] = React.useState(false);
 
   const fetcher = (url, queryParams = "") => {
     if (currentFriend) {
@@ -41,11 +50,19 @@ const Zoom = ({ user, employees }) => {
       return new Promise(() => {});
     }
   };
-  const { data: chats } = useSWR(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`], fetcher, {
-    onSuccess: () => {
-      setTimeout(() => (chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000), 100);
-    },
-  });
+  const { data: chats } = useSWR(
+    ["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`],
+    fetcher,
+    {
+      onSuccess: () => {
+        setTimeout(
+          () =>
+            (chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000),
+          100
+        );
+      },
+    }
+  );
 
   const [selectedForCall, setSelectedForCall] = React.useState([]);
 
@@ -65,7 +82,9 @@ const Zoom = ({ user, employees }) => {
                 <FontAwesomeIcon icon={faX} size="1x" color="#000" />
               </div>
             </div>
-            <div className="flex flex-row justify-center w-full text-4xl">Upload file here:</div>
+            <div className="flex flex-row justify-center w-full text-4xl">
+              Upload file here:
+            </div>
             <div className="flex flex-row justify-center w-full">
               <Form
                 className="flex flex-col justify-center w-full items-center justify-items-center mt-8"
@@ -81,6 +100,8 @@ const Zoom = ({ user, employees }) => {
                   formData.append("file", file);
                   formData.append("receiver", currentId);
 
+                  setLoadingFile(true);
+
                   let result;
                   result = await fetch("/api/send-file", {
                     method: "POST",
@@ -93,28 +114,46 @@ const Zoom = ({ user, employees }) => {
                   }
 
                   setError(null);
+                  setLoadingFile(false);
                   setIsModalOpen(false);
-                  mutate(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`]);
+                  mutate([
+                    "/api/get-messages",
+                    `?sender=${user._id}&receiver=${currentId}`,
+                  ]);
                 }}
               >
-                <Form.Group controlId="file" onChange={(e) => setFile(e.target.files[0])}>
+                <Form.Group
+                  controlId="file"
+                  onChange={(e) => setFile(e.target.files[0])}
+                >
                   <Form.Control type="file" accept="*" />
                 </Form.Group>
                 {file !== null ? (
                   <div className="flex flex-row justify-center w-full ">
-                    <div className="!bg-[#007bff] !rounded-lg">
-                      <button type="submit" className="text-white text-xl px-4 py-2">
-                        Send
-                      </button>
-                    </div>
+                    {loadingFile ? (
+                      <div className="!bg-[#007bff] !rounded-lg">
+                        <button
+                          type="submit"
+                          className="text-white text-xl px-4 py-2"
+                        >
+                          Send
+                        </button>
+                      </div>
+                    ) : (
+                      <Loading color="primary" />
+                    )}
                   </div>
                 ) : (
                   <></>
                 )}
               </Form>
             </div>
-            <div className="flex flex-row justify-center w-full text-sm">(Max 100MB, Encrypted)</div>
-            <div className="flex flex-row justify-center w-full text-lg bg-[#ff0000] text-white">{error}</div>
+            <div className="flex flex-row justify-center w-full text-sm">
+              (Max 100MB, Encrypted)
+            </div>
+            <div className="flex flex-row justify-center w-full text-lg bg-[#ff0000] text-white">
+              {error}
+            </div>
           </div>
         </div>
       ) : (
@@ -124,7 +163,12 @@ const Zoom = ({ user, employees }) => {
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
-            <Image src="/assets/images/nextlogowhite.png" width={100} height={100} layout="fixed" />
+            <Image
+              src="/assets/images/nextlogowhite.png"
+              width={100}
+              height={100}
+              layout="fixed"
+            />
           </Link>
           <div className="hidden lg:flex flex-row text-center justify-center ml-2 mt-4 text-4xl text-white">
             Welcome, {user.first_name}!
@@ -162,7 +206,14 @@ const Zoom = ({ user, employees }) => {
             <div className="mx-3 my-3">
               <Popover>
                 <Popover.Trigger>
-                  <NextButton auto flat shadow color="primary" rounded size="lg">
+                  <NextButton
+                    auto
+                    flat
+                    shadow
+                    color="primary"
+                    rounded
+                    size="lg"
+                  >
                     <p className=" font-bold"> Start meeting</p>
                   </NextButton>
                 </Popover.Trigger>
@@ -175,7 +226,11 @@ const Zoom = ({ user, employees }) => {
                         key={i}
                         onClick={() => {
                           if (selectedForCall.includes(e.email)) {
-                            setSelectedForCall(selectedForCall.filter((email) => e.email !== email));
+                            setSelectedForCall(
+                              selectedForCall.filter(
+                                (email) => e.email !== email
+                              )
+                            );
                           } else {
                             setSelectedForCall([...selectedForCall, e.email]);
                           }
@@ -183,11 +238,19 @@ const Zoom = ({ user, employees }) => {
                       >
                         <NextUser
                           squared
-                          src={e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png"}
+                          src={
+                            e.has_picture
+                              ? `/uploads/${e.picture}`
+                              : "/assets/images/no-user.png"
+                          }
                           name={`${e.first_name} ${e.last_name}`}
                           pointer
                           bordered={selectedForCall.includes(e.email)}
-                          color={selectedForCall.includes(e.email) ? "success" : "default"}
+                          color={
+                            selectedForCall.includes(e.email)
+                              ? "success"
+                              : "default"
+                          }
                         >
                           {e.email}
                         </NextUser>
@@ -222,17 +285,30 @@ const Zoom = ({ user, employees }) => {
                           }),
                         });
 
-                        window.open(router.basePath + "/call?room_name=" + encodeURIComponent(room_name));
+                        window.open(
+                          router.basePath +
+                            "/call?room_name=" +
+                            encodeURIComponent(room_name)
+                        );
                         setLoading(false);
                       }}
                     >
                       {!loading ? (
                         <>
                           <p className="font-bold">Start Meeting</p>
-                          <Image src="/assets/images/camera.png" width={35} height={35} className="ml-1" />
+                          <Image
+                            src="/assets/images/camera.png"
+                            width={35}
+                            height={35}
+                            className="ml-1"
+                          />
                         </>
                       ) : (
-                        <Loading type="spinner" color="currentColor" size="sm" />
+                        <Loading
+                          type="spinner"
+                          color="currentColor"
+                          size="sm"
+                        />
                       )}
                     </NextButton>
                   </div>
@@ -251,14 +327,22 @@ const Zoom = ({ user, employees }) => {
                       }`}
                       onClick={() => {
                         setCurrentFriend(e.email);
-                        setCurrentPicture(e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png");
+                        setCurrentPicture(
+                          e.has_picture
+                            ? `${cdnSubpath()}${e.picture}`
+                            : "/assets/images/no-user.png"
+                        );
                         setCurrentName(`${e.first_name} ${e.last_name}`);
                         setCurrentId(e._id);
                       }}
                     >
                       <img
                         className="object-cover w-10 h-10 rounded-full"
-                        src={e.has_picture ? `${cdnSubpath}${e.picture}` : "/assets/images/no-user.png"}
+                        src={
+                          e.has_picture
+                            ? `${cdnSubpath}${e.picture}`
+                            : "/assets/images/no-user.png"
+                        }
                         alt="username"
                       />
                       <div className="w-full">
@@ -278,42 +362,66 @@ const Zoom = ({ user, employees }) => {
             {currentFriend ? (
               <div className="w-full">
                 <div className="relative flex items-center p-3 border-b border-gray-300">
-                  <img className="object-cover w-10 h-10 rounded-full" src={currentPicture} alt={currentFriend} />
-                  <span className="block ml-2 font-bold text-gray-600">{currentName}</span>
+                  <img
+                    className="object-cover w-10 h-10 rounded-full"
+                    src={currentPicture}
+                    alt={currentFriend}
+                  />
+                  <span className="block ml-2 font-bold text-gray-600">
+                    {currentName}
+                  </span>
                 </div>
-                <div className="relative w-full p-6 overflow-y-scroll h-72 md:h-[32rem] lg:h-96" ref={chatRef}>
+                <div
+                  className="relative w-full p-6 overflow-y-scroll h-72 md:h-[32rem] lg:h-96"
+                  ref={chatRef}
+                >
                   <ul className="flex flex-col gap-y-2">
                     {error ? (
                       <div className="w-full h-full flex flex-col justify-center items-center">
-                        <div className="text-2xl">Failed to load chat. Please try again later...</div>
+                        <div className="text-2xl">
+                          Failed to load chat. Please try again later...
+                        </div>
                       </div>
                     ) : chats ? (
                       chats.chats.map((chat, i) => (
                         <div
                           key={i}
-                          className={`flex flex-col w-full ${chat.sender === currentId ? "items-start" : "items-end"}`}
+                          className={`flex flex-col w-full ${
+                            chat.sender === currentId
+                              ? "items-start"
+                              : "items-end"
+                          }`}
                         >
                           <div className="flex flex-col max-w-[50%]">
                             <div
                               className={`relative px-4 py-2 text-gray-700 rounded shadow ${
-                                chat.sender === currentId ? "bg-black text-white" : ""
+                                chat.sender === currentId
+                                  ? "bg-black text-white"
+                                  : ""
                               } `}
                             >
                               {chat.type === "TEXT" ? (
-                                <span className="w-full text-left">{chat.text}</span>
+                                <span className="w-full text-left">
+                                  {chat.text}
+                                </span>
                               ) : chat.type === "FILE" ? (
                                 <a href={`/api/download-file?_id=${chat._id}`}>
                                   <div className="w-full text-left">
                                     <FontAwesomeIcon
                                       icon={faFile}
-                                      color={chat.sender === currentId ? "#fff" : "#000"}
+                                      color={
+                                        chat.sender === currentId
+                                          ? "#fff"
+                                          : "#000"
+                                      }
                                       size="1x"
                                       className="w-[1rem]"
                                     />
                                     <span className="ml-4">
                                       {chat.og_filename.length < 24
                                         ? chat.og_filename
-                                        : chat.og_filename.substring(0, 20) + "..."}
+                                        : chat.og_filename.substring(0, 20) +
+                                          "..."}
                                     </span>
                                   </div>
                                 </a>
@@ -384,7 +492,10 @@ const Zoom = ({ user, employees }) => {
                       });
 
                       e.target.message.value = "";
-                      mutate(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`]);
+                      mutate([
+                        "/api/get-messages",
+                        `?sender=${user._id}&receiver=${currentId}`,
+                      ]);
                     }}
                   >
                     <input
@@ -422,31 +533,36 @@ const Zoom = ({ user, employees }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
-  const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user;
 
-  if (!user) {
+    if (!user) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/login",
+        },
+        props: {},
+      };
+    }
+
+    let result = await User.find({ email: { $ne: user.email } });
+    let employees = await Promise.all(
+      result.map(async (e) => await dbUserToIronUser(e))
+    );
+    employees = employees.map((e) => {
+      return { ...e, is_working: isIronUserWorking(e) };
+    });
+
     return {
-      redirect: {
-        permanent: false,
-        destination: "/login",
+      props: {
+        user,
+        employees,
       },
-      props: {},
     };
-  }
-
-  let result = await User.find({ email: { $ne: user.email } });
-  let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
-  employees = employees.map((e) => {
-    return { ...e, is_working: isIronUserWorking(e) };
-  });
-
-  return {
-    props: {
-      user,
-      employees,
-    },
-  };
-}, authCookie);
+  },
+  authCookie
+);
 
 export default Zoom;
