@@ -1,18 +1,11 @@
 import React from "react";
+import { cdnSubpath } from "../../../lib/cdn";
 
 const WorkTeam = ({ users }) => {
   return (
     <section className="section-padding bg-thm-color-two-gradient z-1 team_main_wrap pb-extra">
-      <img
-        src="assets/images/elements/element_1.png"
-        className="element_1"
-        alt="Element"
-      />
-      <img
-        src="assets/images/elements/element_2.png"
-        className="element_2"
-        alt="Element"
-      />
+      <img src="assets/images/elements/element_1.png" className="element_1" alt="Element" />
+      <img src="assets/images/elements/element_2.png" className="element_2" alt="Element" />
       <div className="container">
         <div className="row">
           <div className="col-12">
@@ -21,9 +14,7 @@ const WorkTeam = ({ users }) => {
                 <i className="fal fa-book" />
                 Нашите професионалисти
               </p>
-              <h3 className="title">
-                Запознайте се с нашия професионален екип
-              </h3>
+              <h3 className="title">Запознайте се с нашия професионален екип</h3>
             </div>
           </div>
         </div>
@@ -33,11 +24,7 @@ const WorkTeam = ({ users }) => {
               <div className="team_block wow fadeInUp" data-wow-delay=".3s">
                 <div className="team_img">
                   <img
-                    src={
-                      u.picture
-                        ? `/uploads/${u.picture}`
-                        : "/assets/images/no-user.png"
-                    }
+                    src={u.picture ? `${cdnSubpath()}${u.picture}` : "/assets/images/no-user.png"}
                     alt="img"
                     className="image-fit"
                   />

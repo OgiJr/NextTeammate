@@ -3,6 +3,7 @@ import User from "../../models/User";
 import { isAdmin, isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
 import { dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
+import { cdnSubpath } from "../../lib/cdn";
 
 export default withIronSessionApiRoute(async function getRecordsRoute(req, res) {
   let reqBody;
@@ -39,7 +40,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
         return {
           name: u.first_name + " " + u.last_name,
           email: u.email,
-          picture: u.has_picture ? "/uploads/" + u.picture : u.picture,
+          picture: u.has_picture ? cdnSubpath() + u.picture : u.picture,
           is_assigned: false,
         };
       }
@@ -83,7 +84,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       return {
         name: u.first_name + "  " + u.last_name,
         email: u.email,
-        picture: u.has_picture ? "/uploads/" + u.picture : u.picture,
+        picture: u.has_picture ? cdnSubpath() + u.picture : u.picture,
         is_assigned: true,
         status: isIronUserWorking(u),
         actual_work: actual_work.toFixed(2),

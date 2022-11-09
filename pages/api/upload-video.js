@@ -5,7 +5,7 @@ import { dbConnect } from "../../lib/db";
 import User from "../../models/User";
 import IncomingForm from "formidable/src/Formidable";
 import { v4 as uuidv4 } from "uuid";
-import { copyFileSync, mkdirSync, rmSync } from "fs";
+import { copyFileSync, mkdirSync } from "fs";
 import rateLimit from "../../lib/rateLimit";
 
 const limiter = rateLimit({
@@ -64,12 +64,12 @@ export default withIronSessionApiRoute(async function sendPictureRoute(req, res)
     }
 
     const file_id = uuidv4();
-    const filedir = `${process.cwd()}/public/videos`;
-    const filepath = `${filedir}/${file_id}`;
+    const filedir = `${process.cwd()}/uploads/`;
+    const extension = file.originalFilename.split(".").pop();
+    const filepath = `${filedir}${file_id}.${extension}`;
 
     mkdirSync(filedir, { recursive: true });
     copyFileSync(file.filepath, filepath);
-    rmSync(file.filepath);
 
     await User.findOneAndUpdate({ _id: sender }, { video: filepath });
 

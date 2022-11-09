@@ -10,6 +10,7 @@ import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserAssigned, 
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
+import { cdnSubpath } from "../lib/cdn";
 
 const DashboardUser = ({
   user,
@@ -130,7 +131,7 @@ const DashboardUser = ({
             <div className="col-lg-6">
               <div className="flex flex-row justify-center">
                 <img
-                  src={`/uploads/${user.picture}`}
+                  src={`${cdnSubpath()}${user.picture}`}
                   alt="img"
                   className="image-fit wow fadeInLeft rounded-[12px] max-w-[40%] border-4 border-indigo-600"
                 />

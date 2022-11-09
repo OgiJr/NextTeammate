@@ -33,7 +33,7 @@ const WorkTeam = () => {
     //               <img
     //                 src={
     //                   u.picture
-    //                     ? `/uploads/${u.picture}`
+    //                     ? `${cdnSubpath()}${u.picture}`
     //                     : "/assets/images/no-user.png"
     //                 }
     //                 alt="img"

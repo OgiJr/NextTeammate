@@ -9,6 +9,7 @@ import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
+import { cdnSubpath } from "../lib/cdn";
 
 const DashboardAdmin = ({ user, employees }) => {
   const router = useRouter();
@@ -66,7 +67,7 @@ const DashboardAdmin = ({ user, employees }) => {
           <Card.Body>
             <div className="flex flex-col self-center">
               <img
-                src={user.has_picture ? `/uploads/${user.picture}` : "/assets/images/no-user.png"}
+                src={user.has_picture ? `${cdnSubpath()}/${user.picture}` : "/assets/images/no-user.png"}
                 width={150}
                 height={150}
                 className="self-center rounded-full"
@@ -107,7 +108,7 @@ const DashboardAdmin = ({ user, employees }) => {
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <img
-                            src={e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png"}
+                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                             width={150}
                             height={150}
                             className="rounded-full"

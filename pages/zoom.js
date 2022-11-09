@@ -13,6 +13,7 @@ import User from "../models/User";
 import { Popover, Button as NextButton, Text, Loading, User as NextUser } from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 import Footer from "../src/layout/Footer";
+import { cdnSubpath } from "../lib/cdn";
 
 const Zoom = ({ user, employees }) => {
   const router = useRouter();
@@ -250,14 +251,14 @@ const Zoom = ({ user, employees }) => {
                       }`}
                       onClick={() => {
                         setCurrentFriend(e.email);
-                        setCurrentPicture(e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png");
+                        setCurrentPicture(e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png");
                         setCurrentName(`${e.first_name} ${e.last_name}`);
                         setCurrentId(e._id);
                       }}
                     >
                       <img
                         className="object-cover w-10 h-10 rounded-full"
-                        src={e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png"}
+                        src={e.has_picture ? `${cdnSubpath}${e.picture}` : "/assets/images/no-user.png"}
                         alt="username"
                       />
                       <div className="w-full">

@@ -5,8 +5,10 @@ import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
 import { dbConnect } from "../lib/db";
 import User from "../models/User";
+import { cdnSubpath } from "../lib/cdn";
 
 const SetPicture = ({ video_url, name }) => {
+  console.log(cdnSubpath() + video_url);
   return (
     <Layout language={"en"}>
       <div className="flex flex-row justify-center min-w-full">
@@ -18,7 +20,7 @@ const SetPicture = ({ video_url, name }) => {
             <div className="text-center min-w-full text-4xl font-semibold">Video: {name}</div>
             <div className="flex flex-col justify-center items-center">
               <video className="w-[100%]" controls>
-                <source src={video_url} />
+                <source src={cdnSubpath() + video_url} />
               </video>
             </div>
           </div>
@@ -76,7 +78,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
 
   return {
     props: {
-      video_url: video_user.video.substring(process.cwd().length + 7),
+      video_url: video_user.video.split("/").pop(),
       name: video_user.first_name + " " + video_user.last_name,
     },
   };
