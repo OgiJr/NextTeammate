@@ -82,8 +82,6 @@ const Zoom = ({ user, employees }) => {
                   formData.append("file", file);
                   formData.append("receiver", currentId);
 
-                  setLoadingFile(true);
-
                   let result;
                   result = await fetch("/api/send-file", {
                     method: "POST",
@@ -96,7 +94,6 @@ const Zoom = ({ user, employees }) => {
                   }
 
                   setError(null);
-                  setLoadingFile(false);
                   setIsModalOpen(false);
                   mutate(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`]);
                 }}
