@@ -102,15 +102,11 @@ const Zoom = ({ user, employees }) => {
                 </Form.Group>
                 {file !== null ? (
                   <div className="flex flex-row justify-center w-full ">
-                    {loadingFile ? (
-                      <div className="!bg-[#007bff] !rounded-lg">
-                        <button type="submit" className="text-white text-xl px-4 py-2">
-                          Send
-                        </button>
-                      </div>
-                    ) : (
-                      <Loading color="primary" />
-                    )}
+                    <div className="!bg-[#007bff] !rounded-lg">
+                      <button type="submit" className="text-white text-xl px-4 py-2">
+                        Send
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <></>
