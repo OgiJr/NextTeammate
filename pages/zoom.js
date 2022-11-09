@@ -183,7 +183,7 @@ const Zoom = ({ user, employees }) => {
                       >
                         <NextUser
                           squared
-                          src={e.has_picture ? `/uploads/${e.picture}` : "/assets/images/no-user.png"}
+                          src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                           name={`${e.first_name} ${e.last_name}`}
                           pointer
                           bordered={selectedForCall.includes(e.email)}
