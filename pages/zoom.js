@@ -31,6 +31,7 @@ const Zoom = ({ user, employees }) => {
   const [error, setError] = React.useState(null);
 
   const [loading, setLoading] = React.useState(false);
+  const [loadingFile, setLoadingFile] = React.useState(false);
 
   const fetcher = (url, queryParams = "") => {
     if (currentFriend) {
@@ -81,6 +82,8 @@ const Zoom = ({ user, employees }) => {
                   formData.append("file", file);
                   formData.append("receiver", currentId);
 
+                  setLoadingFile(true);
+
                   let result;
                   result = await fetch("/api/send-file", {
                     method: "POST",
@@ -93,6 +96,7 @@ const Zoom = ({ user, employees }) => {
                   }
 
                   setError(null);
+                  setLoadingFile(false);
                   setIsModalOpen(false);
                   mutate(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`]);
                 }}
@@ -102,11 +106,15 @@ const Zoom = ({ user, employees }) => {
                 </Form.Group>
                 {file !== null ? (
                   <div className="flex flex-row justify-center w-full ">
-                    <div className="!bg-[#007bff] !rounded-lg">
-                      <button type="submit" className="text-white text-xl px-4 py-2">
-                        Send
-                      </button>
-                    </div>
+                    {loadingFile ? (
+                      <div className="!bg-[#007bff] !rounded-lg">
+                        <button type="submit" className="text-white text-xl px-4 py-2">
+                          Send
+                        </button>
+                      </div>
+                    ) : (
+                      <Loading color="primary" />
+                    )}
                   </div>
                 ) : (
                   <></>
