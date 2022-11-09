@@ -31,7 +31,6 @@ const Zoom = ({ user, employees }) => {
   const [error, setError] = React.useState(null);
 
   const [loading, setLoading] = React.useState(false);
-  const [loadingFile, setLoadingFile] = React.useState(false);
 
   const fetcher = (url, queryParams = "") => {
     if (currentFriend) {
