@@ -8,13 +8,32 @@ import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
-import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
+import { Card, Button as NextButton, Link as NextLink, useModal, Modal, Text } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
 const DashboardAdmin = ({ user, employees }) => {
   const router = useRouter();
+  const { setVisible, bindings } = useModal();
+
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
+      <Modal scroll blur width="600px" aria-labelledby="modal-title" preventClose aria-describedby="modal-description" {...bindings}>
+        <Modal.Header>
+          <Text id="modal-title" className="font-bold" size={18}>
+            Are you sure you want to delete this user?
+          </Text>
+        </Modal.Header>
+        <Modal.Body>
+          <div className=" self-center flex flex-row">
+            <NextButton color="error" shadow auto rounded className="px-4 min-w-[25%] mr-2">
+              Confirm
+            </NextButton>
+            <NextButton color="success" shadow auto rounded href="/" className="px-4 min-w-[25%] ml-2" onClick={() => setVisible(false)}>
+              Close
+            </NextButton>
+          </div>
+        </Modal.Body>
+      </Modal>
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
@@ -169,6 +188,9 @@ const DashboardAdmin = ({ user, employees }) => {
                                 Edit Account
                               </NextButton>
                             </NextLink>
+                            <NextButton color="error" shadow auto rounded className="px-4 min-w-[25%] mr-2 self-center" onClick={() => setVisible(true)}>
+                              Delete User
+                            </NextButton>
                           </div>
                         )}
                       </Card.Body>
