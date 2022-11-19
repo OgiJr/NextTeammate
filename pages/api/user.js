@@ -1,6 +1,7 @@
 import { dbConnect, dbUserToIronUser, getUserFromIron } from "../../lib/db";
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
+import Company from "../../models/Company";
 import { isLoggedIn, reqBodyParse, validateEmail, isAdmin, isDate } from "../../lib/validation";
 import { v4 as uuidv4 } from "uuid";
 import { send } from "../../lib/email";
@@ -11,25 +12,41 @@ const post = async (req, res) => {
   try {
     isLoggedIn(req, res);
     isAdmin(req, res);
-    reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email"]);
+    reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "company"]);
     validateEmail(reqBody.email, res);
   } catch {
     return;
   }
 
-  const { first_name, last_name, email } = reqBody;
+  const { first_name, last_name, email, company } = reqBody;
   const password_generation_key = uuidv4();
   const link = `${process.env.URI}/set-password?password_generation_key=${password_generation_key}&email=${email}`;
 
   try {
     await dbConnect();
 
-    await User.create({
-      first_name,
-      last_name,
-      email,
-      password_generation_key,
-    });
+    if (company === 0 || company === "0" || !company) {
+      await User.create({
+        first_name,
+        last_name,
+        email,
+        password_generation_key,
+      });
+    } else {
+      const company_id = await Company.find({ _id: company });
+      if (!company_id) {
+        res.status(400).json({ message: "No such company exists!" });
+        return;
+      }
+
+      await User.create({
+        first_name,
+        last_name,
+        email,
+        password_generation_key,
+        company: company,
+      });
+    }
 
     send(
       email,

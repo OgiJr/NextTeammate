@@ -50,6 +50,7 @@ const userSchema = Schema({
     default: "01-01-0001",
     required: false,
   },
+  company: { type: Schema.Types.ObjectId, ref: "Comapny", required: false },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);

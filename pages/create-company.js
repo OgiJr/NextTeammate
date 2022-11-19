@@ -10,7 +10,7 @@ import Footer from "../src/layout/Footer";
 const CreateCompany = () => {
   const router = useRouter();
   const [error, setError] = React.useState(null);
-  const [is_admin, set_admin] = React.useState(true);
+
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
@@ -51,9 +51,38 @@ const CreateCompany = () => {
         </div>
       </div>
       <div className="flex flex-col justify-center min-w-full items-center justify-items-center">
-        <div className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8" style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}>
-          <Form>
-            <Form.Group className="mb-3" controlId="email">
+        <div
+          className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
+          style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
+        >
+          <Form
+            onSubmit={async (e) => {
+              e.preventDefault();
+
+              const name = e.target.name.value;
+              if (!name) {
+                setError("Please set a name!");
+                return;
+              }
+
+              const response = await fetch("/api/create-company", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name }),
+              });
+
+              if (response.status !== 200) {
+                const json = await response.json();
+                setError(json.message);
+                return;
+              }
+
+              router.push("/dashboard-admin");
+            }}
+          >
+            <Form.Group className="mb-3" controlId="name">
               <Form.Label>Company Name</Form.Label>
               <Form.Control type="text" />
             </Form.Group>
@@ -62,7 +91,13 @@ const CreateCompany = () => {
                 Create
               </Button>
             </div>
-            {error ? <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white">{error}</div> : <></>}
+            {error ? (
+              <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white">
+                {error}
+              </div>
+            ) : (
+              <></>
+            )}
           </Form>
         </div>
       </div>

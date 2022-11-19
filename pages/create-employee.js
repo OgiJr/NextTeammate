@@ -6,22 +6,19 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
+import { dbCompanyToCompany, dbConnect } from "../lib/db";
+import Company from "../models/Company";
 
-const CreateEmployee = () => {
+const CreateEmployee = ({ user, companies }) => {
   const router = useRouter();
   const [error, setError] = React.useState(null);
-  const [is_admin, set_admin] = React.useState(true);
+
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
-            <Image
-              src="/assets/images/nextlogowhite.png"
-              width={100}
-              height={100}
-              layout="fixed"
-            />
+            <Image src="/assets/images/nextlogowhite.png" width={100} height={100} layout="fixed" />
           </Link>
         </div>
         <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
@@ -60,9 +57,7 @@ const CreateEmployee = () => {
           className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
           style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
         >
-          <div className="text-center min-w-full text-4xl font-semibold">
-            Enter Employee Information
-          </div>
+          <div className="text-center min-w-full text-4xl font-semibold">Enter Employee Information</div>
           <Form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -70,15 +65,15 @@ const CreateEmployee = () => {
               const email = e.target.email.value;
               const first_name = e.target.first_name.value;
               const last_name = e.target.last_name.value;
-              const is_employer = false;
+              const company = e.target.company.value;
 
-              const body = { email, first_name, last_name, is_employer };
-              const bodyJSON = JSON.stringify(body);
-
-              if (!email || !first_name || !last_name) {
+              if (!email || !first_name || !last_name || !company) {
                 setError("Please fill out all fields!");
                 return;
               }
+
+              const body = { email, first_name, last_name, company };
+              const bodyJSON = JSON.stringify(body);
 
               let result;
               result = await fetch("/api/user", {
@@ -102,10 +97,17 @@ const CreateEmployee = () => {
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="john.smith@example.com" />
             </Form.Group>
-            {is_admin == true ? (
-              <Form.Group className="mb-3" controlId="email">
+            {user.is_admin ? (
+              <Form.Group className="mb-3" controlId="company">
                 <Form.Label>Company</Form.Label>
-                <Form.Control type="text" placeholder="Microsoft" />
+                <Form.Control as="select" aria-label="Company">
+                  <option value="0">No Company</option>
+                  {companies.map((c) => (
+                    <option value={c._id} key={c.name}>
+                      {c.name}
+                    </option>
+                  ))}
+                </Form.Control>
               </Form.Group>
             ) : (
               <></>
@@ -140,21 +142,37 @@ const CreateEmployee = () => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
+  const user = req.session.user;
 
-    if (!user) {
+  if (!user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+      props: {},
+    };
+  }
+
+  if (!user.is_admin) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard-user",
+      },
+      props: {},
+    };
+  } else {
+    try {
+      dbConnect();
+
+      const companies = (await Company.find()).map((c) => dbCompanyToCompany(c));
+
       return {
-        redirect: {
-          permanent: false,
-          destination: "/login",
-        },
-        props: {},
+        props: { user, companies },
       };
-    }
-
-    if (!user.is_admin) {
+    } catch {
       return {
         redirect: {
           permanent: false,
@@ -162,13 +180,8 @@ export const getServerSideProps = withIronSessionSsr(
         },
         props: {},
       };
-    } else {
-      return {
-        props: {},
-      };
     }
-  },
-  authCookie
-);
+  }
+}, authCookie);
 
 export default CreateEmployee;
