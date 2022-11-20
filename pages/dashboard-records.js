@@ -34,7 +34,15 @@ const DashboardAdmin = ({ start, end }) => {
   const isDate = (date) => new Date(date) !== "Invalid Date" && !isNaN(new Date(date));
 
   const fetcher = (url, queryParams = "") => fetch(`${url}${queryParams}`).then(async (res) => await res.json());
-  const { data } = useSWR(["/api/get-records", `?start=${isDate(start_date) ? start_date.toISOString() : new Date(0).toISOString()}&end=${isDate(end_date) ? end_date.toISOString() : new Date().toISOString()}`], fetcher);
+  const { data } = useSWR(
+    [
+      "/api/get-records",
+      `?start=${isDate(start_date) ? start_date.toISOString() : new Date(0).toISOString()}&end=${
+        isDate(end_date) ? end_date.toISOString() : new Date().toISOString()
+      }`,
+    ],
+    fetcher
+  );
 
   const renderCell = (user, columnKey) => {
     switch (columnKey) {
@@ -45,7 +53,7 @@ const DashboardAdmin = ({ start, end }) => {
           </NextUser>
         );
       case "company":
-        return <div className="font-bold">Microsoft</div>;
+        return <div className="font-bold">{user.company ? user.company.name : "Unassigned"}</div>;
       case "hoursActual":
         return user.is_assigned ? (
           <Col>
@@ -64,7 +72,11 @@ const DashboardAdmin = ({ start, end }) => {
           <></>
         );
       case "status":
-        return <StyledBadge type={user.is_assigned && user.status ? "active" : "paused"}>{user.is_assigned && user.status ? "Clocked In" : "Clocked Out"}</StyledBadge>;
+        return (
+          <StyledBadge type={user.is_assigned && user.status ? "active" : "paused"}>
+            {user.is_assigned && user.status ? "Clocked In" : "Clocked Out"}
+          </StyledBadge>
+        );
       case "salary":
         return user.is_assigned ? (
           <Col>
@@ -80,7 +92,11 @@ const DashboardAdmin = ({ start, end }) => {
           <></>
         );
       case "performance":
-        return <StyledBadge type={user.actual_work >= user.expected_work ? "active" : "paused"}>{user.actual_work >= user.expected_work ? "OK Performance" : "Underperforming"}</StyledBadge>;
+        return (
+          <StyledBadge type={user.actual_work >= user.expected_work ? "active" : "paused"}>
+            {user.actual_work >= user.expected_work ? "OK Performance" : "Underperforming"}
+          </StyledBadge>
+        );
       default:
         return <div className="font-bold"></div>;
     }
@@ -126,7 +142,11 @@ const DashboardAdmin = ({ start, end }) => {
             onChange={(e) => {
               e.preventDefault();
 
-              const new_date = new Date(parseInt(e.target.value.substring(0, 4)), parseInt(e.target.value.substring(5, 7)), parseInt(e.target.value.substring(8, 10)));
+              const new_date = new Date(
+                parseInt(e.target.value.substring(0, 4)),
+                parseInt(e.target.value.substring(5, 7)),
+                parseInt(e.target.value.substring(8, 10))
+              );
 
               if (new_date >= new Date()) {
                 return;
@@ -146,7 +166,11 @@ const DashboardAdmin = ({ start, end }) => {
             onChange={(e) => {
               e.preventDefault();
 
-              const new_date = new Date(parseInt(e.target.value.substring(0, 4)), parseInt(e.target.value.substring(5, 7)), parseInt(e.target.value.substring(8, 10)));
+              const new_date = new Date(
+                parseInt(e.target.value.substring(0, 4)),
+                parseInt(e.target.value.substring(5, 7)),
+                parseInt(e.target.value.substring(8, 10))
+              );
 
               if (new_date < start_date) {
                 return;
@@ -167,7 +191,11 @@ const DashboardAdmin = ({ start, end }) => {
       >
         <Table.Header columns={columns}>
           {(column) => (
-            <Table.Column key={column.uid} hideHeader={column.uid === "actions"} align={column.uid === "actions" ? "center" : "start"}>
+            <Table.Column
+              key={column.uid}
+              hideHeader={column.uid === "actions"}
+              align={column.uid === "actions" ? "center" : "start"}
+            >
               {column.name}
             </Table.Column>
           )}
@@ -175,7 +203,13 @@ const DashboardAdmin = ({ start, end }) => {
         {
           //Да провери дали employee-тата са в същата компания или си админ
         }
-        <Table.Body items={!data ? [] : data.data}>{(item) => <Table.Row key={item.email}>{(columnKey) => <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>}</Table.Row>}</Table.Body>
+        <Table.Body items={!data ? [] : data.data}>
+          {(item) => (
+            <Table.Row key={item.email}>
+              {(columnKey) => <Table.Cell>{renderCell(item, columnKey)}</Table.Cell>}
+            </Table.Row>
+          )}
+        </Table.Body>
       </Table>
       <Footer />
     </div>
@@ -195,7 +229,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  if (!user.is_admin) {
+  if (!user.is_admin && !user.is_employer) {
     return {
       redirect: {
         permanent: false,

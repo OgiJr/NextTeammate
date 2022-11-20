@@ -8,7 +8,6 @@ import User from "../models/User";
 import { cdnSubpath } from "../lib/cdn";
 
 const SetPicture = ({ video_url, name }) => {
-  console.log(cdnSubpath() + video_url);
   return (
     <Layout language={"en"}>
       <div className="flex flex-row justify-center min-w-full">

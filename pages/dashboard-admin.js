@@ -11,13 +11,21 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink, useModal, Modal, Text } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
-const DashboardAdmin = ({ user, employees }) => {
+const DashboardAdmin = ({ user, employees, employers }) => {
   const router = useRouter();
   const { setVisible, bindings } = useModal();
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
-      <Modal scroll blur width="600px" aria-labelledby="modal-title" preventClose aria-describedby="modal-description" {...bindings}>
+      <Modal
+        scroll
+        blur
+        width="600px"
+        aria-labelledby="modal-title"
+        preventClose
+        aria-describedby="modal-description"
+        {...bindings}
+      >
         <Modal.Header>
           <Text id="modal-title" className="font-bold" size={18}>
             Are you sure you want to delete this user?
@@ -28,7 +36,15 @@ const DashboardAdmin = ({ user, employees }) => {
             <NextButton color="error" shadow auto rounded className="px-4 min-w-[25%] mr-2">
               Confirm
             </NextButton>
-            <NextButton color="success" shadow auto rounded href="/" className="px-4 min-w-[25%] ml-2" onClick={() => setVisible(false)}>
+            <NextButton
+              color="success"
+              shadow
+              auto
+              rounded
+              href="/"
+              className="px-4 min-w-[25%] ml-2"
+              onClick={() => setVisible(false)}
+            >
               Close
             </NextButton>
           </div>
@@ -98,7 +114,12 @@ const DashboardAdmin = ({ user, employees }) => {
         <Card isPressable isHoverable className="mt-3">
           <Card.Body>
             <div className="flex flex-col self-center">
-              <img src={user.has_picture ? `${cdnSubpath()}/${user.picture}` : "/assets/images/no-user.png"} width={150} height={150} className="self-center rounded-full" />
+              <img
+                src={user.has_picture ? `${cdnSubpath()}/${user.picture}` : "/assets/images/no-user.png"}
+                width={150}
+                height={150}
+                className="self-center rounded-full"
+              />
               <div className=" text-4xl text-center">{user.first_name + " " + user.last_name}</div>
               <div className="flex flex-row mt-2">
                 <NextLink href="/edit-user">
@@ -119,24 +140,36 @@ const DashboardAdmin = ({ user, employees }) => {
       <div className="flex flex-col mt-4">
         <div className="text-center text-3xl font-bold">Employers</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
-          {employees.length === 0 ? (
+          {employers.length === 0 ? (
             <div className="text-center text-3xl">No Employees Yet.</div>
           ) : (
             <>
-              {employees.map((e) => {
+              {employers.map((e) => {
                 return (
                   <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
-                          <img src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"} width={150} height={150} className="rounded-full" />
+                          <img
+                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                            width={150}
+                            height={150}
+                            className="rounded-full"
+                          />
                         </div>
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        <div className="self-center text-black font-bold text-lg">Microsoft</div>
+                        <div className="self-center text-black font-bold text-lg">
+                          {e.company ? e.company.name : "No Company Assigned"}
+                        </div>
                         <div className="text-center text-md text-gray-800">{e.email}</div>
                         <div className="text-center text-md text-gray-500">{e.bio}</div>
+                        {!e.has_password ? (
+                          <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                        ) : (
+                          <></>
+                        )}
                       </Card.Body>
                     </Card>
                   </div>
@@ -154,18 +187,29 @@ const DashboardAdmin = ({ user, employees }) => {
           ) : (
             <>
               {employees.map((e) => {
-                const is_setup = e.work_data && e.work_data.currency && e.work_data.expected_hours_weekly && e.work_data.current_price_per_hour;
+                const is_setup =
+                  e.work_data &&
+                  e.work_data.currency &&
+                  e.work_data.expected_hours_weekly &&
+                  e.work_data.current_price_per_hour;
                 return (
                   <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
-                          <img src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"} width={150} height={150} className="rounded-full" />
+                          <img
+                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                            width={150}
+                            height={150}
+                            className="rounded-full"
+                          />
                         </div>
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        <div className="self-center text-black font-bold text-lg">Microsoft</div>
+                        <div className="self-center text-black font-bold text-lg">
+                          {e.company ? e.company.name : "No Company Assigned"}
+                        </div>
                         <div className="text-center text-md text-gray-800">{e.email}</div>
                         {is_setup ? (
                           <div className="text-center text-md text-gray-800">
@@ -180,15 +224,47 @@ const DashboardAdmin = ({ user, employees }) => {
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (
                           <div className="flex flex-col justify-center gap-2 mt-2">
-                            <NextButton disabled={!e.has_video} color="gradient" shadow auto rounded className="px-4 min-w-[25%] mr-2 self-center" onClick={() => router.push(`/view-video?id=${e._id}`)}>
+                            <NextButton
+                              disabled={!e.has_video}
+                              color="gradient"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center"
+                              onClick={() => router.push(`/view-video?id=${e._id}`)}
+                            >
                               Play Video
                             </NextButton>
                             <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
-                              <NextButton color="success" shadow auto rounded className="px-4 min-w-[25%] mr-2 self-center">
+                              <NextButton
+                                color="success"
+                                shadow
+                                auto
+                                rounded
+                                className="px-4 min-w-[25%] mr-2 self-center"
+                              >
                                 Edit Account
                               </NextButton>
                             </NextLink>
-                            <NextButton color="error" shadow auto rounded className="px-4 min-w-[25%] mr-2 self-center" onClick={() => setVisible(true)}>
+                            <NextLink href={`/edit-company?email=${e.email}`} className="self-center">
+                              <NextButton
+                                color="warning"
+                                shadow
+                                auto
+                                rounded
+                                className="px-4 min-w-[25%] mr-2 self-center"
+                              >
+                                Edit Company
+                              </NextButton>
+                            </NextLink>
+                            <NextButton
+                              color="error"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center"
+                              onClick={() => setVisible(true)}
+                            >
                               Delete User
                             </NextButton>
                           </div>
@@ -230,13 +306,19 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  let result = await User.find({ is_admin: false });
-  let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
+  let employees_db = await User.find({ is_admin: false, is_employer: false });
+  let employers_db = await User.find({ is_admin: false, is_employer: true });
+
+  let employees = await Promise.all(employees_db.map(async (e) => await dbUserToIronUser(e)));
+  let employers = await Promise.all(employers_db.map(async (e) => await dbUserToIronUser(e)));
+
+  console.log(employees, employers);
 
   return {
     props: {
       user,
       employees,
+      employers,
     },
   };
 }, authCookie);

@@ -5,11 +5,10 @@ import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
 import { dbCompanyToCompany, dbConnect, dbUserToIronUser } from "../lib/db";
 import User from "../models/User";
-import { codes } from "currency-codes";
 import Company from "../models/Company";
 import { useRouter } from "next/router";
 
-const EditHours = ({ editable }) => {
+const EditCompany = ({ editable, companies }) => {
   const [error, setError] = React.useState(null);
   const router = useRouter();
 
@@ -55,25 +54,21 @@ const EditHours = ({ editable }) => {
           className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
           style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
         >
-          <div className="text-center min-w-full text-4xl font-semibold">Edit User Hours</div>
+          <div className="text-center min-w-full text-4xl font-semibold">Edit User Company</div>
           <Form
             onSubmit={async (e) => {
               e.preventDefault();
 
-              const expected_hours_weekly = e.target.expected_hours_weekly?.value;
-              const current_price_per_hour = e.target.current_price_per_hour?.value;
-              const currency = e.target.currency?.value;
+              const company = e.target.company.value;
 
               const body = {
                 email: editable.email,
-                expected_hours_weekly,
-                current_price_per_hour,
-                currency,
+                company,
               };
               const bodyJSON = JSON.stringify(body);
 
               let result;
-              result = await fetch("/api/set-work", {
+              result = await fetch("/api/set-company", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: bodyJSON,
@@ -88,25 +83,15 @@ const EditHours = ({ editable }) => {
               router.push("/dashboard-redirector");
             }}
           >
-            <Form.Group className="my-3" controlId="expected_hours_weekly">
-              <Form.Label>Expected Hours Per Week</Form.Label>
-              <Form.Control type="numer" placeholder={editable.work_data.expected_hours_weekly} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="current_price_per_hour">
-              <Form.Label>Price per Hour</Form.Label>
-              <Form.Control type="text" placeholder={editable.work_data.current_price_per_hour} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="currency">
-              <Form.Label>Currency</Form.Label>
+            <Form.Group className="mb-3" controlId="company">
+              <Form.Label>Company</Form.Label>
               <Form.Control as="select">
-                <option>{editable.work_data.currency}</option>
-                {[...codes()]
-                  .filter((item) => item != editable.work_data.currency)
-                  .map((value) => (
-                    <option key={value}>{value}</option>
-                  ))}
+                <option value="0">No Company</option>
+                {companies.map((value) => (
+                  <option key={value._id} value={value._id}>
+                    {value.name}
+                  </option>
+                ))}
               </Form.Control>
             </Form.Group>
 
@@ -184,4 +169,4 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 }, authCookie);
 
-export default EditHours;
+export default EditCompany;

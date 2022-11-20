@@ -8,7 +8,9 @@ const Dashboard = () => {
 
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
   const user = req.session.user;
+  console.log(user);
 
+  // if not logged in
   if (!user) {
     return {
       redirect: {
@@ -19,6 +21,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
+  // if admin
   if (user.is_admin) {
     return {
       redirect: {
@@ -27,25 +30,37 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       },
       props: {},
     };
-  } else {
-    if (!user.has_picture) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/set-picture",
-        },
-        props: {},
-      };
-    }
+  }
 
+  // if employer or employee and no picture
+  if (!user.has_picture) {
     return {
       redirect: {
         permanent: false,
-        destination: "/dashboard-user",
+        destination: "/set-picture",
       },
       props: {},
     };
   }
+
+  // if employer
+  if (user.is_employer) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard-employer",
+      },
+    };
+  }
+
+  // if user
+  return {
+    redirect: {
+      permanent: false,
+      destination: "/dashboard-user",
+    },
+    props: {},
+  };
 }, authCookie);
 
 export default Dashboard;

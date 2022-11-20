@@ -20,6 +20,7 @@ const userSchema = Schema({
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Please insert a valid email!"],
   },
   is_admin: { type: Schema.Types.Boolean, default: false, required: true },
+  is_employer: { type: Schema.Types.Boolean, deafult: false, required: true },
   gender: { type: Schema.Types.String, enum: ["m", "f"], required: false },
   password_hash: {
     type: Schema.Types.String,

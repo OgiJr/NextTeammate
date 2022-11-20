@@ -1,6 +1,6 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
-import { isAdmin, isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
+import { isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
 import { dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import { cdnSubpath } from "../../lib/cdn";
@@ -10,7 +10,6 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   try {
     isSupportedMethod(req, res, ["GET"]);
     isLoggedIn(req, res);
-    isAdmin(req, res);
     reqBody = reqBodyParse(req, res, ["start", "end"]);
   } catch (e) {
     return;
@@ -27,7 +26,19 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   try {
     await dbConnect();
 
-    const allUsers = await User.find({ is_admin: false });
+    let allUsers;
+
+    const user = req.session.user;
+
+    if (user.is_admin) {
+      allUsers = await User.find({ is_admin: false, is_employer: false });
+    } else if (user.is_employer) {
+      allUsers = await User.find({ is_admin: false, is_employer: false, company: user.company._id });
+    } else {
+      res.status(200).json({});
+      return;
+    }
+
     if (!allUsers || allUsers.lenght == 0) {
       res.status(200).json({});
       return;
@@ -90,6 +101,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
         actual_work: actual_work.toFixed(2),
         expected_work: ((u.work_data.expected_hours_weekly / 7) * days).toFixed(2),
         salaries,
+        company: u.company,
       };
     });
 

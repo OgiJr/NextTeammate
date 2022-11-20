@@ -20,10 +20,15 @@ const post = async (req, res) => {
 
   const { first_name, last_name, email, company } = reqBody;
   const password_generation_key = uuidv4();
-  const link = `${process.env.URI}/set-password?password_generation_key=${password_generation_key}&email=${email}`;
 
   try {
     await dbConnect();
+
+    const existing = await User.findOne({ email });
+    if (existing) {
+      res.status(400).json({ message: "User already exists!" });
+      return;
+    }
 
     if (company === 0 || company === "0" || !company) {
       await User.create({
@@ -31,6 +36,7 @@ const post = async (req, res) => {
         last_name,
         email,
         password_generation_key,
+        is_employer: false,
       });
     } else {
       const company_id = await Company.find({ _id: company });
@@ -45,13 +51,23 @@ const post = async (req, res) => {
         email,
         password_generation_key,
         company: company,
+        is_employer: false,
       });
     }
+
+    const link =
+      (process.env.NEXT_PUBLIC_IS_DEV === "TRUE"
+        ? "http://localhost:3000"
+        : "https://" + process.env.NEXT_PUBLIC_DOMAIN) +
+      "/set-password?password_generation_key=" +
+      password_generation_key +
+      "&email=" +
+      email;
 
     send(
       email,
       "NextTeamMate - Set Password",
-      `Hi ${first_name},\nYour NextTeamMate account has been created.\nPlease set your password here: ${process.env.URI}/set-password/${password_generation_key}.`,
+      `Hi ${first_name},\nYour NextTeamMate account has been created.\nPlease set your password here: ${link}.`,
       `Hi ${first_name},<br/>Your NextTeamMate account has been created.<br/>Please set your password <a href="${link}">here</a>.`
     );
   } catch (e) {

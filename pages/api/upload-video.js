@@ -54,8 +54,6 @@ export default withIronSessionApiRoute(async function sendPictureRoute(req, res)
     return;
   }
 
-  console.log(file);
-
   try {
     await dbConnect();
 

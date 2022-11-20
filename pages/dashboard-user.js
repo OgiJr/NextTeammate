@@ -272,46 +272,46 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  if (user.is_admin) {
+  if (user.is_admin || user.is_employer) {
     return {
       redirect: {
         permanent: false,
-        destination: "/dashboard-admin",
+        destination: "/dashboard-redirector",
       },
       props: {},
     };
-  } else {
-    try {
-      dbConnect();
+  }
 
-      const newUser = await User.findOne({ email: user.email });
-      req.session.user = await dbUserToIronUser(newUser);
-      await req.session.save();
+  try {
+    dbConnect();
 
-      const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
-        await getIronUserWorkStats(req.session.user);
+    const newUser = await User.findOne({ email: user.email });
+    req.session.user = await dbUserToIronUser(newUser);
+    await req.session.save();
 
-      return {
-        props: {
-          user: req.session.user,
-          is_assigned: isIronUserAssigned(req.session.user),
-          is_working: isIronUserWorking(req.session.user),
-          work_hours_this_week,
-          work_hours_this_month,
-          average_hours_per_week,
-          projected_salary,
-        },
-      };
-    } catch (e) {
-      return {
-        props: {
-          user,
-          is_working: isIronUserWorking(user),
-          work_hours_this_week: "Error",
-          work_hours_this_month: "Error",
-        },
-      };
-    }
+    const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
+      await getIronUserWorkStats(req.session.user);
+
+    return {
+      props: {
+        user: req.session.user,
+        is_assigned: isIronUserAssigned(req.session.user),
+        is_working: isIronUserWorking(req.session.user),
+        work_hours_this_week,
+        work_hours_this_month,
+        average_hours_per_week,
+        projected_salary,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        user,
+        is_working: isIronUserWorking(user),
+        work_hours_this_week: "Error",
+        work_hours_this_month: "Error",
+      },
+    };
   }
 }, authCookie);
 

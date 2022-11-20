@@ -4,6 +4,7 @@ import WorkData from "../../models/WorkData";
 import { isAdmin, isLoggedIn, isSupportedMethod } from "../../lib/validation";
 import { dbConnect, isDbUserWorking } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
+import Company from "../../models/Company";
 
 export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
@@ -20,7 +21,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     await dbConnect();
 
     user = await User.findOne({ email });
-    if (!user || user.is_admin) {
+    if (!user || user.is_admin || user.is_employer) {
       res.status(401).json({ message: "No such user!" });
       return;
     }
@@ -48,7 +49,17 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     counter++;
   }
 
-  if (!counter) {
+  if (req.body.company !== "0") {
+    const company_id = await Company.find({ _id: req.body.company });
+    if (!company_id) {
+      res.status(400).json({ message: "No such company exists!" });
+      return;
+    }
+
+    await User.findOneAndUpdate({ _id: user._id }, { company: req.body.company });
+  }
+
+  if (!counter && req.body.company !== 0) {
     res.status(401).json({ message: "You must change something!" });
     return;
   }
