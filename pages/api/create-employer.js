@@ -65,8 +65,6 @@ const post = async (req, res) => {
       return;
     }
 
-    console.log(e);
-
     res.status(400).json({ message: e.message });
     return;
   }

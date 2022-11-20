@@ -14,6 +14,7 @@ import { cdnSubpath } from "../lib/cdn";
 const DashboardAdmin = ({ user, employees, employers }) => {
   const router = useRouter();
   const { setVisible, bindings } = useModal();
+  const [tbd, settbd] = React.useState(null);
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -33,7 +34,20 @@ const DashboardAdmin = ({ user, employees, employers }) => {
         </Modal.Header>
         <Modal.Body>
           <div className=" self-center flex flex-row">
-            <NextButton color="error" shadow auto rounded className="px-4 min-w-[25%] mr-2">
+            <NextButton
+              color="error"
+              shadow
+              auto
+              rounded
+              className="px-4 min-w-[25%] mr-2"
+              onClick={async () => {
+                await fetch("/api/user?_id=" + tbd, {
+                  method: "DELETE",
+                });
+                setVisible(false);
+                router.reload();
+              }}
+            >
               Confirm
             </NextButton>
             <NextButton
@@ -263,7 +277,10 @@ const DashboardAdmin = ({ user, employees, employers }) => {
                               auto
                               rounded
                               className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => setVisible(true)}
+                              onClick={() => {
+                                setVisible(true);
+                                settbd(e._id);
+                              }}
                             >
                               Delete User
                             </NextButton>
@@ -311,8 +328,6 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
 
   let employees = await Promise.all(employees_db.map(async (e) => await dbUserToIronUser(e)));
   let employers = await Promise.all(employers_db.map(async (e) => await dbUserToIronUser(e)));
-
-  console.log(employees, employers);
 
   return {
     props: {

@@ -8,7 +8,6 @@ const Dashboard = () => {
 
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
   const user = req.session.user;
-  console.log(user);
 
   // if not logged in
   if (!user) {

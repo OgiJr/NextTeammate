@@ -18,8 +18,6 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   const email = req.body.email;
   let user;
 
-  console.log(req.body);
-
   try {
     await dbConnect();
 
