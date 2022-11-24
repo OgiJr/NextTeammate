@@ -231,7 +231,7 @@ const DashboardUser = ({
                   >
                     Upload Video
                   </Button>
-                  {user.has_video || 1 ? (
+                  {user.has_video ? (
                     <Button
                       variant="dark"
                       className="px-4 w-[25%]"
