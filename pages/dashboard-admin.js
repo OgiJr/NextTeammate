@@ -184,6 +184,19 @@ const DashboardAdmin = ({ user, employees, employers }) => {
                         ) : (
                           <></>
                         )}
+                        <NextButton
+                          color="error"
+                          shadow
+                          auto
+                          rounded
+                          className="px-4 min-w-[25%] mr-2 self-center"
+                          onClick={() => {
+                            setVisible(true);
+                            settbd(e._id);
+                          }}
+                        >
+                          Delete User
+                        </NextButton>
                       </Card.Body>
                     </Card>
                   </div>
@@ -271,21 +284,21 @@ const DashboardAdmin = ({ user, employees, employers }) => {
                                 Edit Company
                               </NextButton>
                             </NextLink>
-                            <NextButton
-                              color="error"
-                              shadow
-                              auto
-                              rounded
-                              className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => {
-                                setVisible(true);
-                                settbd(e._id);
-                              }}
-                            >
-                              Delete User
-                            </NextButton>
                           </div>
                         )}
+                        <NextButton
+                          color="error"
+                          shadow
+                          auto
+                          rounded
+                          className="px-4 min-w-[25%] mr-2 self-center"
+                          onClick={() => {
+                            setVisible(true);
+                            settbd(e._id);
+                          }}
+                        >
+                          Delete User
+                        </NextButton>
                       </Card.Body>
                     </Card>
                   </div>

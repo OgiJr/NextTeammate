@@ -53,8 +53,6 @@ const post = async (req, res) => {
       "&email=" +
       email;
 
-    console.log(link, process.env.NEXT_PUBLIC_DOMAIN, process.env.NEXT_PUBLIC_IS_DEV);
-
     send(
       email,
       "NextTeamMate - Set Password",
