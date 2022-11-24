@@ -10,7 +10,7 @@ import { authCookie } from "../../lib/cookies";
 const post = async (req, res) => {
   let reqBody;
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "company"]);
     validateEmail(reqBody.email, res);
   } catch {

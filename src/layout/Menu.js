@@ -19,9 +19,7 @@ export const HomeMenu = ({ language }) => (
 export const PageMenu = ({ language }) => (
   <Fragment>
     <li className="menu-item">
-      <Link href={language == "en" ? "/about" : "about-bg"}>
-        {language == "en" ? "About" : "Кои сме ние"}
-      </Link>
+      <Link href={language == "en" ? "/about" : "about-bg"}>{language == "en" ? "About" : "Кои сме ние"}</Link>
     </li>
     <li className="menu-item">
       <Link href={language == "en" ? "/tc" : "tc-bg"}>
@@ -31,13 +29,4 @@ export const PageMenu = ({ language }) => (
   </Fragment>
 );
 
-export const LanguageMenu = () => (
-  <Fragment>
-    <li className="menu-item">
-      <Link href="/">English</Link>
-    </li>
-    <li className="menu-item">
-      <Link href="/index-bg">Български</Link>
-    </li>
-  </Fragment>
-);
+export const LanguageMenu = () => <></>;

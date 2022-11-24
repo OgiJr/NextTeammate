@@ -1,11 +1,7 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import Chat from "../../models/Chat";
-import {
-  isLoggedIn,
-  isSupportedMethod,
-  reqBodyParse,
-} from "../../lib/validation";
+import { isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
 import { dbChatToChat, dbConnect } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import rateLimit from "../../lib/rateLimit";
@@ -19,7 +15,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
   let reqQuery;
   try {
     isSupportedMethod(req, res, ["GET"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     reqQuery = reqBodyParse(req, res, ["sender", "receiver"]);
   } catch (e) {
     return;
@@ -70,9 +66,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
       }
 
       const chats = await Chat.find({ timestamp: { $lte: new Date(to) } });
-      res
-        .status(200)
-        .json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
+      res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
       return;
     } else {
       const { to } = req.query;
@@ -87,9 +81,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
       const chats = await Chat.find({
         timestamp: { $gte: new Date(from), $lte: new Date(to) },
       });
-      res
-        .status(200)
-        .json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
+      res.status(200).json({ chats: await Promise.all(chats.map((c) => dbChatToChat(c))) });
       return;
     }
   } catch (e) {

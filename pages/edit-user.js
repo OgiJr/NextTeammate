@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
+import { isUserEmailInDb } from "../lib/db";
 
 const EditUser = ({ user }) => {
   const [error, setError] = React.useState(null);
@@ -18,9 +19,7 @@ const EditUser = ({ user }) => {
             className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
             style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
           >
-            <div className="text-center min-w-full text-4xl font-semibold">
-              Edit User Details
-            </div>
+            <div className="text-center min-w-full text-4xl font-semibold">Edit User Details</div>
             <Form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -81,11 +80,7 @@ const EditUser = ({ user }) => {
                 <Form.Control
                   as="textarea"
                   rows="3"
-                  placeholder={
-                    user.bio
-                      ? user.bio
-                      : "Example: SEO expert with experience in..."
-                  }
+                  placeholder={user.bio ? user.bio : "Example: SEO expert with experience in..."}
                 />
               </Form.Group>
 
@@ -115,25 +110,32 @@ const EditUser = ({ user }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
+  const user = req.session.user;
 
-    if (!user) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/login",
-        },
-        props: {},
-      };
-    }
-
+  if (!user) {
     return {
-      props: { user },
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+      props: {},
     };
-  },
-  authCookie
-);
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
+  return {
+    props: { user },
+  };
+}, authCookie);
 
 export default EditUser;

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
+import { isUserEmailInDb } from "../lib/db";
 import Footer from "../src/layout/Footer";
 
 const CreateCompany = () => {
@@ -116,6 +117,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 

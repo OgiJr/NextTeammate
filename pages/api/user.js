@@ -12,7 +12,7 @@ import { authCookie } from "../../lib/cookies";
 
 const del = async (req, res) => {
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     isAdmin(req, res);
   } catch {
     return;
@@ -41,7 +41,7 @@ const del = async (req, res) => {
 const post = async (req, res) => {
   let reqBody;
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     isAdmin(req, res);
     reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "company"]);
     validateEmail(reqBody.email, res);
@@ -116,7 +116,7 @@ const post = async (req, res) => {
 
 const get = async (req, res) => {
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
   } catch {
     return;
   }
@@ -138,7 +138,7 @@ const get = async (req, res) => {
 
 const put = async (req, res) => {
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     if (req.body.email && req.body.email !== "") {
       validateEmail(req.body.email);
     }

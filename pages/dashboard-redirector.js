@@ -1,6 +1,7 @@
 import { withIronSessionSsr } from "iron-session/next";
 import React from "react";
 import { authCookie } from "../lib/cookies";
+import { isUserEmailInDb } from "../lib/db";
 
 const Dashboard = () => {
   return <></>;
@@ -17,6 +18,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 

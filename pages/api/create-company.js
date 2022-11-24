@@ -8,7 +8,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["POST"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     isAdmin(req, res);
     reqBody = reqBodyParse(req, res, ["name"]);
   } catch (e) {

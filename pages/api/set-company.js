@@ -9,7 +9,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
     isSupportedMethod(req, res, ["POST"]);
     reqBodyParse(req, res, ["company", "email"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     isAdmin(req, res);
   } catch (e) {
     return;

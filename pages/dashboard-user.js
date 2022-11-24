@@ -6,7 +6,14 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Image from "next/image";
-import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserAssigned, isIronUserWorking } from "../lib/db";
+import {
+  dbConnect,
+  dbUserToIronUser,
+  getIronUserWorkStats,
+  isIronUserAssigned,
+  isIronUserWorking,
+  isUserEmailInDb,
+} from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
@@ -269,6 +276,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 

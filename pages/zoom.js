@@ -8,7 +8,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isIronUserWorking } from "../lib/db";
+import { dbUserToIronUser, isIronUserWorking, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import { Popover, Button as NextButton, Text, Loading, User as NextUser } from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
@@ -432,6 +432,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 

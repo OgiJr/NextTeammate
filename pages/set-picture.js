@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
+import { isUserEmailInDb } from "../lib/db";
 
 const SetPicture = () => {
   const [error, setError] = React.useState(null);
@@ -83,6 +84,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 

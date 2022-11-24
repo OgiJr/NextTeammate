@@ -11,7 +11,7 @@ import { gunzipSync } from "zlib";
 export default withIronSessionApiRoute(async function sendMessage(req, res) {
   try {
     isSupportedMethod(req, res, ["GET"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
   } catch (e) {
     return;
   }

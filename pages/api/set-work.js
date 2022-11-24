@@ -9,7 +9,7 @@ import Company from "../../models/Company";
 export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
     isSupportedMethod(req, res, ["POST"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     isAdmin(req, res);
   } catch (e) {
     return;

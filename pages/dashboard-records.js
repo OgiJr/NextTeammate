@@ -10,6 +10,7 @@ import Footer from "../src/layout/Footer";
 import { Col, Text, Row, User as NextUser, Table, Input } from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 import useSWR, { useSWRConfig } from "swr";
+import { isUserEmailInDb } from "../lib/db";
 
 const DashboardAdmin = ({ start, end }) => {
   const router = useRouter();
@@ -226,6 +227,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 
