@@ -5,6 +5,7 @@ import { authCookie } from "../lib/cookies";
 import { generate } from "../lib/jwt";
 import { v4 as uuidv4 } from "uuid";
 import { readFileSync } from "fs";
+import { isUserEmailInDb } from "../lib/db";
 
 const Zoom = ({ room_name, token }) => {
   return (
@@ -34,6 +35,15 @@ const Zoom = ({ room_name, token }) => {
 
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req, query }) {
   const user = req.session.user;
+
+  if (!isUserEmailInDb(user.email)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
 
   if (!user) {
     return {

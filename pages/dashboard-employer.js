@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser } from "../lib/db";
+import { dbUserToIronUser, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
@@ -252,6 +252,15 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
 
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
   const user = req.session.user;
+
+  if (!isUserEmailInDb(user.email)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
 
   if (!user) {
     return {
