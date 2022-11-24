@@ -168,7 +168,7 @@ const DashboardUser = ({
                       <i className="icon fal fa-calendar-week" />
                       <div className="text">
                         <h6 className="mb-0">Average hours per week</h6>
-                        <p className="mb-0">{average_hours_per_week}</p>
+                        <p className="mb-0">{isNaN(average_hours_per_week) ? average_hours_per_week : "NA"}</p>
                       </div>
                     </li>
                     <li>
@@ -224,7 +224,7 @@ const DashboardUser = ({
                 <div className="flex flex-row items-center justify-center gap-4 justify-items-center mx-auto">
                   <Button
                     variant="dark"
-                    className="px-4 mt-4"
+                    className="px-4 w-[25%]"
                     onClick={async () => {
                       setIsModalOpen(true);
                     }}
@@ -234,7 +234,7 @@ const DashboardUser = ({
                   {user.has_video || 1 ? (
                     <Button
                       variant="dark"
-                      className="px-4 mt-4"
+                      className="px-4 w-[25%]"
                       onClick={() => router.push(`/view-video?id=${user._id}`)}
                     >
                       View Video
@@ -242,10 +242,10 @@ const DashboardUser = ({
                   ) : (
                     <></>
                   )}
-                  <Button variant="dark" className="px-4 min-w-[25%]" onClick={() => router.push("/edit-user")}>
+                  <Button variant="dark" className="px-4 w-[25%]" onClick={() => router.push("/edit-user")}>
                     Edit Account
                   </Button>
-                  <Button variant="dark" className="px-4 min-w-[25%]" onClick={() => router.push("/set-picture")}>
+                  <Button variant="dark" className="px-4 w-[25%]" onClick={() => router.push("/set-picture")}>
                     Change Picture
                   </Button>
                 </div>
