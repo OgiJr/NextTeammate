@@ -32,14 +32,6 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
             Records
           </Button>
           <Button
-            className="thm-btn bg-violet-900 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
-            onClick={() => {
-              router.push("/create-employer");
-            }}
-          >
-            Add Employer
-          </Button>
-          <Button
             className="thm-btn bg-thm-color-four thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             onClick={() => {
               router.push("/zoom");
