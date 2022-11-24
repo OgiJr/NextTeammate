@@ -244,7 +244,7 @@ const DashboardUser = ({
                 ) : (
                   <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
                 )}
-                <div className="flex flex-row items-center justify-center gap-4">
+                <div className="flex flex-row items-center justify-center gap-4 justify-items-center mx-auto">
                   <Link href="/edit-user">
                     <Button variant="dark" className="px-4 min-w-[25%]">
                       Edit Account
