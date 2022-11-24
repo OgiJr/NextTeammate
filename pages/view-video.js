@@ -63,16 +63,6 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  if (!user.is_admin && query.id !== user._id) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: "/",
-      },
-      props: {},
-    };
-  }
-
   dbConnect();
   const video_user = await User.findOne({ _id: query.id });
   if (!video_user || !video_user.video) {

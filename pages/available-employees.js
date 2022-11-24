@@ -103,8 +103,6 @@ const AvailableEmployees = ({ others }) => {
                               onClick={() => router.push(`/view-video?id=${e._id}`)}
                             >
                               Play Video
-                              <br />
-                              {`/view-video?id=${e._id}`}
                             </NextButton>
                             <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
                               <NextButton
