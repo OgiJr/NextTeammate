@@ -2,7 +2,7 @@ import { dbConnect } from "../../lib/db";
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import Company from "../../models/Company";
-import { isLoggedIn, reqBodyParse, validateEmail } from "../../lib/validation";
+import { isAdmin, isLoggedIn, reqBodyParse, validateEmail } from "../../lib/validation";
 import { v4 as uuidv4 } from "uuid";
 import { send } from "../../lib/email";
 import { authCookie } from "../../lib/cookies";
@@ -11,6 +11,7 @@ const post = async (req, res) => {
   let reqBody;
   try {
     await isLoggedIn(req, res);
+    isAdmin(req, res);
     reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "company"]);
     validateEmail(reqBody.email, res);
   } catch {

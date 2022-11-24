@@ -224,11 +224,11 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  if (!user.is_admin && !user.is_employer) {
+  if (!user.is_admin) {
     return {
       redirect: {
         permanent: false,
-        destination: "/dashboard-user",
+        destination: "/dashboard-redirector",
       },
       props: {},
     };
