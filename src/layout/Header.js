@@ -1,18 +1,12 @@
 import Link from "next/dist/client/link";
 import { Fragment, useEffect } from "react";
 import { stickyNav } from "../utils";
-import { HomeMenu, LanguageMenu, PageMenu } from "./Menu";
+import { HomeMenu, PageMenu } from "./Menu";
 import { LogButton } from "./LogButton";
 
 import React from "react";
 
-const Header = ({
-  openMobileMenu,
-  sticky,
-  headerStyle,
-  absolute,
-  language,
-}) => {
+const Header = ({ openMobileMenu, sticky, headerStyle, absolute, language }) => {
   useEffect(() => {
     window.addEventListener("scroll", stickyNav);
   });
@@ -32,19 +26,13 @@ const Header = ({
                 <div className="logo">
                   <Link href={language == "en" ? "/" : "index-bg"}>
                     <a>
-                      <img
-                        src="assets/images/nextlogo.png"
-                        alt="logo"
-                        className="header-image"
-                      />
+                      <img src="assets/images/nextlogo.png" alt="logo" className="header-image" />
                     </a>
                   </Link>
                 </div>
                 <ul className="main-menu">
                   <li className="menu-item">
-                    <a href={language == "en" ? "/" : "/index-bg"}>
-                      {language == "en" ? "Home" : "Начало"}
-                    </a>
+                    <a href={language == "en" ? "/" : "/index-bg"}>{language == "en" ? "Home" : "Начало"}</a>
                   </li>
                   <li className="menu-item menu-item-has-children">
                     <a href="#">{language == "en" ? "Services" : "Услуги"}</a>
@@ -63,21 +51,11 @@ const Header = ({
                       {language == "en" ? "Contacts" : "Контакти"}
                     </a>
                   </li>
-                  <li className="menu-item menu-item-has-children">
-                    <a href="#">{language == "en" ? "Language" : "Език"}</a>
-                    <ul className="sub-menu">
-                      <LanguageMenu />
-                    </ul>
-                  </li>
                 </ul>
                 <div className="head_actions">
                   <LogButton language={language} />
 
-                  <button
-                    type="button"
-                    className="head_trigger mobile_trigger"
-                    onClick={() => openMobileMenu()}
-                  >
+                  <button type="button" className="head_trigger mobile_trigger" onClick={() => openMobileMenu()}>
                     <span />
                     <span />
                     <span />
