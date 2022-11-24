@@ -446,7 +446,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  let result = await User.find({ email: { $ne: user.email } });
+  let result = [];
+  if (user.is_admin) {
+    result = await User.find({ email: { $ne: user.email } });
+  } else {
+    if (user.has_company) {
+      result = await User.find({ email: { $ne: user.email }, $or: [{ company: user.company }, { is_admin: true }] });
+    } else {
+      result = await User.find({ email: { $ne: user.email }, is_admin: true });
+    }
+  }
   let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
   employees = employees.map((e) => {
     return { ...e, is_working: isIronUserWorking(e) };
