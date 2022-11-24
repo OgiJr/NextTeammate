@@ -11,7 +11,7 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
-const AvailableEmployees = ({ user, others }) => {
+const AvailableEmployees = ({ others }) => {
   const router = useRouter();
 
   return (
@@ -93,6 +93,17 @@ const AvailableEmployees = ({ user, others }) => {
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (
                           <div className="flex flex-col justify-center gap-2 mt-2">
+                            <NextButton
+                              disabled={!e.has_video}
+                              color="gradient"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center"
+                              onClick={() => router.push(`/view-video?id=${e._id}`)}
+                            >
+                              Play Video
+                            </NextButton>
                             <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
                               <NextButton
                                 color="success"
