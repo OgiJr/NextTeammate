@@ -238,24 +238,24 @@ const DashboardUser = ({
                         </div>
                       </div>
 
-                      <div className="flex flex-row items-center justify-center gap-4">
-                        <Link href="/edit-user">
-                          <Button variant="dark" className="px-4 min-w-[25%]">
-                            Edit Account
-                          </Button>
-                        </Link>
-                        <Link href="/set-picture">
-                          <Button variant="dark" className="px-4 min-w-[25%]">
-                            Change Picture
-                          </Button>
-                        </Link>
-                      </div>
                       <span>* This is a projection based on estimates and past performance, not a promise.</span>
                     </div>
                   </ul>
                 ) : (
                   <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
                 )}
+                <div className="flex flex-row items-center justify-center gap-4">
+                  <Link href="/edit-user">
+                    <Button variant="dark" className="px-4 min-w-[25%]">
+                      Edit Account
+                    </Button>
+                  </Link>
+                  <Link href="/set-picture">
+                    <Button variant="dark" className="px-4 min-w-[25%]">
+                      Change Picture
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
