@@ -253,6 +253,7 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
   const user = req.session.user;
 
+  console.log(user);
   if (!isUserEmailInDb(user.email)) {
     console.log("CUM");
     req.session.destroy();
