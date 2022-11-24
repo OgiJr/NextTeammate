@@ -254,6 +254,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   const user = req.session.user;
 
   if (!isUserEmailInDb(user.email)) {
+    req.session.destroy();
     return {
       redirect: {
         permanent: false,
