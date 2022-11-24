@@ -242,16 +242,12 @@ const DashboardUser = ({
                   ) : (
                     <></>
                   )}
-                  <Link href="/edit-user">
-                    <Button variant="dark" className="px-4 min-w-[25%]">
-                      Edit Account
-                    </Button>
-                  </Link>
-                  <Link href="/set-picture">
-                    <Button variant="dark" className="px-4 min-w-[25%]">
-                      Change Picture
-                    </Button>
-                  </Link>
+                  <Button variant="dark" className="px-4 min-w-[25%]" onClick={() => router.push("/edit-user")}>
+                    Edit Account
+                  </Button>
+                  <Button variant="dark" className="px-4 min-w-[25%]" onClick={() => router.push("/set-picture")}>
+                    Change Picture
+                  </Button>
                 </div>
               </div>
             </div>
