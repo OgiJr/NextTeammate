@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
-import { isUserEmailInDb } from "../lib/db";
 
 const Login = () => {
   const [error, setError] = React.useState(null);
