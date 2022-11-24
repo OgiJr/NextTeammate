@@ -36,7 +36,7 @@ const DashboardUser = ({
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       {isModalOpen ? (
-        <div className="flex flex-col justify-center items-center z-40 absolute top-0 left-0 w-[100vw] h-[190vh] bg-[#33333333]">
+        <div className="flex flex-col justify-center items-center z-40 absolute top-0 left-0 w-[100vw] h-[100vh] bg-[#33333333]">
           <div className="bg-white rounded-lg flex flex-col justify-start w-[50%] h-fit p-4">
             <div className="flex flex-row justify-end w-full">
               <div
