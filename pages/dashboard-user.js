@@ -82,6 +82,7 @@ const DashboardUser = ({
                 <Form.Group controlId="file" onChange={(e) => setFile(e.target.files[0])}>
                   <Form.Control type="file" accept="video/mp4,video/x-m4v,video/*" />
                 </Form.Group>
+                <p> When you click submit, the website may appear frozen. Please be patient! </p>
                 {file !== null ? (
                   <div className="flex flex-row justify-center w-full ">
                     <div className="!bg-[#007bff] !rounded-lg">
