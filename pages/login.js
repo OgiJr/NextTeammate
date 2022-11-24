@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
+import { isUserEmailInDb } from "../lib/db";
 
 const Login = () => {
   const [error, setError] = React.useState(null);
@@ -18,9 +19,7 @@ const Login = () => {
             className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
             style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
           >
-            <div className="text-center min-w-full text-4xl font-semibold">
-              Log In
-            </div>
+            <div className="text-center min-w-full text-4xl font-semibold">Log In</div>
             <Form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -56,10 +55,7 @@ const Login = () => {
             >
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="john.smith@example.com"
-                />
+                <Form.Control type="email" placeholder="john.smith@example.com" />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="password">
@@ -88,25 +84,32 @@ const Login = () => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const user = req.session.user;
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
+  const user = req.session.user;
 
-    if (user) {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/dashboard-redirector",
-        },
-        props: {},
-      };
-    }
-
+  if (!isUserEmailInDb(user.email)) {
+    req.session.destroy();
     return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
+  if (user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/dashboard-redirector",
+      },
       props: {},
     };
-  },
-  authCookie
-);
+  }
+
+  return {
+    props: {},
+  };
+}, authCookie);
 
 export default Login;
