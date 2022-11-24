@@ -447,6 +447,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 
   let result = [];
+  console.log(user);
   if (user.is_admin) {
     result = await User.find({ email: { $ne: user.email } });
   } else {
