@@ -222,28 +222,26 @@ const DashboardUser = ({
                   <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
                 )}
                 <div className="flex flex-row items-center justify-center gap-4 justify-items-center mx-auto">
-                  <div className="flex flex-row justify-evenly gap-4">
+                  <Button
+                    variant="dark"
+                    className="px-4 mt-4"
+                    onClick={async () => {
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    Upload Video
+                  </Button>
+                  {user.has_video || 1 ? (
                     <Button
                       variant="dark"
                       className="px-4 mt-4"
-                      onClick={async () => {
-                        setIsModalOpen(true);
-                      }}
+                      onClick={() => router.push(`/view-video?id=${user._id}`)}
                     >
-                      Upload Video
+                      View Video
                     </Button>
-                    {user.has_video ? (
-                      <Button
-                        variant="dark"
-                        className="px-4 mt-4"
-                        onClick={() => router.push(`/view-video?id=${user._id}`)}
-                      >
-                        View Video
-                      </Button>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
+                  ) : (
+                    <></>
+                  )}
                   <Link href="/edit-user">
                     <Button variant="dark" className="px-4 min-w-[25%]">
                       Edit Account
