@@ -451,7 +451,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     result = await User.find({ email: { $ne: user.email } });
   } else {
     console.log(user);
-    if (user.has_company) {
+    if (user.company != null) {
       result = await User.find({
         email: { $ne: user.email },
         $or: [{ company: user.company._id }, { is_admin: true }],
