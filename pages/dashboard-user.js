@@ -213,29 +213,6 @@ const DashboardUser = ({
                             Clock In
                           </Button>
                         )}
-                        <div className="flex flex-row justify-evenly gap-4">
-                          <Button
-                            variant="primary"
-                            disabled={!user.work_data.current_price_per_hour}
-                            className="px-4 text-2xl mt-4"
-                            onClick={async () => {
-                              setIsModalOpen(true);
-                            }}
-                          >
-                            Upload Video
-                          </Button>
-                          {user.has_video ? (
-                            <Button
-                              variant="primary"
-                              className="px-4 text-2xl mt-4"
-                              onClick={() => router.push(`/view-video?id=${user._id}`)}
-                            >
-                              View Video
-                            </Button>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
                       </div>
 
                       <span>* This is a projection based on estimates and past performance, not a promise.</span>
@@ -245,6 +222,29 @@ const DashboardUser = ({
                   <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
                 )}
                 <div className="flex flex-row items-center justify-center gap-4 justify-items-center mx-auto">
+                  <div className="flex flex-row justify-evenly gap-4">
+                    <Button
+                      variant="primary"
+                      disabled={!user.work_data.current_price_per_hour}
+                      className="px-4 text-2xl mt-4"
+                      onClick={async () => {
+                        setIsModalOpen(true);
+                      }}
+                    >
+                      Upload Video
+                    </Button>
+                    {user.has_video ? (
+                      <Button
+                        variant="primary"
+                        className="px-4 text-2xl mt-4"
+                        onClick={() => router.push(`/view-video?id=${user._id}`)}
+                      >
+                        View Video
+                      </Button>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                   <Link href="/edit-user">
                     <Button variant="dark" className="px-4 min-w-[25%]">
                       Edit Account
