@@ -9,7 +9,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   let reqBody;
   try {
     isSupportedMethod(req, res, ["GET"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     reqBody = reqBodyParse(req, res, ["start", "end"]);
   } catch (e) {
     return;
