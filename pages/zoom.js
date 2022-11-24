@@ -42,6 +42,7 @@ const Zoom = ({ user, employees }) => {
     }
   };
   const { data: chats } = useSWR(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`], fetcher, {
+    refreshInterval: 500,
     onSuccess: () => {
       setTimeout(() => (chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000), 100);
     },
