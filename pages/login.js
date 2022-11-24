@@ -87,6 +87,15 @@ const Login = () => {
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
   const user = req.session.user;
 
+  if (!user) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
   if (!(await isUserEmailInDb(user.email))) {
     req.session.destroy();
     return {
