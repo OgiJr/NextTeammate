@@ -189,7 +189,7 @@ const DashboardAdmin = ({ user, employees, employers }) => {
                           shadow
                           auto
                           rounded
-                          className="px-4 min-w-[25%] mr-2 self-center"
+                          className="px-4 min-w-[25%] mr-2 self-center  mt-2"
                           onClick={() => {
                             setVisible(true);
                             settbd(e._id);
@@ -291,7 +291,7 @@ const DashboardAdmin = ({ user, employees, employers }) => {
                           shadow
                           auto
                           rounded
-                          className="px-4 min-w-[25%] mr-2 self-center"
+                          className="px-4 min-w-[25%] mr-2 self-center mt-2"
                           onClick={() => {
                             setVisible(true);
                             settbd(e._id);
