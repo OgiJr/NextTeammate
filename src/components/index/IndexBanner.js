@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { NextSeo } from "next-seo";
 
 const IndexBanner = () => {
   return (
@@ -8,6 +9,7 @@ const IndexBanner = () => {
       style={{
         backgroundImage: "url(assets/images/banner/index-banner.jpg)",
       }}
+      alt="people"
     >
       <div className="container">
         <div className="row">
@@ -17,6 +19,38 @@ const IndexBanner = () => {
                 className="title thm-color-white wow fadeInDown"
                 data-wow-delay=".20ms"
               >
+                <NextSeo
+                  title="Hire/Find your NextTeammate with the click of a button"
+                  description="This example uses more of the available config options."
+                  nextteammate="https://nextteammate.com/"
+                  openGraph={{
+                    url: "https://nextteammate.com/",
+                    title: "NextTeammate",
+                    description: "Outsorcing company",
+                    images: [
+                      {
+                        url: "https://nextteammate.com/assets/images/banner/index-banner.jpg)",
+                        width: 5744,
+                        height: 3829,
+                        alt: "Og Image Alt",
+                        type: "image/jpg",
+                      },
+                      {
+                        url: "https://nextteammate.com/assets/images/banner/index-banner.jpg",
+                        width: 360,
+                        height: 360,
+                        alt: "Og Image Alt Second",
+                        type: "image/jpeg",
+                      },
+                    ],
+                    siteName: "HomePage",
+                  }}
+                  twitter={{
+                    handle: "@handle",
+                    site: "@site",
+                    cardType: "summary_large_image",
+                  }}
+                />
                 Hire\Find your NextTeammate with the click of a button.
               </h1>
               <Link href="/about">

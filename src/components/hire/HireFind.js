@@ -21,13 +21,6 @@ const HireFind = () => {
                 alt="img"
                 className="image-fit"
               />
-              <a
-                onClick={() => setVideo(true)}
-                href="#"
-                className="popup-youtube video_btn transform-center justify-content-center d-flex style_2"
-              >
-                <i className="fas fa-play video_icon bg-thm-color-three pulse-animated" />
-              </a>
             </div>
           </div>
           <div className="col-lg-6">
