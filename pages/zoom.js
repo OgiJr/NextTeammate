@@ -192,10 +192,14 @@ const Zoom = ({ user, employees }) => {
                         >
                           {e.email}
                         </NextUser>
-                        {e.is_working ? (
-                          <StyledBadge type="active">Clocked In</StyledBadge>
+                        {e.is_admin || e.is_employer ? (
+                          e.is_working ? (
+                            <StyledBadge type="active">Clocked In</StyledBadge>
+                          ) : (
+                            <StyledBadge type="paused">Clocked Out</StyledBadge>
+                          )
                         ) : (
-                          <StyledBadge type="paused">Clocked Out</StyledBadge>
+                          <></>
                         )}
                       </div>
                     ))}

@@ -11,7 +11,7 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
-const DashboardEmployer = ({ user, employees, employers, others }) => {
+const DashboardEmployer = ({ user, employees, employers }) => {
   const router = useRouter();
 
   return (
@@ -23,6 +23,14 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
           </Link>
         </div>
         <div className=" flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
+          <Button
+            className="thm-btn bg-violet-900 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+            onClick={() => {
+              router.push("/dashboard-records");
+            }}
+          >
+            Available Employees
+          </Button>
           <Button
             className="thm-btn bg-thm-color-one thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             onClick={() => {
@@ -175,7 +183,7 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
           )}
         </div>
       </div>
-      <div className="flex flex-col mt-4">
+      {/* <div className="flex flex-col mt-4">
         <div className="text-center text-3xl font-bold">Employee Pool</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
           {others.length === 0 ? (
@@ -239,7 +247,7 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
             </>
           )}
         </div>
-      </div>
+      </div> */}
       <Footer />
     </div>
   );
