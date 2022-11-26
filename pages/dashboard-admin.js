@@ -173,40 +173,42 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
           </Button>
         </div>
       </div>
-      <div className=" w-96 self-center flex flex-col">
+      <div className="flex flex-col mt-4">
         <div className="text-center text-3xl font-bold">Admin</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
           {admins.map((e) => (
-            <Card key={e.email} isPressable isHoverable className="mt-3">
-              <Card.Body>
-                <div className="flex flex-col self-center">
-                  <img
-                    src={e.has_picture ? `${cdnSubpath()}/${e.picture}` : "/assets/images/no-user.png"}
-                    width={150}
-                    height={150}
-                    className="self-center rounded-full"
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div className=" text-4xl text-center">{e.first_name + " " + e.last_name}</div>
-                  {e.email === user.email ? (
-                    <div className="flex flex-row mt-2">
-                      <NextLink href="/edit-user">
-                        <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
-                          Edit Account
-                        </NextButton>
-                      </NextLink>
-                      <NextLink href="/set-picture">
-                        <NextButton color="success" shadow auto rounded href="/" className="px-4 min-w-[25%] ml-2">
-                          Change Picture
-                        </NextButton>
-                      </NextLink>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </Card.Body>
-            </Card>
+            <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
+              <Card key={e.email} isPressable isHoverable className="mt-3">
+                <Card.Body>
+                  <div className="flex flex-col self-center">
+                    <img
+                      src={e.has_picture ? `${cdnSubpath()}/${e.picture}` : "/assets/images/no-user.png"}
+                      width={150}
+                      height={150}
+                      className="self-center rounded-full"
+                      style={{ objectFit: "cover" }}
+                    />
+                    <div className=" text-4xl text-center">{e.first_name + " " + e.last_name}</div>
+                    {e.email === user.email ? (
+                      <div className="flex flex-row mt-2">
+                        <NextLink href="/edit-user">
+                          <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
+                            Edit Account
+                          </NextButton>
+                        </NextLink>
+                        <NextLink href="/set-picture">
+                          <NextButton color="success" shadow auto rounded href="/" className="px-4 min-w-[25%] ml-2">
+                            Change Picture
+                          </NextButton>
+                        </NextLink>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
           ))}
         </div>
       </div>
