@@ -10,6 +10,7 @@ import Footer from "../src/layout/Footer";
 
 const CreateCompany = () => {
   const router = useRouter();
+  const [file, setFile] = React.useState(null);
   const [error, setError] = React.useState(null);
 
   return (
@@ -60,18 +61,23 @@ const CreateCompany = () => {
             onSubmit={async (e) => {
               e.preventDefault();
 
+              if (!file) {
+                setError("Please select a company logo!");
+              }
+
               const name = e.target.name.value;
               if (!name) {
                 setError("Please set a name!");
                 return;
               }
 
+              let formData = new FormData();
+              formData.append("logo", file);
+              formData.append("name", name);
+
               const response = await fetch("/api/create-company", {
                 method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name }),
+                body: formData,
               });
 
               if (response.status !== 200) {
@@ -86,6 +92,16 @@ const CreateCompany = () => {
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Company Name</Form.Label>
               <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="picture"
+              onChange={(e) => {
+                setFile(e.target.files[0]);
+              }}
+            >
+              <Form.Label>Company Logo</Form.Label>
+              <Form.Control type="file" accept="image/png, image/jpeg" />
             </Form.Group>
             <div className="flex flex-row justify-evenly min-w-full">
               <Button variant="success" type="submit" className="font-bold">

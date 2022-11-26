@@ -5,16 +5,19 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isUserEmailInDb } from "../lib/db";
+import { dbCompanyToCompany, dbUserToIronUser, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
+import Company from "../models/Company";
 import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink, useModal, Modal, Text } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
-const DashboardAdmin = ({ user, employees, employers }) => {
+const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
   const router = useRouter();
   const { setVisible, bindings } = useModal();
   const [tbd, settbd] = React.useState(null);
+  const [ctbd, setctbd] = React.useState(null);
+  const { setVisible: setCVisible, bindings: cbindings } = useModal();
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -58,6 +61,53 @@ const DashboardAdmin = ({ user, employees, employers }) => {
               href="/"
               className="px-4 min-w-[25%] ml-2"
               onClick={() => setVisible(false)}
+            >
+              Close
+            </NextButton>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal
+        scroll
+        blur
+        width="600px"
+        aria-labelledby="modal-title"
+        preventClose
+        aria-describedby="modal-description"
+        {...cbindings}
+      >
+        <Modal.Header>
+          <Text id="modal-title" className="font-bold" size={18}>
+            Are you sure you want to delete this company? This will delete all employers and unassign all employees to
+            that company.
+          </Text>
+        </Modal.Header>
+        <Modal.Body>
+          <div className=" self-center flex flex-row">
+            <NextButton
+              color="error"
+              shadow
+              auto
+              rounded
+              className="px-4 min-w-[25%] mr-2"
+              onClick={async () => {
+                await fetch("/api/delete-company?_id=" + ctbd, {
+                  method: "DELETE",
+                });
+                setCVisible(false);
+                router.reload();
+              }}
+            >
+              Confirm
+            </NextButton>
+            <NextButton
+              color="success"
+              shadow
+              auto
+              rounded
+              href="/"
+              className="px-4 min-w-[25%] ml-2"
+              onClick={() => setCVisible(false)}
             >
               Close
             </NextButton>
@@ -125,31 +175,77 @@ const DashboardAdmin = ({ user, employees, employers }) => {
       </div>
       <div className=" w-96 self-center flex flex-col">
         <div className="text-center text-3xl font-bold">Admin</div>
-        <Card isPressable isHoverable className="mt-3">
-          <Card.Body>
-            <div className="flex flex-col self-center">
-              <img
-                src={user.has_picture ? `${cdnSubpath()}/${user.picture}` : "/assets/images/no-user.png"}
-                width={150}
-                height={150}
-                className="self-center rounded-full"
-              />
-              <div className=" text-4xl text-center">{user.first_name + " " + user.last_name}</div>
-              <div className="flex flex-row mt-2">
-                <NextLink href="/edit-user">
-                  <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
-                    Edit Account
-                  </NextButton>
-                </NextLink>
-                <NextLink href="/set-picture">
-                  <NextButton color="success" shadow auto rounded href="/" className="px-4 min-w-[25%] ml-2">
-                    Change Picture
-                  </NextButton>
-                </NextLink>
-              </div>
-            </div>
-          </Card.Body>
-        </Card>
+        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+          {admins.map((e) => (
+            <Card key={e.email} isPressable isHoverable className="mt-3">
+              <Card.Body>
+                <div className="flex flex-col self-center">
+                  <img
+                    src={e.has_picture ? `${cdnSubpath()}/${e.picture}` : "/assets/images/no-user.png"}
+                    width={150}
+                    height={150}
+                    className="self-center rounded-full"
+                  />
+                  <div className=" text-4xl text-center">{e.first_name + " " + e.last_name}</div>
+                  {e.email === user.email ? (
+                    <div className="flex flex-row mt-2">
+                      <NextLink href="/edit-user">
+                        <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
+                          Edit Account
+                        </NextButton>
+                      </NextLink>
+                      <NextLink href="/set-picture">
+                        <NextButton color="success" shadow auto rounded href="/" className="px-4 min-w-[25%] ml-2">
+                          Change Picture
+                        </NextButton>
+                      </NextLink>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col mt-4">
+        <div className="text-center text-3xl font-bold">Companies</div>
+        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+          {companies.length === 0 ? (
+            <div className="text-center text-3xl">No Companies Yet.</div>
+          ) : (
+            <>
+              {companies.map((e) => {
+                return (
+                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
+                    <Card isHoverable isPressable>
+                      <Card.Body>
+                        <div className="flex flex-row justify-center">
+                          <img src={`${cdnSubpath()}${e.picture}`} width={150} height={150} className="rounded-full" />
+                        </div>
+                        <div className="text-center text-3xl mt-2">{e.name}</div>
+                        <NextButton
+                          color="error"
+                          shadow
+                          auto
+                          rounded
+                          className="px-4 min-w-[25%] mr-2 self-center  mt-2"
+                          onClick={() => {
+                            setCVisible(true);
+                            setctbd(e._id);
+                          }}
+                        >
+                          Delete Company
+                        </NextButton>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </div>
       </div>
       <div className="flex flex-col mt-4">
         <div className="text-center text-3xl font-bold">Employers</div>
@@ -346,17 +442,24 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
+  let admins_db = await User.find({ is_admin: true });
+  let admins = await Promise.all(admins_db.map(async (e) => await dbUserToIronUser(e)));
+
   let employees_db = await User.find({ is_admin: false, is_employer: false });
   let employers_db = await User.find({ is_admin: false, is_employer: true });
 
   let employees = await Promise.all(employees_db.map(async (e) => await dbUserToIronUser(e)));
   let employers = await Promise.all(employers_db.map(async (e) => await dbUserToIronUser(e)));
 
+  let companies = (await Company.find()).map((c) => dbCompanyToCompany(c));
+
   return {
     props: {
       user,
       employees,
       employers,
+      companies,
+      admins,
     },
   };
 }, authCookie);
