@@ -26,7 +26,7 @@ const DashboardEmployer = ({ user, employees, employers }) => {
           <Button
             className="thm-btn bg-violet-900 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             onClick={() => {
-              router.push("/dashboard-records");
+              router.push("/available-employees");
             }}
           >
             Available Employees
