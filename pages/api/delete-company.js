@@ -1,13 +1,8 @@
-import { dbConnect, dbUserToIronUser, getUserFromIron } from "../../lib/db";
+import { dbConnect } from "../../lib/db";
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import Company from "../../models/Company";
-import WorkData from "../../models/WorkData";
-import WorkUnits from "../../models/WorkUnit";
-
-import { isLoggedIn, reqBodyParse, validateEmail, isAdmin, isDate } from "../../lib/validation";
-import { v4 as uuidv4 } from "uuid";
-import { send } from "../../lib/email";
+import { isLoggedIn, isAdmin } from "../../lib/validation";
 import { authCookie } from "../../lib/cookies";
 
 const del = async (req, res) => {
