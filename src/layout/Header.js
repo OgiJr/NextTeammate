@@ -26,7 +26,13 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute, language }) => 
                 <div className="logo">
                   <Link href={language == "en" ? "/" : "index-bg"}>
                     <a>
-                      <img src="assets/images/nextlogo.png" alt="logo" className="header-image" />
+                      <img
+                        src="assets/images/nextlogo.png"
+                        alt="logo"
+                        className="header-image"
+                        width={100}
+                        height={100}
+                      />
                     </a>
                   </Link>
                 </div>

@@ -32,7 +32,6 @@ export default withIronSessionApiRoute(async function contactRoute(req, res) {
   dbConnect();
 
   const target = await User.findOne({ _id: _id });
-  const admins = await User.find({ is_admin: true });
 
   if (!target) {
     res.status(400).json({ message: "No such user!" });
@@ -44,12 +43,10 @@ export default withIronSessionApiRoute(async function contactRoute(req, res) {
     return;
   }
 
-  admins.forEach((a) =>
-    send(
-      a.email,
-      "NexTeamMate Hiring Request",
-      `You've received a hiring request from ${user.first_name} ${user.last_name}. They would like to hire ${target.first_name} ${target.last_name} (${target.email}).`
-    )
+  send(
+    "nextteammateltd@gmail.com",
+    "NexTeamMate Hiring Request",
+    `You've received a hiring request from ${user.first_name} ${user.last_name}. They would like to hire ${target.first_name} ${target.last_name} (${target.email}).`
   );
 
   res.redirect(307, "/dashboard-employer").end();
