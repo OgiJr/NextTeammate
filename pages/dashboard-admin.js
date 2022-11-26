@@ -185,6 +185,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                     width={150}
                     height={150}
                     className="self-center rounded-full"
+                    style={{ objectFit: "cover" }}
                   />
                   <div className=" text-4xl text-center">{e.first_name + " " + e.last_name}</div>
                   {e.email === user.email ? (
@@ -222,7 +223,13 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
-                          <img src={`${cdnSubpath()}${e.picture}`} width={150} height={150} className="rounded-full" />
+                          <img
+                            src={`${cdnSubpath()}${e.picture}`}
+                            width={150}
+                            height={150}
+                            className="rounded-full"
+                            style={{ objectFit: "cover" }}
+                          />
                         </div>
                         <div className="text-center text-3xl mt-2">{e.name}</div>
                         <NextButton
@@ -265,6 +272,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                             width={150}
                             height={150}
                             className="rounded-full"
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">
@@ -325,6 +333,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                             width={150}
                             height={150}
                             className="rounded-full"
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">

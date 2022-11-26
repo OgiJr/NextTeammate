@@ -70,6 +70,7 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
                             width={150}
                             height={150}
                             className="rounded-full"
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">
@@ -132,6 +133,7 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
                             width={150}
                             height={150}
                             className="rounded-full"
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">
@@ -196,6 +198,7 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
                             width={150}
                             height={150}
                             className="rounded-full"
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">
