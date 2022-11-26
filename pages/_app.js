@@ -4,7 +4,6 @@ import Preloader from "../src/layout/Preloader";
 import "../styles/globals.css";
 import React from "react";
 import { DefaultSeo } from "next-seo";
-import SEO from "../next-seo.config";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
