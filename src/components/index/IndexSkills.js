@@ -57,11 +57,10 @@ const IndexSkills = () => {
           Nextteammate- a comprehensive solution
         </h2>
         <h4 className="text-2xl text-white font-normal">
-          Our company believes that the future holds remote work and financial
-          system without borders. In our modern era a vicinity constraint is
-          unnecessary and ineffective. We have the tools and knowledge to help
-          your business expand by providing a new and complete Work from Home
-          system.
+          Our company believes that remote work and financial system without
+          borders is what the future holds. We replace outdated, unnecessary and
+          ineffective methods with new and improved ways to master the
+          workplace.
         </h4>
         <div className="flex flex-row justify-center my-20 gap-20">
           <Banner1

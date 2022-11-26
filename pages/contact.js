@@ -117,7 +117,10 @@ const Contact = () => {
                   <div className="text">
                     <h6>Contact Us</h6>
                     <p>
-                      <strong>Phone: </strong> +(1) 267 - 2080 - 0020
+                      <strong>American Phone: </strong> +(1) 267 - 2080 - 0020
+                    </p>
+                    <p>
+                      <strong> Bulgarian Phone: </strong> +359 882482505
                     </p>
                   </div>
                 </li>
@@ -260,7 +263,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 text-center">
+                  <div className="col-lg-12 text-center ">
                     <button
                       type="submit"
                       className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"

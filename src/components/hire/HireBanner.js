@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import React from "react";
-
+import { NextSeo } from "next-seo";
 const HireBanner = () => {
   return (
     <div
@@ -22,6 +22,39 @@ const HireBanner = () => {
           <div className="row">
             <div className="col-xl-6 col-lg-7 relative z-1">
               <div className="banner_text">
+                <NextSeo
+                  title="I want to hire"
+                  description="Nextteammate provides end to end employment solutions – from screening the potential candidates, payroll and health insurance benefits to management and built-in scheduling software."
+                  nextteammate="https://nextteammate.com"
+                  openGraph={{
+                    url: "https://nextteammate.com/i-want-to-hire",
+                    title: "Hire a professional",
+                    description: "Professional outsourcing company",
+                    images: [
+                      {
+                        url: "https://nextteammate.com/assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg",
+                        width: 3840,
+                        height: 2160,
+                        alt: "Og Image Alt",
+                        type: "image/jpeg",
+                      },
+                      {
+                        url: "	https://nextteammate.com/assets/images/adam-nowakowski-D4LDw5eXhgg-unsplash.jpg",
+                        width: 390,
+                        height: 585,
+                        alt: "Og Image Alt Second",
+                        type: "image/jpeg",
+                      },
+                    ],
+                    siteName: "NextTeammate",
+                  }}
+                  twitter={{
+                    handle: "@handle",
+                    site: "@site",
+                    cardType: "summary_large_image",
+                  }}
+                />
+
                 <span
                   className="tag_badge style_2 bg-thm-color-white thm-color-two wow fadeInUp"
                   data-wow-delay=".40ms"
