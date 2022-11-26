@@ -6,7 +6,14 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Image from "next/image";
-import { dbConnect, dbUserToIronUser, getIronUserWorkStats, isIronUserAssigned, isIronUserWorking } from "../lib/db";
+import {
+  dbConnect,
+  dbUserToIronUser,
+  getIronUserWorkStats,
+  isIronUserAssigned,
+  isIronUserWorking,
+  isUserEmailInDb,
+} from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
@@ -29,7 +36,7 @@ const DashboardUser = ({
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       {isModalOpen ? (
-        <div className="flex flex-col justify-center items-center z-40 absolute top-0 left-0 w-[100vw] h-[190vh] bg-[#33333333]">
+        <div className="flex flex-col justify-center items-center z-40 absolute top-0 left-0 w-[100vw] h-[100vh] bg-[#33333333]">
           <div className="bg-white rounded-lg flex flex-col justify-start w-[50%] h-fit p-4">
             <div className="flex flex-row justify-end w-full">
               <div
@@ -75,6 +82,7 @@ const DashboardUser = ({
                 <Form.Group controlId="file" onChange={(e) => setFile(e.target.files[0])}>
                   <Form.Control type="file" accept="video/mp4,video/x-m4v,video/*" />
                 </Form.Group>
+                <p> When you click submit, the website may appear frozen. Please be patient! </p>
                 {file !== null ? (
                   <div className="flex flex-row justify-center w-full ">
                     <div className="!bg-[#007bff] !rounded-lg">
@@ -161,7 +169,7 @@ const DashboardUser = ({
                       <i className="icon fal fa-calendar-week" />
                       <div className="text">
                         <h6 className="mb-0">Average hours per week</h6>
-                        <p className="mb-0">{average_hours_per_week}</p>
+                        <p className="mb-0">{isNaN(average_hours_per_week) ? average_hours_per_week : "NA"}</p>
                       </div>
                     </li>
                     <li>
@@ -206,49 +214,42 @@ const DashboardUser = ({
                             Clock In
                           </Button>
                         )}
-                        <div className="flex flex-row justify-evenly gap-4">
-                          <Button
-                            variant="primary"
-                            disabled={!user.work_data.current_price_per_hour}
-                            className="px-4 text-2xl mt-4"
-                            onClick={async () => {
-                              setIsModalOpen(true);
-                            }}
-                          >
-                            Upload Video
-                          </Button>
-                          {user.has_video ? (
-                            <Button
-                              variant="primary"
-                              className="px-4 text-2xl mt-4"
-                              onClick={() => router.push(`/view-video?id=${user._id}`)}
-                            >
-                              View Video
-                            </Button>
-                          ) : (
-                            <></>
-                          )}
-                        </div>
                       </div>
 
-                      <div className="flex flex-row items-center justify-center gap-4">
-                        <Link href="/edit-user">
-                          <Button variant="dark" className="px-4 min-w-[25%]">
-                            Edit Account
-                          </Button>
-                        </Link>
-                        <Link href="/set-picture">
-                          <Button variant="dark" className="px-4 min-w-[25%]">
-                            Change Picture
-                          </Button>
-                        </Link>
-                      </div>
                       <span>* This is a projection based on estimates and past performance, not a promise.</span>
                     </div>
                   </ul>
                 ) : (
                   <div className="text-[#ff0000] text-xl"> Please ask the administrator to assign work data! </div>
                 )}
+                <div className="flex flex-row items-center justify-center gap-4 justify-items-center mx-auto">
+                  <Button
+                    variant="dark"
+                    className="px-4 w-[25%]"
+                    onClick={async () => {
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    Upload Video
+                  </Button>
+                  {user.has_video ? (
+                    <Button
+                      variant="dark"
+                      className="px-4 w-[25%]"
+                      onClick={() => router.push(`/view-video?id=${user._id}`)}
+                    >
+                      View Video
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
+                  <Button variant="dark" className="px-4 w-[25%]" onClick={() => router.push("/edit-user")}>
+                    Edit Account
+                  </Button>
+                  <Button variant="dark" className="px-4 w-[25%]" onClick={() => router.push("/set-picture")}>
+                    Change Picture
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -269,6 +270,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         destination: "/login",
       },
       props: {},
+    };
+  }
+
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
     };
   }
 

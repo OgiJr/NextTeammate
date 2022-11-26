@@ -8,7 +8,7 @@ import { generate } from "../../lib/jwt";
 export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
     isSupportedMethod(req, res, ["POST"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
   } catch (e) {
     return;
   }

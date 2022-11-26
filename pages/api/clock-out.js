@@ -8,7 +8,7 @@ import { authCookie } from "../../lib/cookies";
 
 export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
   } catch (e) {
     return;
   }

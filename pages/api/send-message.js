@@ -1,11 +1,7 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import Chat from "../../models/Chat";
-import {
-  isLoggedIn,
-  isSupportedMethod,
-  reqBodyParse,
-} from "../../lib/validation";
+import { isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
 import { dbConnect } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import rateLimit from "../../lib/rateLimit";
@@ -19,7 +15,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["POST"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     reqBody = reqBodyParse(req, res, ["sender", "receiver", "type"]);
   } catch (e) {
     return;
@@ -27,9 +23,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
 
   const { sender, receiver, type } = reqBody;
   if (req.session.user._id !== sender) {
-    res
-      .status(401)
-      .json({ message: "Can't send a message from someone else!" });
+    res.status(401).json({ message: "Can't send a message from someone else!" });
     return;
   }
 

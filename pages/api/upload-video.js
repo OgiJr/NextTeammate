@@ -31,7 +31,7 @@ const asyncParse = (req) =>
 export default withIronSessionApiRoute(async function sendPictureRoute(req, res) {
   let reqBody;
   try {
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
     isSupportedMethod(req, res, ["POST"]);
     reqBody = await asyncParse(req);
   } catch (e) {

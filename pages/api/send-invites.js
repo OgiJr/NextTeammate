@@ -10,7 +10,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
     isSupportedMethod(req, res, ["POST"]);
     reqBody = reqBodyParse(req, res, ["targets", "room_name"]);
-    isLoggedIn(req, res);
+    await isLoggedIn(req, res);
   } catch (e) {
     return;
   }

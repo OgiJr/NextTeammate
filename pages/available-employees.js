@@ -11,7 +11,7 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 
-const DashboardEmployer = ({ user, employees, employers, others }) => {
+const AvailableEmployees = ({ others }) => {
   const router = useRouter();
 
   return (
@@ -51,73 +51,14 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-col">
-        <div className="self-center text-cyan-600 text-xl">{user.company.name}</div>
-        <div className="text-center text-3xl font-bold">Employers</div>
-        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
-          {employers.length === 0 ? (
-            <div className="text-center text-3xl">No other employers yet.</div>
-          ) : (
-            <>
-              {employers.map((e) => {
-                return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
-                    <Card isHoverable isPressable>
-                      <Card.Body>
-                        <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className="text-center text-3xl mt-2">
-                          {e.first_name}&nbsp;{e.last_name}
-                        </div>
-                        <div className="text-center text-md text-gray-800">{e.email}</div>
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
-                        {e.email === user.email ? (
-                          <div className="flex flex-row mt-2">
-                            <NextLink href="/edit-user">
-                              <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
-                                Edit Account
-                              </NextButton>
-                            </NextLink>
-                            <NextLink href="/set-picture">
-                              <NextButton
-                                color="success"
-                                shadow
-                                auto
-                                rounded
-                                href="/"
-                                className="px-4 min-w-[25%] ml-2"
-                              >
-                                Change Picture
-                              </NextButton>
-                            </NextLink>
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-                      </Card.Body>
-                    </Card>
-                  </div>
-                );
-              })}
-            </>
-          )}
-        </div>
-      </div>
       <div className="flex flex-col mt-4">
-        <div className="text-center text-3xl font-bold">Employees</div>
+        <div className="text-center text-3xl font-bold">Available Employee Pool</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
-          {employees.length === 0 ? (
-            <div className="text-center text-3xl">No Employees Yet.</div>
+          {others.length === 0 ? (
+            <div className="text-center text-3xl">No free other employees.</div>
           ) : (
             <>
-              {employees.map((e) => {
+              {others.map((e) => {
                 const is_setup =
                   e.work_data &&
                   e.work_data.currency &&
@@ -133,7 +74,6 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
                             width={150}
                             height={150}
                             className="rounded-full"
-                            style={{ objectFit: "cover" }}
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">
@@ -164,60 +104,6 @@ const DashboardEmployer = ({ user, employees, employers, others }) => {
                             >
                               Play Video
                             </NextButton>
-                          </div>
-                        )}
-                      </Card.Body>
-                    </Card>
-                  </div>
-                );
-              })}
-            </>
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col mt-4">
-        <div className="text-center text-3xl font-bold">Employee Pool</div>
-        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
-          {others.length === 0 ? (
-            <div className="text-center text-3xl">No free other employees.</div>
-          ) : (
-            <>
-              {others.map((e) => {
-                const is_setup =
-                  e.work_data &&
-                  e.work_data.currency &&
-                  e.work_data.expected_hours_weekly &&
-                  e.work_data.current_price_per_hour;
-                return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
-                    <Card isHoverable isPressable>
-                      <Card.Body>
-                        <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className="text-center text-3xl mt-2">
-                          {e.first_name}&nbsp;{e.last_name}
-                        </div>
-                        <div className="text-center text-md text-gray-800">{e.email}</div>
-                        {is_setup ? (
-                          <div className="text-center text-md text-gray-800">
-                            {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
-                            {e.work_data.currency} / hour
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
-                        {!e.has_password ? (
-                          <div className="text-center text-xl text-red-500">Unclaimed Account</div>
-                        ) : (
-                          <div className="flex flex-col justify-center gap-2 mt-2">
                             <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
                               <NextButton
                                 color="success"
@@ -287,22 +173,16 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  let my_employers = await User.find({ is_admin: false, is_employer: true, company: user.company._id });
-  let my_employees = await User.find({ is_admin: false, is_employer: false, company: user.company._id });
   let my_others = await User.find({ is_admin: false, is_employer: false, company: null });
 
-  let employees = await Promise.all(my_employees.map(async (e) => await dbUserToIronUser(e)));
-  let employers = await Promise.all(my_employers.map(async (e) => await dbUserToIronUser(e)));
   let others = await Promise.all(my_others.map(async (e) => await dbUserToIronUser(e)));
 
   return {
     props: {
       user,
-      employees,
-      employers,
       others,
     },
   };
 }, authCookie);
 
-export default DashboardEmployer;
+export default AvailableEmployees;

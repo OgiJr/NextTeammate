@@ -3,7 +3,7 @@ import React from "react";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
-import { dbConnect } from "../lib/db";
+import { dbConnect, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import { cdnSubpath } from "../lib/cdn";
 
@@ -43,17 +43,17 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  if (!query.id) {
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
     return {
       redirect: {
         permanent: false,
-        destination: "/",
+        destination: "/login",
       },
-      props: {},
     };
   }
 
-  if (!user.is_admin && query.id !== user._id) {
+  if (!query.id) {
     return {
       redirect: {
         permanent: false,

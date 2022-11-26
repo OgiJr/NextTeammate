@@ -8,7 +8,7 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isIronUserWorking } from "../lib/db";
+import { dbUserToIronUser, isIronUserWorking, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import { Popover, Button as NextButton, Text, Loading, User as NextUser } from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
@@ -42,6 +42,7 @@ const Zoom = ({ user, employees }) => {
     }
   };
   const { data: chats } = useSWR(["/api/get-messages", `?sender=${user._id}&receiver=${currentId}`], fetcher, {
+    refreshInterval: 500,
     onSuccess: () => {
       setTimeout(() => (chatRef.current.scrollTop = chatRef.current.scrollHeight + 1000), 100);
     },
@@ -435,7 +436,30 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  let result = await User.find({ email: { $ne: user.email } });
+  if (!(await isUserEmailInDb(user.email))) {
+    req.session.destroy();
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
+  let result = [];
+  if (user.is_admin) {
+    result = await User.find({ email: { $ne: user.email } });
+  } else {
+    if (user.company != null) {
+      result = await User.find({
+        email: { $ne: user.email },
+        $or: [{ company: user.company._id }, { is_admin: true }],
+      });
+    } else {
+      result = await User.find({ email: { $ne: user.email }, is_admin: true });
+    }
+  }
+
   let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
   employees = employees.map((e) => {
     return { ...e, is_working: isIronUserWorking(e) };
