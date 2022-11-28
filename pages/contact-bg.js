@@ -10,10 +10,7 @@ const Contact = () => {
 
   return (
     <Layout language={"bg"}>
-      <PageTitleBanner
-        pageName="Свържете се с нас"
-        url="assets/images/banner/contact-banner.jpg"
-      />
+      <PageTitleBanner pageName="Свържете се с нас" url="assets/images/banner/contact-banner.jpg" />
       <section className="section-padding">
         <div className="container">
           <div className="row">
@@ -23,32 +20,20 @@ const Contact = () => {
                   <i className="fal fa-book" />
                   Свържете се с нас
                 </p>
-                <h3 className="title">
-                  Свържете се с нас ако искате да работим заедно / имате въпроси
-                </h3>
+                <h3 className="title">Свържете се с нас ако искате да работим заедно / имате въпроси</h3>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <div
-                className="contact_faq_box shadow_1 wow fadeInDown"
-                data-wow-delay=".30ms"
-              >
+              <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
                 <div className="icon">
-                  <img
-                    src="assets/images/icons/phone-incoming-dynamic-gradient copy.png"
-                    alt="icon"
-                    className="image-fit-contain"
-                  />
+                  <img src="assets/images/icons/phone-incoming-dynamic-gradient copy.png" alt="icon" className="image-fit-contain" />
                 </div>
                 <div className="text">
                   <h4>Телефон</h4>
-                  <p>
-                    Свържете се с нас от 16:00 to 24:00 Пон-Петък. (Българско
-                    време)
-                  </p>
-                  <Link href="tel:+126720800020">
+                  <p>Свържете се с нас от 16:00 to 24:00 Пон-Петък. (Българско време)</p>
+                  <Link href="tel:+12672658100">
                     <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
                       Звъннете <i className="fal fa-chevron-right ml-2" />
                     </a>
@@ -57,16 +42,9 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div
-                className="contact_faq_box shadow_1 wow fadeInUp"
-                data-wow-delay=".40ms"
-              >
+              <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
                 <div className="icon">
-                  <img
-                    src="assets/images/icons/chat-text-dynamic-gradient copy.png"
-                    alt="icon"
-                    className="image-fit-contain"
-                  />
+                  <img src="assets/images/icons/chat-text-dynamic-gradient copy.png" alt="icon" className="image-fit-contain" />
                 </div>
                 <div className="text">
                   <h4>Имате ли въпроси към нас?</h4>
@@ -126,14 +104,7 @@ const Contact = () => {
           </div>
           <div className="col-xl-8 col-lg-7">
             <div className="contact_map relative z-1 wow fadeInRight" id="map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.590101717821!2d-75.0114418!3d40.151413399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6ad77a03ed939%3A0x23d1508632b7b17d!2s402%20E%20Pennsylvania%20Blvd%2C%20Feasterville-Trevose%2C%20PA%2019053!5e0!3m2!1sen!2sus!4v1663016138375!5m2!1sen!2sus"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                width="100%"
-                height="100%"
-              />
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.590101717821!2d-75.0114418!3d40.151413399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6ad77a03ed939%3A0x23d1508632b7b17d!2s402%20E%20Pennsylvania%20Blvd%2C%20Feasterville-Trevose%2C%20PA%2019053!5e0!3m2!1sen!2sus!4v1663016138375!5m2!1sen!2sus" style={{ border: 0 }} allowFullScreen loading="lazy" width="100%" height="100%" />
             </div>
           </div>
           <section className="section">
@@ -145,9 +116,7 @@ const Contact = () => {
                       <i className="fal fa-book" />
                       Изпратете съобщение
                     </p>
-                    <h3 className="title">
-                      Свържете се за едно дълго и успешно партньорство
-                    </h3>
+                    <h3 className="title">Свържете се за едно дълго и успешно партньорство</h3>
                   </div>
                 </div>
               </div>
@@ -202,87 +171,40 @@ const Contact = () => {
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Име</label>
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        autoComplete="off"
-                        placeholder="Full Name"
-                      />
+                      <input type="text" name="name" className="form-control" autoComplete="off" placeholder="Full Name" />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Телефон</label>
-                      <input
-                        type="text"
-                        name="phone"
-                        className="form-control"
-                        autoComplete="off"
-                        placeholder="Phone Number"
-                      />
+                      <input type="text" name="phone" className="form-control" autoComplete="off" placeholder="Phone Number" />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Имейл</label>
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        autoComplete="off"
-                        placeholder="Email Address"
-                      />
+                      <input type="email" name="email" className="form-control" autoComplete="off" placeholder="Email Address" />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Заглавие</label>
-                      <input
-                        type="text"
-                        name="subject"
-                        className="form-control"
-                        autoComplete="off"
-                        placeholder="I Would Like To Discuss"
-                      />
+                      <input type="text" name="subject" className="form-control" autoComplete="off" placeholder="I Would Like To Discuss" />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group form_style">
                       <label>Съобщение</label>
-                      <textarea
-                        rows={10}
-                        className="form-control"
-                        placeholder="Write Message"
-                        autoComplete="off"
-                        name="message"
-                        defaultValue={""}
-                      />
+                      <textarea rows={10} className="form-control" placeholder="Write Message" autoComplete="off" name="message" defaultValue={""} />
                     </div>
                   </div>
                   <div className="col-lg-12 text-center">
-                    <button
-                      type="submit"
-                      className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"
-                    >
-                      Изпратете съобщение{" "}
-                      <i className="fal fa-chevron-right ml-2" />
+                    <button type="submit" className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
+                      Изпратете съобщение <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>
-                  {error ? (
-                    <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white min-w-full">
-                      {error}
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                  {success ? (
-                    <div className="flex flex-row justify-center texte-center bg-green-400 my-4 rounded-xl text-white min-w-full">
-                      {success}
-                    </div>
-                  ) : (
-                    <></>
-                  )}
+                  {error ? <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white min-w-full">{error}</div> : <></>}
+                  {success ? <div className="flex flex-row justify-center texte-center bg-green-400 my-4 rounded-xl text-white min-w-full">{success}</div> : <></>}
                 </div>
               </form>
             </div>

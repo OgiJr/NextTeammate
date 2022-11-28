@@ -3,10 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer
-      className="footer bg-thm-color-one style_2 style_3 z-1"
-      style={{ backgroundImage: "url(assets/images/elements/element_18.png)" }}
-    >
+    <footer className="footer bg-thm-color-one style_2 style_3 z-1" style={{ backgroundImage: "url(assets/images/elements/element_18.png)" }}>
       <div className="container relative z-1">
         <div className="footer_top pt-20">
           <div className="flex flex-row justify-start flex-wrap">
@@ -14,11 +11,7 @@ const Footer = () => {
               <div className="ft_widget ft_about wow fadeInDown">
                 <Link href="/">
                   <a className="logo">
-                    <img
-                      src="assets/images/nextlogof.png"
-                      alt="logo"
-                      className="image-fit"
-                    />
+                    <img src="assets/images/nextlogof.png" alt="logo" className="image-fit" />
                   </a>
                 </Link>
               </div>
@@ -61,13 +54,10 @@ const Footer = () => {
                   Feasterville PA 19053
                 </li>
                 <li>
-                  <a href="tel:+126720800020">+126720800020</a>
+                  <a href="tel:+12672658100">+12672658100</a>
                 </li>
                 <li>
-                  <a href="mailto:example@example.com">
-                    {" "}
-                    nextteammateltd@gmail.com
-                  </a>
+                  <a href="mailto:example@example.com"> nextteammateltd@gmail.com</a>
                 </li>
               </ul>
             </div>
@@ -75,15 +65,10 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <p className="mb-0">
-            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved,
-            Design By Javery.
+            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Design By Javery.
           </p>
         </div>
-        <img
-          src="assets/images/elements/circle3.png"
-          alt="element"
-          className="element_3 rotate_elem"
-        />
+        <img src="assets/images/elements/circle3.png" alt="element" className="element_3 rotate_elem" />
         <div className="arrows to_up slideTop">
           <div className="arrow" />
           <div className="arrow" />

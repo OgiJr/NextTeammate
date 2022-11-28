@@ -18,14 +18,16 @@ export default async function contactRoute(req, res) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["POST"]);
-    reqBody = reqBodyParse(req, res, ["email", "subject", "message", "phone", "name"]);
+    reqBody = reqBodyParse(req, res, ["email", "subject", "message", "phone", "name", "company", "website"]);
   } catch (e) {
     return;
   }
 
-  const { email, subject, message, phone, name } = reqBody;
+  const { email, subject, message, phone, name, company, website } = reqBody;
 
-  await sendContactForm(email, subject, message, name, phone);
+  console.log("COMAPNY: " + company);
+
+  await sendContactForm(email, subject, message, name, phone, company, website);
 
   res.status(200).json({});
 }
