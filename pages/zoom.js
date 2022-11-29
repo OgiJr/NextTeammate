@@ -8,12 +8,12 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import useSWR, { useSWRConfig } from "swr";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isIronUserWorking, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import { Popover, Button as NextButton, Text, Loading, User as NextUser } from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 import Footer from "../src/layout/Footer";
 import { cdnSubpath } from "../lib/cdn";
+import { dbUserToIronUser, isIronUserWorking, isUserEmailInDb } from "../lib/db";
 
 const Zoom = ({ user, employees }) => {
   const router = useRouter();
@@ -31,6 +31,30 @@ const Zoom = ({ user, employees }) => {
   const [error, setError] = React.useState(null);
 
   const [loading, setLoading] = React.useState(false);
+
+  const fetcher_unread = (url) => {
+    return fetch(url).then((res) => {
+      return res.json();
+    });
+  };
+
+  const [previousState, setPreviousState] = React.useState(false);
+  const { data: unread_data } = useSWR("/api/has-unread", fetcher_unread, {
+    refreshInterval: 500,
+    refreshWhenHidden: true,
+    onSuccess: (d) => {
+      if (d.unread && !previousState) {
+        const audio = new Audio("/assets/sounds/notif.mp3");
+        audio.play();
+      }
+      setPreviousState(d.unread);
+    },
+  });
+
+  const { data: unreads } = useSWR("/api/has-unreads", fetcher_unread, {
+    refreshInterval: 500,
+    refreshWhenHidden: true,
+  });
 
   const fetcher = (url, queryParams = "") => {
     if (currentFriend) {
@@ -129,7 +153,7 @@ const Zoom = ({ user, employees }) => {
           </Link>
           <div className="hidden lg:flex flex-row text-center justify-center ml-2 mt-4 text-4xl text-white">
             Welcome, {user.first_name}!
-          </div>{" "}
+          </div>
         </div>
         <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
           <Button
@@ -245,7 +269,10 @@ const Zoom = ({ user, employees }) => {
               </Popover>
             </div>
             <ul className="overflow-auto lg:h-[32rem]">
-              <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600">Chat</h2>
+              <h2 className="my-2 mb-2 ml-2 text-lg text-gray-600 flex flex-row justify-start gap-2">
+                Chat
+                {unread_data && unread_data.unread ? <div className="text-[#ff0000] text-xl font-bold">!</div> : <></>}
+              </h2>
               <li>
                 {employees.map((e) => {
                   return (
@@ -267,8 +294,12 @@ const Zoom = ({ user, employees }) => {
                         alt="username"
                       />
                       <div className="w-full">
-                        <div className="flex flex-col justify-between">
-                          <span className="block ml-2 font-semibold text-gray-600">
+                        <div className=" ml-2 flex flex-col justify-between">
+                          <span
+                            className={`block text-gray-600 ${
+                              unreads && unreads[e.email] ? "font-bold underline" : "font-semibold"
+                            }`}
+                          >
                             {e.first_name} {e.last_name}
                           </span>
                         </div>
@@ -465,9 +496,13 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 
   let employees = await Promise.all(result.map(async (e) => await dbUserToIronUser(e)));
-  employees = employees.map((e) => {
-    return { ...e, is_working: isIronUserWorking(e) };
-  });
+  employees = await Promise.all(
+    employees.map(async (e) => {
+      return { ...e, is_working: isIronUserWorking(e) };
+    })
+  );
+
+  console.log(employees);
 
   return {
     props: {
