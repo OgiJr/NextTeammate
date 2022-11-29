@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import useSWR from "swr";
 import { authCookie } from "../lib/cookies";
 import { isUserEmailInDb } from "../lib/db";
 import Footer from "../src/layout/Footer";
@@ -12,6 +13,25 @@ const CreateCompany = () => {
   const router = useRouter();
   const [file, setFile] = React.useState(null);
   const [error, setError] = React.useState(null);
+
+  const fetcher = (url) => {
+    return fetch(url).then((res) => {
+      return res.json();
+    });
+  };
+
+  const [previousState, setPreviousState] = React.useState(false);
+  const { data: unread_data } = useSWR("/api/has-unread", fetcher, {
+    refreshInterval: 500,
+    refreshWhenHidden: true,
+    onSuccess: (d) => {
+      if (d.unread && !previousState) {
+        const audio = new Audio("/assets/sounds/notif.mp3");
+        audio.play();
+      }
+      setPreviousState(d.unread);
+    },
+  });
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -38,7 +58,10 @@ const CreateCompany = () => {
               router.push("/zoom");
             }}
           >
-            Sharing System
+            <div className="flex flex-row justify-center gap-2 justify-items-center items-center">
+              <div>Sharing System</div>
+              {unread_data && unread_data.unread ? <div className="text-[#ff0000] text-xl font-bold">!</div> : <></>}
+            </div>
           </Button>
           <Button
             className="thm-btn bg-thm-color-five thm-color-five-shadow btn-rounded mr-4 mb-4 wow fadeInRight"

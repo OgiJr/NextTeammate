@@ -8,10 +8,30 @@ import { authCookie } from "../lib/cookies";
 import Footer from "../src/layout/Footer";
 import { dbCompanyToCompany, dbConnect, isUserEmailInDb } from "../lib/db";
 import Company from "../models/Company";
+import useSWR from "swr";
 
 const CreateEmployee = ({ user, companies }) => {
   const router = useRouter();
   const [error, setError] = React.useState(null);
+
+  const fetcher = (url) => {
+    return fetch(url).then((res) => {
+      return res.json();
+    });
+  };
+
+  const [previousState, setPreviousState] = React.useState(false);
+  const { data: unread_data } = useSWR("/api/has-unread", fetcher, {
+    refreshInterval: 500,
+    refreshWhenHidden: true,
+    onSuccess: (d) => {
+      if (d.unread && !previousState) {
+        const audio = new Audio("/assets/sounds/notif.mp3");
+        audio.play();
+      }
+      setPreviousState(d.unread);
+    },
+  });
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -38,7 +58,10 @@ const CreateEmployee = ({ user, companies }) => {
               router.push("/zoom");
             }}
           >
-            Sharing System
+            <div className="flex flex-row justify-center gap-2 justify-items-center items-center">
+              <div>Sharing System</div>
+              {unread_data && unread_data.unread ? <div className="text-[#ff0000] text-xl font-bold">!</div> : <></>}
+            </div>
           </Button>
           <Button
             className="thm-btn bg-thm-color-five thm-color-five-shadow btn-rounded mr-4 mb-4 wow fadeInRight"

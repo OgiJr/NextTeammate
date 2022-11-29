@@ -1,6 +1,7 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import Chat from "../../models/Chat";
+import ChatTimestamp from "../../models/ChatTimestamp";
 import { isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
 import { dbChatToChat, dbConnect } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
@@ -22,7 +23,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
   }
 
   const { sender, receiver } = reqQuery;
-  if (req.session.user._id !== sender) {
+  if (req.session.user._id !== sender && req.session.user._id !== receiver) {
     res.status(401).json({ message: "Can't get messages from someone else!" });
     return;
   }
@@ -48,6 +49,21 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
       res.status(401).json({ message: "No such recepient!" });
       return;
     }
+
+    const senderUser = await User.findOne({ _id: sender });
+    if (!senderUser) {
+      res.status(401).json({ message: "No such sender!" });
+      return;
+    }
+
+    const accessor_iron = req.session.user;
+    const other_id = accessor_iron._id == sender ? receiver : sender;
+
+    await ChatTimestamp.findOneAndUpdate(
+      { accessor: accessor_iron._id, target: other_id },
+      { accessor: accessor_iron._id, target: other_id, timestamp: new Date(Date.now()) },
+      { upsert: true }
+    );
 
     const { from } = req.query;
     if (!from) {
