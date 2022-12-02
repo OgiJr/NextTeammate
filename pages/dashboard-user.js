@@ -6,29 +6,14 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Image from "next/image";
-import {
-  dbConnect,
-  dbUserToIronUser,
-  getIronUserWorkStats,
-  isIronUserAssigned,
-  isIronUserWorking,
-  isUserEmailInDb,
-} from "../lib/db";
+import { dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
 
-const DashboardUser = ({
-  user,
-  is_working,
-  work_hours_this_week,
-  work_hours_this_month,
-  average_hours_per_week,
-  projected_salary,
-  is_assigned,
-}) => {
+const DashboardUser = ({ user, is_working, is_assigned }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [file, setFile] = React.useState(null);
@@ -170,47 +155,10 @@ const DashboardUser = ({
             </div>
             <div className="col-lg-6 my-4">
               <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
-                <h3 className="name wow fadeInDown">{user.first_name + " " + user.last_name}</h3>
+                <h3 className="name wow fadeInDown text-center">{user.first_name + " " + user.last_name}</h3>
                 <p className="desi thm-color-two wow fadeInUp">{user.bio}</p>
                 {is_assigned ? (
                   <ul className="info wow fadeInDown">
-                    <li>
-                      <i className="icon fal fa-clock bg-thm-color-three" />
-                      <div className="text">
-                        <h6 className="mb-0">Expected hours per week</h6>
-                        <p className="mb-0">{user.work_data.expected_hours_weekly}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <i className="icon fal fa-lightbulb-on" />
-                      <div className="text">
-                        <h6 className="mb-0">Work hours this week</h6>
-                        <p className="mb-0">{work_hours_this_week}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <i className="icon fal fa-calendar-week" />
-                      <div className="text">
-                        <h6 className="mb-0">Average hours per week</h6>
-                        <p className="mb-0">{isNaN(average_hours_per_week) ? average_hours_per_week : "NA"}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <i className="icon fal fa-calendar" />
-                      <div className="text">
-                        <h6 className="mb-0">Work hours this month</h6>
-                        <p className="mb-0">{work_hours_this_month}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <i className="icon fal fa-dollar-sign" />
-                      <div className="text">
-                        <h6 className="mb-0">Projected Salary *</h6>
-                        <p className="mb-0">
-                          {projected_salary} {user.work_data.currency}
-                        </p>
-                      </div>
-                    </li>
                     <div className="flex flex-col gap-4">
                       <div className="flex flex-col items-center justify-center">
                         {is_working ? (
@@ -323,18 +271,11 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     req.session.user = await dbUserToIronUser(newUser);
     await req.session.save();
 
-    const { work_hours_this_week, work_hours_this_month, average_hours_per_week, projected_salary } =
-      await getIronUserWorkStats(req.session.user);
-
     return {
       props: {
         user: req.session.user,
         is_assigned: isIronUserAssigned(req.session.user),
         is_working: isIronUserWorking(req.session.user),
-        work_hours_this_week,
-        work_hours_this_month,
-        average_hours_per_week,
-        projected_salary,
       },
     };
   } catch (e) {
@@ -342,8 +283,6 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {
         user,
         is_working: isIronUserWorking(user),
-        work_hours_this_week: "Error",
-        work_hours_this_month: "Error",
       },
     };
   }
