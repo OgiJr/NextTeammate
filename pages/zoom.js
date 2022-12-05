@@ -38,16 +38,14 @@ const Zoom = ({ user, employees }) => {
     });
   };
 
-  const [previousState, setPreviousState] = React.useState(false);
   const { data: unread_data } = useSWR("/api/has-unread", fetcher_unread, {
     refreshInterval: 500,
     refreshWhenHidden: true,
     onSuccess: (d) => {
-      if (d.unread && !previousState) {
+      if (d.ping) {
         const audio = new Audio("/assets/sounds/notif.mp3");
         audio.play();
       }
-      setPreviousState(d.unread);
     },
   });
 
@@ -501,8 +499,6 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       return { ...e, is_working: isIronUserWorking(e) };
     })
   );
-
-  console.log(employees);
 
   return {
     props: {

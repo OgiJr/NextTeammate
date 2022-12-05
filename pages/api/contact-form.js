@@ -25,8 +25,6 @@ export default async function contactRoute(req, res) {
 
   const { email, subject, message, phone, name, company, website } = reqBody;
 
-  console.log("COMAPNY: " + company);
-
   await sendContactForm(email, subject, message, name, phone, company, website);
 
   res.status(200).json({});

@@ -26,16 +26,14 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
     });
   };
 
-  const [previousState, setPreviousState] = React.useState(false);
   const { data: unread_data } = useSWR("/api/has-unread", fetcher, {
     refreshInterval: 500,
     refreshWhenHidden: true,
     onSuccess: (d) => {
-      if (d.unread && !previousState) {
+      if (d.ping) {
         const audio = new Audio("/assets/sounds/notif.mp3");
         audio.play();
       }
-      setPreviousState(d.unread);
     },
   });
 

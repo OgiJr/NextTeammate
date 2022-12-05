@@ -26,18 +26,12 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["POST"]);
-    console.log("POST");
     await isLoggedIn(req, res);
-    console.log("LOGGED IN");
     isAdmin(req, res);
-    console.log("ADMIN");
     reqBody = await asyncParse(req);
   } catch (e) {
-    console.log(e);
     return;
   }
-
-  console.log(reqBody);
 
   const name = reqBody.fields.name;
   const picture = reqBody.files.logo;
@@ -54,8 +48,6 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
   mkdirSync(filedir, { recursive: true });
   copyFileSync(picture.filepath, filepath);
   // renameSync(picture.filepath, filepath);
-
-  console.log(name, picture_id);
 
   try {
     await dbConnect();
