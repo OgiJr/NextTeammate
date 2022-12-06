@@ -202,8 +202,6 @@ const DashboardUser = ({ user, is_working, is_assigned }) => {
                           </Button>
                         )}
                       </div>
-
-                      <span>* This is a projection based on estimates and past performance, not a promise.</span>
                     </div>
                   </ul>
                 ) : (
