@@ -16,6 +16,11 @@ const workDataSchema = Schema({
     requred: [true, "Please provide the currency for the price as an ISO 4217 code!"],
     enum: { values: codes(), message: "{VALUE} is not a valid ISO 4217 currency code!" },
   },
+  autoClockOutHours: {
+    type: Schema.Types.Number,
+    required: [true, "Please rovide an auto-clock-out time in hours!"],
+    default: 8,
+  },
   work: { type: [Schema.Types.ObjectId], ref: "WorkUnit" },
 });
 

@@ -13,7 +13,7 @@ export default withIronSessionApiRoute(async function hasUnread(req, res) {
   }
 
   try {
-    dbConnect();
+    await dbConnect();
     const ret = {};
     const all_users = await User.find();
     for (const user of all_users) {

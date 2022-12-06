@@ -16,7 +16,7 @@ export default withIronSessionApiRoute(async function hasUnread(req, res) {
   }
 
   try {
-    dbConnect();
+    await dbConnect();
 
     let unread = false;
     let ping = false;

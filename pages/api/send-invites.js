@@ -23,7 +23,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
 
   for (let i = 0; i < targets.length; i++) {
     try {
-      dbConnect();
+      await dbConnect();
 
       const target_db = User.findOne({ email: targets[i] });
       if (!target_db) {

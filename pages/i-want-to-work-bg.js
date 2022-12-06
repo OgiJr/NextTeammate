@@ -8,12 +8,10 @@ import User from "../models/User";
 import Footer from "../src/layout/FooterBg";
 
 export const getServerSideProps = async () => {
-  dbConnect();
+  await dbConnect();
 
   const users = await User.find({ is_admin: false });
-  const ironUsers = [
-    ...(await Promise.all(users.map(async (u) => await dbUserToIronUser(u)))),
-  ];
+  const ironUsers = [...(await Promise.all(users.map(async (u) => await dbUserToIronUser(u))))];
 
   return {
     props: { users: ironUsers },

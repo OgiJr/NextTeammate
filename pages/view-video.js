@@ -63,7 +63,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     };
   }
 
-  dbConnect();
+  await dbConnect();
   const video_user = await User.findOne({ _id: query.id });
   if (!video_user || !video_user.video) {
     return {

@@ -256,7 +256,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 
   try {
-    dbConnect();
+    await dbConnect();
 
     const companies = (await Company.find()).map((c) => dbCompanyToCompany(c));
 

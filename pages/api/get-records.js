@@ -1,7 +1,7 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import User from "../../models/User";
 import { isLoggedIn, isSupportedMethod, reqBodyParse } from "../../lib/validation";
-import { dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking } from "../../lib/db";
+import { clockOutAllUsers, dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import { cdnSubpath } from "../../lib/cdn";
 
@@ -25,6 +25,8 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
 
   try {
     await dbConnect();
+
+    await clockOutAllUsers();
 
     let allUsers;
 

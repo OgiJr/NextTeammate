@@ -49,6 +49,24 @@ const Zoom = ({ user, employees }) => {
     },
   });
 
+  const [autoClockOut, setAutoClockOut] = React.useState(false);
+  React.useEffect(() => {
+    if (autoClockOut) {
+      const audio = new Audio("/assets/sounds/notif.mp3");
+      audio.play();
+      setTimeout(() => alert("You have been auto clocked out!"), 1000);
+      setAutoClockOut(false);
+    }
+  }, [autoClockOut]);
+
+  useSWR("/api/auto-clock-out", fetcher_unread, {
+    refreshInterval: 1000,
+    refreshWhenHidden: true,
+    onSuccess: (d) => {
+      setAutoClockOut(d.clockout);
+    },
+  });
+
   const { data: unreads } = useSWR("/api/has-unreads", fetcher_unread, {
     refreshInterval: 500,
     refreshWhenHidden: true,

@@ -36,6 +36,24 @@ const DashboardUser = ({ user, is_working, is_assigned }) => {
     },
   });
 
+  const [autoClockOut, setAutoClockOut] = React.useState(false);
+  React.useEffect(() => {
+    if (autoClockOut) {
+      const audio = new Audio("/assets/sounds/notif.mp3");
+      audio.play();
+      setTimeout(() => alert("You have been auto clocked out!"), 1000);
+      setAutoClockOut(false);
+    }
+  }, [autoClockOut]);
+
+  useSWR("/api/auto-clock-out", fetcher, {
+    refreshInterval: 1000,
+    refreshWhenHidden: true,
+    onSuccess: (d) => {
+      setAutoClockOut(d.clockout);
+    },
+  });
+
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       {isModalOpen ? (
@@ -263,7 +281,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 
   try {
-    dbConnect();
+    await dbConnect();
 
     const newUser = await User.findOne({ email: user.email });
     req.session.user = await dbUserToIronUser(newUser);

@@ -35,7 +35,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     return;
   }
 
-  const changable = ["expected_hours_weekly", "current_price_per_hour", "currency"];
+  const changable = ["expected_hours_weekly", "current_price_per_hour", "currency", "autoClockOutHours"];
   const changes = {};
   let counter = 0;
   for (const i of changable) {
@@ -69,7 +69,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
 
     let wd = await WorkData.findOne({ worker: user._id });
     if (!wd) {
-      if (counter != 3) {
+      if (counter != 4) {
         res.status(401).json({ message: "Please provide all the necessary fields!" });
         return;
       }

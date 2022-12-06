@@ -29,7 +29,7 @@ export default withIronSessionApiRoute(async function contactRoute(req, res) {
   const _id = req.query._id;
   const user = req.session.user;
 
-  dbConnect();
+  await dbConnect();
 
   const target = await User.findOne({ _id: _id });
 

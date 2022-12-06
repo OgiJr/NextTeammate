@@ -63,12 +63,14 @@ const EditHours = ({ editable }) => {
               const expected_hours_weekly = e.target.expected_hours_weekly?.value;
               const current_price_per_hour = e.target.current_price_per_hour?.value;
               const currency = e.target.currency?.value;
+              const autoClockOutHours = e.target.autoClockOutHours?.value;
 
               const body = {
                 email: editable.email,
                 expected_hours_weekly,
                 current_price_per_hour,
                 currency,
+                autoClockOutHours,
               };
               const bodyJSON = JSON.stringify(body);
 
@@ -88,9 +90,14 @@ const EditHours = ({ editable }) => {
               router.push("/dashboard-redirector");
             }}
           >
+            <Form.Group className="my-3" controlId="autoClockOutHours">
+              <Form.Label>Hours to Clock Out Automatically</Form.Label>
+              <Form.Control type="number" placeholder={editable.work_data.autoClockOutHours} min="1" />
+            </Form.Group>
+
             <Form.Group className="my-3" controlId="expected_hours_weekly">
               <Form.Label>Expected Hours Per Week</Form.Label>
-              <Form.Control type="numer" placeholder={editable.work_data.expected_hours_weekly} />
+              <Form.Control type="number" placeholder={editable.work_data.expected_hours_weekly} min="0" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="current_price_per_hour">
@@ -164,7 +171,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 
   try {
-    dbConnect();
+    await dbConnect();
 
     const editable = await User.findOne({ email: query.email });
     const companies = (await Company.find()).map((c) => dbCompanyToCompany(c));

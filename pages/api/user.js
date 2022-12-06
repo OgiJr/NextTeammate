@@ -19,7 +19,7 @@ const del = async (req, res) => {
   }
 
   try {
-    await dbConnect();
+    await await dbConnect();
 
     const _id = req.query._id;
 
@@ -53,7 +53,7 @@ const post = async (req, res) => {
   const password_generation_key = uuidv4();
 
   try {
-    await dbConnect();
+    await await dbConnect();
 
     const existing = await User.findOne({ email });
     if (existing) {
@@ -124,7 +124,7 @@ const get = async (req, res) => {
   let user = req.session.user;
 
   try {
-    dbConnect();
+    await dbConnect();
 
     const newUser = await User.findOne({ email: user.email });
     req.session.user = await dbUserToIronUser(newUser);
@@ -170,7 +170,7 @@ const put = async (req, res) => {
 
   const user = req.session.user;
   try {
-    await dbConnect();
+    await await dbConnect();
 
     const result = await User.findOne({ email: user.email });
 

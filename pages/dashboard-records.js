@@ -10,7 +10,7 @@ import Footer from "../src/layout/Footer";
 import { Col, Text, Row, User as NextUser, Table, Input } from "@nextui-org/react";
 import { StyledBadge } from "../src/components/zoom-panel/StyledBadge";
 import useSWR, { useSWRConfig } from "swr";
-import { isUserEmailInDb } from "../lib/db";
+import { clockOutAllUsers, isUserEmailInDb } from "../lib/db";
 
 const DashboardAdmin = ({ start, end }) => {
   const router = useRouter();
@@ -249,6 +249,8 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {},
     };
   }
+
+  await clockOutAllUsers();
 
   const props = {
     start: query.start ? query.start : new Date(Date.now() - 60 * 60 * 24 * 30 * 1000).toISOString(),

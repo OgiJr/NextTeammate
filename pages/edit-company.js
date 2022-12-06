@@ -149,7 +149,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   }
 
   try {
-    dbConnect();
+    await dbConnect();
 
     const editable = await User.findOne({ email: query.email });
     const companies = (await Company.find()).map((c) => dbCompanyToCompany(c));

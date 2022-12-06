@@ -20,7 +20,7 @@ export default withIronSessionApiRoute(async function sendMessage(req, res) {
   const user_id = req.session.user._id;
 
   try {
-    dbConnect();
+    await dbConnect();
     const result = await Chat.findOne({ _id });
 
     if (!result || result.type !== "FILE") {
