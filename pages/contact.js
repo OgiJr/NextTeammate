@@ -28,7 +28,11 @@ const Contact = () => {
             <div className="col-lg-6">
               <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
                 <div className="icon">
-                  <img src="assets/images/icons/phone-incoming-dynamic-gradient copy.png" alt="icon" className="image-fit-contain" />
+                  <img
+                    src="assets/images/icons/phone-incoming-dynamic-gradient copy.png"
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Phone</h4>
@@ -44,7 +48,11 @@ const Contact = () => {
             <div className="col-lg-6">
               <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
                 <div className="icon">
-                  <img src="assets/images/icons/chat-text-dynamic-gradient copy.png" alt="icon" className="image-fit-contain" />
+                  <img
+                    src="assets/images/icons/chat-text-dynamic-gradient copy.png"
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Have Any Questions</h4>
@@ -95,7 +103,7 @@ const Contact = () => {
                   <div className="text">
                     <h6>Contact Us</h6>
                     <p>
-                      <strong>American Phone: </strong> +(1) 267 - 2080 - 0020
+                      <strong>American Phone: </strong> +(1) 267 - 2658 - 100
                     </p>
                     <p>
                       <strong> Bulgarian Phone: </strong> +359 882482505
@@ -107,7 +115,14 @@ const Contact = () => {
           </div>
           <div className="col-xl-8 col-lg-7">
             <div className="contact_map relative z-1 wow fadeInRight" id="map">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.590101717821!2d-75.0114418!3d40.151413399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6ad77a03ed939%3A0x23d1508632b7b17d!2s402%20E%20Pennsylvania%20Blvd%2C%20Feasterville-Trevose%2C%20PA%2019053!5e0!3m2!1sen!2sus!4v1663016138375!5m2!1sen!2sus" style={{ border: 0 }} allowFullScreen loading="lazy" width="100%" height="100%" />
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.590101717821!2d-75.0114418!3d40.151413399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6ad77a03ed939%3A0x23d1508632b7b17d!2s402%20E%20Pennsylvania%20Blvd%2C%20Feasterville-Trevose%2C%20PA%2019053!5e0!3m2!1sen!2sus!4v1663016138375!5m2!1sen!2sus"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                width="100%"
+                height="100%"
+              />
             </div>
           </div>
           <section className="section">
@@ -176,43 +191,88 @@ const Contact = () => {
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Full Name</label>
-                      <input type="text" name="name" className="form-control" autoComplete="off" placeholder="Full Name" />
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Full Name"
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Phone Number</label>
-                      <input type="text" name="phone" className="form-control" autoComplete="off" placeholder="Phone Number" />
+                      <input
+                        type="text"
+                        name="phone"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Phone Number"
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Website (Optional)</label>
-                      <input type="text" name="website" className="form-control" autoComplete="off" placeholder="Your Website (Optional)" required={false} />
+                      <input
+                        type="text"
+                        name="website"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Your Website (Optional)"
+                        required={false}
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Company (Optional)</label>
-                      <input type="text" name="company" className="form-control" autoComplete="off" placeholder="Your Company (Optional)" required={false} />
+                      <input
+                        type="text"
+                        name="company"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Your Company (Optional)"
+                        required={false}
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Email Address</label>
-                      <input type="email" name="email" className="form-control" autoComplete="off" placeholder="Email Address" />
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="Email Address"
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group form_style">
                       <label>Subject</label>
-                      <input type="text" name="subject" className="form-control" autoComplete="off" placeholder="I Would Like To Discuss" />
+                      <input
+                        type="text"
+                        name="subject"
+                        className="form-control"
+                        autoComplete="off"
+                        placeholder="I Would Like To Discuss"
+                      />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group form_style">
                       <label>Message</label>
-                      <textarea rows={10} className="form-control" placeholder="Write Message" autoComplete="off" name="message" defaultValue={""} />
+                      <textarea
+                        rows={10}
+                        className="form-control"
+                        placeholder="Write Message"
+                        autoComplete="off"
+                        name="message"
+                        defaultValue={""}
+                      />
                     </div>
                   </div>
                   <div className="col-lg-12 text-center ">
@@ -220,8 +280,20 @@ const Contact = () => {
                       Send Your Message <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>
-                  {error ? <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white min-w-full">{error}</div> : <></>}
-                  {success ? <div className="flex flex-row justify-center texte-center bg-green-400 my-4 rounded-xl text-white min-w-full">{success}</div> : <></>}
+                  {error ? (
+                    <div className="flex flex-row justify-center texte-center bg-red-400 my-4 rounded-xl text-white min-w-full">
+                      {error}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {success ? (
+                    <div className="flex flex-row justify-center texte-center bg-green-400 my-4 rounded-xl text-white min-w-full">
+                      {success}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </form>
             </div>

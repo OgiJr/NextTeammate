@@ -5,13 +5,13 @@ import React from "react";
 export const HomeMenu = ({ language }) => (
   <Fragment>
     <li className="menu-item">
-      <Link href={language == "en" ? "/i-want-to-work" : "/i-want-to-work-bg"}>
-        {language == "en" ? "I Want to Work" : "Търся работа"}
+      <Link href={language == "en" ? "/become-a-teammate" : "/become-a-teammate-bg"}>
+        {language == "en" ? "I Want to Become a Teammate" : "Търся работа"}
       </Link>
     </li>
     <li className="menu-item">
-      <Link href={language == "en" ? "/i-want-to-hire" : "/i-want-to-hire-bg"}>
-        {language == "en" ? "I Want to Hire" : "Търся служители"}
+      <Link href={language == "en" ? "/i-want-to-find-teammate" : "/i-want-to-find-teammate-bg"}>
+        {language == "en" ? "I Want to Find my Teammate" : "Търся служители"}
       </Link>
     </li>
   </Fragment>

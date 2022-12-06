@@ -134,7 +134,7 @@ const AvailableEmployees = ({ others }) => {
                                 rounded
                                 className="px-4 min-w-[25%] mr-2 self-center"
                               >
-                                I want to hire
+                                I want to find a TEAMMATE
                               </NextButton>
                             </NextLink>
                           </div>

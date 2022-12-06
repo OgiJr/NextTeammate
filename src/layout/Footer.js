@@ -3,7 +3,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-thm-color-one style_2 style_3 z-1" style={{ backgroundImage: "url(assets/images/elements/element_18.png)" }}>
+    <footer
+      className="footer bg-thm-color-one style_2 style_3 z-1"
+      style={{ backgroundImage: "url(assets/images/elements/element_18.png)" }}
+    >
       <div className="container relative z-1">
         <div className="footer_top pt-20">
           <div className="flex flex-row justify-start flex-wrap">
@@ -36,10 +39,10 @@ const Footer = () => {
                       <a href="/">Home</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-work">I want to work</a>
+                      <a href="/become-a-teammate">I want to become a TEAMMATE</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-hire">I want to hire</a>
+                      <a href="/i-want-to-find-teammate">I want to find my TEAMMATE</a>
                     </li>
                   </ul>
                 </div>

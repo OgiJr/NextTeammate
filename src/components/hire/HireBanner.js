@@ -7,8 +7,7 @@ const HireBanner = () => {
     <div
       className="single_banner bg-thm-color-two-gradient relative z-1 lg:min-h-screen"
       style={{
-        backgroundImage:
-          "url('assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg')",
+        backgroundImage: "url('assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg')",
         backgroundSize: "cover",
       }}
     >
@@ -23,12 +22,12 @@ const HireBanner = () => {
             <div className="col-xl-6 col-lg-7 relative z-1">
               <div className="banner_text">
                 <NextSeo
-                  title="I want to hire"
+                  title="I want to find my TEAMMATE"
                   description="Nextteammate provides end to end employment solutions – from screening the potential candidates, payroll and health insurance benefits to management and built-in scheduling software."
                   nextteammate="https://nextteammate.com"
                   openGraph={{
-                    url: "https://nextteammate.com/i-want-to-hire",
-                    title: "Hire a professional",
+                    url: "https://nextteammate.com/i-want-to-find-teammate",
+                    title: "Find a professional",
                     description: "Professional outsourcing company",
                     images: [
                       {
@@ -59,52 +58,29 @@ const HireBanner = () => {
                   className="tag_badge style_2 bg-thm-color-white thm-color-two wow fadeInUp"
                   data-wow-delay=".40ms"
                 >
-                  I want to hire
+                  I want to find my TEAMMATE
                 </span>
-                <h1
-                  className="title wow fadeInDown text-white"
-                  data-wow-delay=".50ms"
-                >
-                  Hire a professional
+                <h1 className="title wow fadeInDown text-white" data-wow-delay=".50ms">
+                  Find a professional
                 </h1>
-                <p
-                  className="wow fadeInUp text-white font-normal hover:font-bold"
-                  data-wow-delay=".60ms"
-                >
-                  Our main priority is to make your life easier so you can focus
-                  on your business.
+                <p className="wow fadeInUp text-white font-normal hover:font-bold" data-wow-delay=".60ms">
+                  Our main priority is to make your life easier so you can focus on your business.
                 </p>
                 <Link href="/contact">
                   <a
                     className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded mr-2 mb-2 wow afdeInLeft"
                     data-wow-delay=".70ms"
                   >
-                    Hire <i className="fal fa-chevron-right ml-10 " />
+                    Find <i className="fal fa-chevron-right ml-10 " />
                   </a>
                 </Link>
               </div>
-              <img
-                src="assets/images/elements/circle3.png"
-                className="element_4 rotate_elem"
-                alt="img"
-              />
-              <img
-                src="assets/images/elements/circle3.png"
-                className="element_5 rotate_elem"
-                alt="img"
-              />
+              <img src="assets/images/elements/circle3.png" className="element_4 rotate_elem" alt="img" />
+              <img src="assets/images/elements/circle3.png" className="element_5 rotate_elem" alt="img" />
             </div>
           </div>
-          <img
-            src="assets/images/elements/circle3.png"
-            className="element_2 slideRightTwo"
-            alt="img"
-          />
-          <img
-            src="assets/images/elements/circle3.png"
-            className="element_3 zoom-fade"
-            alt="img"
-          />
+          <img src="assets/images/elements/circle3.png" className="element_2 slideRightTwo" alt="img" />
+          <img src="assets/images/elements/circle3.png" className="element_3 zoom-fade" alt="img" />
         </div>
       </div>
     </div>

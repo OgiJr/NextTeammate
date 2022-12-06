@@ -46,7 +46,7 @@ export default withIronSessionApiRoute(async function contactRoute(req, res) {
   send(
     "nextteammateltd@gmail.com",
     "NexTeamMate Hiring Request",
-    `You've received a hiring request from ${user.first_name} ${user.last_name}. They would like to hire ${target.first_name} ${target.last_name} (${target.email}).`
+    `You've received a hiring request from ${user.first_name} ${user.last_name}. They would like to find their teammate: ${target.first_name} ${target.last_name} (${target.email}).`
   );
 
   res.redirect(307, "/dashboard-employer").end();

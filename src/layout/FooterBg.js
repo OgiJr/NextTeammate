@@ -3,7 +3,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-thm-color-one style_2 style_3 z-1" style={{ backgroundImage: "url(assets/images/elements/element_18.png)" }}>
+    <footer
+      className="footer bg-thm-color-one style_2 style_3 z-1"
+      style={{ backgroundImage: "url(assets/images/elements/element_18.png)" }}
+    >
       <div className="container relative z-1">
         <div className="footer_top pt-20">
           <div className="flex flex-row justify-start flex-wrap">
@@ -36,10 +39,10 @@ const Footer = () => {
                       <a href="index-bg">Начало</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-work-bg">Търся работа</a>
+                      <a href="/become-a-teammate-bg">Търся работа</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-hire-bg">Търся служители</a>
+                      <a href="/i-want-to-find-teammate-bg">Търся служители</a>
                     </li>
                   </ul>
                 </div>
@@ -65,7 +68,8 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <p className="mb-0">
-            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Създадено от <a href="https://javery.bg/">Javery</a>.
+            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Създадено от{" "}
+            <a href="https://javery.bg/">Javery</a>.
           </p>
         </div>
         <img src="assets/images/elements/circle3.png" alt="element" className="element_3 rotate_elem" />

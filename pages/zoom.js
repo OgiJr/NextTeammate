@@ -312,11 +312,16 @@ const Zoom = ({ user, employees }) => {
                       <div className="w-full">
                         <div className=" ml-2 flex flex-col justify-between">
                           <span
-                            className={`block text-gray-600 ${
-                              unreads && unreads[e.email] ? "font-bold underline" : "font-semibold"
+                            className={`block ${
+                              unreads && unreads[e.email] ? "font-extrabold text-black" : "font-normal text-gray-600"
                             }`}
                           >
-                            {e.first_name} {e.last_name}
+                            {e.first_name} {e.last_name}{" "}
+                            {unreads && unreads[e.email] ? (
+                              <div className="inline text-[#ff0000] text-xl font-bold">!</div>
+                            ) : (
+                              <></>
+                            )}
                           </span>
                         </div>
                       </div>

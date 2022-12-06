@@ -15,12 +15,12 @@
         <priority>0.1</priority>
     </url>
     <url>
-        <loc>https://nextteammate.com/i-want-to-work</loc>
+        <loc>https://nextteammate.com/become-a-teammate</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://nextteammate.com/i-want-to-hire</loc>
+        <loc>https://nextteammate.com/i-want-to-find-teammate</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
@@ -40,12 +40,12 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://nextteammate.com/i-want-to-work-bg</loc>
+        <loc>https://nextteammate.com/become-a-teammate-bg</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://nextteammate.com/i-want-to-hire-bg</loc>
+        <loc>https://nextteammate.com/i-want-to-find-teammate-bg</loc>
         <changefreq>daily</changefreq>
         <priority>0.7</priority>
     </url>
