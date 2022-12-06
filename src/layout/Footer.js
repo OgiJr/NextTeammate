@@ -60,6 +60,9 @@ const Footer = () => {
                   <a href="tel:+12672658100">+12672658100</a>
                 </li>
                 <li>
+                  <a href="tel:+359882482505">+359882482505</a>
+                </li>
+                <li>
                   <a href="mailto:example@example.com"> nextteammateltd@gmail.com</a>
                 </li>
               </ul>
