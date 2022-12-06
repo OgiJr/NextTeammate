@@ -76,7 +76,7 @@ const Contact = () => {
                 <i className="fal fa-book" />
                 Contact Us
               </p>
-              <h3 className="title">Have Any Courses Get In Touch</h3>
+              <h3 className="title">Have Any Questions Get In Touch</h3>
             </div>
             <div className="contact_info mb-md-80">
               <ul>
