@@ -56,7 +56,7 @@ const HireFind = () => {
                 <div className="col-sm-12">
                   <Link href="/contact">
                     <button className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded">
-                      Hire Now <i className="fal fa-chevron-right ml-2" />
+                      Find a Teammate <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </Link>
                 </div>

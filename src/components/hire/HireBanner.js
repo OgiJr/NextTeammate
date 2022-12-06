@@ -71,7 +71,7 @@ const HireBanner = () => {
                     className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rounded mr-2 mb-2 wow afdeInLeft"
                     data-wow-delay=".70ms"
                   >
-                    Find <i className="fal fa-chevron-right ml-10 " />
+                    Contact <i className="fal fa-chevron-right ml-10 " />
                   </a>
                 </Link>
               </div>
