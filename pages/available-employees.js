@@ -81,7 +81,10 @@ const AvailableEmployees = ({ others }) => {
             <>
               {others.map((e) => {
                 return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 max-w-[33.3%]" key={e._id}>
+                  <div
+                    className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                    key={e._id}
+                  >
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">

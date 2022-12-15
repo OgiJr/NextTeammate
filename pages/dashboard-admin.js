@@ -286,7 +286,10 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
             <>
               {employers.map((e) => {
                 return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 max-w-[33.3%]" key={e.email}>
+                  <div
+                    className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                    key={e.email}
+                  >
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
@@ -349,7 +352,10 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                   e.work_data.expected_hours_weekly != 0 &&
                   e.work_data.current_price_per_hour != 0;
                 return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 max-w-[33.3%]" key={e.email}>
+                  <div
+                    className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                    key={e.email}
+                  >
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
