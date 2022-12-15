@@ -80,11 +80,6 @@ const AvailableEmployees = ({ others }) => {
           ) : (
             <>
               {others.map((e) => {
-                const is_setup =
-                  e.work_data &&
-                  e.work_data.currency &&
-                  e.work_data.expected_hours_weekly &&
-                  e.work_data.current_price_per_hour;
                 return (
                   <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 max-w-[33.3%]" key={e._id}>
                     <Card isHoverable isPressable>
@@ -101,14 +96,6 @@ const AvailableEmployees = ({ others }) => {
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        {is_setup ? (
-                          <div className="text-center text-md text-gray-800">
-                            {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
-                            {e.work_data.currency} / hour
-                          </div>
-                        ) : (
-                          <></>
-                        )}
                         <div className="text-center text-md text-gray-500">{e.bio}</div>
                         {!e.has_password ? (
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>

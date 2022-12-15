@@ -102,7 +102,7 @@ const EditHours = ({ editable }) => {
 
             <Form.Group className="mb-3" controlId="current_price_per_hour">
               <Form.Label>Price per Hour</Form.Label>
-              <Form.Control type="text" placeholder={editable.work_data.current_price_per_hour} />
+              <Form.Control type="text" placeholder={editable.work_data.current_price_per_hour} min="0" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="currency">
