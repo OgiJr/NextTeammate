@@ -5,14 +5,15 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isUserEmailInDb } from "../lib/db";
+import { dbCompanyToCompany, dbUserToIronUser, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
+import Company from "../models/Company";
 import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
 
-const DashboardEmployer = ({ user, employees, employers }) => {
+const DashboardEmployer = ({ user, employees, employers, company }) => {
   const router = useRouter();
 
   const fetcher = (url) => {
@@ -81,7 +82,23 @@ const DashboardEmployer = ({ user, employees, employers }) => {
         </div>
       </div>
       <div className="flex flex-col">
+        <div className="flex flex-row justify-center">
+          <img
+            src={`${cdnSubpath()}${company.picture}`}
+            width={150}
+            height={150}
+            className="rounded-full"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         <div className="self-center text-cyan-600 text-xl">{user.company.name}</div>
+        <div className="flex flex-row mt-2 justify-center">
+          <NextLink href="/change-company-picture">
+            <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
+              Change Picture
+            </NextButton>
+          </NextLink>
+        </div>
         <div className="text-center text-3xl font-bold">Employers</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
           {employers.length === 0 ? (
@@ -90,7 +107,7 @@ const DashboardEmployer = ({ user, employees, employers }) => {
             <>
               {employers.map((e) => {
                 return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
+                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 max-w-[33.3%]" key={e.email}>
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
@@ -318,6 +335,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       employees,
       employers,
       others,
+      company: dbCompanyToCompany(await Company.findOne({ _id: user.company._id })),
     },
   };
 }, authCookie);

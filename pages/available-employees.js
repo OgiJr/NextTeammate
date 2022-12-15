@@ -86,7 +86,7 @@ const AvailableEmployees = ({ others }) => {
                   e.work_data.expected_hours_weekly &&
                   e.work_data.current_price_per_hour;
                 return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
+                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 max-w-[33.3%]" key={e._id}>
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
@@ -101,7 +101,6 @@ const AvailableEmployees = ({ others }) => {
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        <div className="text-center text-md text-gray-800">{e.email}</div>
                         {is_setup ? (
                           <div className="text-center text-md text-gray-800">
                             {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
