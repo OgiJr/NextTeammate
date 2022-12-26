@@ -48,65 +48,66 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
   const allIronUsers = [...(await Promise.all(allUsers.map(async (u) => await dbUserToIronUser(u))))];
 
   try {
-    let result = allIronUsers.map((u) => {
-      console.log(u);
-      if (!isIronUserAssigned(u)) {
+    let result = allIronUsers
+      .filter((u) => u.has_password)
+      .map((u) => {
+        if (!isIronUserAssigned(u)) {
+          return {
+            name: u.first_name + " " + u.last_name,
+            email: u.email,
+            picture: u.has_picture ? cdnSubpath() + u.picture : u.picture,
+            is_assigned: false,
+          };
+        }
+
+        let work_units_in_period = [];
+        u.work_data.work.forEach((w) => {
+          if (w.end_date) {
+            if (new Date(w.start_time) >= start_date && new Date(w.end_date) <= end_date) {
+              work_units_in_period.push(JSON.parse(JSON.stringify(w)));
+            }
+          } else {
+            if (new Date(w.start_time) >= start_date) {
+              work_units_in_period.push(JSON.parse(JSON.stringify(w)));
+            }
+          }
+        });
+
+        const work_data_to_hours = (w) => {
+          let end = w.end_time ? w.end_time : new Date();
+          return Math.abs(new Date(end) - new Date(w.start_time)) / 36e5;
+        };
+
+        let actual_work = 0;
+        work_units_in_period.forEach((w) => (actual_work += work_data_to_hours(w)));
+
+        let salaries = {};
+        const work_data_to_salary = (w) => w.price_per_hours * work_data_to_hours(w);
+        work_units_in_period.forEach((w) => {
+          if (!salaries[w.currency]) {
+            salaries[w.currency] = 0;
+          }
+
+          salaries[w.currency] += parseInt(work_data_to_salary(w));
+        });
+
+        const days =
+          (new Date(end_date.getFullYear(), end_date.getMonth() + 1, end_date.getDate()) -
+            new Date(start_date.getFullYear(), start_date.getMonth() + 1, start_date.getDate())) /
+          (1000 * 60 * 60 * 24);
+
         return {
-          name: u.first_name + " " + u.last_name,
+          name: u.first_name + "  " + u.last_name,
           email: u.email,
           picture: u.has_picture ? cdnSubpath() + u.picture : u.picture,
-          is_assigned: false,
+          is_assigned: true,
+          status: isIronUserWorking(u),
+          actual_work: actual_work.toFixed(2),
+          expected_work: ((u.work_data.expected_hours_weekly / 7) * days).toFixed(2),
+          salaries,
+          company: u.company,
         };
-      }
-
-      let work_units_in_period = [];
-      u.work_data.work.forEach((w) => {
-        if (w.end_date) {
-          if (new Date(w.start_time) >= start_date && new Date(w.end_date) <= end_date) {
-            work_units_in_period.push(JSON.parse(JSON.stringify(w)));
-          }
-        } else {
-          if (new Date(w.start_time) >= start_date) {
-            work_units_in_period.push(JSON.parse(JSON.stringify(w)));
-          }
-        }
       });
-
-      const work_data_to_hours = (w) => {
-        let end = w.end_time ? w.end_time : new Date();
-        return Math.abs(new Date(end) - new Date(w.start_time)) / 36e5;
-      };
-
-      let actual_work = 0;
-      work_units_in_period.forEach((w) => (actual_work += work_data_to_hours(w)));
-
-      let salaries = {};
-      const work_data_to_salary = (w) => w.price_per_hours * work_data_to_hours(w);
-      work_units_in_period.forEach((w) => {
-        if (!salaries[w.currency]) {
-          salaries[w.currency] = 0;
-        }
-
-        salaries[w.currency] += parseInt(work_data_to_salary(w));
-      });
-
-      const days =
-        (new Date(end_date.getFullYear(), end_date.getMonth() + 1, end_date.getDate()) -
-          new Date(start_date.getFullYear(), start_date.getMonth() + 1, start_date.getDate())) /
-        (1000 * 60 * 60 * 24);
-
-      return {
-        name: u.first_name + "  " + u.last_name,
-        email: u.email,
-        picture: u.has_picture ? cdnSubpath() + u.picture : u.picture,
-        is_assigned: true,
-        status: isIronUserWorking(u),
-        actual_work: actual_work.toFixed(2),
-        expected_work: ((u.work_data.expected_hours_weekly / 7) * days).toFixed(2),
-        salaries,
-        company: u.company,
-      };
-    });
 
     result = result.filter((x) => x.is_assigned);
 
