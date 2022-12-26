@@ -23,31 +23,31 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
     return;
   }
 
+  await dbConnect();
+
+  await clockOutAllUsers();
+
+  let allUsers;
+
+  const user = req.session.user;
+
+  if (user.is_admin) {
+    allUsers = await User.find({ is_admin: false, is_employer: false });
+  } else if (user.is_employer) {
+    allUsers = await User.find({ is_admin: false, is_employer: false, company: user.company._id });
+  } else {
+    res.status(200).json({});
+    return;
+  }
+
+  if (!allUsers || allUsers.lenght == 0) {
+    res.status(200).json({});
+    return;
+  }
+
+  const allIronUsers = [...(await Promise.all(allUsers.map(async (u) => await dbUserToIronUser(u))))];
+
   try {
-    await dbConnect();
-
-    await clockOutAllUsers();
-
-    let allUsers;
-
-    const user = req.session.user;
-
-    if (user.is_admin) {
-      allUsers = await User.find({ is_admin: false, is_employer: false });
-    } else if (user.is_employer) {
-      allUsers = await User.find({ is_admin: false, is_employer: false, company: user.company._id });
-    } else {
-      res.status(200).json({});
-      return;
-    }
-
-    if (!allUsers || allUsers.lenght == 0) {
-      res.status(200).json({});
-      return;
-    }
-
-    const allIronUsers = [...(await Promise.all(allUsers.map(async (u) => await dbUserToIronUser(u))))];
-
     let result = allIronUsers.map((u) => {
       if (!isIronUserAssigned(u)) {
         return {
@@ -107,10 +107,10 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
       };
     });
 
-    result = result.filter((x) => isIronUserAssigned(x));
+    result = result.filter((x) => x.is_assigned);
 
     res.status(200).json({ data: result });
   } catch (e) {
-    res.status(400).json({ message: e.message });
+    res.status(500).json({ message: "Something went wrong!" });
   }
 }, authCookie);
