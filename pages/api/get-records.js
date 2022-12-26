@@ -49,6 +49,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
 
   try {
     let result = allIronUsers.map((u) => {
+      console.log(u);
       if (!isIronUserAssigned(u)) {
         return {
           name: u.first_name + " " + u.last_name,
@@ -109,7 +110,6 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
 
     result = result.filter((x) => x.is_assigned);
 
-    console.log(result);
     res.status(200).json({ data: result });
   } catch (e) {
     res.status(500).json({ message: "Something went wrong!" });
