@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isUserEmailInDb } from "../lib/db";
+import { dbUserToIronUser, isIronUserAssigned, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
@@ -187,6 +187,8 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   let my_others = await User.find({ is_admin: false, is_employer: false, company: null });
 
   let others = await Promise.all(my_others.map(async (e) => await dbUserToIronUser(e)));
+
+  others = others.filter((x) => isIronUserAssigned(x));
 
   return {
     props: {

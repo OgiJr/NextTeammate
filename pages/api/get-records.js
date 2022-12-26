@@ -48,7 +48,7 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
 
     const allIronUsers = [...(await Promise.all(allUsers.map(async (u) => await dbUserToIronUser(u))))];
 
-    const result = allIronUsers.map((u) => {
+    let result = allIronUsers.map((u) => {
       if (!isIronUserAssigned(u)) {
         return {
           name: u.first_name + " " + u.last_name,
@@ -106,6 +106,8 @@ export default withIronSessionApiRoute(async function getRecordsRoute(req, res) 
         company: u.company,
       };
     });
+
+    result = result.filter((x) => isIronUserAssigned(x));
 
     res.status(200).json({ data: result });
   } catch (e) {
