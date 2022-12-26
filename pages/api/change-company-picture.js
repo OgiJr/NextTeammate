@@ -51,7 +51,6 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
   try {
     await dbConnect();
 
-    console.log(picture_id);
     await Company.findByIdAndUpdate(req.session.user.company._id, {
       picture: picture_id,
     });
