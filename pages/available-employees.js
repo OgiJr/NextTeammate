@@ -188,7 +188,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
 
   let others = await Promise.all(my_others.map(async (e) => await dbUserToIronUser(e)));
 
-  console.log(others);
+  others = others.filter((x) => x.has_password);
 
   return {
     props: {
