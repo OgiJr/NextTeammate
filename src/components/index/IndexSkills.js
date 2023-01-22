@@ -35,7 +35,7 @@ const IndexSkills = () => {
           <i className="fal fa-book mr-2 font-semibold" />
           Our Company
         </h1>
-        <h2 className="text-3xl text-white font-bold">Nextteammate- a comprehensive solution</h2>
+        <h2 className="text-3xl text-white font-bold">NextTeammate- a comprehensive solution</h2>
         <h4 className="text-2xl text-white font-normal">
           Our company believes that remote collaboration and financial system without borders is what the future holds.
           We replace outdated, unnecessary and ineffective methods with new and improved ways to master the workplace.

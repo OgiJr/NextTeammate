@@ -35,7 +35,7 @@ const HireFind = () => {
                 documents inside your business.<br></br>● Highly motivated and skilled people readily available to
                 collaborate. All candidates undergo a full background verification and language skills.<br></br>● No
                 need to pay for compensation, insurance, wage taxes and other employee’s related expenses.
-                Nextteammate’s solution covers everything in accordance with the local codes in the overseas country.
+                NextTeammate’s solution covers everything in accordance with the local codes in the overseas country.
                 <br></br>● Cancel anytime
               </p>
               <div>
@@ -47,7 +47,7 @@ const HireFind = () => {
                 subscription we can provide all of the required equipment to the Nextteammate person collaborating with
                 you. This includes everything necessary for and teammate to operate which includes a laptop, phone
                 number, internet….<br></br>● Our proprietary platform includes a time management portal to track your
-                Nextteammates time and projects.
+                NextTeammates time and projects.
               </p>
               <div className="row">
                 <div className="col-sm-6">

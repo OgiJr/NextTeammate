@@ -13,7 +13,7 @@ const HireWhy = () => {
               </p>
               <h3 className="title"> Why People Choose Our Service</h3>
               <p>
-                Nextteammate provides end to end employment solutions – from
+                NextTeammate provides end to end employment solutions – from
                 screening the potential candidates, payroll and health insurance
                 benefits to management and built-in scheduling software.
               </p>

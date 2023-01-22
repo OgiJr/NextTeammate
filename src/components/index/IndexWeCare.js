@@ -18,7 +18,7 @@ const IndexWeCare = () => {
               </p>
               <h3 className="title">We Care About Your Business.</h3>
               <p className="mb-0">
-                Nextteammate was created to facilitate the employment process for both the company and the employees. We
+                NextTeammate was created to facilitate the employment process for both the company and the employees. We
                 provide foreign employment and a new and complete Collaborate from Home (CFH) / (bpo) system which is
                 easy, reliable, secure, and most importantly, cost effective.
               </p>
