@@ -9,7 +9,7 @@ import { dbCompanyToCompany, dbUserToIronUser, isUserEmailInDb } from "../lib/db
 import User from "../models/User";
 import Company from "../models/Company";
 import Footer from "../src/layout/Footer";
-import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
+import { Card, Button as NextButton, Link as NextLink, Modal } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
 
@@ -33,8 +33,28 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
     },
   });
 
+  const [modalEmployeeIndex, setModalEmployeeIndex] = React.useState(null);
+  const [showEmployee, setShowEmployee] = React.useState(false);
+
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
+      <Modal open={showEmployee} onClose={() => setShowEmployee(false)}>
+        {employees && employees[modalEmployeeIndex] && (
+          <>
+            <Modal.Header>
+              <div className="flex flex-col">
+                <h3 className="my-0">
+                  {employees[modalEmployeeIndex].first_name + " " + employees[modalEmployeeIndex].last_name}
+                </h3>
+                <p className="my-0 text-xl text-gray-500">{employees[modalEmployeeIndex].email}</p>
+              </div>
+            </Modal.Header>
+            <Modal.Body>
+              <p>{employees[modalEmployeeIndex].bio}</p>
+            </Modal.Body>
+          </>
+        )}
+      </Modal>
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
@@ -174,7 +194,16 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                   e.work_data.current_price_per_hour;
                 return (
                   <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
-                    <Card isHoverable isPressable>
+                    <Card
+                      isHoverable
+                      isPressable
+                      onPress={() => {
+                        if (e.has_password) {
+                          setModalEmployeeIndex(employees.indexOf(e));
+                          setShowEmployee(true);
+                        }
+                      }}
+                    >
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <img
@@ -197,7 +226,11 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                         ) : (
                           <></>
                         )}
-                        <div className="text-center text-md text-gray-500">{e.bio.length > 50? e.bio.substring(0,50) + "..." : e.bio}</div>
+                        <div className="text-center text-md text-gray-500">
+                          <div className="text-center text-md text-gray-500">
+                            {e.bio.length > 100 ? e.bio.substring(0, 100) + "..." : e.bio}
+                          </div>
+                        </div>
                         {!e.has_password ? (
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (
