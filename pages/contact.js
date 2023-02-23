@@ -37,7 +37,7 @@ const Contact = () => {
                 <div className="text">
                   <h4>Phone</h4>
                   <p>Call us from 9 to 5 M-F. (U.S.A.)</p>
-                  <Link href="tel:+12672658100">
+                  <Link href="tel:+12672080020">
                     <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
                       Give us a call <i className="fal fa-chevron-right ml-2" />
                     </a>

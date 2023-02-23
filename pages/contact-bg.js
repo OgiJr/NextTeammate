@@ -37,7 +37,7 @@ const Contact = () => {
                 <div className="text">
                   <h4>Телефон</h4>
                   <p>Свържете се с нас от 16:00 to 24:00 Пон-Петък. (Българско време)</p>
-                  <Link href="tel:+12672658100">
+                  <Link href="tel:+12672080020">
                     <a className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
                       Звъннете <i className="fal fa-chevron-right ml-2" />
                     </a>

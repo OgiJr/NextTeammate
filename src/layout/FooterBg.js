@@ -57,7 +57,7 @@ const Footer = () => {
                   Фестървил PA 19053
                 </li>
                 <li>
-                  <a href="tel:+12672658100">+12672658100</a>
+                  <a href="tel:+12672080020">+12672080020</a>
                 </li>
                 <li>
                   <a href="mailto:example@example.com"> nextteammateltd@gmail.com</a>

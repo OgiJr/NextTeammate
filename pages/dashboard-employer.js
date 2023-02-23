@@ -197,7 +197,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                         ) : (
                           <></>
                         )}
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
+                        <div className="text-center text-md text-gray-500">{e.bio.length > 50? e.bio.substring(0,50) + "..." : e.bio}</div>
                         {!e.has_password ? (
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (

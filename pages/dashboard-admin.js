@@ -19,6 +19,9 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
   const [tbd, settbd] = React.useState(null);
   const [ctbd, setctbd] = React.useState(null);
   const { setVisible: setCVisible, bindings: cbindings } = useModal();
+  const [employeeName, setEmployeeName] = React.useState("");
+  const [employeeBio, setEmployeeBio] = React.useState("");
+  const [showEmployee, setShowEmployee] = React.useState(false);
 
   const fetcher = (url) => {
     return fetch(url).then((res) => {
@@ -39,6 +42,12 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
+      <Modal open={showEmployee} onClose={()=>setShowEmployee(false)}>
+        <Modal.Title>{employeeName}</Modal.Title>
+        <Modal.Body>
+          <p>{employeeBio}</p>
+        </Modal.Body>
+      </Modal>
       <Modal
         scroll
         blur
@@ -308,7 +317,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                           {e.company ? e.company.name : "No Company Assigned"}
                         </div>
                         <div className="text-center text-md text-gray-800">{e.email}</div>
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
+                        <div className="text-center text-md text-gray-500">{e.bio.length > 50? e.bio.substring(0,50) + "..." : e.bio}</div>
                         {!e.has_password ? (
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (
@@ -356,7 +365,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                     className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
                     key={e.email}
                   >
-                    <Card isHoverable isPressable>
+                    <Card isHoverable isPressable onPress={()=>{setEmployeeBio(e.bio); setEmployeeName(e.first_name + " " + e.last_name); setShowEmployee(true);}}>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <img
@@ -382,7 +391,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                         ) : (
                           <></>
                         )}
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
+                        <div className="text-center text-md text-gray-500">{e.bio.length > 50? e.bio.substring(0,50) + "..." : e.bio}</div>
                         {!e.has_password ? (
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (

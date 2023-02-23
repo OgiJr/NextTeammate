@@ -8,7 +8,7 @@ import { authCookie } from "../lib/cookies";
 import { dbUserToIronUser, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
-import { Card, Button as NextButton, Link as NextLink } from "@nextui-org/react";
+import { Card, Button as NextButton, Link as NextLink, Modal } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
 
@@ -32,8 +32,17 @@ const AvailableEmployees = ({ others }) => {
     },
   });
 
+  const [employeeName, setEmployeeName] = React.useState("");
+  const [employeeBio, setEmployeeBio] = React.useState("");
+  const [showEmployee, setShowEmployee] = React.useState(false);
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
+      <Modal open={showEmployee} onClose={()=>setShowEmployee(false)}>
+        <Modal.Title>{employeeName}</Modal.Title>
+        <Modal.Body>
+          <p>{employeeBio}</p>
+        </Modal.Body>
+      </Modal>
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
           <Link href="/dashboard-user">
@@ -85,7 +94,7 @@ const AvailableEmployees = ({ others }) => {
                     className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
                     key={e._id}
                   >
-                    <Card isHoverable isPressable>
+                    <Card isHoverable isPressable onPress={()=>{setEmployeeBio(e.bio); setEmployeeName(e.first_name + " " + e.last_name); setShowEmployee(true);}}>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <img
@@ -99,7 +108,7 @@ const AvailableEmployees = ({ others }) => {
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
+                        <div className="text-center text-md text-gray-500">{e.bio.length > 50? e.bio.substring(0,50) + "..." : e.bio}</div>
                         {!e.has_password ? (
                           <div className="text-center text-xl text-red-500">Unclaimed Account</div>
                         ) : (
