@@ -252,6 +252,14 @@ const DashboardUser = ({ user, is_working, is_assigned, company }) => {
                   <Button variant="dark" className="px-4 w-[25%]" onClick={() => router.push("/set-picture")}>
                     Change Picture
                   </Button>
+                  <Button
+                    variant="dark"
+                    className="px-4 w-[25%]"
+                    onClick={() => window.location.assign(`${cdnSubpath()}${user.cv}`)}
+                    disabled={!user.has_cv}
+                  >
+                    View CV
+                  </Button>
                 </div>
               </div>
             </div>

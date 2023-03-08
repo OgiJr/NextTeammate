@@ -157,6 +157,17 @@ const AvailableEmployees = ({ others, company }) => {
                             >
                               Play Video
                             </NextButton>
+                            <NextButton
+                              color="secondary"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center"
+                              onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                              disabled={!e.has_cv}
+                            >
+                              View CV
+                            </NextButton>
                             <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
                               <NextButton
                                 color="success"

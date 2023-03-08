@@ -246,6 +246,17 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                         ) : (
                           <></>
                         )}
+                        <NextButton
+                          color="secondary"
+                          shadow
+                          auto
+                          rounded
+                          className="px-4 min-w-[25%] mr-2 self-center"
+                          onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                          disabled={!e.has_cv}
+                        >
+                          View CV
+                        </NextButton>
                       </Card.Body>
                     </Card>
                   </div>

@@ -52,6 +52,11 @@ const userSchema = Schema({
     required: false,
   },
   company: { type: Schema.Types.ObjectId, ref: "Comapny", required: false },
+  cv: {
+    type: Schema.Types.String,
+    trim: true,
+    required: false,
+  },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);

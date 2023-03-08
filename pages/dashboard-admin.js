@@ -444,6 +444,17 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                             >
                               Play Video
                             </NextButton>
+                            <NextButton
+                              color="secondary"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center"
+                              onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                              disabled={!e.has_cv}
+                            >
+                              View CV
+                            </NextButton>
                             <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
                               <NextButton
                                 color="success"
@@ -453,6 +464,18 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                                 className="px-4 min-w-[25%] mr-2 self-center"
                               >
                                 Edit Account
+                              </NextButton>
+                            </NextLink>
+
+                            <NextLink href={`/edit-cv?email=${e.email}`} className="self-center">
+                              <NextButton
+                                color="warning"
+                                shadow
+                                auto
+                                rounded
+                                className="px-4 min-w-[25%] mr-2 self-center"
+                              >
+                                Set CV
                               </NextButton>
                             </NextLink>
                             <NextLink href={`/edit-company?email=${e.email}`} className="self-center">
