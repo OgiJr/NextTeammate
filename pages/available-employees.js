@@ -5,14 +5,15 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
-import { dbUserToIronUser, isUserEmailInDb } from "../lib/db";
+import { dbCompanyToCompany, dbUserToIronUser, isUserEmailInDb } from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink, Modal } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
+import Company from "../models/Company";
 
-const AvailableEmployees = ({ others }) => {
+const AvailableEmployees = ({ others, company }) => {
   const router = useRouter();
 
   const fetcher = (url) => {
@@ -61,6 +62,16 @@ const AvailableEmployees = ({ others }) => {
           </Link>
         </div>
         <div className=" flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
+          {company.dropbox && (
+            <Button
+              className="thm-btn bg-blue-500 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+              onClick={() => {
+                window.location.assign(company.dropbox);
+              }}
+            >
+              Dropbox
+            </Button>
+          )}
           <Button
             className="thm-btn bg-thm-color-one thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             onClick={() => {
@@ -225,6 +236,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     props: {
       user,
       others,
+      company: dbCompanyToCompany(await Company.findOne({ _id: user.company._id })),
     },
   };
 }, authCookie);

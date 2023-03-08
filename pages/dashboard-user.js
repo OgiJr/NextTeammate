@@ -6,14 +6,22 @@ import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { authCookie } from "../lib/cookies";
 import Image from "next/image";
-import { dbConnect, dbUserToIronUser, isIronUserAssigned, isIronUserWorking, isUserEmailInDb } from "../lib/db";
+import {
+  dbCompanyToCompany,
+  dbConnect,
+  dbUserToIronUser,
+  isIronUserAssigned,
+  isIronUserWorking,
+  isUserEmailInDb,
+} from "../lib/db";
 import User from "../models/User";
 import Footer from "../src/layout/Footer";
 import { useRouter } from "next/router";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
+import Company from "../models/Company";
 
-const DashboardUser = ({ user, is_working, is_assigned }) => {
+const DashboardUser = ({ user, is_working, is_assigned, company }) => {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [file, setFile] = React.useState(null);
@@ -133,6 +141,16 @@ const DashboardUser = ({ user, is_working, is_assigned }) => {
           </div>
         </div>
         <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
+          {company.dropbox && (
+            <Button
+              className="thm-btn bg-blue-500 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+              onClick={() => {
+                window.location.assign(company.dropbox);
+              }}
+            >
+              Dropbox
+            </Button>
+          )}
           <Button
             className="thm-btn bg-thm-color-three thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             variant="success"
@@ -290,6 +308,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         user: req.session.user,
         is_assigned: isIronUserAssigned(req.session.user),
         is_working: isIronUserWorking(req.session.user),
+        company: dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id })),
       },
     };
   } catch (e) {
@@ -297,6 +316,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {
         user,
         is_working: isIronUserWorking(user),
+        company: dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id })),
       },
     };
   }

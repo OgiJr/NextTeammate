@@ -62,6 +62,16 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
           </Link>
         </div>
         <div className=" flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
+          {company.dropbox && (
+            <Button
+              className="thm-btn bg-blue-500 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
+              onClick={() => {
+                window.location.assign(company.dropbox);
+              }}
+            >
+              Dropbox
+            </Button>
+          )}
           <Button
             className="thm-btn bg-violet-900 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
             onClick={() => {
@@ -115,7 +125,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
         <div className="flex flex-row mt-2 justify-center">
           <NextLink href="/change-company-picture">
             <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
-              Change Picture
+              Change Company Information
             </NextButton>
           </NextLink>
         </div>

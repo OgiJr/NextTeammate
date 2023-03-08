@@ -84,6 +84,7 @@ const CreateCompany = () => {
 
               if (!file) {
                 setError("Please select a company logo!");
+                return;
               }
 
               const name = e.target.name.value;
@@ -95,6 +96,7 @@ const CreateCompany = () => {
               let formData = new FormData();
               formData.append("logo", file);
               formData.append("name", name);
+              if (e.target.dropbox.value !== "") formData.append("dropbox", e.target.dropbox.value);
 
               const response = await fetch("/api/create-company", {
                 method: "POST",
@@ -112,6 +114,10 @@ const CreateCompany = () => {
           >
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>Company Name</Form.Label>
+              <Form.Control type="text" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="dropbox">
+              <Form.Label>Dropbox Link</Form.Label>
               <Form.Control type="text" />
             </Form.Group>
             <Form.Group

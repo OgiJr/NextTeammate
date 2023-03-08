@@ -34,6 +34,11 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
   }
 
   const name = reqBody.fields.name;
+  const dropbox = reqBody.fields.dropbox;
+  if (!name) {
+    res.status(400).json({ message: "Please fill all fields!" });
+    return;
+  }
   const picture = reqBody.files.logo;
 
   const picture_id = `${uuidv4()}.${picture.mimetype === "image/png" ? "png" : "jpg"}`;
@@ -55,6 +60,7 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
     await Company.create({
       name,
       picture: picture_id,
+      dropbox,
     });
 
     res.status(200).json({});

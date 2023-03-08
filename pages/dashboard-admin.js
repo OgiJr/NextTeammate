@@ -274,6 +274,20 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                           />
                         </div>
                         <div className="text-center text-3xl mt-2">{e.name}</div>
+                        {e.dropbox && (
+                          <NextButton
+                            color="success"
+                            shadow
+                            auto
+                            rounded
+                            className="px-4 min-w-[25%] mr-2 self-center  mt-2"
+                            onClick={() => {
+                              window.location.assign(e.dropbox);
+                            }}
+                          >
+                            Dropbox
+                          </NextButton>
+                        )}
                         <NextButton
                           color="error"
                           shadow

@@ -34,26 +34,41 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
   }
 
   const picture = reqBody.files.logo;
+  const dropbox = reqBody.fields.dropbox;
 
-  const picture_id = `${uuidv4()}.${picture.mimetype === "image/png" ? "png" : "jpg"}`;
-  if (picture.mimetype !== "image/png" && picture.mimetype !== "image/jpeg") {
-    res.status(400).json({ message: "Invalid file type! Upload .png or .jpg files!" });
+  if (!picture && !dropbox) {
+    res.status(400).json({ message: "Please fill at least one field!" });
     return;
   }
 
-  const filedir = `${process.cwd()}/uploads/`;
-  const filepath = `${filedir}${picture_id}`;
+  let picture_id;
+  if (picture) {
+    picture_id = `${uuidv4()}.${picture.mimetype === "image/png" ? "png" : "jpg"}`;
+    if (picture.mimetype !== "image/png" && picture.mimetype !== "image/jpeg") {
+      res.status(400).json({ message: "Invalid file type! Upload .png or .jpg files!" });
+      return;
+    }
 
-  mkdirSync(filedir, { recursive: true });
-  copyFileSync(picture.filepath, filepath);
-  // renameSync(picture.filepath, filepath);
+    const filedir = `${process.cwd()}/uploads/`;
+    const filepath = `${filedir}${picture_id}`;
+
+    mkdirSync(filedir, { recursive: true });
+    copyFileSync(picture.filepath, filepath);
+    // renameSync(picture.filepath, filepath);
+  }
 
   try {
     await dbConnect();
 
-    await Company.findByIdAndUpdate(req.session.user.company._id, {
-      picture: picture_id,
-    });
+    if (picture) {
+      await Company.findByIdAndUpdate(req.session.user.company._id, {
+        picture: picture_id,
+      });
+    } else {
+      await Company.findByIdAndUpdate(req.session.user.company._id, {
+        dropbox,
+      });
+    }
 
     res.status(200).json({});
     return;

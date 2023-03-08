@@ -82,12 +82,9 @@ const ChangeCompanyPicture = () => {
             onSubmit={async (e) => {
               e.preventDefault();
 
-              if (!file) {
-                setError("Please select a company logo!");
-              }
-
               let formData = new FormData();
               formData.append("logo", file);
+              if (e.target.dropbox.value !== "") formData.append("dropbox", e.target.dropbox.value);
 
               const response = await fetch("/api/change-company-picture", {
                 method: "POST",
@@ -112,6 +109,10 @@ const ChangeCompanyPicture = () => {
             >
               <Form.Label>Company Logo</Form.Label>
               <Form.Control type="file" accept="image/png, image/jpeg" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="dropbox">
+              <Form.Label>Dropbox Link</Form.Label>
+              <Form.Control type="text" placeholder="https://dropbox.com..." />
             </Form.Group>
             <div className="flex flex-row justify-evenly min-w-full">
               <Button variant="success" type="submit" className="font-bold">
