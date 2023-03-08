@@ -104,9 +104,9 @@ const Contact = () => {
                       Feasterville PA 19053
                     </li>
                     <li className="mt-2">
-                      ул. ,,Борис Руменов&quot 16 1407
+                      ul. &quot;Boris Rumenov&quot; 16 1407
                       <br />
-                      Промишлена зона Хладилника, София
+                      Promishlena Zona Hladilnika, Sofia
                     </li>
                   </div>
                 </li>

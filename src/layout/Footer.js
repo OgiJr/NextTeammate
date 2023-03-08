@@ -14,7 +14,11 @@ const Footer = () => {
               <div className="ft_widget ft_about wow fadeInDown">
                 <Link href="/">
                   <a className="logo">
-                    <img src="assets/images/nextlogof.png" alt="logo" className="image-fit" />
+                    <img
+                      src="assets/images/nextlogof.png"
+                      alt="logo"
+                      className="image-fit"
+                    />
                   </a>
                 </Link>
               </div>
@@ -39,10 +43,14 @@ const Footer = () => {
                       <a href="/">Home</a>
                     </li>
                     <li>
-                      <a href="/become-a-teammate">I want to become a TEAMMATE</a>
+                      <a href="/become-a-teammate">
+                        I want to become a TEAMMATE
+                      </a>
                     </li>
                     <li>
-                      <a href="/i-want-to-find-teammate">I want to find my TEAMMATE</a>
+                      <a href="/i-want-to-find-teammate">
+                        I want to find my TEAMMATE
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -57,9 +65,9 @@ const Footer = () => {
                   Feasterville PA 19053
                 </li>
                 <li>
-                  ул. ,,Борис Руменов&quot 16 1407
-                  <br/>
-                  Промишлена зона Хладилника, София
+                  ul. &quot;Boris Rumenov&quot; 16 1407
+                  <br />
+                  Promishlena Zona Hladilnika, Sofia
                 </li>
                 <li>
                   <a href="tel:+12672080020">+12672080020</a>
@@ -68,7 +76,10 @@ const Footer = () => {
                   <a href="tel:+359882482505">+359882482505</a>
                 </li>
                 <li>
-                  <a href="mailto:example@example.com"> nextteammateltd@gmail.com</a>
+                  <a href="mailto:example@example.com">
+                    {" "}
+                    nextteammateltd@gmail.com
+                  </a>
                 </li>
               </ul>
             </div>
@@ -76,10 +87,15 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <p className="mb-0">
-            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Design By Javery.
+            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved,
+            Design By Javery.
           </p>
         </div>
-        <img src="assets/images/elements/circle3.png" alt="element" className="element_3 rotate_elem" />
+        <img
+          src="assets/images/elements/circle3.png"
+          alt="element"
+          className="element_3 rotate_elem"
+        />
         <div className="arrows to_up slideTop">
           <div className="arrow" />
           <div className="arrow" />
