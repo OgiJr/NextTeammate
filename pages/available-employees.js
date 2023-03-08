@@ -112,7 +112,7 @@ const AvailableEmployees = ({ others, company }) => {
             <div className="text-center text-3xl">No free other employees.</div>
           ) : (
             <div className="flex flex-col justify-center w-[90%] items-center">
-              <div className="mt-8 flex flex-row flex-wrap gap-8 justify-center items-center">
+              <div className="mt-8 flex flex-row w-[80%] flex-wrap gap-8 justify-center items-center">
                 <NextButton
                   className={
                     chosenCategories.length === 0
@@ -145,7 +145,7 @@ const AvailableEmployees = ({ others, company }) => {
                   </NextButton>
                 ))}
               </div>
-              <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+              <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]">
                 {others
                   .filter((e) => {
                     if (chosenCategories.length === 0) return true;
@@ -154,12 +154,13 @@ const AvailableEmployees = ({ others, company }) => {
                   .map((e) => {
                     return (
                       <div
-                        className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                        className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]"
                         key={e._id}
                       >
                         <Card
                           isHoverable
                           isPressable
+                          className="min-h-full"
                           onPress={() => {
                             if (e.has_password) {
                               setModalEmployeeIndex(others.indexOf(e));
@@ -167,8 +168,8 @@ const AvailableEmployees = ({ others, company }) => {
                             }
                           }}
                         >
-                          <Card.Body>
-                            <div className="flex flex-row justify-center">
+                          <Card.Body className="min-h-full">
+                            <div className="flex flex-row justify-center min-h-full">
                               <img
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}

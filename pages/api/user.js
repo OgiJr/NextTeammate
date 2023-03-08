@@ -50,7 +50,6 @@ const post = async (req, res) => {
     return;
   }
 
-  console.log(reqBody);
   const { first_name, last_name, email, company, categories } = reqBody;
   if (categories && !Array.isArray(categories)) {
     res.status(400).json({ message: "Categories must be an array!" });

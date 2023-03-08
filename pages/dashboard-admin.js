@@ -379,8 +379,8 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
           {employees.length === 0 ? (
             <div className="text-center text-3xl">No Employees Yet.</div>
           ) : (
-            <div className="flex flex-col justify-center w-[90%] items-center">
-              <div className="mt-8 flex flex-row flex-wrap gap-8 justify-center items-center">
+            <div className="flex flex-col justify-center w-full items-center">
+              <div className="mt-8 flex flex-row w-[80%] flex-wrap gap-8 justify-center items-center">
                 <NextButton
                   className={
                     chosenCategories.length === 0
@@ -413,7 +413,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                   </NextButton>
                 ))}
               </div>
-              <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+              <div className="flex flex-row flex-wrap w-full gap-8 justify-center justify-items-center">
                 {employees
                   .filter((e) => {
                     if (chosenCategories.length === 0) return true;
@@ -429,12 +429,13 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                       e.work_data.current_price_per_hour != 0;
                     return (
                       <div
-                        className="min-w-[10vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                        className="min-w-[10vw] min-h-[23vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]"
                         key={e.email}
                       >
                         <Card
                           isHoverable
                           isPressable
+                          className="min-h-full"
                           onPress={() => {
                             if (e.has_password) {
                               setModalEmployeeIndex(employees.indexOf(e));
@@ -442,8 +443,8 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                             }
                           }}
                         >
-                          <Card.Body>
-                            <div className="flex flex-row justify-center">
+                          <Card.Body className="min-h-full">
+                            <div className="flex flex-row justify-center min-h-full">
                               <img
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}
