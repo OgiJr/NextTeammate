@@ -10,7 +10,10 @@ const Contact = () => {
 
   return (
     <Layout language={"en"}>
-      <PageTitleBanner pageName="Contact Us" url="assets/images/banner/contact-banner.jpg" />
+      <PageTitleBanner
+        pageName="Contact Us"
+        url="assets/images/banner/contact-banner.jpg"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="row">
@@ -20,13 +23,18 @@ const Contact = () => {
                   <i className="fal fa-book" />
                   Contact Us
                 </p>
-                <h3 className="title">Reach out to us if you have any questions</h3>
+                <h3 className="title">
+                  Reach out to us if you have any questions
+                </h3>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInDown"
+                data-wow-delay=".30ms"
+              >
                 <div className="icon">
                   <img
                     src="assets/images/icons/phone-incoming-dynamic-gradient copy.png"
@@ -46,7 +54,10 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInUp"
+                data-wow-delay=".40ms"
+              >
                 <div className="icon">
                   <img
                     src="assets/images/icons/chat-text-dynamic-gradient copy.png"
@@ -56,7 +67,10 @@ const Contact = () => {
                 </div>
                 <div className="text">
                   <h4>Have Any Questions</h4>
-                  <p>Don&apos;t hesitate to ask your questions. We will answer all of them.</p>
+                  <p>
+                    Don&apos;t hesitate to ask your questions. We will answer
+                    all of them.
+                  </p>
                   <Link href="mailto:nextteammateltd@gmail.com">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
                       Contact Us <i className="fal fa-chevron-right ml-2" />
@@ -89,6 +103,11 @@ const Contact = () => {
                       <br />
                       Feasterville PA 19053
                     </li>
+                    <li className="mt-2">
+                      ул. ,,Борис Руменов&quot 16 1407
+                      <br />
+                      Промишлена зона Хладилника, София
+                    </li>
                   </div>
                 </li>
                 <li className="wow fadeInDown">
@@ -114,9 +133,20 @@ const Contact = () => {
             </div>
           </div>
           <div className="col-xl-8 col-lg-7">
-            <div className="contact_map relative z-1 wow fadeInRight" id="map">
+            <div
+              className="contact_map relative z-1 wow fadeInRight flex flex-col gap-8"
+              id="map"
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.590101717821!2d-75.0114418!3d40.151413399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6ad77a03ed939%3A0x23d1508632b7b17d!2s402%20E%20Pennsylvania%20Blvd%2C%20Feasterville-Trevose%2C%20PA%2019053!5e0!3m2!1sen!2sus!4v1663016138375!5m2!1sen!2sus"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                width="100%"
+                height="100%"
+              />
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d733.5790973907042!2d23.3189912!3d42.6546503!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa8467fe4845e7%3A0xc52cabdf7408d4ab!2z0YPQuy4g4oCe0JHQvtGA0LjRgSDQoNGD0LzQtdC90L7QsuKAnCAxNiwgMTQwNyDQn9GA0L7QvNC40YjQu9C10L3QsCDQt9C-0L3QsCDQpdC70LDQtNC40LvQvdC40LrQsCwg0KHQvtGE0LjRjywg0JHRitC70LPQsNGA0LjRjw!5e0!3m2!1sbg!2sus!4v1678314540211!5m2!1sbg!2sus"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
@@ -134,7 +164,9 @@ const Contact = () => {
                       <i className="fal fa-book" />
                       Drop A Message
                     </p>
-                    <h3 className="title">Reach out to us for a prosperous partnership</h3>
+                    <h3 className="title">
+                      Reach out to us for a prosperous partnership
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -167,7 +199,15 @@ const Contact = () => {
                     return;
                   }
 
-                  const body = { name, phone, email, subject, company, website, message };
+                  const body = {
+                    name,
+                    phone,
+                    email,
+                    subject,
+                    company,
+                    website,
+                    message,
+                  };
                   const bodyJSON = JSON.stringify(body);
 
                   let result;
@@ -276,8 +316,12 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="col-lg-12 text-center ">
-                    <button type="submit" className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
-                      Send Your Message <i className="fal fa-chevron-right ml-2" />
+                    <button
+                      type="submit"
+                      className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"
+                    >
+                      Send Your Message{" "}
+                      <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>
                   {error ? (
