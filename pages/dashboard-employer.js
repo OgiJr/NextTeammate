@@ -198,7 +198,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
             <div className="text-center text-3xl">No Employees Yet.</div>
           ) : (
             <div className="flex flex-col justify-center w-[90%] items-center">
-              <div className="mt-8 flex flex-row flex-wrap gap-8 justify-center items-center">
+              <div className="mt-8 flex flex-row w-[80%] flex-wrap gap-8 justify-center items-center">
                 <NextButton
                   className={
                     chosenCategories.length === 0
@@ -231,7 +231,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                   </NextButton>
                 ))}
               </div>
-              <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+              <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]">
                 {employees
                   .filter((e) => {
                     if (chosenCategories.length === 0) return true;
@@ -244,10 +244,14 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                       e.work_data.expected_hours_weekly &&
                       e.work_data.current_price_per_hour;
                     return (
-                      <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
+                      <div
+                        className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]"
+                        key={e.email}
+                      >
                         <Card
                           isHoverable
                           isPressable
+                          className="min-h-full"
                           onPress={() => {
                             if (e.has_password) {
                               setModalEmployeeIndex(employees.indexOf(e));
@@ -255,8 +259,8 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                             }
                           }}
                         >
-                          <Card.Body>
-                            <div className="flex flex-row justify-center">
+                          <Card.Body className="min-h-full">
+                            <div className="flex flex-row justify-center min-h-full">
                               <img
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}
