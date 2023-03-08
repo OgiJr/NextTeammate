@@ -5,6 +5,7 @@ import { isAdmin, isLoggedIn, isSupportedMethod } from "../../lib/validation";
 import { dbConnect, isDbUserWorking } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import Company from "../../models/Company";
+import Categories from "../../lib/categories";
 
 export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
@@ -16,6 +17,11 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   }
 
   const email = req.body.email;
+  const categories = req.body.categories;
+  if (categories && !Array.isArray(categories)) {
+    res.status(400).json({ message: "Categories must be an array!" });
+    return;
+  }
   let user;
   try {
     await dbConnect();
@@ -86,6 +92,26 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
         },
       }
     );
+
+    if (categories) {
+      for (const category of categories) {
+        if (Categories.indexOf(category) === -1) {
+          res.status(400).json({ message: "Invalid category: " + category });
+          return;
+        }
+      }
+
+      await User.findOneAndUpdate(
+        {
+          email,
+        },
+        {
+          $set: {
+            categories,
+          },
+        }
+      );
+    }
 
     res.status(200).json({});
   } catch (e) {

@@ -11,6 +11,7 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink, Modal } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
+import Categories from "../lib/categories";
 import Company from "../models/Company";
 
 const AvailableEmployees = ({ others, company }) => {
@@ -35,6 +36,7 @@ const AvailableEmployees = ({ others, company }) => {
 
   const [modalEmployeeIndex, setModalEmployeeIndex] = React.useState(null);
   const [showEmployee, setShowEmployee] = React.useState(false);
+  const [chosenCategories, setChosenCategories] = React.useState([]);
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -109,84 +111,124 @@ const AvailableEmployees = ({ others, company }) => {
           {others.length === 0 ? (
             <div className="text-center text-3xl">No free other employees.</div>
           ) : (
-            <>
-              {others.map((e) => {
-                return (
-                  <div
-                    className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
-                    key={e._id}
+            <div className="flex flex-col justify-center w-[90%] items-center">
+              <div className="mt-8 flex flex-row flex-wrap gap-8 justify-center items-center">
+                <NextButton
+                  className={
+                    chosenCategories.length === 0
+                      ? "!bg-blue-400 !border-1 !rounded-md"
+                      : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
+                  }
+                  bordered={true}
+                  onClick={() => setChosenCategories([])}
+                >
+                  All
+                </NextButton>
+                {Categories.map((c) => (
+                  <NextButton
+                    key={c}
+                    className={
+                      chosenCategories.indexOf(c) !== -1
+                        ? "!bg-blue-400  !border-1 !rounded-md"
+                        : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
+                    }
+                    bordered={true}
+                    onClick={() => {
+                      if (chosenCategories.indexOf(c) !== -1) {
+                        setChosenCategories(chosenCategories.filter((e) => e !== c));
+                      } else {
+                        setChosenCategories([...chosenCategories, c]);
+                      }
+                    }}
                   >
-                    <Card
-                      isHoverable
-                      isPressable
-                      onPress={() => {
-                        if (e.has_password) {
-                          setModalEmployeeIndex(others.indexOf(e));
-                          setShowEmployee(true);
-                        }
-                      }}
-                    >
-                      <Card.Body>
-                        <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className="text-center text-3xl mt-2">
-                          {e.first_name}&nbsp;{e.last_name}
-                        </div>
-                        <div className="text-center text-md text-gray-500">
-                          {e.bio.length > 100 ? e.bio.substring(0, 100) + "..." : e.bio}
-                        </div>
-                        {!e.has_password ? (
-                          <div className="text-center text-xl text-red-500">Unclaimed Account</div>
-                        ) : (
-                          <div className="flex flex-col justify-center gap-2 mt-2">
-                            <NextButton
-                              disabled={!e.has_video}
-                              color="gradient"
-                              shadow
-                              auto
-                              rounded
-                              className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => router.push(`/view-video?id=${e._id}`)}
-                            >
-                              Play Video
-                            </NextButton>
-                            <NextButton
-                              color="secondary"
-                              shadow
-                              auto
-                              rounded
-                              className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
-                              disabled={!e.has_cv}
-                            >
-                              View CV
-                            </NextButton>
-                            <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
-                              <NextButton
-                                color="success"
-                                shadow
-                                auto
-                                rounded
-                                className="px-4 min-w-[25%] mr-2 self-center"
-                              >
-                                I want to find a TEAMMATE
-                              </NextButton>
-                            </NextLink>
-                          </div>
-                        )}
-                      </Card.Body>
-                    </Card>
-                  </div>
-                );
-              })}
-            </>
+                    {c}
+                  </NextButton>
+                ))}
+              </div>
+              <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+                {others
+                  .filter((e) => {
+                    if (chosenCategories.length === 0) return true;
+                    return chosenCategories.some((c) => e.categories.indexOf(c) !== -1);
+                  })
+                  .map((e) => {
+                    return (
+                      <div
+                        className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                        key={e._id}
+                      >
+                        <Card
+                          isHoverable
+                          isPressable
+                          onPress={() => {
+                            if (e.has_password) {
+                              setModalEmployeeIndex(others.indexOf(e));
+                              setShowEmployee(true);
+                            }
+                          }}
+                        >
+                          <Card.Body>
+                            <div className="flex flex-row justify-center">
+                              <img
+                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                                width={150}
+                                height={150}
+                                className="rounded-full"
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+                            <div className="text-center text-3xl mt-2">
+                              {e.first_name}&nbsp;{e.last_name}
+                            </div>
+                            <div className="text-center text-md text-gray-500">
+                              {e.bio.length > 100 ? e.bio.substring(0, 100) + "..." : e.bio}
+                            </div>
+                            {!e.has_password ? (
+                              <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                            ) : (
+                              <div className="flex flex-col justify-center gap-2 mt-2">
+                                <NextButton
+                                  disabled={!e.has_video}
+                                  color="gradient"
+                                  shadow
+                                  auto
+                                  rounded
+                                  className="px-4 min-w-[25%] mr-2 self-center"
+                                  onClick={() => router.push(`/view-video?id=${e._id}`)}
+                                >
+                                  Play Video
+                                </NextButton>
+                                <NextButton
+                                  color="secondary"
+                                  shadow
+                                  auto
+                                  rounded
+                                  className="px-4 min-w-[25%] mr-2 self-center"
+                                  onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                                  disabled={!e.has_cv}
+                                >
+                                  View CV
+                                </NextButton>
+                                <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
+                                  <NextButton
+                                    color="success"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    I want to find a TEAMMATE
+                                  </NextButton>
+                                </NextLink>
+                              </div>
+                            )}
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           )}
         </div>
       </div>

@@ -190,6 +190,18 @@ const DashboardUser = ({ user, is_working, is_assigned, company }) => {
             <div className="col-lg-6 my-4">
               <div className="team_text pl-0 pl-xl-5 pl-lg-3 ">
                 <h3 className="name wow fadeInDown text-center">{user.first_name + " " + user.last_name}</h3>
+                {user.categories.length > 0 && (
+                  <h5 className="name wow fadeInDown text-center !text-[1rem] text-gray-800">
+                    {user.categories.reduce((accum, c, index) => {
+                      accum += c;
+                      if (index !== user.categories.length - 1) {
+                        accum += ", ";
+                      }
+
+                      return accum;
+                    }, "")}
+                  </h5>
+                )}
                 <p className="desi thm-color-two wow fadeInUp">{user.bio}</p>
                 {is_assigned ? (
                   <ul className="info wow fadeInDown">

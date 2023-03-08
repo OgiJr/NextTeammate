@@ -12,6 +12,7 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink, useModal, Modal, Text } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
+import Categories from "../lib/categories";
 
 const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
   const router = useRouter();
@@ -21,6 +22,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
   const { setVisible: setCVisible, bindings: cbindings } = useModal();
   const [modalEmployeeIndex, setModalEmployeeIndex] = React.useState(null);
   const [showEmployee, setShowEmployee] = React.useState(false);
+  const [chosenCategories, setChosenCategories] = React.useState([]);
 
   const fetcher = (url) => {
     return fetch(url).then((res) => {
@@ -377,139 +379,179 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
           {employees.length === 0 ? (
             <div className="text-center text-3xl">No Employees Yet.</div>
           ) : (
-            <>
-              {employees.map((e) => {
-                const is_setup =
-                  e.work_data &&
-                  e.work_data.currency &&
-                  e.work_data.expected_hours_weekly &&
-                  e.work_data.current_price_per_hour &&
-                  e.work_data.expected_hours_weekly != 0 &&
-                  e.work_data.current_price_per_hour != 0;
-                return (
-                  <div
-                    className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
-                    key={e.email}
+            <div className="flex flex-col justify-center w-[90%] items-center">
+              <div className="mt-8 flex flex-row flex-wrap gap-8 justify-center items-center">
+                <NextButton
+                  className={
+                    chosenCategories.length === 0
+                      ? "!bg-blue-400 !border-1 !rounded-md"
+                      : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
+                  }
+                  bordered={true}
+                  onClick={() => setChosenCategories([])}
+                >
+                  All
+                </NextButton>
+                {Categories.map((c) => (
+                  <NextButton
+                    key={c}
+                    className={
+                      chosenCategories.indexOf(c) !== -1
+                        ? "!bg-blue-400  !border-1 !rounded-md"
+                        : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
+                    }
+                    bordered={true}
+                    onClick={() => {
+                      if (chosenCategories.indexOf(c) !== -1) {
+                        setChosenCategories(chosenCategories.filter((e) => e !== c));
+                      } else {
+                        setChosenCategories([...chosenCategories, c]);
+                      }
+                    }}
                   >
-                    <Card
-                      isHoverable
-                      isPressable
-                      onPress={() => {
-                        if (e.has_password) {
-                          setModalEmployeeIndex(employees.indexOf(e));
-                          setShowEmployee(true);
-                        }
-                      }}
-                    >
-                      <Card.Body>
-                        <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className="text-center text-3xl mt-2">
-                          {e.first_name}&nbsp;{e.last_name}
-                        </div>
-                        <div className="self-center text-black font-bold text-lg">
-                          {e.company ? e.company.name : "No Company Assigned"}
-                        </div>
-                        <div className="text-center text-md text-gray-800">{e.email}</div>
-                        {is_setup ? (
-                          <div className="text-center text-md text-gray-800">
-                            {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
-                            {e.work_data.currency} / hour
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-                        <div className="text-center text-md text-gray-500">
-                          {e.bio.length > 50 ? e.bio.substring(0, 50) + "..." : e.bio}
-                        </div>
-                        {!e.has_password ? (
-                          <div className="text-center text-xl text-red-500">Unclaimed Account</div>
-                        ) : (
-                          <div className="flex flex-col justify-center gap-2 mt-2">
-                            <NextButton
-                              disabled={!e.has_video}
-                              color="gradient"
-                              shadow
-                              auto
-                              rounded
-                              className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => router.push(`/view-video?id=${e._id}`)}
-                            >
-                              Play Video
-                            </NextButton>
-                            <NextButton
-                              color="secondary"
-                              shadow
-                              auto
-                              rounded
-                              className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
-                              disabled={!e.has_cv}
-                            >
-                              View CV
-                            </NextButton>
-                            <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
-                              <NextButton
-                                color="success"
-                                shadow
-                                auto
-                                rounded
-                                className="px-4 min-w-[25%] mr-2 self-center"
-                              >
-                                Edit Account
-                              </NextButton>
-                            </NextLink>
-
-                            <NextLink href={`/edit-cv?email=${e.email}`} className="self-center">
-                              <NextButton
-                                color="warning"
-                                shadow
-                                auto
-                                rounded
-                                className="px-4 min-w-[25%] mr-2 self-center"
-                              >
-                                Set CV
-                              </NextButton>
-                            </NextLink>
-                            <NextLink href={`/edit-company?email=${e.email}`} className="self-center">
-                              <NextButton
-                                color="warning"
-                                shadow
-                                auto
-                                rounded
-                                className="px-4 min-w-[25%] mr-2 self-center"
-                              >
-                                Edit Company
-                              </NextButton>
-                            </NextLink>
-                          </div>
-                        )}
-                        <NextButton
-                          color="error"
-                          shadow
-                          auto
-                          rounded
-                          className="px-4 min-w-[25%] mr-2 self-center mt-2"
-                          onClick={() => {
-                            setVisible(true);
-                            settbd(e._id);
+                    {c}
+                  </NextButton>
+                ))}
+              </div>
+              <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+                {employees
+                  .filter((e) => {
+                    if (chosenCategories.length === 0) return true;
+                    return chosenCategories.some((c) => e.categories.indexOf(c) !== -1);
+                  })
+                  .map((e) => {
+                    const is_setup =
+                      e.work_data &&
+                      e.work_data.currency &&
+                      e.work_data.expected_hours_weekly &&
+                      e.work_data.current_price_per_hour &&
+                      e.work_data.expected_hours_weekly != 0 &&
+                      e.work_data.current_price_per_hour != 0;
+                    return (
+                      <div
+                        className="min-w-[10vw] min-h-[20vh]  justify-evenly gap-2 p-4 w-[90%] md:max-w-[33.3%]"
+                        key={e.email}
+                      >
+                        <Card
+                          isHoverable
+                          isPressable
+                          onPress={() => {
+                            if (e.has_password) {
+                              setModalEmployeeIndex(employees.indexOf(e));
+                              setShowEmployee(true);
+                            }
                           }}
                         >
-                          Delete User
-                        </NextButton>
-                      </Card.Body>
-                    </Card>
-                  </div>
-                );
-              })}
-            </>
+                          <Card.Body>
+                            <div className="flex flex-row justify-center">
+                              <img
+                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                                width={150}
+                                height={150}
+                                className="rounded-full"
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+                            <div className="text-center text-3xl mt-2">
+                              {e.first_name}&nbsp;{e.last_name}
+                            </div>
+                            <div className="self-center text-black font-bold text-lg">
+                              {e.company ? e.company.name : "No Company Assigned"}
+                            </div>
+                            <div className="text-center text-md text-gray-800">{e.email}</div>
+                            {is_setup ? (
+                              <div className="text-center text-md text-gray-800">
+                                {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
+                                {e.work_data.currency} / hour
+                              </div>
+                            ) : (
+                              <></>
+                            )}
+                            <div className="text-center text-md text-gray-500">
+                              {e.bio.length > 50 ? e.bio.substring(0, 50) + "..." : e.bio}
+                            </div>
+                            {!e.has_password ? (
+                              <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                            ) : (
+                              <div className="flex flex-col justify-center gap-2 mt-2">
+                                <NextButton
+                                  disabled={!e.has_video}
+                                  color="gradient"
+                                  shadow
+                                  auto
+                                  rounded
+                                  className="px-4 min-w-[25%] mr-2 self-center"
+                                  onClick={() => router.push(`/view-video?id=${e._id}`)}
+                                >
+                                  Play Video
+                                </NextButton>
+                                <NextButton
+                                  color="secondary"
+                                  shadow
+                                  auto
+                                  rounded
+                                  className="px-4 min-w-[25%] mr-2 self-center"
+                                  onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                                  disabled={!e.has_cv}
+                                >
+                                  View CV
+                                </NextButton>
+                                <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
+                                  <NextButton
+                                    color="success"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    Edit Account
+                                  </NextButton>
+                                </NextLink>
+
+                                <NextLink href={`/edit-cv?email=${e.email}`} className="self-center">
+                                  <NextButton
+                                    color="warning"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    Set CV
+                                  </NextButton>
+                                </NextLink>
+                                <NextLink href={`/edit-company?email=${e.email}`} className="self-center">
+                                  <NextButton
+                                    color="warning"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    Edit Company
+                                  </NextButton>
+                                </NextLink>
+                              </div>
+                            )}
+                            <NextButton
+                              color="error"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center mt-2"
+                              onClick={() => {
+                                setVisible(true);
+                                settbd(e._id);
+                              }}
+                            >
+                              Delete User
+                            </NextButton>
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           )}
         </div>
       </div>

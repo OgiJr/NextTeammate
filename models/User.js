@@ -57,6 +57,10 @@ const userSchema = Schema({
     trim: true,
     required: false,
   },
+  categories: {
+    type: [Schema.Types.String],
+    default: [],
+  },
 });
 
 module.exports = mongoose.models.User || mongoose.model("User", userSchema);

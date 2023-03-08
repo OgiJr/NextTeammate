@@ -9,6 +9,7 @@ import { isLoggedIn, reqBodyParse, validateEmail, isAdmin, isDate } from "../../
 import { v4 as uuidv4 } from "uuid";
 import { send } from "../../lib/email";
 import { authCookie } from "../../lib/cookies";
+import Categories from "../../lib/categories";
 
 const del = async (req, res) => {
   try {
@@ -43,13 +44,24 @@ const post = async (req, res) => {
   try {
     await isLoggedIn(req, res);
     isAdmin(req, res);
-    reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "company"]);
+    reqBody = reqBodyParse(req, res, ["first_name", "last_name", "email", "company", "categories"]);
     validateEmail(reqBody.email, res);
   } catch {
     return;
   }
 
-  const { first_name, last_name, email, company } = reqBody;
+  console.log(reqBody);
+  const { first_name, last_name, email, company, categories } = reqBody;
+  if (categories && !Array.isArray(categories)) {
+    res.status(400).json({ message: "Categories must be an array!" });
+    return;
+  }
+  for (let i = 0; i < categories.length; i++) {
+    if (Categories.indexOf(categories[i]) === -1) {
+      res.status(400).json({ message: "Invalid category: " + categories[i] });
+      return;
+    }
+  }
   const password_generation_key = uuidv4();
 
   try {
@@ -68,6 +80,7 @@ const post = async (req, res) => {
         email,
         password_generation_key,
         is_employer: false,
+        categories,
       });
     } else {
       const company_id = await Company.find({ _id: company });
@@ -83,6 +96,7 @@ const post = async (req, res) => {
         password_generation_key,
         company: company,
         is_employer: false,
+        categories,
       });
     }
 

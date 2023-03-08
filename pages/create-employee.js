@@ -9,6 +9,7 @@ import Footer from "../src/layout/Footer";
 import { dbCompanyToCompany, dbConnect, isUserEmailInDb } from "../lib/db";
 import Company from "../models/Company";
 import useSWR from "swr";
+import Categories from "../lib/categories";
 
 const CreateEmployee = ({ user, companies }) => {
   const router = useRouter();
@@ -87,13 +88,14 @@ const CreateEmployee = ({ user, companies }) => {
               const first_name = e.target.first_name.value;
               const last_name = e.target.last_name.value;
               const company = e.target.company.value;
+              const categories = Categories.filter((c) => e.target[c].checked);
 
               if (!email || !first_name || !last_name || !company) {
                 setError("Please fill out all fields!");
                 return;
               }
 
-              const body = { email, first_name, last_name, company };
+              const body = { email, first_name, last_name, company, categories };
               const bodyJSON = JSON.stringify(body);
 
               let result;
@@ -142,6 +144,18 @@ const CreateEmployee = ({ user, companies }) => {
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" placeholder="Smith" />
             </Form.Group>
+
+            <Form.Label>Categories</Form.Label>
+            <div className="flex flex-row flex-wrap min-w-full gap-12 mb-12">
+              {Categories.map((c) => (
+                <div key={c} className="flex gap-2 flex-row max-w-fit justify-center items-center align-center">
+                  <input type="checkbox" name={c} id={c} value={c} />
+                  <label htmlFor={c} className="m-0 text-center min-h-fit">
+                    {c}
+                  </label>
+                </div>
+              ))}
+            </div>
 
             <div className="flex flex-row justify-evenly min-w-full">
               <Button variant="success" type="submit" className="font-bold">

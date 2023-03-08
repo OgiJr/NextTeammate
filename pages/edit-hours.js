@@ -8,6 +8,7 @@ import User from "../models/User";
 import { codes } from "currency-codes";
 import Company from "../models/Company";
 import { useRouter } from "next/router";
+import Categories from "../lib/categories";
 
 const EditHours = ({ editable }) => {
   const [error, setError] = React.useState(null);
@@ -55,7 +56,7 @@ const EditHours = ({ editable }) => {
           className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
           style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
         >
-          <div className="text-center min-w-full text-4xl font-semibold">Edit User Hours</div>
+          <div className="text-center min-w-full text-4xl font-semibold">Edit User Account</div>
           <Form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -64,6 +65,7 @@ const EditHours = ({ editable }) => {
               const current_price_per_hour = e.target.current_price_per_hour?.value;
               const currency = e.target.currency?.value;
               const autoClockOutHours = e.target.autoClockOutHours?.value;
+              const categories = Categories.filter((c) => e.target[c].checked);
 
               const body = {
                 email: editable.email,
@@ -71,6 +73,7 @@ const EditHours = ({ editable }) => {
                 current_price_per_hour,
                 currency,
                 autoClockOutHours,
+                categories,
               };
               const bodyJSON = JSON.stringify(body);
 
@@ -116,6 +119,24 @@ const EditHours = ({ editable }) => {
                   ))}
               </Form.Control>
             </Form.Group>
+
+            <Form.Label>Categories</Form.Label>
+            <div className="flex flex-row flex-wrap min-w-full gap-12 mb-12">
+              {Categories.map((c) => (
+                <div key={c} className="flex gap-2 flex-row max-w-fit justify-center items-center align-center">
+                  <input
+                    type="checkbox"
+                    name={c}
+                    id={c}
+                    value={c}
+                    defaultChecked={editable.categories.indexOf(c) !== -1}
+                  />
+                  <label htmlFor={c} className="m-0 text-center min-h-fit">
+                    {c}
+                  </label>
+                </div>
+              ))}
+            </div>
 
             <div className="flex flex-row justify-evenly min-w-full">
               <Button variant="primary" type="submit" className="font-bold">
