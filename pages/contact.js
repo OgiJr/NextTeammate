@@ -121,8 +121,8 @@ const Contact = () => {
                   <i className="icon fal fa-phone" />
                   <div className="text">
                     <h6>Contact Us</h6>
-                    <p>
-                      <strong>American Phone: </strong> +(1) 267 - 2658 - 100
+                    <p className="text-sm lg:text-md">
+                      <strong>American Phone: </strong> + (1) 267 - 2080 - 020
                     </p>
                     <p>
                       <strong> Bulgarian Phone: </strong> +359 882482505
