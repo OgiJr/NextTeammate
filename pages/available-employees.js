@@ -176,7 +176,7 @@ const AvailableEmployees = ({ others, company }) => {
                   </NextButton>
                 ))}
               </div>
-              <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]">
+              <div className="flex flex-row flex-wrap min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full">
                 {others
                   .filter((e) => {
                     if (!chosenCategory) return true;
@@ -184,7 +184,7 @@ const AvailableEmployees = ({ others, company }) => {
                   })
                   .map((e) => {
                     return (
-                      <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full" key={e._id}>
+                      <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4" key={e._id}>
                         <Card
                           isHoverable
                           isPressable

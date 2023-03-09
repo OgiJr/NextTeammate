@@ -65,7 +65,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     await User.findOneAndUpdate({ _id: user._id }, { company: req.body.company });
   }
 
-  if (!counter && req.body.company !== 0) {
+  if (!counter && req.body.company !== 0 && !categories) {
     res.status(401).json({ message: "You must change something!" });
     return;
   }
