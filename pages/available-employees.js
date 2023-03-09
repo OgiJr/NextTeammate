@@ -36,7 +36,7 @@ const AvailableEmployees = ({ others, company }) => {
 
   const [modalEmployeeIndex, setModalEmployeeIndex] = React.useState(null);
   const [showEmployee, setShowEmployee] = React.useState(false);
-  const [chosenCategories, setChosenCategories] = React.useState([]);
+  const [chosenCategory, setChosenCategory] = React.useState(null);
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -111,16 +111,15 @@ const AvailableEmployees = ({ others, company }) => {
           {others.length === 0 ? (
             <div className="text-center text-3xl">No free other employees.</div>
           ) : (
-            <div className="flex flex-col justify-center w-[90%] items-center">
-              <div className="mt-8 flex flex-row w-[80%] flex-wrap gap-8 justify-center items-center">
+            <div className="flex flex-col lg:flex-row justify-center w-[100%] items-center lg:items-start lg:justify-start">
+              <div className="hidden lg:flex mt-8 flex-col w-[80%] lg:w-[20%] flex-wrap gap-8 justify-center items-center">
                 <NextButton
                   className={
-                    chosenCategories.length === 0
-                      ? "!bg-blue-400 !border-1 !rounded-md"
-                      : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
+                    !chosenCategory
+                      ? "!text-black !bg-white underline !font-bold !border-1 !rounded-md !flex !flex-col !items-start !lg:items-center"
+                      : "!text-black  !bg-white !border-blue-400 !border-1 !rounded-md  !flex !flex-col !items-start !lg:items-center"
                   }
-                  bordered={true}
-                  onClick={() => setChosenCategories([])}
+                  onClick={() => setChosenCategory(null)}
                 >
                   All
                 </NextButton>
@@ -128,16 +127,48 @@ const AvailableEmployees = ({ others, company }) => {
                   <NextButton
                     key={c}
                     className={
-                      chosenCategories.indexOf(c) !== -1
-                        ? "!bg-blue-400  !border-1 !rounded-md"
+                      c === chosenCategory
+                        ? "!text-black !bg-white underline !font-bold  !border-1 !rounded-md  !flex !flex-col !items-start !lg:items-center"
+                        : "!text-black  !bg-white !border-blue-400 !border-1 !rounded-md  !flex !flex-col !items-start !lg:items-center"
+                    }
+                    onClick={() => {
+                      if (c === chosenCategory) {
+                        setChosenCategory(null);
+                      } else {
+                        setChosenCategory(c);
+                      }
+                    }}
+                  >
+                    {c}
+                  </NextButton>
+                ))}
+              </div>
+              <div className="mt-8 flex lg:hidden flex-row w-[80%] lg:w-[20%] flex-wrap gap-8 justify-center items-center">
+                <NextButton
+                  size="xs"
+                  className={
+                    !chosenCategory
+                      ? "!bg-blue-400 !border-1 !rounded-md"
+                      : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
+                  }
+                  onClick={() => setChosenCategory(null)}
+                >
+                  All
+                </NextButton>
+                {Categories.map((c) => (
+                  <NextButton
+                    key={c}
+                    size="xs"
+                    className={
+                      c === chosenCategory
+                        ? "!bg-blue-400 !border-1 !rounded-md"
                         : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
                     }
-                    bordered={true}
                     onClick={() => {
-                      if (chosenCategories.indexOf(c) !== -1) {
-                        setChosenCategories(chosenCategories.filter((e) => e !== c));
+                      if (c === chosenCategory) {
+                        setChosenCategory(null);
                       } else {
-                        setChosenCategories([...chosenCategories, c]);
+                        setChosenCategory(c);
                       }
                     }}
                   >
@@ -148,8 +179,8 @@ const AvailableEmployees = ({ others, company }) => {
               <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]">
                 {others
                   .filter((e) => {
-                    if (chosenCategories.length === 0) return true;
-                    return chosenCategories.some((c) => e.categories.indexOf(c) !== -1);
+                    if (!chosenCategory) return true;
+                    return e.categories.some((c) => c === chosenCategory);
                   })
                   .map((e) => {
                     return (
