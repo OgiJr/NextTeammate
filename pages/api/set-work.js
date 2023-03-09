@@ -22,6 +22,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     res.status(400).json({ message: "Categories must be an array!" });
     return;
   }
+
   let user;
   try {
     await dbConnect();
@@ -39,6 +40,26 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   } catch (e) {
     res.status(400).json({ message: e.message });
     return;
+  }
+
+  if (categories) {
+    for (const category of categories) {
+      if (Categories.indexOf(category) === -1) {
+        res.status(400).json({ message: "Invalid category: " + category });
+        return;
+      }
+    }
+
+    await User.findOneAndUpdate(
+      {
+        email,
+      },
+      {
+        $set: {
+          categories,
+        },
+      }
+    );
   }
 
   const changable = ["expected_hours_weekly", "current_price_per_hour", "currency", "autoClockOutHours"];
@@ -65,7 +86,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     await User.findOneAndUpdate({ _id: user._id }, { company: req.body.company });
   }
 
-  if (!counter && req.body.company !== 0 && !categories) {
+  if (!counter && req.body.company !== "0" && !categories) {
     res.status(401).json({ message: "You must change something!" });
     return;
   }
@@ -73,41 +94,29 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   try {
     await dbConnect();
 
+    if (!counter) {
+      res.status(200).json({});
+      return;
+    }
     let wd = await WorkData.findOne({ worker: user._id });
     if (!wd) {
-      if (counter != 4) {
-        res.status(401).json({ message: "Please provide all the necessary fields!" });
+      if (counter === 4) {
+        wd = await WorkData.create({ worker: user._id, ...changes });
+        res.status(200).json({});
+      } else {
+        res
+          .status(400)
+          .json({ message: "You must fill all the fields if you're filling out work data for the first time!" });
         return;
       }
-      wd = await WorkData.create({ worker: user._id, ...changes });
     } else {
       wd = await WorkData.findOneAndUpdate({ worker: user._id }, { $set: changes }, { upsert: true, new: true });
-    }
-
-    await User.findOneAndUpdate(
-      { email },
-      {
-        $set: {
-          work_data: wd._id,
-        },
-      }
-    );
-
-    if (categories) {
-      for (const category of categories) {
-        if (Categories.indexOf(category) === -1) {
-          res.status(400).json({ message: "Invalid category: " + category });
-          return;
-        }
-      }
 
       await User.findOneAndUpdate(
-        {
-          email,
-        },
+        { email },
         {
           $set: {
-            categories,
+            work_data: wd._id,
           },
         }
       );

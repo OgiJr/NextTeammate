@@ -158,7 +158,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                         <div className="text-center text-md text-gray-800">{e.email}</div>
                         <div className="text-center text-md text-gray-500">{e.bio}</div>
                         {e.email === user.email ? (
-                          <div className="flex flex-row mt-2">
+                          <div className="flex flex-row justify-center w-full mt-2">
                             <NextLink href="/edit-user">
                               <NextButton color="warning" shadow auto rounded className="px-4 min-w-[25%] mr-2">
                                 Edit Account
