@@ -291,6 +291,19 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                           </NextButton>
                         )}
                         <NextButton
+                          color="warning"
+                          shadow
+                          auto
+                          rounded
+                          className="px-4 min-w-[25%] mr-2 self-center  mt-2"
+                          onClick={() => {
+                            router.push("/set-dropbox?company_id=" + e._id);
+                          }}
+                        >
+                          Set Dropbox Link
+                        </NextButton>
+
+                        <NextButton
                           color="error"
                           shadow
                           auto
