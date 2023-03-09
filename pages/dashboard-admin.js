@@ -376,7 +376,153 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
       <div className="flex flex-col mt-4">
         <div className="text-center text-3xl font-bold">Employees</div>
         <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
-          {employees.length === 0 ? (
+          {employees.filter((e) => e.company).length === 0 ? (
+            <div className="text-center text-3xl">No Employees Yet.</div>
+          ) : (
+            <div className="flex flex-col justify-center w-full items-center">
+              <div className="flex flex-row flex-wrap w-full gap-8 justify-center justify-items-center">
+                {employees
+                  .filter((e) => e.company)
+
+                  .map((e) => {
+                    const is_setup =
+                      e.work_data &&
+                      e.work_data.currency &&
+                      e.work_data.expected_hours_weekly &&
+                      e.work_data.current_price_per_hour &&
+                      e.work_data.expected_hours_weekly != 0 &&
+                      e.work_data.current_price_per_hour != 0;
+                    return (
+                      <div
+                        className="min-w-[10vw] min-h-[23vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]"
+                        key={e.email}
+                      >
+                        <Card
+                          isHoverable
+                          isPressable
+                          className="min-h-full"
+                          onPress={() => {
+                            if (e.has_password) {
+                              setModalEmployeeIndex(employees.indexOf(e));
+                              setShowEmployee(true);
+                            }
+                          }}
+                        >
+                          <Card.Body className="min-h-full">
+                            <div className="flex flex-row justify-center min-h-full">
+                              <img
+                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                                width={150}
+                                height={150}
+                                className="rounded-full"
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+                            <div className="text-center text-3xl mt-2">
+                              {e.first_name}&nbsp;{e.last_name}
+                            </div>
+                            <div className="self-center text-black font-bold text-lg">
+                              {e.company ? e.company.name : "No Company Assigned"}
+                            </div>
+                            <div className="text-center text-md text-gray-800">{e.email}</div>
+                            {is_setup ? (
+                              <div className="text-center text-md text-gray-800">
+                                {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
+                                {e.work_data.currency} / hour
+                              </div>
+                            ) : (
+                              <></>
+                            )}
+                            <div className="text-center text-md text-gray-500">
+                              {e.bio.length > 50 ? e.bio.substring(0, 50) + "..." : e.bio}
+                            </div>
+                            {!e.has_password ? (
+                              <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                            ) : (
+                              <div className="flex flex-col justify-center gap-2 mt-2">
+                                <NextButton
+                                  disabled={!e.has_video}
+                                  color="gradient"
+                                  shadow
+                                  auto
+                                  rounded
+                                  className="px-4 min-w-[25%] mr-2 self-center"
+                                  onClick={() => router.push(`/view-video?id=${e._id}`)}
+                                >
+                                  Play Video
+                                </NextButton>
+                                <NextButton
+                                  color="secondary"
+                                  shadow
+                                  auto
+                                  rounded
+                                  className="px-4 min-w-[25%] mr-2 self-center"
+                                  onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                                  disabled={!e.has_cv}
+                                >
+                                  View CV
+                                </NextButton>
+                                <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
+                                  <NextButton
+                                    color="success"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    Edit Account
+                                  </NextButton>
+                                </NextLink>
+
+                                <NextLink href={`/edit-cv?email=${e.email}`} className="self-center">
+                                  <NextButton
+                                    color="warning"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    Set CV
+                                  </NextButton>
+                                </NextLink>
+                                <NextLink href={`/edit-company?email=${e.email}`} className="self-center">
+                                  <NextButton
+                                    color="warning"
+                                    shadow
+                                    auto
+                                    rounded
+                                    className="px-4 min-w-[25%] mr-2 self-center"
+                                  >
+                                    Edit Company
+                                  </NextButton>
+                                </NextLink>
+                              </div>
+                            )}
+                            <NextButton
+                              color="error"
+                              shadow
+                              auto
+                              rounded
+                              className="px-4 min-w-[25%] mr-2 self-center mt-2"
+                              onClick={() => {
+                                setVisible(true);
+                                settbd(e._id);
+                              }}
+                            >
+                              Delete User
+                            </NextButton>
+                          </Card.Body>
+                        </Card>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="text-center text-3xl font-bold"> Avalable Employees</div>
+        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
+          {employees.filter((e) => !e.company).length === 0 ? (
             <div className="text-center text-3xl">No Employees Yet.</div>
           ) : (
             <div className="flex flex-col justify-center w-full items-center">
@@ -415,6 +561,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
               </div>
               <div className="flex flex-row flex-wrap w-full gap-8 justify-center justify-items-center">
                 {employees
+                  .filter((e) => !e.company)
                   .filter((e) => {
                     if (chosenCategories.length === 0) return true;
                     return chosenCategories.some((c) => e.categories.indexOf(c) !== -1);
