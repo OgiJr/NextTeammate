@@ -244,10 +244,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                       e.work_data.expected_hours_weekly &&
                       e.work_data.current_price_per_hour;
                     return (
-                      <div
-                        className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]"
-                        key={e.email}
-                      >
+                      <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full" key={e.email}>
                         <Card
                           isHoverable
                           isPressable
