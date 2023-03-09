@@ -124,7 +124,7 @@ const Contact = () => {
                     <p className="text-xs lg:text-md">
                       <strong>American Phone: </strong> + (1) 267 - 2080 - 020
                     </p>
-                    <p>
+                    <p className="text-xs lg:text-md">
                       <strong> Bulgarian Phone: </strong> +359 882482505
                     </p>
                   </div>
