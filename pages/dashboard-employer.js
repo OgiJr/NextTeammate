@@ -12,7 +12,6 @@ import Footer from "../src/layout/Footer";
 import { Card, Button as NextButton, Link as NextLink, Modal } from "@nextui-org/react";
 import { cdnSubpath } from "../lib/cdn";
 import useSWR from "swr";
-import Categories from "../lib/categories";
 
 const DashboardEmployer = ({ user, employees, employers, company }) => {
   const router = useRouter();
@@ -36,7 +35,6 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
 
   const [modalEmployeeIndex, setModalEmployeeIndex] = React.useState(null);
   const [showEmployee, setShowEmployee] = React.useState(false);
-  const [chosenCategories, setChosenCategories] = React.useState([]);
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
@@ -198,112 +196,74 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
             <div className="text-center text-3xl">No Employees Yet.</div>
           ) : (
             <div className="flex flex-col justify-center w-[90%] items-center">
-              <div className="mt-8 flex flex-row w-[80%] flex-wrap gap-8 justify-center items-center">
-                <NextButton
-                  className={
-                    chosenCategories.length === 0
-                      ? "!bg-blue-400 !border-1 !rounded-md"
-                      : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
-                  }
-                  bordered={true}
-                  onClick={() => setChosenCategories([])}
-                >
-                  All
-                </NextButton>
-                {Categories.map((c) => (
-                  <NextButton
-                    key={c}
-                    className={
-                      chosenCategories.indexOf(c) !== -1
-                        ? "!bg-blue-400  !border-1 !rounded-md"
-                        : "!bg-white !border-blue-400 !border-1 !rounded-md !text-blue-400"
-                    }
-                    bordered={true}
-                    onClick={() => {
-                      if (chosenCategories.indexOf(c) !== -1) {
-                        setChosenCategories(chosenCategories.filter((e) => e !== c));
-                      } else {
-                        setChosenCategories([...chosenCategories, c]);
-                      }
-                    }}
-                  >
-                    {c}
-                  </NextButton>
-                ))}
-              </div>
               <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full md:max-w-[30%]">
-                {employees
-                  .filter((e) => {
-                    if (chosenCategories.length === 0) return true;
-                    return chosenCategories.some((c) => e.categories.indexOf(c) !== -1);
-                  })
-                  .map((e) => {
-                    const is_setup =
-                      e.work_data &&
-                      e.work_data.currency &&
-                      e.work_data.expected_hours_weekly &&
-                      e.work_data.current_price_per_hour;
-                    return (
-                      <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full" key={e.email}>
-                        <Card
-                          isHoverable
-                          isPressable
-                          className="min-h-full"
-                          onPress={() => {
-                            if (e.has_password) {
-                              setModalEmployeeIndex(employees.indexOf(e));
-                              setShowEmployee(true);
-                            }
-                          }}
-                        >
-                          <Card.Body className="min-h-full">
-                            <div className="flex flex-row justify-center min-h-full">
-                              <img
-                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                                width={150}
-                                height={150}
-                                className="rounded-full"
-                                style={{ objectFit: "cover" }}
-                              />
+                {employees.map((e) => {
+                  const is_setup =
+                    e.work_data &&
+                    e.work_data.currency &&
+                    e.work_data.expected_hours_weekly &&
+                    e.work_data.current_price_per_hour;
+                  return (
+                    <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4 w-full" key={e.email}>
+                      <Card
+                        isHoverable
+                        isPressable
+                        className="min-h-full"
+                        onPress={() => {
+                          if (e.has_password) {
+                            setModalEmployeeIndex(employees.indexOf(e));
+                            setShowEmployee(true);
+                          }
+                        }}
+                      >
+                        <Card.Body className="min-h-full">
+                          <div className="flex flex-row justify-center min-h-full">
+                            <img
+                              src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                              width={150}
+                              height={150}
+                              className="rounded-full"
+                              style={{ objectFit: "cover" }}
+                            />
+                          </div>
+                          <div className="text-center text-3xl mt-2">
+                            {e.first_name}&nbsp;{e.last_name}
+                          </div>
+                          <div className="text-center text-md text-gray-800">{e.email}</div>
+                          {is_setup ? (
+                            <div className="text-center text-md text-gray-800">
+                              {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
+                              {e.work_data.currency} / hour
                             </div>
-                            <div className="text-center text-3xl mt-2">
-                              {e.first_name}&nbsp;{e.last_name}
-                            </div>
-                            <div className="text-center text-md text-gray-800">{e.email}</div>
-                            {is_setup ? (
-                              <div className="text-center text-md text-gray-800">
-                                {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
-                                {e.work_data.currency} / hour
-                              </div>
-                            ) : (
-                              <></>
-                            )}
+                          ) : (
+                            <></>
+                          )}
+                          <div className="text-center text-md text-gray-500">
                             <div className="text-center text-md text-gray-500">
-                              <div className="text-center text-md text-gray-500">
-                                {e.bio.length > 100 ? e.bio.substring(0, 100) + "..." : e.bio}
-                              </div>
+                              {e.bio.length > 100 ? e.bio.substring(0, 100) + "..." : e.bio}
                             </div>
-                            {!e.has_password ? (
-                              <div className="text-center text-xl text-red-500">Unclaimed Account</div>
-                            ) : (
-                              <></>
-                            )}
-                            <NextButton
-                              color="secondary"
-                              shadow
-                              auto
-                              rounded
-                              className="px-4 min-w-[25%] mr-2 self-center"
-                              onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
-                              disabled={!e.has_cv}
-                            >
-                              View CV
-                            </NextButton>
-                          </Card.Body>
-                        </Card>
-                      </div>
-                    );
-                  })}
+                          </div>
+                          {!e.has_password ? (
+                            <div className="text-center text-xl text-red-500">Unclaimed Account</div>
+                          ) : (
+                            <></>
+                          )}
+                          <NextButton
+                            color="secondary"
+                            shadow
+                            auto
+                            rounded
+                            className="px-4 min-w-[25%] mr-2 self-center"
+                            onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
+                            disabled={!e.has_cv}
+                          >
+                            View CV
+                          </NextButton>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
