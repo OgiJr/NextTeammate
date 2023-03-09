@@ -121,7 +121,7 @@ const Contact = () => {
                   <i className="icon fal fa-phone" />
                   <div className="text">
                     <h6>Contact Us</h6>
-                    <p className="text-sm lg:text-md">
+                    <p className="text-xs lg:text-md">
                       <strong>American Phone: </strong> + (1) 267 - 2080 - 020
                     </p>
                     <p>
