@@ -46,7 +46,6 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                 <h3 className="my-0">
                   {employees[modalEmployeeIndex].first_name + " " + employees[modalEmployeeIndex].last_name}
                 </h3>
-                <p className="my-0 text-xl text-gray-500">{employees[modalEmployeeIndex].email}</p>
               </div>
             </Modal.Header>
             <Modal.Body>
@@ -155,7 +154,6 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
                         </div>
-                        <div className="text-center text-md text-gray-800">{e.email}</div>
                         <div className="text-center text-md text-gray-500">{e.bio}</div>
                         {e.email === user.email ? (
                           <div className="flex flex-row justify-center w-full mt-2">
@@ -229,7 +227,6 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                           <div className="text-center text-3xl mt-2">
                             {e.first_name}&nbsp;{e.last_name}
                           </div>
-                          <div className="text-center text-md text-gray-800">{e.email}</div>
                           {is_setup ? (
                             <div className="text-center text-md text-gray-800">
                               {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;

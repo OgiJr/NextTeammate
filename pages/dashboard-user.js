@@ -141,7 +141,7 @@ const DashboardUser = ({ user, is_working, is_assigned, company }) => {
           </div>
         </div>
         <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
-          {company.dropbox && (
+          {company && company.dropbox && (
             <Button
               className="thm-btn bg-blue-500 thm-color-two-shadow btn-rounded mr-4 mb-4 wow fadeInRight"
               onClick={() => {
@@ -328,7 +328,9 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
         user: req.session.user,
         is_assigned: isIronUserAssigned(req.session.user),
         is_working: isIronUserWorking(req.session.user),
-        company: dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id })),
+        company: req.session.user.company
+          ? dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id }))
+          : null,
       },
     };
   } catch (e) {
@@ -336,7 +338,9 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {
         user,
         is_working: isIronUserWorking(user),
-        company: dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id })),
+        company: req.session.user.company
+          ? dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id }))
+          : null,
       },
     };
   }

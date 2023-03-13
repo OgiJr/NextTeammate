@@ -20,9 +20,7 @@ const SetPassword = ({ password_generation_key, email }) => {
             className="bg-gray-100 lg:w-[40vw] w-[80vw] py-8 mb-8 !border-sky-600 px-8"
             style={{ borderWidth: 4, borderStyle: "solid", borderRadius: 20 }}
           >
-            <div className="text-center min-w-full text-4xl font-semibold">
-              Set Password
-            </div>
+            <div className="text-center min-w-full text-4xl font-semibold">Set Password</div>
             <Form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -107,10 +105,26 @@ const SetPassword = ({ password_generation_key, email }) => {
   );
 };
 
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ query }) {
-    const { password_generation_key, email } = query;
-    if (!password_generation_key || !email) {
+export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ query }) {
+  const { password_generation_key, email } = query;
+  if (!password_generation_key || !email) {
+    console.log("no key");
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+      props: {},
+    };
+  }
+
+  try {
+    await dbConnect();
+
+    const user = await User.findOne({ email });
+    console.log(user);
+    if (!user || user.has_password || user.password_generation_key !== password_generation_key) {
+      console.log("no user");
       return {
         redirect: {
           permanent: false,
@@ -120,41 +134,22 @@ export const getServerSideProps = withIronSessionSsr(
       };
     }
 
-    try {
-      await dbConnect();
-
-      const user = await User.findOne({ email });
-      if (
-        !user ||
-        user.has_password ||
-        user.password_generation_key !== password_generation_key
-      ) {
-        return {
-          redirect: {
-            permanent: false,
-            destination: "/",
-          },
-          props: {},
-        };
-      }
-
-      return {
-        props: {
-          password_generation_key,
-          email,
-        },
-      };
-    } catch {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/",
-        },
-        props: {},
-      };
-    }
-  },
-  authCookie
-);
+    return {
+      props: {
+        password_generation_key,
+        email,
+      },
+    };
+  } catch {
+    console.log("?");
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+      props: {},
+    };
+  }
+}, authCookie);
 
 export default SetPassword;

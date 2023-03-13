@@ -48,7 +48,6 @@ const AvailableEmployees = ({ others, company }) => {
                 <h3 className="my-0">
                   {others[modalEmployeeIndex].first_name + " " + others[modalEmployeeIndex].last_name}
                 </h3>
-                <p className="my-0 text-xl text-gray-500">{others[modalEmployeeIndex].email}</p>
               </div>
             </Modal.Header>
             <Modal.Body>
@@ -184,7 +183,7 @@ const AvailableEmployees = ({ others, company }) => {
                   })
                   .map((e) => {
                     return (
-                      <div className="min-w-[10vw] min-h-[20vh] justify-evenly gap-2 p-4" key={e._id}>
+                      <div className="min-w-[30%] min-h-[20vh] justify-evenly gap-2 p-4" key={e._id}>
                         <Card
                           isHoverable
                           isPressable
