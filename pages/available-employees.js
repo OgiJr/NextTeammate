@@ -183,7 +183,7 @@ const AvailableEmployees = ({ others, company }) => {
                   })
                   .map((e) => {
                     return (
-                      <div className="w-[30%] min-h-[20vh] justify-evenly gap-2 p-4" key={e._id}>
+                      <div className="w-[90%] md:w-[40%] lg:w-[30%] min-h-[20vh] justify-evenly gap-2 p-4" key={e._id}>
                         <Card
                           isHoverable
                           isPressable
