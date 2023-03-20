@@ -17,7 +17,7 @@ const IndexBanner = () => {
             <div className="banner_text">
               <h1 className="title thm-color-white wow fadeInDown" data-wow-delay=".20ms">
                 <NextSeo
-                  title="Find your NextTeammate with the click of a button"
+                  title="Find your New NextTeammate with the click of a button"
                   description="This example uses more of the available config options."
                   nextteammate="https://nextteammate.com/"
                   openGraph={{
