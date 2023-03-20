@@ -11,11 +11,12 @@ const HireWhy = () => {
                 <i className="fal fa-book" />
                 What We Offer
               </p>
-              <h3 className="title"> Why People Choose Our Service</h3>
+              <h3 className="title">Why you should choose our service</h3>
               <p>
-                NextTeammate provides end to end employment solutions – from
-                screening the potential candidates, payroll and health insurance
-                benefits to management and built-in scheduling software.
+                NextTeammate provides end to end solutions –screening the potential candidates, providing them with the
+                best possible conditions, using dedicated software to utilize the working process. We know that our
+                system works. We use it every day ourselves. Our teammates help multiple businesses lowering their
+                operational costs and increasing their efficiency.
               </p>
             </div>
           </div>
@@ -24,48 +25,30 @@ const HireWhy = () => {
               <li className="wow fadeInUp" data-wow-delay=".2s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We help you with hiring </h6>
+                  <h6 className="mb-0">We help you finding the best teammate that will suit your needs</h6>
                 </div>
-                <img
-                  src="assets/images/_gradient.png"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
               </li>
               <li className="wow fadeInDown" data-wow-delay=".35s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We take care of the payroll </h6>
+                  <h6 className="mb-0">No payroll – you pay a US based company</h6>
                 </div>
-                <img
-                  src="assets/images/_gradient.png"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
               </li>
               <li className="wow fadeInUp" data-wow-delay=".40s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">
-                    We take care of the health insurance{" "}
-                  </h6>
+                  <h6 className="mb-0">NO need to pay for health insurance or other benefits</h6>
                 </div>
-                <img
-                  src="assets/images/_gradient.png"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
               </li>
               <li className="wow fadeInDown" data-wow-delay=".5s">
                 <i className="icon fal fa-check" />
                 <div className="text">
-                  <h6 className="mb-0">We connect you with your employee </h6>
+                  <h6 className="mb-0">We prescreen and background check your future teammates</h6>
                 </div>
-                <img
-                  src="assets/images/_gradient.png"
-                  alt="img"
-                  className="image-fit"
-                />
+                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
               </li>
             </ul>
           </div>

@@ -55,7 +55,7 @@ const HireSkills = () => {
               </div>
               <div className="text">
                 <h5 className="mb-0">
-                  Tracking<br></br> System
+                  Time<br></br>Tracking
                 </h5>
               </div>
             </div>
