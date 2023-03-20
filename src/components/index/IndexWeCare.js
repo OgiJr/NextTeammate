@@ -18,20 +18,16 @@ const IndexWeCare = () => {
               </p>
               <h3 className="title">We Care About Your Business.</h3>
               <p className="mb-0">
-                NextTeammate was created to change the employment process for
-                your company. We provide prescreened foreign team members and a
-                new Collaborate from Home (CFH) system which is easy, reliable,
-                secure, and most importantly, cost effective. Here some of the
-                advantages:
+                NextTeammate was created to redefine the employment process for your company. We provide prescreened
+                foreign team members and a new Collaborate from Home (CFH) system which is easy, reliable, secure, and
+                most importantly, cost effective. Here some of the advantages:
               </p>
             </div>
             <ul className="about_list style_2 mb-xl-30 wow fadeInUp">
               <li>Cost savings </li>
               <li>Access to global talent pool</li>
               <li>Increased productivity</li>
-              <li>
-                Diversity of perspectives: better problem-solving abilities
-              </li>
+              <li>Diversity of perspectives: better problem-solving abilities</li>
               <li>Scalability</li>
               <li>Flexibility</li>
             </ul>
@@ -44,11 +40,7 @@ const IndexWeCare = () => {
           </div>
           <div className="col-lg-5">
             <div className="image_boxes relative z-1 mb-md-10 h-max">
-              <img
-                src="assets/images/about/peoplepeople123.png"
-                className="lg:flex wow fadeInDown"
-                alt="img"
-              />
+              <img src="assets/images/about/peoplepeople123.png" className="lg:flex wow fadeInDown" alt="img" />
             </div>
           </div>
         </div>

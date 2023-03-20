@@ -58,11 +58,11 @@ const Footer = () => {
                 </li>
                 <li>
                   ул. ,,Борис Руменов&quot 16 1407
-                  <br/>
+                  <br />
                   Промишлена зона Хладилника, София
                 </li>
                 <li>
-                  <a href="tel:+12672080020">+12672080020</a>
+                  <a href="tel:+12672080020">+1 267-208-0020</a>
                 </li>
                 <li>
                   <a href="mailto:example@example.com"> nextteammateltd@gmail.com</a>

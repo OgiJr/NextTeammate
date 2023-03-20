@@ -195,8 +195,8 @@ const AvailableEmployees = ({ others, company }) => {
                             }
                           }}
                         >
-                          <Card.Body className="min-h-full">
-                            <div className="flex flex-row justify-center min-h-full">
+                          <Card.Body className="min-h-full flex flex-col justify-between items-center">
+                            {/* <div className="flex flex-row justify-center min-h-full">
                               <img
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}
@@ -204,7 +204,7 @@ const AvailableEmployees = ({ others, company }) => {
                                 className="rounded-full"
                                 style={{ objectFit: "cover" }}
                               />
-                            </div>
+                            </div> */}
                             <div className="text-center text-3xl mt-2">
                               {e.first_name}&nbsp;{e.last_name}
                             </div>
@@ -245,7 +245,7 @@ const AvailableEmployees = ({ others, company }) => {
                                     rounded
                                     className="px-4 min-w-[25%] mr-2 self-center"
                                   >
-                                    I want to find a TEAMMATE
+                                    Connect with potential Teammate
                                   </NextButton>
                                 </NextLink>
                               </div>

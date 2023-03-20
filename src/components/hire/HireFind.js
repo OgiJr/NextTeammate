@@ -22,7 +22,7 @@ const HireFind = () => {
             <div className="quote_sec about relative z-1">
               <img src="assets/images/elements/circle3.png" className="element_5 rotate_elem" alt="img" />
               <div className="section-title left-align wow fadeInUp">
-                <h3 className="title mb-0">Find Your Best Team Member</h3>
+                <h3 className="title mb-0">Find Your New Best Team Member</h3>
               </div>
               <h6>We provide:</h6>
               <p className="font-bold ...">

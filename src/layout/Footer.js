@@ -14,11 +14,7 @@ const Footer = () => {
               <div className="ft_widget ft_about wow fadeInDown">
                 <Link href="/">
                   <a className="logo">
-                    <img
-                      src="assets/images/nextlogof.png"
-                      alt="logo"
-                      className="image-fit"
-                    />
+                    <img src="assets/images/nextlogof.png" alt="logo" className="image-fit" />
                   </a>
                 </Link>
               </div>
@@ -60,24 +56,21 @@ const Footer = () => {
                 </li>
                 <li>402 E Pennsylvania blvd Feasterville PA 19053</li>
                 <li>
-                  <a href="tel:+12672080020">+12672080020</a>
+                  <a href="tel:+12672080020">+1 267-208-0020</a>
                 </li>
                 <br />
                 <li>
                   <b>Bulgaria</b>
                 </li>
                 <li>
-                  ul. &quot;Boris Rumenov&quot; 16, 1407 <br /> Promishlena Zona
-                  Hladilnika, Sofia
+                  ul. &quot;Boris Rumenov&quot; 16, 1407 <br /> Promishlena Zona Hladilnika, Sofia
                 </li>
                 <li>
                   <a href="tel:+359882482505">+359882482505</a>
                 </li>
                 <br />
                 <li>
-                  <a href="mailto:nextteammateltd@gmail.com">
-                    nextteammateltd@gmail.com
-                  </a>
+                  <a href="mailto:nextteammateltd@gmail.com">nextteammateltd@gmail.com</a>
                 </li>
               </ul>
             </div>
@@ -85,15 +78,10 @@ const Footer = () => {
         </div>
         <div className="footer_bottom">
           <p className="mb-0">
-            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved,
-            Design By Javery.
+            © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Design By Javery.
           </p>
         </div>
-        <img
-          src="assets/images/elements/circle3.png"
-          alt="element"
-          className="element_3 rotate_elem"
-        />
+        <img src="assets/images/elements/circle3.png" alt="element" className="element_3 rotate_elem" />
         <div className="arrows to_up slideTop">
           <div className="arrow" />
           <div className="arrow" />
