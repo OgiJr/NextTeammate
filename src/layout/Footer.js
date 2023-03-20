@@ -32,10 +32,10 @@ const Footer = () => {
                       <a href="/about">About Us</a>
                     </li>
                     <li>
-                      <a href="/faqs">Terms and Conditions</a>
+                      <a href="/tc">Terms and Conditions</a>
                     </li>
                     <li>
-                      <a href="/contact">Contacts</a>
+                      <a href="/contact">Contact Us</a>
                     </li>
                   </ul>
                   <ul>
@@ -43,41 +43,39 @@ const Footer = () => {
                       <a href="/">Home</a>
                     </li>
                     <li>
-                      <a href="/become-a-teammate">
-                        I want to become a TEAMMATE
-                      </a>
+                      <a href="/become-a-teammate">Become a Teammate</a>
                     </li>
                     <li>
-                      <a href="/i-want-to-find-teammate">
-                        I want to find my TEAMMATE
-                      </a>
+                      <a href="/i-want-to-find-teammate">Find a Teammate</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div className="flex flex-col min-w-[30rem]">
-              <h6 className="text-white text-3xl">Contacts</h6>
+              <h6 className="text-white text-3xl">Contact Us</h6>
               <ul className="info text-white">
                 <li>
-                  402 E Pennsylvania blvd
-                  <br />
-                  Feasterville PA 19053
+                  <b>USA</b>
                 </li>
-                <li>
-                  ul. &quot;Boris Rumenov&quot; 16 1407
-                  <br />
-                  Promishlena Zona Hladilnika, Sofia
-                </li>
+                <li>402 E Pennsylvania blvd Feasterville PA 19053</li>
                 <li>
                   <a href="tel:+12672080020">+12672080020</a>
+                </li>
+                <br />
+                <li>
+                  <b>Bulgaria</b>
+                </li>
+                <li>
+                  ul. &quot;Boris Rumenov&quot; 16, 1407 <br /> Promishlena Zona
+                  Hladilnika, Sofia
                 </li>
                 <li>
                   <a href="tel:+359882482505">+359882482505</a>
                 </li>
+                <br />
                 <li>
-                  <a href="mailto:example@example.com">
-                    {" "}
+                  <a href="mailto:nextteammateltd@gmail.com">
                     nextteammateltd@gmail.com
                   </a>
                 </li>

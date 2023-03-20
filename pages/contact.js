@@ -97,36 +97,40 @@ const Contact = () => {
                 <li className="wow fadeInUp">
                   <i className="icon fal fa-map-marker-alt" />
                   <div className="text">
-                    <h6>Location</h6>
-                    <li>
+                    <h6>USA</h6>
+                    <li className="mt-2 flex flex-col">
+                      <strong>Email:</strong>
+                      <li>nextteammateltd@gmail.com</li>
+                    </li>
+                    <li className="mt-2 flex flex-col">
+                      <strong>Address:</strong>
                       402 E Pennsylvania blvd
                       <br />
                       Feasterville PA 19053
                     </li>
-                    <li className="mt-2">
-                      ul. &quot;Boris Rumenov&quot; 16 1407
-                      <br />
-                      Promishlena Zona Hladilnika, Sofia
+                    <li className="mt-2 flex flex-col">
+                      <strong>Phone:</strong>+1 2672080020
                     </li>
                   </div>
                 </li>
                 <li className="wow fadeInDown">
-                  <i className="icon fal fa-envelope-open-text" />
+                  <i className="icon fal fa-map-marker-alt" />
                   <div className="text">
-                    <h6>Email Address</h6>
-                    <p> nextteammateltd@gmail.com</p>
-                  </div>
-                </li>
-                <li className="wow fadeInUp">
-                  <i className="icon fal fa-phone" />
-                  <div className="text">
-                    <h6>Contact Us</h6>
-                    <p className="text-xs lg:text-md">
-                      <strong>American Phone: </strong> + (1) 267 - 2080 - 020
-                    </p>
-                    <p className="text-xs lg:text-md">
-                      <strong> Bulgarian Phone: </strong> +359 882482505
-                    </p>
+                    <h6>Bulgaria</h6>
+                    <li className="mt-2 flex flex-col">
+                      <strong>Email:</strong>
+                      <li>nextteammateltd@gmail.com</li>
+                    </li>
+                    <li className="mt-2 flex flex-col">
+                      <strong>Address:</strong>
+                      ul. &quot;Boris Rumenov&quot; 16 1407
+                      <br />
+                      Promishlena Zona Hladilnika, Sofia
+                    </li>
+                    <li className="mt-2 flex flex-col">
+                      <strong>Phone:</strong>
+                      <li>+359 882482505</li>
+                    </li>
                   </div>
                 </li>
               </ul>

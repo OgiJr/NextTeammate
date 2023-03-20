@@ -6,7 +6,13 @@ import { LogButton } from "./LogButton";
 
 import React from "react";
 
-const Header = ({ openMobileMenu, sticky, headerStyle, absolute, language }) => {
+const Header = ({
+  openMobileMenu,
+  sticky,
+  headerStyle,
+  absolute,
+  language,
+}) => {
   useEffect(() => {
     window.addEventListener("scroll", stickyNav);
   });
@@ -38,7 +44,9 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute, language }) => 
                 </div>
                 <ul className="main-menu">
                   <li className="menu-item">
-                    <a href={language == "en" ? "/" : "/index-bg"}>{language == "en" ? "Home" : "Начало"}</a>
+                    <a href={language == "en" ? "/" : "/index-bg"}>
+                      {language == "en" ? "Home" : "Начало"}
+                    </a>
                   </li>
                   <li className="menu-item menu-item-has-children">
                     <a href="#">{language == "en" ? "Services" : "Услуги"}</a>
@@ -54,14 +62,18 @@ const Header = ({ openMobileMenu, sticky, headerStyle, absolute, language }) => 
                   </li>
                   <li className="menu-item">
                     <a href={language == "en" ? "/contact" : "/contact-bg"}>
-                      {language == "en" ? "Contacts" : "Контакти"}
+                      {language == "en" ? "Contact Us" : "Контакти"}
                     </a>
                   </li>
                 </ul>
                 <div className="head_actions">
                   <LogButton language={language} />
 
-                  <button type="button" className="head_trigger mobile_trigger" onClick={() => openMobileMenu()}>
+                  <button
+                    type="button"
+                    className="head_trigger mobile_trigger"
+                    onClick={() => openMobileMenu()}
+                  >
                     <span />
                     <span />
                     <span />
