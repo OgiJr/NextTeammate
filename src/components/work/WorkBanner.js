@@ -56,11 +56,11 @@ const WorkBanner = () => {
                       cardType: "summary_large_image",
                     }}
                   />
-                  <span>Team up with major U.S. based </span> companies from the comfort of your own home!
+                  <span>Team up with a U.S. based </span> company from the comfort of your own home!
                 </h3>
                 <p className="wow fadeInUp text-white" data-wow-delay=".40ms">
-                  Nextteammate is here to take care of the whole employment process – from finding a suitable
-                  employer/company for you to payroll and health benefits administration.
+                  Nextteammate is here to offer you an employment with the ability to work form home and at the same
+                  time to be awarded with a very competitive salary and benefits.
                 </p>
                 <Link href="/contact">
                   <a

@@ -108,7 +108,6 @@ const SetPassword = ({ password_generation_key, email }) => {
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ query }) {
   const { password_generation_key, email } = query;
   if (!password_generation_key || !email) {
-    console.log("no key");
     return {
       redirect: {
         permanent: false,
@@ -122,9 +121,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     await dbConnect();
 
     const user = await User.findOne({ email });
-    console.log(user);
     if (!user || user.has_password || user.password_generation_key !== password_generation_key) {
-      console.log("no user");
       return {
         redirect: {
           permanent: false,
@@ -141,7 +138,6 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       },
     };
   } catch {
-    console.log("?");
     return {
       redirect: {
         permanent: false,
