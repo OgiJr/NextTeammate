@@ -1,5 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+import nextlogof from "../../public/assets/images/nextlogof.png";
+import circle3 from "../../public/assets/images/elements/circle3.png";
 
 const Footer = () => {
   return (
@@ -14,7 +18,7 @@ const Footer = () => {
               <div className="ft_widget ft_about wow fadeInDown">
                 <Link href="/">
                   <a className="logo">
-                    <img src="assets/images/nextlogof.png" alt="logo" className="image-fit" />
+                    <Image src={nextlogof} alt="logo" className="image-fit" />
                   </a>
                 </Link>
               </div>
@@ -81,7 +85,7 @@ const Footer = () => {
             © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Design By Javery.
           </p>
         </div>
-        <img src="assets/images/elements/circle3.png" alt="element" className="element_3 rotate_elem" />
+        <img src={circle3} alt="element" className="element_3 rotate_elem" />
         <div className="arrows to_up slideTop">
           <div className="arrow" />
           <div className="arrow" />

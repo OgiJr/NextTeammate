@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
-
 import React from "react";
+
+import peoplepeople123 from "../../../public/assets/images/about/peoplepeople123.png";
 
 const IndexWeCare = () => {
   return (
@@ -40,7 +42,7 @@ const IndexWeCare = () => {
           </div>
           <div className="col-lg-5">
             <div className="image_boxes relative z-1 mb-md-10 h-max">
-              <img src="assets/images/about/peoplepeople123.png" className="lg:flex wow fadeInDown" alt="img" />
+              <Image src={peoplepeople123} className="lg:flex wow fadeInDown" alt="img" />
             </div>
           </div>
         </div>

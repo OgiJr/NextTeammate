@@ -1,4 +1,7 @@
+import { Image } from "@nextui-org/react";
 import React from "react";
+
+import gradient from "../../../public/assets/images/_gradient.png";
 
 const HireWhy = () => {
   return (
@@ -27,28 +30,28 @@ const HireWhy = () => {
                 <div className="text">
                   <h6 className="mb-0">We help you finding the best teammate that will suit your needs</h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <Image src={gradient} alt="img" className="image-fit" />
               </li>
               <li className="wow fadeInDown" data-wow-delay=".35s">
                 <i className="icon fal fa-check" />
                 <div className="text">
                   <h6 className="mb-0">No payroll – you pay a US based company</h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <Image src={gradient} alt="img" className="image-fit" />
               </li>
               <li className="wow fadeInUp" data-wow-delay=".40s">
                 <i className="icon fal fa-check" />
                 <div className="text">
                   <h6 className="mb-0">NO need to pay for health insurance or other benefits</h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <Image src={gradient} alt="img" className="image-fit" />
               </li>
               <li className="wow fadeInDown" data-wow-delay=".5s">
                 <i className="icon fal fa-check" />
                 <div className="text">
                   <h6 className="mb-0">We prescreen and background check your future teammates</h6>
                 </div>
-                <img src="assets/images/_gradient.png" alt="img" className="image-fit" />
+                <Image src={gradient} alt="img" className="image-fit" />
               </li>
             </ul>
           </div>

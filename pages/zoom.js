@@ -304,9 +304,11 @@ const Zoom = ({ user, employees }) => {
                         setCurrentId(e._id);
                       }}
                     >
-                      <img
+                      <Image
                         className="object-cover w-10 h-10 rounded-full"
                         src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                        width={50}
+                        height={50}
                         alt="username"
                       />
                       <div className="w-full">
@@ -335,7 +337,13 @@ const Zoom = ({ user, employees }) => {
             {currentFriend ? (
               <div className="w-full">
                 <div className="relative flex items-center p-3 border-b border-gray-300">
-                  <img className="object-cover w-10 h-10 rounded-full" src={currentPicture} alt={currentFriend} />
+                  <Image
+                    width={50}
+                    height={50}
+                    className="object-cover w-10 h-10 rounded-full"
+                    src={currentPicture}
+                    alt={currentFriend}
+                  />
                   <span className="block ml-2 font-bold text-gray-600">{currentName}</span>
                 </div>
                 <div className="relative w-full p-6 overflow-y-scroll h-72 md:h-[32rem] lg:h-96" ref={chatRef}>

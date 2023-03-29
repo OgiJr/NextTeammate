@@ -1,22 +1,21 @@
 import Link from "next/link";
-
 import React from "react";
 import { NextSeo } from "next-seo";
+
+import guerillabuzz from "../../../public/assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg";
+import circle3 from "../../../public/assets/images/elements/circle3.png";
+import Image from "next/image";
+
 const HireBanner = () => {
   return (
     <div
       className="single_banner bg-thm-color-two-gradient relative z-1 lg:min-h-screen"
       style={{
-        backgroundImage:
-          "url('assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg')",
+        backgroundImage: "url('assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg')",
         backgroundSize: "cover",
       }}
     >
-      <img
-        src="assets/images/elements/guerrillabuzz-crypto-pr-T9rKvI3N0NM-unsplash.jpg"
-        alt="element"
-        className="element_1"
-      />
+      <Image src={guerillabuzz} alt="element" className="element_1" />
       <div className="transform-center banne_text">
         <div className="container relative z-1">
           <div className="row">
@@ -61,18 +60,11 @@ const HireBanner = () => {
                 >
                   Find a Teammate
                 </span>
-                <h1
-                  className="title wow fadeInDown text-white"
-                  data-wow-delay=".50ms"
-                >
+                <h1 className="title wow fadeInDown text-white" data-wow-delay=".50ms">
                   Find a professional
                 </h1>
-                <p
-                  className="wow fadeInUp text-white font-normal hover:font-bold"
-                  data-wow-delay=".60ms"
-                >
-                  Our main priority is to make your life easier so you can focus
-                  on your business.
+                <p className="wow fadeInUp text-white font-normal hover:font-bold" data-wow-delay=".60ms">
+                  Our main priority is to make your life easier so you can focus on your business.
                 </p>
                 <Link href="/contact">
                   <a
@@ -83,28 +75,12 @@ const HireBanner = () => {
                   </a>
                 </Link>
               </div>
-              <img
-                src="assets/images/elements/circle3.png"
-                className="element_4 rotate_elem"
-                alt="img"
-              />
-              <img
-                src="assets/images/elements/circle3.png"
-                className="element_5 rotate_elem"
-                alt="img"
-              />
+              <Image src={circle3} className="element_4 rotate_elem" alt="img" />
+              <Image src={circle3} className="element_5 rotate_elem" alt="img" />
             </div>
           </div>
-          <img
-            src="assets/images/elements/circle3.png"
-            className="element_2 slideRightTwo"
-            alt="img"
-          />
-          <img
-            src="assets/images/elements/circle3.png"
-            className="element_3 zoom-fade"
-            alt="img"
-          />
+          <Image src={circle3} className="element_2 slideRightTwo" alt="img" />
+          <Image src={circle3} className="element_3 zoom-fade" alt="img" />
         </div>
       </div>
     </div>

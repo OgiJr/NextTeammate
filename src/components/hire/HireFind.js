@@ -1,8 +1,11 @@
 import { useState } from "react";
 import VideoPopup from "../VideoPopup";
-
 import React from "react";
 import Link from "next/link";
+
+import adam from "../../../public/assets/images/adam-nowakowski-D4LDw5eXhgg-unsplash.jpg";
+import circle3 from "../../../public/assets/images/elements/circle3.png";
+import Image from "next/image";
 
 const HireFind = () => {
   const [video, setVideo] = useState(false);
@@ -14,13 +17,13 @@ const HireFind = () => {
         <div className="row no-gutters align-items-center">
           <div className="col-lg-6">
             <div className="video_warp relative z-1 h-100 wow fadeInLeft">
-              <img src="assets/images/adam-nowakowski-D4LDw5eXhgg-unsplash.jpg" alt="img" className="image-fit" />
+              <Image src={adam} alt="img" className="image-fit" />
             </div>
           </div>
           <div className="col-lg-6">
-            <img src="assets/images/elements/circle3.png" className="element_4 rotate_elem" alt="img" />
+            <Image src={circle3} className="element_4 rotate_elem" alt="img" />
             <div className="quote_sec about relative z-1">
-              <img src="assets/images/elements/circle3.png" className="element_5 rotate_elem" alt="img" />
+              <Image src={circle3} className="element_5 rotate_elem" alt="img" />
               <div className="section-title left-align wow fadeInUp">
                 <h3 className="title mb-0">Find Your New Best Team Member</h3>
               </div>

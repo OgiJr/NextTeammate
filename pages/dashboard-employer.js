@@ -145,13 +145,15 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
+                          <div className="flex flex-row justify-center">
+                            <Image
+                              src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                              width={150}
+                              height={150}
+                              className="rounded-full"
+                              style={{ objectFit: "cover" }}
+                            />
+                          </div>
                         </div>
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}

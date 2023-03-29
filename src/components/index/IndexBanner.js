@@ -2,6 +2,10 @@ import Link from "next/link";
 import React from "react";
 import { NextSeo } from "next-seo";
 
+import circle3 from "../../../public/assets/images/elements/circle3.png";
+import circle3big from "../../../public/assets/images/elements/circle3big.png";
+import Image from "next/image";
+
 const IndexBanner = () => {
   return (
     <div
@@ -57,10 +61,10 @@ const IndexBanner = () => {
                 </button>
               </Link>
             </div>
-            <img src="assets/images/elements/circle3.png" alt="element" className="element_1 slideRightTwo" />
-            <img src="assets/images/elements/circle3.png" alt="element" className="element_2 zoom-fade" />
-            <img src="assets/images/elements/circle3big.png" alt="element" className="element_3 rotate_elem" />
-            <img src="assets/images/elements/circle3.png" alt="element" className="element_4 rotate_elem" />
+            <Image src={circle3} alt="element" className="element_1 slideRightTwo" />
+            <Image src={circle3} alt="element" className="element_2 zoom-fade" />
+            <Image src={circle3big} alt="element" className="element_3 rotate_elem" />
+            <Image src={circle3} alt="element" className="element_4 rotate_elem" />
           </div>
         </div>
         <div className="think_box wow fadeInDown" data-wow-delay=".50ms"></div>

@@ -1,5 +1,11 @@
 import React from "react";
 
+import folder from "../../../public/assets/images/icons/folder-dynamic-gradient.png";
+import computer from "../../../public/assets/images/icons/computer-dynamic-gradient.png";
+import video from "../../../public/assets/images/icons/video-camera-dynamic-gradient.png";
+import clock from "../../../public/assets/images/icons/clock-dynamic-gradient.png";
+import Image from "next/image";
+
 const HireSkills = () => {
   return (
     <div className="section-padding lg:mt-40">
@@ -9,7 +15,7 @@ const HireSkills = () => {
           <div className="col-lg-3 col-md-6">
             <div className="counter_box wow fadeInUp" data-wow-delay=".2s">
               <div className="icon">
-                <img src="assets/images/icons/folder-dynamic-gradient.png" alt="icon" className="image-fit" />
+                <Image src={folder} alt="icon" className="image-fit" />
               </div>
               <div className="text">
                 <h5 className="mb-0">
@@ -23,7 +29,7 @@ const HireSkills = () => {
           <div className="col-lg-3 col-md-6">
             <div className="counter_box wow fadeInUp" data-wow-delay=".4s">
               <div className="icon">
-                <img src="assets/images/icons/video-camera-dynamic-gradient.png" alt="icon" className="image-fit" />
+                <Image src={video} alt="icon" className="image-fit" />
               </div>
               <div className="text">
                 <h5 className="mb-0">
@@ -37,7 +43,7 @@ const HireSkills = () => {
           <div className="col-lg-3 col-md-6">
             <div className="counter_box wow fadeInUp" data-wow-delay=".6s">
               <div className="icon">
-                <img src="assets/images/icons/computer-dynamic-gradient.png" alt="icon" className="image-fit" />
+                <Image src={computer} alt="icon" className="image-fit" />
               </div>
               <div className="text">
                 <h5 className="mb-0">
@@ -51,7 +57,7 @@ const HireSkills = () => {
           <div className="col-lg-3 col-md-6">
             <div className="counter_box wow fadeInUp" data-wow-delay=".8s">
               <div className="icon">
-                <img src="assets/images/icons/clock-dynamic-gradient.png" alt="icon" className="image-fit" />
+                <Image src={clock} alt="icon" className="image-fit" />
               </div>
               <div className="text">
                 <h5 className="mb-0">

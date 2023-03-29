@@ -1,9 +1,12 @@
+import Image from "next/image";
 import React from "react";
+
+import preloader from "../../public/assets/images/preloader.svg";
 
 const Preloader = () => {
   return (
     <div className="preloader">
-      <img src="assets/images/preloader.svg" alt="preloader" />
+      <Image src={preloader} alt="preloader" />
     </div>
   );
 };
