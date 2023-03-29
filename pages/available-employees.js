@@ -197,7 +197,7 @@ const AvailableEmployees = ({ others, company }) => {
                         >
                           <Card.Body className="min-h-full flex flex-col justify-between items-center">
                             <div className="flex flex-row justify-center min-h-full">
-                              <img
+                              <Image
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}
                                 height={150}

@@ -7,6 +7,7 @@ import { dbCompanyToCompany, dbConnect, dbUserToIronUser, isUserEmailInDb } from
 import User from "../models/User";
 import Company from "../models/Company";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const EditCompany = ({ editable, companies }) => {
   const [error, setError] = React.useState(null);
@@ -16,7 +17,7 @@ const EditCompany = ({ editable, companies }) => {
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col justify-start gap-8">
       <div className="flex flex-row min-w-full bg-gradient-to-r from-cyan-500 to-blue-500 justify-between items-center px-10">
         <div className="flex flex-row justify-center my-2">
-          <img src="/assets/images/nextlogowhite.png" width={100} height={100} />
+          <Image src="/assets/images/nextlogowhite.png" width={100} height={100} />
         </div>
         <div className="flex flex-col mt-3 md:mt-0 md:flex-row justify-evenly md:gap-8">
           <Button

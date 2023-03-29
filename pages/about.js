@@ -3,21 +3,15 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import VideoPopup from "../src/components/VideoPopup";
 import Layout from "../src/layout/Layout";
 import React from "react";
-// import WorkTeam from "../src/components/work/WorkTeam";
-// import { dbConnect, dbUserToIronUser } from "../lib/db";
-// import User from "../models/User";
 import Footer from "../src/layout/Footer";
+import Image from "next/image";
 
-// export const getServerSideProps = async () => {
-//   await dbConnect();
-
-//   const users = await User.find({ is_admin: false, is_employer: false });
-//   const ironUsers = [...(await Promise.all(users.map(async (u) => await dbUserToIronUser(u))))];
-
-//   return {
-//     props: { users: ironUsers },
-//   };
-// };
+import peopleanalutics from "../public/assets/images/about/peopleanalutics.png";
+import money_bag from "../public/assets/images/icons/money-bag-dynamic-gradient copy.png";
+import shield_dynamic from "../public/assets/images/icons/sheild-dynamic-gradient copy.png";
+import wifi_dynamic from "../public/assets/images/icons/wifi-dynamic-gradient copy.png";
+import working_women from "../public/assets/images/about/workingwomen1.png";
+import circle_3 from "../public/assets/images/elements/circle3.png";
 
 const About = () => {
   const [video, setVideo] = useState(false);
@@ -30,7 +24,7 @@ const About = () => {
           <div className="row ">
             <div className="col-lg-6">
               <div className="image_box  mb-md-80 wow fadeInLeft ">
-                <img src="assets/images/about/peopleanalutics.png" alt="img" className="image-fit" />
+                <Image src={peopleanalutics} alt="img" className="image-fit" />
               </div>
             </div>
             <div className="col-lg-6">
@@ -58,11 +52,7 @@ const About = () => {
               <ul className="about_list row">
                 <li className="col-md-6 wow fadeInUp">
                   <div className="icon">
-                    <img
-                      src="assets/images/icons/money-bag-dynamic-gradient copy.png"
-                      alt="img"
-                      className="image-fit"
-                    />
+                    <Image src={money_bag} alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Payroll</h6>
@@ -73,7 +63,7 @@ const About = () => {
                 </li>
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
-                    <img src="assets/images/icons/sheild-dynamic-gradient copy.png" alt="img" className="image-fit" />
+                    <Image src={shield_dynamic} alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Health insurance benefits</h6>
@@ -84,7 +74,7 @@ const About = () => {
                 </li>
                 <li className="col-md-6 wow fadeInDown">
                   <div className="icon">
-                    <img src="assets/images/icons/wifi-dynamic-gradient copy.png" alt="img" className="image-fit" />
+                    <Image src={wifi_dynamic} alt="img" className="image-fit" />
                   </div>
                   <div className="text">
                     <h6 className="mb-2">Built in scheduling software</h6>
@@ -109,12 +99,12 @@ const About = () => {
             <div className="col-lg-6">
               <div className="image_boxes style_2 relative z-1 h-100">
                 <div className="flex">
-                  <img src="assets/images/about/workingwomen1.png" alt="img" />
+                  <Image src={working_women} alt="img" />
                 </div>
                 {/* elements */}
-                <img src="assets/images/elements/circle3.png" className="element_1" alt="Element" />
-                <img src="assets/images/elements/circle3.png" className="element_2 rotate_elem" alt="Element" />
-                <img src="assets/images/elements/circle3.png" className="element_3 rotate_elem" alt="Element" />
+                <Image src={circle_3} className="element_1" alt="Element" />
+                <Image src={circle_3} className="element_2 rotate_elem" alt="Element" />
+                <Image src={circle_3} className="element_3 rotate_elem" alt="Element" />
               </div>
             </div>
             <div className="col-xl-4 col-lg-6 mb-md-80 text-white">

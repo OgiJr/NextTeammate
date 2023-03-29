@@ -3,6 +3,10 @@ import PageTitleBanner from "../src/components/PageTitleBanner";
 import Layout from "../src/layout/Layout";
 import React, { useState } from "react";
 import Footer from "../src/layout/Footer";
+import Image from "next/image";
+
+import phone_incoming from "../public/assets/images/icons/phone-incoming-dynamic-gradient copy.png";
+import chat_text from "../public/assets/images/icons/chat-text-dynamic-gradient copy.png";
 
 const Contact = () => {
   const [error, setError] = useState(null);
@@ -28,11 +32,7 @@ const Contact = () => {
             <div className="col-lg-6">
               <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
                 <div className="icon">
-                  <img
-                    src="assets/images/icons/phone-incoming-dynamic-gradient copy.png"
-                    alt="icon"
-                    className="image-fit-contain"
-                  />
+                  <Image src={phone_incoming} alt="icon" className="image-fit-contain" />
                 </div>
                 <div className="text">
                   <h4>Phone</h4>
@@ -48,11 +48,7 @@ const Contact = () => {
             <div className="col-lg-6">
               <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
                 <div className="icon">
-                  <img
-                    src="assets/images/icons/chat-text-dynamic-gradient copy.png"
-                    alt="icon"
-                    className="image-fit-contain"
-                  />
+                  <Image src={chat_text} alt="icon" className="image-fit-contain" />
                 </div>
                 <div className="text">
                   <h4>Have Any Questions</h4>

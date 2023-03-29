@@ -180,7 +180,9 @@ const DashboardUser = ({ user, is_working, is_assigned, company }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="flex flex-row justify-center">
-                <img
+                <Image
+                  width={350}
+                  height={350}
                   src={`${cdnSubpath()}${user.picture}`}
                   alt="img"
                   className="image-fit wow fadeInLeft rounded-[12px] max-w-[40%] border-4 border-indigo-600"

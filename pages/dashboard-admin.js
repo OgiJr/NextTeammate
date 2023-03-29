@@ -223,13 +223,15 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
               <Card key={e.email} isPressable isHoverable className="mt-3">
                 <Card.Body>
                   <div className="flex flex-col self-center">
-                    <img
-                      src={e.has_picture ? `${cdnSubpath()}/${e.picture}` : "/assets/images/no-user.png"}
-                      width={150}
-                      height={150}
-                      className="self-center rounded-full"
-                      style={{ objectFit: "cover" }}
-                    />
+                    <div className="flex flex-row justify-center">
+                      <Image
+                        src={e.has_picture ? `${cdnSubpath()}/${e.picture}` : "/assets/images/no-user.png"}
+                        width={150}
+                        height={150}
+                        className="self-center rounded-full"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
                     <div className=" text-4xl text-center">{e.first_name + " " + e.last_name}</div>
                     {e.email === user.email ? (
                       <div className="flex flex-row mt-2">
@@ -267,13 +269,15 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
-                          <img
-                            src={`${cdnSubpath()}${e.picture}`}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
+                          <div className="flex flex-row justify-center">
+                            <Image
+                              src={`${cdnSubpath()}${e.picture}`}
+                              width={150}
+                              height={150}
+                              className="rounded-full"
+                              style={{ objectFit: "cover" }}
+                            />
+                          </div>
                         </div>
                         <div className="text-center text-3xl mt-2">{e.name}</div>
                         {e.dropbox && (
@@ -341,13 +345,15 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                     <Card isHoverable isPressable>
                       <Card.Body>
                         <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
+                          <div className="flex flex-row justify-center">
+                            <Image
+                              src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                              width={150}
+                              height={150}
+                              className="rounded-full"
+                              style={{ objectFit: "cover" }}
+                            />
+                          </div>
                         </div>
                         <div className="text-center text-3xl mt-2">
                           {e.first_name}&nbsp;{e.last_name}
@@ -423,13 +429,15 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                         >
                           <Card.Body className="min-h-full">
                             <div className="flex flex-row justify-center min-h-full">
-                              <img
-                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                                width={150}
-                                height={150}
-                                className="rounded-full"
-                                style={{ objectFit: "cover" }}
-                              />
+                              <div className="flex flex-row justify-center">
+                                <Image
+                                  src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                                  width={150}
+                                  height={150}
+                                  className="rounded-full"
+                                  style={{ objectFit: "cover" }}
+                                />
+                              </div>
                             </div>
                             <div className="text-center text-3xl mt-2">
                               {e.first_name}&nbsp;{e.last_name}
@@ -636,13 +644,15 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                         >
                           <Card.Body className="min-h-full">
                             <div className="flex flex-row justify-center min-h-full">
-                              <img
-                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                                width={150}
-                                height={150}
-                                className="rounded-full"
-                                style={{ objectFit: "cover" }}
-                              />
+                              <div className="flex flex-row justify-center">
+                                <Image
+                                  src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                                  width={150}
+                                  height={150}
+                                  className="rounded-full"
+                                  style={{ objectFit: "cover" }}
+                                />
+                              </div>
                             </div>
                             <div className="text-center text-3xl mt-2">
                               {e.first_name}&nbsp;{e.last_name}

@@ -112,13 +112,15 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
       </div>
       <div className="flex flex-col">
         <div className="flex flex-row justify-center">
-          <img
-            src={`${cdnSubpath()}${company.picture}`}
-            width={150}
-            height={150}
-            className="rounded-full"
-            style={{ objectFit: "cover" }}
-          />
+          <div className="flex flex-row justify-center">
+            <Image
+              src={`${cdnSubpath()}${company.picture}`}
+              width={150}
+              height={150}
+              className="rounded-full"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
         </div>
         <div className="self-center text-cyan-600 text-xl">{user.company.name}</div>
         <div className="flex flex-row mt-2 justify-center">
@@ -216,13 +218,15 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                       >
                         <Card.Body className="min-h-full">
                           <div className="flex flex-row justify-center min-h-full">
-                            <img
-                              src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                              width={150}
-                              height={150}
-                              className="rounded-full"
-                              style={{ objectFit: "cover" }}
-                            />
+                            <div className="flex flex-row justify-center">
+                              <Image
+                                src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
+                                width={150}
+                                height={150}
+                                className="rounded-full"
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
                           </div>
                           <div className="text-center text-3xl mt-2">
                             {e.first_name}&nbsp;{e.last_name}
@@ -266,71 +270,6 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
           )}
         </div>
       </div>
-      {/* <div className="flex flex-col mt-4">
-        <div className="text-center text-3xl font-bold">Employee Pool</div>
-        <div className="flex flex-row flex-wrap min-w-full gap-8 justify-center justify-items-center">
-          {others.length === 0 ? (
-            <div className="text-center text-3xl">No free other employees.</div>
-          ) : (
-            <>
-              {others.map((e) => {
-                const is_setup =
-                  e.work_data &&
-                  e.work_data.currency &&
-                  e.work_data.expected_hours_weekly &&
-                  e.work_data.current_price_per_hour;
-                return (
-                  <div className="min-w-[20vw] min-h-[20vh]  justify-evenly gap-2 p-4" key={e.email}>
-                    <Card isHoverable isPressable>
-                      <Card.Body>
-                        <div className="flex flex-row justify-center">
-                          <img
-                            src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
-                            width={150}
-                            height={150}
-                            className="rounded-full"
-                            style={{ objectFit: "cover" }}
-                          />
-                        </div>
-                        <div className="text-center text-3xl mt-2">
-                          {e.first_name}&nbsp;{e.last_name}
-                        </div>
-                        <div className="text-center text-md text-gray-800">{e.email}</div>
-                        {is_setup ? (
-                          <div className="text-center text-md text-gray-800">
-                            {e.work_data.expected_hours_weekly} hours @ {e.work_data.current_price_per_hour}&nbsp;
-                            {e.work_data.currency} / hour
-                          </div>
-                        ) : (
-                          <></>
-                        )}
-                        <div className="text-center text-md text-gray-500">{e.bio}</div>
-                        {!e.has_password ? (
-                          <div className="text-center text-xl text-red-500">Unclaimed Account</div>
-                        ) : (
-                          <div className="flex flex-col justify-center gap-2 mt-2">
-                            <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
-                              <NextButton
-                                color="success"
-                                shadow
-                                auto
-                                rounded
-                                className="px-4 min-w-[25%] mr-2 self-center"
-                              >
-                                I want to hire
-                              </NextButton>
-                            </NextLink>
-                          </div>
-                        )}
-                      </Card.Body>
-                    </Card>
-                  </div>
-                );
-              })}
-            </>
-          )}
-        </div>
-      </div> */}
       <Footer />
     </div>
   );
