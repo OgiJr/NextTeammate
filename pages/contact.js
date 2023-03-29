@@ -149,6 +149,21 @@ const Contact = () => {
                     </p>
                     <h3 className="title">Reach out to us for a prosperous partnership</h3>
                   </div>
+                  <div className="flex flex-col w-full items-center gap-2 mb-4">
+                    <div className="text-2xl w-[90%] text-left">How it works (4 easy steps):</div>
+                    <div className="text-xl w-[90%] text-left">1. Fill out the contact form</div>
+                    <div className="text-xl w-[90%] text-left">
+                      2. After we check your company, we will give you temporary access to our platform. There you can
+                      find all of our available teammates with video resumes and get familiar with our system.
+                    </div>
+                    <div className="text-xl w-[90%] text-left">
+                      3. We schedule an online interview with the selected prospects.
+                    </div>
+                    <div className="text-xl w-[90%] text-left">
+                      4. After choosing the right candidate you sign a contract and start working with your new
+                      teammate.
+                    </div>
+                  </div>
                 </div>
               </div>
               <form
