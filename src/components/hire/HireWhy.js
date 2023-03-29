@@ -53,6 +53,15 @@ const HireWhy = () => {
                 </div>
                 <Image src={gradient} alt="img" className="image-fit" />
               </li>
+              <li className="wow fadeInDown" data-wow-delay=".5s">
+                <i className="icon fal fa-check" />
+                <div className="text">
+                  <h6 className="mb-0">
+                    Better control - our teammate is required to have their camera and screen sharing ON all the time
+                  </h6>
+                </div>
+                <Image src={gradient} alt="img" className="image-fit" />
+              </li>
             </ul>
           </div>
         </div>
