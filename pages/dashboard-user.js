@@ -272,7 +272,7 @@ const DashboardUser = ({ user, is_working, is_assigned, company }) => {
                     onClick={() => window.location.assign(`${cdnSubpath()}${user.cv}`)}
                     disabled={!user.has_cv}
                   >
-                    View CV
+                    View Résumé
                   </Button>
                 </div>
               </div>
