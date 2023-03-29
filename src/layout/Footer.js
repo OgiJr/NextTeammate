@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 import nextlogof from "../../public/assets/images/nextlogof.png";
-import circle3 from "../../public/assets/images/elements/circle3.png";
 
 const Footer = () => {
   return (
@@ -85,7 +84,6 @@ const Footer = () => {
             © 2022 <a href="https://javery.bg/">Javery</a>. All Rights Reserved, Design By Javery.
           </p>
         </div>
-        <img src={circle3} alt="element" className="element_3 rotate_elem" />
         <div className="arrows to_up slideTop">
           <div className="arrow" />
           <div className="arrow" />
