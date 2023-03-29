@@ -63,7 +63,7 @@ const IndexSkills = () => {
           />
         </div>
       </div>
-      <div className="lg:w-[50%] min-h-[100%] bg-[url('/assets/images/workiworkin.jpg')] bg-cover"></div>
+      <div className="lg:w-[50%] min-h-[100%] bg-[url('/assets/images/workiworkin.webp')] bg-cover"></div>
     </div>
   );
 };

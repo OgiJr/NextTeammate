@@ -11,7 +11,7 @@ const IndexBanner = () => {
     <div
       className="bg-banner relative z-1"
       style={{
-        backgroundImage: "url(assets/images/banner/index-banner.jpg)",
+        backgroundImage: "url(assets/images/banner/index-banner.webp)",
       }}
       alt="people"
     >
@@ -30,14 +30,14 @@ const IndexBanner = () => {
                     description: "Outsorcing company",
                     images: [
                       {
-                        url: "https://nextteammate.com/assets/images/banner/index-banner.jpg)",
+                        url: "https://nextteammate.com/assets/images/banner/index-banner.webp)",
                         width: 5744,
                         height: 3829,
                         alt: "Og Image Alt",
                         type: "image/jpg",
                       },
                       {
-                        url: "https://nextteammate.com/assets/images/banner/index-banner.jpg",
+                        url: "https://nextteammate.com/assets/images/banner/index-banner.webp",
                         width: 360,
                         height: 360,
                         alt: "Og Image Alt Second",

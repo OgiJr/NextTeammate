@@ -8,7 +8,7 @@ const IndexWeCare = () => {
   return (
     <section
       className="section section-bg about_bg about style_2"
-      style={{ backgroundImage: "url(assets/images/bg/gradient.jpeg)" }}
+      style={{ backgroundImage: "url(assets/images/bg/gradient.webp)" }}
     >
       <div className="container">
         <div className="row justify-content-center">
