@@ -75,47 +75,47 @@ const Contact = () => {
               <h3 className="title">Have Any Questions Get In Touch</h3>
             </div>
             <div className="contact_info mb-md-80">
-              <ul>
-                <li className="wow fadeInUp">
-                  <i className="icon fal fa-map-marker-alt" />
+              <div className="flex flex-col gap-8">
+                <div className="wow fadeInUp flex flex-row gap-4">
+                  <i className="icon fal fa-map-marker-alt text-3xl  text-green-500" />
                   <div className="text">
                     <h6>USA</h6>
-                    <li className="mt-2 flex flex-col">
+                    <div className="mt-2 flex flex-col">
                       <strong>Email:</strong>
-                      <li>nextteammateltd@gmail.com</li>
-                    </li>
-                    <li className="mt-2 flex flex-col">
+                      nextteammateltd@gmail.com
+                    </div>
+                    <div className="mt-2 flex flex-col">
                       <strong>Address:</strong>
                       402 E Pennsylvania blvd
                       <br />
                       Feasterville PA 19053
-                    </li>
-                    <li className="mt-2 flex flex-col">
+                    </div>
+                    <div className="mt-2 flex flex-col">
                       <strong>Phone:</strong>+1 267-208-0020
-                    </li>
+                    </div>
                   </div>
-                </li>
-                <li className="wow fadeInDown">
-                  <i className="icon fal fa-map-marker-alt" />
+                </div>
+                <div className="wow fadeInDown flex flex-row gap-4">
+                  <i className="icon fal fa-map-marker-alt text-3xl text-green-500" />
                   <div className="text">
                     <h6>Bulgaria</h6>
-                    <li className="mt-2 flex flex-col">
+                    <div className="mt-2 flex flex-col">
                       <strong>Email:</strong>
-                      <li>nextteammateltd@gmail.com</li>
-                    </li>
-                    <li className="mt-2 flex flex-col">
+                      <div>nextteammateltd@gmail.com</div>
+                    </div>
+                    <div className="mt-2 flex flex-col">
                       <strong>Address:</strong>
                       ul. &quot;Boris Rumenov&quot; 16 1407
                       <br />
                       Promishlena Zona Hladilnika, Sofia
-                    </li>
-                    <li className="mt-2 flex flex-col">
+                    </div>
+                    <div className="mt-2 flex flex-col">
                       <strong>Phone:</strong>
-                      <li>+359 882482505</li>
-                    </li>
+                      <div>+359 882482505</div>
+                    </div>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-xl-8 col-lg-7">
