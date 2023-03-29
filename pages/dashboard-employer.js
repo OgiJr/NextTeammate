@@ -113,7 +113,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
       <div className="flex flex-col">
         <div className="flex flex-row justify-center">
           <div className="flex flex-row justify-center">
-            <Image
+            <img
               src={`${cdnSubpath()}${company.picture}`}
               width={150}
               height={150}
@@ -146,7 +146,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <div className="flex flex-row justify-center">
-                            <Image
+                            <img
                               src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                               width={150}
                               height={150}
@@ -221,7 +221,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                         <Card.Body className="min-h-full">
                           <div className="flex flex-row justify-center min-h-full">
                             <div className="flex flex-row justify-center">
-                              <Image
+                              <img
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}
                                 height={150}
@@ -260,7 +260,7 @@ const DashboardEmployer = ({ user, employees, employers, company }) => {
                             onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
                             disabled={!e.has_cv}
                           >
-                            View CV
+                            View Résumé
                           </NextButton>
                         </Card.Body>
                       </Card>

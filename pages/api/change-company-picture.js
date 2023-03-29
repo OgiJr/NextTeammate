@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { dbConnect } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 import IncomingForm from "formidable/src/Formidable";
-import { mkdirSync, copyFileSync } from "fs";
+import { mkdirSync, copyFileSync, readFileSync, writeFileSync } from "fs";
+import sharp from "sharp";
 
 export const config = {
   api: {
@@ -55,6 +56,17 @@ export default withIronSessionApiRoute(async function createCompany(req, res) {
     mkdirSync(filedir, { recursive: true });
     copyFileSync(picture.filepath, filepath);
     // renameSync(picture.filepath, filepath);
+
+    mkdirSync(filedir, { recursive: true });
+    copyFileSync(picture.filepath, filepath);
+    // renameSync(picture.filepath, filepath);
+
+    const photo_data = readFileSync(filepath);
+    const photo_buffer = await sharp(photo_data).withMetadata().webp().toBuffer();
+
+    picture_id = picture_id.slice(0, -4) + ".webp";
+    const new_filepath = `${filedir}${picture_id}`;
+    writeFileSync(new_filepath, photo_buffer);
   }
 
   try {

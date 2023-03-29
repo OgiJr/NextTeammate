@@ -180,7 +180,7 @@ const DashboardUser = ({ user, is_working, is_assigned, company }) => {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <div className="flex flex-row justify-center">
-                <Image
+                <img
                   width={350}
                   height={350}
                   src={`${cdnSubpath()}${user.picture}`}

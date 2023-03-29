@@ -5,8 +5,9 @@ import { dbConnect, dbUserToIronUser } from "../../lib/db";
 import User from "../../models/User";
 import IncomingForm from "formidable/src/Formidable";
 import { v4 as uuidv4 } from "uuid";
-import { copyFileSync, mkdirSync } from "fs";
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import rateLimit from "../../lib/rateLimit";
+import sharp from "sharp";
 
 const limiter = rateLimit({
   interval: 60 * 1000,
@@ -60,6 +61,13 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
   copyFileSync(picture.filepath, filepath);
   // renameSync(picture.filepath, filepath);
 
+  const photo_data = readFileSync(filepath);
+  const photo_buffer = await sharp(photo_data).withMetadata().webp().toBuffer();
+
+  const new_picture_id = picture_id.slice(0, -4) + ".webp";
+  const new_filepath = `${filedir}${new_picture_id}`;
+  writeFileSync(new_filepath, photo_buffer);
+
   try {
     await dbConnect();
 
@@ -72,7 +80,7 @@ export default withIronSessionApiRoute(async function setPictureRoute(req, res) 
 
     const newUser = await User.findOneAndUpdate(
       { email: user.email },
-      { $set: { picture: picture_id } },
+      { $set: { picture: new_picture_id } },
       { new: true }
     );
 

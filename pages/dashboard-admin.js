@@ -224,7 +224,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                 <Card.Body>
                   <div className="flex flex-col self-center">
                     <div className="flex flex-row justify-center">
-                      <Image
+                      <img
                         src={e.has_picture ? `${cdnSubpath()}/${e.picture}` : "/assets/images/no-user.png"}
                         width={150}
                         height={150}
@@ -270,7 +270,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <div className="flex flex-row justify-center">
-                            <Image
+                            <img
                               src={`${cdnSubpath()}${e.picture}`}
                               width={150}
                               height={150}
@@ -346,7 +346,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                       <Card.Body>
                         <div className="flex flex-row justify-center">
                           <div className="flex flex-row justify-center">
-                            <Image
+                            <img
                               src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                               width={150}
                               height={150}
@@ -430,7 +430,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                           <Card.Body className="min-h-full">
                             <div className="flex flex-row justify-center min-h-full">
                               <div className="flex flex-row justify-center">
-                                <Image
+                                <img
                                   src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                   width={150}
                                   height={150}
@@ -481,7 +481,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                                   onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
                                   disabled={!e.has_cv}
                                 >
-                                  View CV
+                                  View Résumé
                                 </NextButton>
                                 <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
                                   <NextButton
@@ -503,7 +503,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                                     rounded
                                     className="px-4 min-w-[25%] mr-2 self-center"
                                   >
-                                    Set CV
+                                    Set Résumé
                                   </NextButton>
                                 </NextLink>
                                 <NextLink href={`/edit-company?email=${e.email}`} className="self-center">
@@ -645,7 +645,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                           <Card.Body className="min-h-full">
                             <div className="flex flex-row justify-center min-h-full">
                               <div className="flex flex-row justify-center">
-                                <Image
+                                <img
                                   src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                   width={150}
                                   height={150}
@@ -696,7 +696,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                                   onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
                                   disabled={!e.has_cv}
                                 >
-                                  View CV
+                                  View Résumé
                                 </NextButton>
                                 <NextLink href={`/edit-hours?email=${e.email}`} className="self-center">
                                   <NextButton
@@ -718,7 +718,7 @@ const DashboardAdmin = ({ user, employees, employers, companies, admins }) => {
                                     rounded
                                     className="px-4 min-w-[25%] mr-2 self-center"
                                   >
-                                    Set CV
+                                    Set Résumé
                                   </NextButton>
                                 </NextLink>
                                 <NextLink href={`/edit-company?email=${e.email}`} className="self-center">

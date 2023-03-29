@@ -197,7 +197,7 @@ const AvailableEmployees = ({ others, company }) => {
                         >
                           <Card.Body className="min-h-full flex flex-col justify-between items-center">
                             <div className="flex flex-row justify-center min-h-full">
-                              <Image
+                              <img
                                 src={e.has_picture ? `${cdnSubpath()}${e.picture}` : "/assets/images/no-user.png"}
                                 width={150}
                                 height={150}
@@ -235,7 +235,7 @@ const AvailableEmployees = ({ others, company }) => {
                                   onClick={() => window.location.assign(`${cdnSubpath()}${e.cv}`)}
                                   disabled={!e.has_cv}
                                 >
-                                  View CV
+                                  View Résumé
                                 </NextButton>
                                 <NextLink href={`/api/hire?_id=${e._id}`} className="self-center">
                                   <NextButton
