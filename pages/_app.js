@@ -4,6 +4,7 @@ import Preloader from "../src/layout/Preloader";
 import "../styles/globals.css";
 import React from "react";
 import { DefaultSeo } from "next-seo";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -16,6 +17,16 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Fragment>
+      <Script>
+        {`
+          footers = document.querySelectorAll("footer");
+          if (footers.length > 1) {
+            for (i = 1; i < footers.length; i++) {
+              footers[i].remove();
+            }
+          }
+        `}
+      </Script>
       <DefaultSeo
         openGraph={{
           type: "website",

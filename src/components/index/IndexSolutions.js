@@ -27,7 +27,7 @@ const IndexSolutions = () => {
             <div className="lg:!max-w-[25%] ">
               <div className="features_box style_2 wow fadeInDown lg:min-h-full" data-wow-delay=".20ms">
                 <div className="icon">
-                  <Image src={bulb} alt="icon" width={80} />
+                  <Image src={bulb} alt="icon" />
                 </div>
                 <h5>Goal</h5>
                 <p>
@@ -40,7 +40,7 @@ const IndexSolutions = () => {
             <div className="lg:!max-w-[25%]">
               <div className="features_box style_2 wow fadeInUp lg:min-h-[100%]" data-wow-delay=".30ms">
                 <div className="icon">
-                  <Image src={chart} alt="icon" width={80} />
+                  <Image src={chart} alt="icon" />
                 </div>
                 <h5>Mission</h5>
                 <p>
@@ -52,7 +52,7 @@ const IndexSolutions = () => {
             <div className="lg:!max-w-[25%]">
               <div className="features_box style_2 wow fadeInDown lg:min-h-full" data-wow-delay=".40ms">
                 <div className="icon">
-                  <Image src={rocket} alt="icon" width={80} />
+                  <Image src={rocket} alt="icon" />
                 </div>
                 <h5>Vision</h5>
                 <p>

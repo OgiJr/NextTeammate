@@ -3,9 +3,6 @@ import Link from "next/link";
 import React from "react";
 import { NextSeo } from "next-seo";
 
-import work_banner from "../../../public/assets/images/banner/work-banner.jpg";
-import Image from "next/image";
-
 const WorkBanner = () => {
   return (
     <div
@@ -15,7 +12,6 @@ const WorkBanner = () => {
       }}
       className="md:bg-transparent banner relative z-1"
     >
-      <Image src={work_banner} className="element_1 max-h-full min-w-full hidden lg:flex" alt="Element Line" />
       {/* Texts */}
       <div className="transform-center">
         <div className="container">
