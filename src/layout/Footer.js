@@ -69,11 +69,11 @@ const Footer = () => {
                   ul. &quot;Boris Rumenov&quot; 16, 1407 <br /> Promishlena Zona Hladilnika, Sofia
                 </li>
                 <li>
-                  <a href="tel:+359882482505">+359882482505</a>
+                  <a href="tel:+359884188911">+359 88 4188911</a>
                 </li>
                 <br />
                 <li>
-                  <a href="mailto:nextteammateltd@gmail.com">nextteammateltd@gmail.com</a>
+                  <a href="mailto:contact@nextteammate.com">contact@nextteammate.com</a>
                 </li>
               </ul>
             </div>
