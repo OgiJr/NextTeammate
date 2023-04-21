@@ -2,7 +2,7 @@ import { withIronSessionApiRoute } from "iron-session/next";
 import * as bcrypt from "bcryptjs";
 import User from "../../models/User";
 import { isSupportedMethod, reqBodyParse } from "../../lib/validation";
-import { dbConnect, dbUserToIronUser } from "../../lib/db";
+import { dbConnect, dbUserToIronUserCookie } from "../../lib/db";
 import { authCookie } from "../../lib/cookies";
 
 export default withIronSessionApiRoute(async function loginRoute(req, res) {
@@ -26,7 +26,7 @@ export default withIronSessionApiRoute(async function loginRoute(req, res) {
       return;
     }
 
-    req.session.user = await dbUserToIronUser(result);
+    req.session.user = await dbUserToIronUserCookie(result);
     await req.session.save();
     res.status(200).json({});
   } catch (e) {

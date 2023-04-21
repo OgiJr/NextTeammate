@@ -247,7 +247,7 @@ const Contact = () => {
                     Don&apos;t hesitate to ask your questions. We will answer
                     all of them.
                   </p>
-                  <Link href="mailto:nextteammateltd@gmail.com">
+                  <Link href="mailto:contact@nextteammate.com">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
                       Contact Us <i className="fal fa-chevron-right ml-2" />
                     </a>
@@ -276,7 +276,7 @@ const Contact = () => {
                     <h6>USA</h6>
                     <div className="mt-2 flex flex-col">
                       <strong>Email:</strong>
-                      nextteammateltd@gmail.com
+                      contact@nextteammate.com
                     </div>
                     <div className="mt-2 flex flex-col">
                       <strong>Address:</strong>
@@ -295,7 +295,7 @@ const Contact = () => {
                     <h6>Bulgaria</h6>
                     <div className="mt-2 flex flex-col">
                       <strong>Email:</strong>
-                      <div>nextteammateltd@gmail.com</div>
+                      <div>contact@nextteammate.com</div>
                     </div>
                     <div className="mt-2 flex flex-col">
                       <strong>Address:</strong>
@@ -305,7 +305,7 @@ const Contact = () => {
                     </div>
                     <div className="mt-2 flex flex-col">
                       <strong>Phone:</strong>
-                      <div>+359 882482505</div>
+                      <div>+359 88 4188911</div>
                     </div>
                   </div>
                 </div>
