@@ -46,6 +46,11 @@ function MyApp({ Component, pageProps }) {
       </Head>
       {loading && <Preloader />}
       <Component {...pageProps} />
+      <Script
+        type="text/javascript"
+        charset="UTF-8"
+        src="//cdn.cookie-script.com/s/677eea5fdcc0ef85104e7bb52ef20e68.js"
+      ></Script>
     </Fragment>
   );
 }
