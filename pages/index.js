@@ -29,7 +29,17 @@ const Index = () => {
           {dataLayer.push(arguments)}
           gtag('js', new Date()); gtag('config', 'G-35BKM9CFFZ'); `}
         </Script>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
+        ></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'AW-11157459203');`}
+        </Script>
         <link rel="alternate" hrefLang="en" href="https://nextteammate.com" />
         <link
           rel="apple-touch-icon"

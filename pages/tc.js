@@ -7,6 +7,7 @@ import Footer from "../src/layout/Footer";
 import circle_3 from "../public/assets/images/elements/circle3.png";
 import Image from "next/image";
 import Head from "next/head";
+import Script from "next/script";
 
 const Faq = () => {
   return (
@@ -19,18 +20,28 @@ const Faq = () => {
           content="TXwDNoDHW1ddiHu53LjULUQvXFhctJyVUjEHZaiLII4"
         />
 
-        <script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-35BKM9CFFZ"
-        ></script>
-        <script>
+        ></Script>
+        <Script>
           {`  window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-35BKM9CFFZ');`}
-        </script>
+        </Script>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
+        ></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'AW-11157459203');`}
+        </Script>
         <link rel="alternate" hrefLang="en" href="https://nextteammate.com" />
         <link
           rel="apple-touch-icon"

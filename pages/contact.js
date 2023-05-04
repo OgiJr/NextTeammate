@@ -8,6 +8,7 @@ import Image from "next/image";
 import phone_incoming from "../public/assets/images/icons/phone-incoming-dynamic-gradient copy.png";
 import chat_text from "../public/assets/images/icons/chat-text-dynamic-gradient copy.png";
 import Head from "next/head";
+import Script from "next/script";
 
 const Contact = () => {
   const [error, setError] = useState(null);
@@ -22,19 +23,29 @@ const Contact = () => {
           name="google-site-verification"
           content="TXwDNoDHW1ddiHu53LjULUQvXFhctJyVUjEHZaiLII4"
         />
-        <script
+        <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-35BKM9CFFZ"
-        ></script>
-        <script>
+        ></Script>
+        <Script>
           {`
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-35BKM9CFFZ');`}
-        </script>
+        </Script>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
+        ></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'AW-11157459203');`}
+        </Script>
         <link rel="alternate" hrefLang="en" href="https://nextteammate.com" />
         <link
           rel="apple-touch-icon"

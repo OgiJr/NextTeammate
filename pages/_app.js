@@ -51,6 +51,17 @@ function MyApp({ Component, pageProps }) {
         charset="UTF-8"
         src="//cdn.cookie-script.com/s/677eea5fdcc0ef85104e7bb52ef20e68.js"
       ></Script>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
+      ></Script>
+      <script>
+        {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11157459203');`}
+      </script>
     </Fragment>
   );
 }

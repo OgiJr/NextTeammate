@@ -13,6 +13,7 @@ import wifi_dynamic from "../public/assets/images/icons/wifi-dynamic-gradient co
 import working_women from "../public/assets/images/about/workingwomen1.png";
 import circle_3 from "../public/assets/images/elements/circle3.png";
 import Head from "next/head";
+import Script from "next/script";
 
 const About = () => {
   const [video, setVideo] = useState(false);
@@ -25,18 +26,28 @@ const About = () => {
           name="google-site-verification"
           content="TXwDNoDHW1ddiHu53LjULUQvXFhctJyVUjEHZaiLII4"
         />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
+        ></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'AW-11157459203');`}
+        </Script>
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-35BKM9CFFZ"
         ></script>
-        <script>
+        <Script>
           {`  window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-35BKM9CFFZ');`}
-        </script>
+        </Script>
 
         <link rel="alternate" hrefLang="en" href="https://nextteammate.com" />
         <link
