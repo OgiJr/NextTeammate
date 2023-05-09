@@ -10,6 +10,7 @@ import {
   dbCompanyToCompany,
   dbConnect,
   dbUserToIronUserCookie,
+  isDbUserWorking,
   isIronUserAssigned,
   isIronUserWorking,
   isUserEmailInDb,
@@ -331,7 +332,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       props: {
         user: req.session.user,
         is_assigned: isIronUserAssigned(req.session.user),
-        is_working: isIronUserWorking(req.session.user),
+        is_working: isDbUserWorking(newUser),
         company: req.session.user.company
           ? dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id }))
           : null,
@@ -342,7 +343,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     return {
       props: {
         user,
-        is_working: isIronUserWorking(user),
+        is_working: false,
         company: req.session.user.company
           ? dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id }))
           : null,
