@@ -325,7 +325,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     req.session.user = await dbUserToIronUserCookie(newUser);
     await req.session.save();
 
-    const is_working = isDbUserWorking(newUser);
+    const is_working = await isDbUserWorking(newUser);
     console.log(is_working);
 
     return {
