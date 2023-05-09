@@ -325,11 +325,14 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     req.session.user = await dbUserToIronUserCookie(newUser);
     await req.session.save();
 
+    const is_working = isDbUserWorking(newUser);
+    console.log(is_working);
+
     return {
       props: {
         user: req.session.user,
         is_assigned: isIronUserAssigned(req.session.user),
-        is_working: isDbUserWorking(newUser),
+        is_working: is_working,
         company: req.session.user.company
           ? dbCompanyToCompany(await Company.findOne({ _id: req.session.user.company._id }))
           : null,
