@@ -12,7 +12,6 @@ import {
   dbUserToIronUserCookie,
   isDbUserWorking,
   isIronUserAssigned,
-  isIronUserWorking,
   isUserEmailInDb,
 } from "../lib/db";
 import User from "../models/User";
