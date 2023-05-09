@@ -7,6 +7,8 @@ import Image from "next/image";
 
 import phone_incoming from "../public/assets/images/icons/phone-incoming-dynamic-gradient copy.png";
 import chat_text from "../public/assets/images/icons/chat-text-dynamic-gradient copy.png";
+import Head from "next/head";
+import Script from "next/script";
 
 const Contact = () => {
   const [error, setError] = useState(null);
@@ -14,7 +16,191 @@ const Contact = () => {
 
   return (
     <Layout language={"en"}>
-      <PageTitleBanner pageName="Contact Us" url="assets/images/banner/contact-banner.jpg" />
+      <Head>
+        <title>Reach out to us for a prosperous partnership</title>
+
+        <meta
+          name="google-site-verification"
+          content="TXwDNoDHW1ddiHu53LjULUQvXFhctJyVUjEHZaiLII4"
+        />
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-35BKM9CFFZ"
+        ></Script>
+        <Script>
+          {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-35BKM9CFFZ');`}
+        </Script>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
+        ></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11157459203');`}
+        </Script>
+        <link rel="alternate" hrefLang="en" href="https://nextteammate.com" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="favicon-16x16.png"
+        />
+        <link rel="icon" href="icon.jpg" />
+        <link rel="shortcut icon" href="icon.jpg" />
+        <link rel="canonical" href="https://www.nextteammate.com/contact" />
+        <link rel="shortlink" href="https://nextteammate.com/contact" />
+        <link rel="mask-icon" href="icon.png" color="#ffffff" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href="https://www.nextteammate.com/contact"
+        />
+        <link rel="shortlink" href="https://nextteammate.com/contact" />
+        <link rel="shortcut icon" href="icon.jpg" />
+        <link rel="apple-touch-icon" href="icon.png" />
+        <link rel="icon" type="image/png" sizes="60x60" href="icon.png" />
+        <link rel="icon" type="image/jpg" sizes="60x60" href="icon.jpg" />
+        <link rel="mask-icon" href="icon.png" color="#ffffff" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
+
+        <meta
+          name="description"
+          content="Get in Touch With Us Today and Find Your Suitable Future Teammate"
+        />
+
+        <meta
+          name="keywords"
+          content="NextTeammate,Next Teammate, Workforce, Teammate, Employee, Employee engagement, HR outsourcing, Employer branding, Job posting, Interviewing, Onboarding, Career development"
+        />
+
+        <meta property="og:locale" content="en" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:site_name"
+          content="Reach out to us for a prosperous partnership"
+        />
+        <meta
+          property="og:title"
+          content="Reach out to us for a prosperous partnership"
+        />
+        <meta
+          property="og:image"
+          content="https://nextteammate.com/assets/images/banner/contact-banner.jpg"
+        />
+        <meta
+          property="og:description"
+          content="Get in Touch With Us Today and Find Your Suitable Future Teammate"
+        />
+        <meta
+          property="og:image"
+          content="https://nextteammate.com/assets/images/banner/about-banner.jpg"
+        />
+        <meta
+          property="og:image"
+          content="https://nextteammate.com/assets/images/banner/banner-work.jpg"
+        />
+        <meta
+          property="og:image"
+          content="https://nextteammate.com/assets/images/banner/index-banner.jpeg"
+        />
+        <meta
+          property="og:image"
+          content="https://nextteammate.com/assets/images/banner/work-banner.jpg"
+        />
+
+        <meta property="og:url" content=" https://www.nextteammate.com/" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Reach out to us for a prosperous partnership"
+        />
+        <meta
+          name="twitter:description"
+          content="Get in Touch With Us Today and Find Your Suitable Future Teammate"
+        />
+        <meta
+          name="twitter:image:src"
+          content="https://nextteammate.com/assets/images/banner/contact-banner.jpg"
+        />
+        <meta name="twitter:url" content="https://www.nextteammate.com/" />
+        <meta name="twitter:domain" content="https://www.nextteammate.com/" />
+        <meta property="og:type" content="article" />
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="revisit-after" content="3 day" />
+        <meta name="robots" content="index, follow, " />
+        <meta name="msnbot" content="index, follow, " />
+        <meta name="googlebot" content="index, follow, " />
+        <meta name="rating" content="All" />
+        <meta
+          name="classification"
+          content="Reach out to us for a prosperous partnership"
+        />
+        <meta name="Creator" content="vasil_beevski@abv.bg" />
+        <meta name="Publisher" content="https://www.nextteammate.com" />
+        <meta name="state" content="global" />
+        <meta name="country" content="global" />
+        <meta name="author" content="Vasil Beebvski" />
+        <meta name="copyright" content="Vasil Beebvski" />
+        <meta
+          name="page-topic"
+          content="Reach out to us for a prosperous partnership"
+        />
+        <meta name="Distribution" content="Global" />
+        <meta name="Rating" content="General" />
+        <meta name="apple-touch-fullscreen" content="YES" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="Generator" content="VB design studio" />
+        <meta name="Publisher" content="https://www.nextteammate.com" />
+        <meta
+          name="SPAM Reporting"
+          content=" info@spamcop.net, info@spamcop.com "
+        />
+        <meta name="country" content="global" />
+        <meta name="author" content="Vasil Beebvski" />
+        <meta name="copyright" content="Vasil Beebvski" />
+        <meta
+          name="page-topic"
+          content="Get in Touch With Us Today and Find Your Suitable Future Teammate"
+        />
+        <meta name="Distribution" content="Global" />
+        <meta name="Rating" content="General" />
+        <meta name="apple-touch-fullscreen" content="YES" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="Generator" content="VB design studio" />
+        <meta name="Publisher" content="https://www.nextteammate.com" />
+        <meta
+          name="SPAM Reporting"
+          content=" info@spamcop.net, info@spamcop.com "
+        />
+      </Head>
+      <PageTitleBanner
+        pageName="Contact Us"
+        url="assets/images/banner/contact-banner.jpg"
+      />
       <section className="section-padding">
         <div className="container">
           <div className="row">
@@ -24,15 +210,24 @@ const Contact = () => {
                   <i className="fal fa-book" />
                   Contact Us
                 </p>
-                <h3 className="title">Reach out to us if you have any questions</h3>
+                <h3 className="title">
+                  Reach out to us if you have any questions
+                </h3>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInDown" data-wow-delay=".30ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInDown"
+                data-wow-delay=".30ms"
+              >
                 <div className="icon">
-                  <Image src={phone_incoming} alt="icon" className="image-fit-contain" />
+                  <Image
+                    src={phone_incoming}
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Phone</h4>
@@ -46,13 +241,23 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className="contact_faq_box shadow_1 wow fadeInUp" data-wow-delay=".40ms">
+              <div
+                className="contact_faq_box shadow_1 wow fadeInUp"
+                data-wow-delay=".40ms"
+              >
                 <div className="icon">
-                  <Image src={chat_text} alt="icon" className="image-fit-contain" />
+                  <Image
+                    src={chat_text}
+                    alt="icon"
+                    className="image-fit-contain"
+                  />
                 </div>
                 <div className="text">
                   <h4>Have Any Questions</h4>
-                  <p>Don&apos;t hesitate to ask your questions. We will answer all of them.</p>
+                  <p>
+                    Don&apos;t hesitate to ask your questions. We will answer
+                    all of them.
+                  </p>
                   <Link href="mailto:contact@nextteammate.com">
                     <a className="thm-btn bg-thm-color-two thm-color-two-shadow btn-rectangle">
                       Contact Us <i className="fal fa-chevron-right ml-2" />
@@ -119,7 +324,10 @@ const Contact = () => {
             </div>
           </div>
           <div className="col-xl-8 col-lg-7">
-            <div className="contact_map relative z-1 wow fadeInRight flex flex-col gap-8" id="map">
+            <div
+              className="contact_map relative z-1 wow fadeInRight flex flex-col gap-8"
+              id="map"
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3049.590101717821!2d-75.0114418!3d40.151413399999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6ad77a03ed939%3A0x23d1508632b7b17d!2s402%20E%20Pennsylvania%20Blvd%2C%20Feasterville-Trevose%2C%20PA%2019053!5e0!3m2!1sen!2sus!4v1663016138375!5m2!1sen!2sus"
                 style={{ border: 0 }}
@@ -147,21 +355,30 @@ const Contact = () => {
                       <i className="fal fa-book" />
                       Drop A Message
                     </p>
-                    <h3 className="title">Reach out to us for a prosperous partnership</h3>
+                    <h3 className="title">
+                      Reach out to us for a prosperous partnership
+                    </h3>
                   </div>
                   <div className="flex flex-col w-full items-center gap-2 mb-4">
-                    <div className="text-2xl w-[90%] text-left">How it works (4 easy steps):</div>
-                    <div className="text-xl w-[90%] text-left">1. Fill out the contact form</div>
-                    <div className="text-xl w-[90%] text-left">
-                      2. After we check your company, we will give you temporary access to our platform. There you can
-                      find all of our available teammates with video resumes and get familiar with our system.
+                    <div className="text-2xl w-[90%] text-left">
+                      How it works (4 easy steps):
                     </div>
                     <div className="text-xl w-[90%] text-left">
-                      3. We schedule an online interview with the selected prospects.
+                      1. Fill out the contact form
                     </div>
                     <div className="text-xl w-[90%] text-left">
-                      4. After choosing the right candidate you sign a contract and start working with your new
-                      teammate.
+                      2. After we check your company, we will give you temporary
+                      access to our platform. There you can find all of our
+                      available teammates with video resumes and get familiar
+                      with our system.
+                    </div>
+                    <div className="text-xl w-[90%] text-left">
+                      3. We schedule an online interview with the selected
+                      prospects.
+                    </div>
+                    <div className="text-xl w-[90%] text-left">
+                      4. After choosing the right candidate you sign a contract
+                      and start working with your new teammate.
                     </div>
                   </div>
                 </div>
@@ -312,8 +529,12 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="col-lg-12 text-center ">
-                    <button type="submit" className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle">
-                      Send Your Message <i className="fal fa-chevron-right ml-2" />
+                    <button
+                      type="submit"
+                      className="thm-btn bg-thm-color-three thm-color-three-shadow btn-rectangle"
+                    >
+                      Send Your Message{" "}
+                      <i className="fal fa-chevron-right ml-2" />
                     </button>
                   </div>
                   {error ? (
