@@ -9,7 +9,6 @@ import Image from "next/image";
 import {
   dbCompanyToCompany,
   dbConnect,
-  dbUserToIronUser,
   dbUserToIronUserCookie,
   isIronUserAssigned,
   isIronUserWorking,
