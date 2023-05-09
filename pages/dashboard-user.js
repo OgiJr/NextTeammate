@@ -10,6 +10,7 @@ import {
   dbCompanyToCompany,
   dbConnect,
   dbUserToIronUser,
+  dbUserToIronUserCookie,
   isIronUserAssigned,
   isIronUserWorking,
   isUserEmailInDb,
@@ -322,7 +323,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     await dbConnect();
 
     const newUser = await User.findOne({ email: user.email });
-    req.session.user = await dbUserToIronUser(newUser);
+    req.session.user = await dbUserToIronUserCookie(newUser);
     await req.session.save();
 
     console.log(newUser);
