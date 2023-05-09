@@ -325,6 +325,8 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     req.session.user = await dbUserToIronUser(newUser);
     await req.session.save();
 
+    console.log(newUser);
+
     return {
       props: {
         user: req.session.user,
