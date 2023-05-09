@@ -338,6 +338,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
       },
     };
   } catch (e) {
+    console.error(e);
     return {
       props: {
         user,
