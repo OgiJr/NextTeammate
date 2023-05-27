@@ -10,7 +10,12 @@ import { isUserEmailInDb } from "../lib/db";
 const Zoom = ({ room_name, display_name }) => {
   return (
     <div className="w-[100vw] h-[100vh]">
-      <JitsiMeeting domain={process.env.NEXT_PUBLIC_JITSI_DOMAIN} roomName={room_name} displayName={display_name} />
+      <JitsiMeeting
+        domain={process.env.NEXT_PUBLIC_JITSI_DOMAIN}
+        roomName={room_name}
+        displayName={display_name}
+        getIFrameRef={(node) => (node.style.height = "100vh")}
+      />
     </div>
   );
 };
