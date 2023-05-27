@@ -1,20 +1,11 @@
 import Head from "next/head";
-import { Fragment, useEffect, useState } from "react";
-import Preloader from "../src/layout/Preloader";
+import { Fragment } from "react";
 import "../styles/globals.css";
 import React from "react";
 import { DefaultSeo } from "next-seo";
 import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
-
   return (
     <Fragment>
       <Script>
@@ -44,17 +35,13 @@ function MyApp({ Component, pageProps }) {
         <title>NextTeammate</title>
         <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico" />
       </Head>
-      {loading && <Preloader />}
       <Component {...pageProps} />
       <Script
         type="text/javascript"
         charset="UTF-8"
         src="//cdn.cookie-script.com/s/677eea5fdcc0ef85104e7bb52ef20e68.js"
       ></Script>
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"
-      ></Script>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-11157459203"></Script>
       <script>
         {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
