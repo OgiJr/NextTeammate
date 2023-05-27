@@ -1,5 +1,5 @@
 import React from "react";
-import { JaaSMeeting } from "@jitsi/react-sdk";
+import { JitsiMeeting } from "@jitsi/react-sdk";
 import { withIronSessionSsr } from "iron-session/next";
 import { authCookie } from "../lib/cookies";
 import { generate } from "../lib/jwt";
@@ -7,28 +7,10 @@ import { v4 as uuidv4 } from "uuid";
 import { readFileSync } from "fs";
 import { isUserEmailInDb } from "../lib/db";
 
-const Zoom = ({ room_name, token }) => {
+const Zoom = ({ room_name, display_name }) => {
   return (
     <div className="w-[100vw] h-[100vh]">
-      <JaaSMeeting
-        style={{ height: "100%" }}
-        className="h-full"
-        appId={process.env.NEXT_PUBLIC_JITSI_APP_ID}
-        roomName={room_name}
-        jwt={token}
-        configOverwrite={{
-          disableThirdPartyRequests: true,
-          disableLocalVideoFlip: true,
-          backgroundAlpha: 0.5,
-        }}
-        interfaceConfigOverwrite={{
-          VIDEO_LAYOUT_FIT: "nocrop",
-          MOBILE_APP_PROMO: false,
-          TILE_VIEW_MAX_COLUMNS: 4,
-        }}
-        invitees={[]}
-        getIFrameRef={(node) => ((node.style.height = "100%"), (node.style.width = "100%"))}
-      />
+      <JitsiMeeting domain={process.env.NEXT_PUBLIC_JITSI_DOMAIN} roomName={room_name} displayName={display_name} />
     </div>
   );
 };
@@ -78,7 +60,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
     kid: process.env.JITSI_KID,
   });
   return {
-    props: { room_name, token },
+    props: { room_name, token, display_name: `${req.session.user.first_name} ${req.session.user.last_name}` },
   };
 }, authCookie);
 
