@@ -22,6 +22,7 @@
     "currency-codes": "^2.1.0",
     "easy-pie-chart": "^2.1.7",
     "formidable": "^2.0.1",
+    "googleapis": "^120.0.0",
     "iron-session": "^6.2.0",
     "isotope-layout": "^3.0.6",
     "jsonwebtoken": "^8.5.1",

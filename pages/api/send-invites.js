@@ -9,13 +9,13 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
   let reqBody;
   try {
     isSupportedMethod(req, res, ["POST"]);
-    reqBody = reqBodyParse(req, res, ["targets", "room_name"]);
+    reqBody = reqBodyParse(req, res, ["targets", "link"]);
     await isLoggedIn(req, res);
   } catch (e) {
     return;
   }
 
-  const { targets, room_name } = reqBody;
+  const { targets, link } = reqBody;
   if (!targets.length) {
     res.status(400).json({ message: "Please provide targets!" });
     return;
@@ -35,7 +35,7 @@ export default withIronSessionApiRoute(async function workRoute(req, res) {
     }
   }
 
-  await sendInvite(targets, req.session.user.first_name + " " + req.session.user.last_name, room_name);
+  await sendInvite(targets, req.session.user.first_name + " " + req.session.user.last_name, link);
 
   res.status(200).json({});
 }, authCookie);

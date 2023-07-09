@@ -256,6 +256,19 @@ const Zoom = ({ user, employees }) => {
                         }
                         setLoading(true);
                         const room_name = user.company ? user.company.name : `${user.first_name} ${user.last_name}`;
+                        const res = await fetch("/api/create-meeting", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            room_name,
+                            attendees: selectedForCall,
+                          }),
+                        });
+
+                        const { link } = await res.json();
+
                         await fetch("/api/send-invites", {
                           method: "POST",
                           headers: {
@@ -263,7 +276,7 @@ const Zoom = ({ user, employees }) => {
                           },
                           body: JSON.stringify({
                             targets: selectedForCall,
-                            room_name,
+                            link,
                           }),
                         });
 
