@@ -263,7 +263,7 @@ const Zoom = ({ user, employees }) => {
                           },
                           body: JSON.stringify({
                             room_name,
-                            attendees: selectedForCall,
+                            attendees: [...selectedForCall, user.email],
                           }),
                         });
 
