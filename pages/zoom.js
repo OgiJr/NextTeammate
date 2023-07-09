@@ -280,7 +280,7 @@ const Zoom = ({ user, employees }) => {
                           }),
                         });
 
-                        window.open(link);
+                        window.location.href = link;
                         setLoading(false);
                       }}
                     >
