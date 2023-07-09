@@ -280,7 +280,7 @@ const Zoom = ({ user, employees }) => {
                           }),
                         });
 
-                        window.open(router.basePath + "/call?room_name=" + encodeURIComponent(room_name));
+                        window.open(link);
                         setLoading(false);
                       }}
                     >
