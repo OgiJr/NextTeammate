@@ -13,15 +13,14 @@ const Footer = () => {
       <div className="container relative z-1">
         <div className="footer_top pt-20">
           <div className="flex flex-row justify-start flex-wrap">
-            <div className="col-lg-3 col-md-6">
-              <div className="ft_widget ft_about wow fadeInDown">
-                <Link href="/">
-                  <a className="logo">
-                    <Image src={nextlogof} alt="logo" className="image-fit" />
-                  </a>
-                </Link>
-              </div>
+            <div className="ft_widget ft_about wow fadeInDown">
+              <Link href="/">
+                <a className="logo">
+                  <Image src={nextlogof} alt="logo" className="image-fit" />
+                </a>
+              </Link>
             </div>
+
             <div className="flex flex-row justify-start">
               <div className="flex flex-col min-w-[30rem]">
                 <h6 className="text-white text-3xl">Navigation</h6>
