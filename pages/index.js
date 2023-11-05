@@ -9,6 +9,7 @@ import React from "react";
 import Footer from "../src/layout/Footer";
 import Head from "next/head";
 import Script from "next/script";
+import VideoPlayer from "../lib/video_player";
 
 const Index = () => {
   return (
@@ -177,6 +178,11 @@ const Index = () => {
       <IndexBanner />
       <IndexWeCare />
       <IndexSolutions />
+      <div
+        className=" w-full rounded-xl"
+      >
+        <div className="mx-auto lg:w-[60%] w-[85%]"><VideoPlayer src="/sunshine/sunshine.m3u8" /></div>
+      </div>
       <IndexSkills />
       <IndexVideo />
       <Footer />
